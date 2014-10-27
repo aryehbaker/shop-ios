@@ -403,21 +403,21 @@ static NSString *logpath;
         
         UIImageView *t1 = [@"logo.png" imageViewForImgSizeAtX:0 Y:80];
         [torle addView:t1 page:0];
-        UILabel *txt = [VILabel createLableWithFrame:Frm(36, t1.endY,t1.w - 72  , 40) color:@"#ffffff" font:FontPekanRegular(18) align:CENTER];
+        UILabel *txt = [VILabel createLableWithFrame:Frm(36, t1.endY,t1.w - 72  , 40) color:@"#ffffff" font:Regular(18) align:CENTER];
         txt.numberOfLines = 2;
         txt.text = Lang(@"index_welcome_01");
         [torle addView:txt page:0];
         int y = IS_RETINA_4 ? 220 : 180;
         UIImageView *t2 = [@"search.png" imageViewForImgSizeAtX:111.5 Y:y];
         [torle addView:t2 page:1];
-        txt = [VILabel createLableWithFrame:Frm(36, t2.endY,t1.w - 72  , 40) color:@"#ffffff" font:FontPekanRegular(18) align:CENTER];
+        txt = [VILabel createLableWithFrame:Frm(36, t2.endY,t1.w - 72  , 40) color:@"#ffffff" font:Regular(18) align:CENTER];
         txt.numberOfLines = 2;
         txt.text = Lang(@"index_welcome_02");
         [torle addView:txt page:1];
         
         t2 = [@"gift.png" imageViewForImgSizeAtX:111.5 Y:y];
         [torle addView:t2 page:2];
-        txt = [VILabel createLableWithFrame:Frm(36, t2.endY,t1.w - 72  , 40) color:@"#ffffff" font:FontPekanRegular(18) align:CENTER];
+        txt = [VILabel createLableWithFrame:Frm(36, t2.endY,t1.w - 72  , 40) color:@"#ffffff" font:Regular(18) align:CENTER];
         txt.numberOfLines = 2;
         txt.text = Lang(@"index_welcome_03");
         [torle addView:txt page:2];
@@ -425,7 +425,7 @@ static NSString *logpath;
         
         t2 = [@"heart.png" imageViewForImgSizeAtX:111.5 Y:y];
         [torle addView:t2 page:3];
-        txt = [VILabel createLableWithFrame:Frm(30, t2.endY,t1.w - 60  , 60) color:@"#ffffff" font:FontPekanRegular(16) align:CENTER];
+        txt = [VILabel createLableWithFrame:Frm(30, t2.endY,t1.w - 60  , 60) color:@"#ffffff" font:Regular(16) align:CENTER];
         txt.numberOfLines = 3;
         txt.text = Lang(@"index_welcome_04");
         [torle addView:txt page:3];
@@ -702,17 +702,17 @@ static NSMutableDictionary *shareInfo;
     v.layer.cornerRadius = 8;
     
     UITextView *t = ((UITextView *)[v viewWithTag:18003]);
-    t.font = _FontPekanRegular(14);
+    t.font = Regular(14);
     t.text = [msgs objectForKey:@"description"];
     t.textAlignment = NSTextAlignmentRight;
     [t becomeFirstResponder];
     
     [(UIButton *)[v viewWithTag:18001] setTitle:Lang(@"share_cancel") hightTitle:Lang(@"share_cancel")];
-    ((UIButton *)[v viewWithTag:18001]).titleLabel.font = FontPekanBold(16);
+    ((UIButton *)[v viewWithTag:18001]).titleLabel.font = Bold(16);
     [((UIButton *)[v viewWithTag:18001]) addTapTarget:self action:@selector(cancelShareAct:)];
     [((UIButton *)[v viewWithTag:18002]) addTapTarget:self action:@selector(shareNow:)];
     [((UIButton *)[v viewWithTag:18002]) setTitle:Lang(@"share_ok") hightTitle:Lang(@"share_ok")];
-    ((UIButton *)[v viewWithTag:18002]).titleLabel.font = FontPekanBold(16);
+    ((UIButton *)[v viewWithTag:18002]).titleLabel.font = Bold(16);
     id pic = [msgs objectForKey:@"picture"];
     if ([pic isKindOfClass:[NSString class]]) {
         pic = [NSURL URLWithString:pic];

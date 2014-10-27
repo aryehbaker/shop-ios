@@ -44,7 +44,7 @@
     
     NSString *title = [promo stringValueForKey:@"StoreName"];
     [self addNav:title left:BACK right:NONE];
-    self.nav_title.font = FontPekanBlack(22);
+    self.nav_title.font = Black(22);
     
     self.nav.backgroundColor = [@"#DADADA" hexColor];
     self.view.backgroundColor = self.nav.backgroundColor;
@@ -111,14 +111,14 @@
     
     if (itms.count != 0) {
         UIImageView *imgs = [@"howmuch.png" imageViewForImgSizeAtX:autoPlay.w - 44 -10 Y:autoPlay.h-21-10];
-        UILabel *l = [VILabel createLableWithFrame:Frm(28, 2, 44-28, 25) color:@"#9A9A9A" font:FontPekanLight(20) align:CENTER];
+        UILabel *l = [VILabel createLableWithFrame:Frm(28, 2, 44-28, 25) color:@"#9A9A9A" font:Light(20) align:CENTER];
         l.text = Fmt(@"%ld",(unsigned long)itms.count);
         [imgs addSubview:l];
         [autoPlay addSubview:imgs];
     }
     
     UILabel *describe;
-    describe =  [VILabel createManyLines:Frm(15, bg.endY+10, 290, 0) color:@"#2C2C2C" ft:FontPekanBold(22) text:[info stringValueForKey:@"Offer"]];
+    describe =  [VILabel createManyLines:Frm(15, bg.endY+10, 290, 0) color:@"#2C2C2C" ft:Bold(22) text:[info stringValueForKey:@"Offer"]];
     describe.textAlignment = NSTextAlignmentRight;
     describe.text = [info stringValueForKey:@"Offer"];
     [contentView addSubview:describe];
@@ -126,7 +126,7 @@
     fullText = [info stringValueForKey:@"Description" defaultValue:nil];
     int offset = describe.endY;
     if (fullText != nil) {
-        UILabel *moretext =  [VILabel createManyLines:Frm(15, offset+10, 290, 0) color:@"#414141" ft:FontPekanLight(15) text:fullText];
+        UILabel *moretext =  [VILabel createManyLines:Frm(15, offset+10, 290, 0) color:@"#414141" ft:Light(15) text:fullText];
         totalHeight = moretext.h;
         [moretext setH:45];
         moretext.tag = 10000;
@@ -139,7 +139,7 @@
              UIButton *showMore = [[UIButton alloc] initWithFrame:Frm(0, moretext.endY, 100, 30)];
              showMore.titleLabel.textAlignment = NSTextAlignmentRight;
              [showMore setTitle:Lang(@"more_desc") hightTitle:Lang(@"more_desc")];
-             showMore.titleLabel.font = FontPekanRegular(15);
+             showMore.titleLabel.font = Regular(15);
              [showMore setTitleColor:@"#FA2D38" hightColor:@"#FA2D38"];
              [showMore addTarget:self action:@selector(showFull:)];
              [contentView addSubview:showMore];
@@ -171,7 +171,7 @@
     [share addTarget:self action:@selector(reward:)];
     [subItme addSubview:share];
     
-    UILabel *tip = [VILabel createLableWithFrame:Frm(0, share.endY+15, 320, 20) color:@"#FA2D38" font:FontPekanBold(15) align:CENTER];
+    UILabel *tip = [VILabel createLableWithFrame:Frm(0, share.endY+15, 320, 20) color:@"#FA2D38" font:Bold(15) align:CENTER];
     tip.text = Lang(@"more_by_store");
     [subItme addSubview:tip];
     

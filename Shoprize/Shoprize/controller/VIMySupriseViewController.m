@@ -45,7 +45,7 @@ typedef NS_ENUM(NSInteger, Tabs) { USED,ACT};
     
     UIButton *left = [[UIButton alloc] initWithFrame:Frm(0, self.nav.endY, self.view.w/2, 34)];
     [left setTitle:Lang(@"menu_exp_exp") hightTitle:Lang(@"menu_exp_exp")];
-    left.titleLabel.font = FontPekanBold(16);
+    left.titleLabel.font = Bold(16);
     left.tag = 100;
     left.backgroundColor = [@"#ff4747" hexColor];
     [left setTitleColor:[@"#FFFFFF" hexColor] forState:UIControlStateNormal];
@@ -59,7 +59,7 @@ typedef NS_ENUM(NSInteger, Tabs) { USED,ACT};
     
     UIButton *right = [[UIButton alloc] initWithFrame:Frm(left.endX, self.nav.endY, self.view.w-left.endX, left.h)];
     [right setTitle:Lang(@"menu_sprise_active") hightTitle:Lang(@"menu_sprise_active")];
-    right.titleLabel.font = FontPekanBold(16);
+    right.titleLabel.font = Bold(16);
     right.tag = 101;
     right.backgroundColor = [@"#ff4747" hexColor];
     [right setTitleColor:[@"#FFFFFF" hexColor] forState:UIControlStateNormal];

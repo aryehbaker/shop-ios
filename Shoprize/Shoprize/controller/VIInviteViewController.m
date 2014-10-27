@@ -37,10 +37,10 @@
     [self addNav:@"@search_w.png" left:BACK right:MENU];
     UIView *action = [self loadXib:@"UI.xib" withTag:8000];
     [action label4Tag:8001].text = Lang(@"shoose_all");
-    [action label4Tag:8001].font = FontPekanBold(19);
+    [action label4Tag:8001].font = Bold(19);
     [[action button4Tag:8002] setTitle:Lang(@"ck_all") hightTitle:Lang(@"ck_all")];
     [[action button4Tag:8002] addTarget:self action:@selector(checkAll:)];
-    [[action button4Tag:8002] titleLabel].font = FontPekanRegular(14);
+    [[action button4Tag:8002] titleLabel].font = Regular(14);
     [action setY:self.nav.endY];
     [self.view addSubview:action];
     
@@ -56,7 +56,7 @@
     inVIen.backgroundColor = [@"#ff4747" hexColor];
     [inVIen setTitleColor:@"#ffffff" hightColor:@"#ffffff"];
     [inVIen setTitle:Lang(@"invite_now") hightTitle:Lang(@"invite_now")];
-    inVIen.titleLabel.font = FontPekanBold(20);
+    inVIen.titleLabel.font = Bold(20);
     [inVIen addTarget:self action:@selector(sendMessage:)];
     [self.view addSubview:inVIen];
 }

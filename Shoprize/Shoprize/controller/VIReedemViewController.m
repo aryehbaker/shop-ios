@@ -39,7 +39,7 @@
     ct.backgroundColor = [UIColor clearColor];
     
     NSString *ctx = [[extra stringValueForKey:@"Offer"] killQute];
-    UILabel *title = [VILabel createManyLines:Frm(10, 20, 300, 10) color:@"#252525" ft:FontPekanBold(18) text:ctx];
+    UILabel *title = [VILabel createManyLines:Frm(10, 20, 300, 10) color:@"#252525" ft:Bold(18) text:ctx];
     title.text = ctx;
     title.textAlignment = NSTextAlignmentRight;
     
@@ -71,7 +71,7 @@
     
     NSString *ctx2 = [extra stringValueForKey:@"Description" defaultValue:nil];
     if (ctx2!=nil) {
-        UILabel *content = [VILabel createManyLines:Frm(20, endY+10, 280, 10) color:@"#252525" ft:FontPekanRegular(16) text:ctx2];
+        UILabel *content = [VILabel createManyLines:Frm(20, endY+10, 280, 10) color:@"#252525" ft:Regular(16) text:ctx2];
         
 //        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:ctx2];
 //        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
@@ -93,7 +93,7 @@
     reedem.layer.cornerRadius = 20;
     reedem.layer.borderColor = [@"#9e9e9e" hexColor].CGColor;
     [reedem setTitle:@"מימוש הפתעה" hightTitle:@"מימוש הפתעה"];
-    reedem.titleLabel.font = FontPekanBold(20);
+    reedem.titleLabel.font = Bold(20);
     [reedem setTitleColor:@"#464646" hightColor:@"#464646"];
     [reedem addTarget:self action:@selector(reedemStart:)];
     [ct addSubview:reedem];

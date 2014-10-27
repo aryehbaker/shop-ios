@@ -21,6 +21,7 @@
 	[super viewDidLoad];
     [self addCommentPage:.7];
 
+    
 	NSString *target = [self getContentValueWithPath:@"VIHtmlViewController"];
 
 	//注册
@@ -31,7 +32,7 @@
         logon.backgroundColor = [@"#ff4747" hexColor];
         [logon setTitle:Lang(@"ready_member_to_logon") hightTitle:Lang(@"ready_member_to_logon")];
         [logon setTitleColor:@"#ffffff" hightColor:@"#ffffff"];
-        logon.titleLabel.font = FontPekanBold(18);
+        logon.titleLabel.font = Bold(18);
         [self.view addSubview:logon];
         [logon addTarget:self action:@selector(gotoLogin:)];
 	}

@@ -41,7 +41,7 @@
     small.layer.cornerRadius = 10;
     small.backgroundColor = [@"#5E5E5E" hexColor];
     [small setTitle:Lang(@"store_info") forState:UIControlStateNormal];
-    small.titleLabel.font = FontPekanBold(14);
+    small.titleLabel.font = Bold(14);
     [small addTarget:self action:@selector(showTime:)];
     [self.view addSubview:small];
 
@@ -53,7 +53,7 @@
     if (extraProms.count == 0) {
         UIImageView *img = [@"no_promos.png" imageViewForImgSizeAtX:0 Y:80];
         [scrll addSubview:img];
-        UILabel *nop  = [VILabel createLableWithFrame:Frm(0, img.endY+5, 320, 40) color:@"#8F8F8F" font:FontPekanBold(16) align:CENTER];
+        UILabel *nop  = [VILabel createLableWithFrame:Frm(0, img.endY+5, 320, 40) color:@"#8F8F8F" font:Bold(16) align:CENTER];
         nop.text = Lang(@"no_promos");
         [scrll addSubview:nop];
     }
@@ -164,7 +164,7 @@
     nav.layer.cornerRadius = nav.w /2 ;
     [nav setTitle:Lang(@"navi_title") hightTitle:Lang(@"navi_title")];
     [nav setTitleColor:@"#ffffff" hightColor:@"#ffffff"];
-    nav.titleLabel.font = FontPekanBold(18);
+    nav.titleLabel.font = Bold(18);
     
 }
 

@@ -9,6 +9,7 @@
 #import "VIBigSuprise.h"
 #import <VICore/VICore.h>
 #import <QuartzCore/QuartzCore.h>
+#import <Shoprize/Fonts.h>
 
 @interface VIBigSuprise()
 {
@@ -46,7 +47,7 @@
         slider.layer.cornerRadius = 55/2;
         slider.backgroundColor = [@"#ffffff" hexColorAlpha:.7];
         
-        UILabel *sliderTxt = [VILabel createLableWithFrame:Frm(10, 5, 220, 45) color:@"#464646" font:_FontPekanBold(22) align:RIGHT];
+        UILabel *sliderTxt = [VILabel createLableWithFrame:Frm(10, 5, 220, 45) color:@"#464646" font:Bold(22) align:RIGHT];
         sliderTxt.text = @"לפרטי ההפתעה - החלק";
         sliderTxt.shadowColor = [@"#fefdfd" hexColorAlpha:.5];
         sliderTxt.shadowOffset = CGSizeMake(1, -1.0);
@@ -89,7 +90,7 @@
         f1.lineBreakMode = NSLineBreakByWordWrapping;
         [contentView addSubview:f1];
         
-        UILabel *f3 = [VILabel createLableWithFrame:Frm(34, f1.endY, 170, (120-f1.endY)*2) color:@"#ffffff" font:_FontPekanBlack(100) align:CENTER];
+        UILabel *f3 = [VILabel createLableWithFrame:Frm(34, f1.endY, 170, (120-f1.endY)*2) color:@"#ffffff" font:Black(100) align:CENTER];
         f3.text = [regValue substringWithRange:NSMakeRange(1, regValue.length-2)];
         
         f3.minimumScaleFactor = 0.7;

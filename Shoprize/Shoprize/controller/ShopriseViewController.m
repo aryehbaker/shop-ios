@@ -10,6 +10,7 @@
 #import "VIDealsDetailViewController.h"
 #import "CMPopTipView.h"
 
+
 @interface ShopriseViewController ()<UITextFieldDelegate>
 {
     UIView *searchView;
@@ -53,7 +54,7 @@
             [tacks addSubview:imagev];
             [imagev addTapTarget:self action:@selector(doCenterIconClick:)];
         }else{
-            self.nav_title = [VILabel createLableWithFrame:Frm(50, 0, 220, 44) color:self.lightContent ? @"#ffffff" :  @"#000000" font:FontPekanBold(20) align:CENTER];
+            self.nav_title = [VILabel createLableWithFrame:Frm(50, 0, 220, 44) color:self.lightContent ? @"#ffffff" :  @"#000000" font:Bold(20) align:CENTER];
             self.nav_title.lineBreakMode = NSLineBreakByTruncatingMiddle;
             [tacks addSubview:_nav_title];
             [_nav_title setUserInteractionEnabled:YES];
@@ -248,7 +249,7 @@
 - (void)showInfoMessage:(UITapGestureRecognizer *)tap
 {
     UIView *inms = [[UIView alloc] initWithFrame:Frm(0, 0, 200, 130)];
-    UILabel *lab = [VILabel createLableWithFrame:Frm(15, 15, 170, 100) color:@"#000000" font:FontPekanBold(14) align:CENTER];
+    UILabel *lab = [VILabel createLableWithFrame:Frm(15, 15, 170, 100) color:@"#000000" font:Bold(14) align:CENTER];
     lab.text = Lang(@"store_has_sup");    lab.numberOfLines = 0;
     [inms addSubview:lab];
     

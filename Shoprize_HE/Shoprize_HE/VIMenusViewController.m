@@ -81,7 +81,7 @@
         label.text = [VINet info:LName];
         label.textAlignment = NSTextAlignmentCenter;
         label.tag = -102;
-        label.font = FontPekanBold(28);
+        label.font = Bold(28);
         label.backgroundColor = [UIColor clearColor];
         label.textColor = [UIColor whiteColor];
         //[label sizeToFit];
@@ -93,7 +93,7 @@
         [view addSubview:ct];
         ct.tag = -1001;
         ct.userInteractionEnabled =YES;
-        UILabel *count = [VILabel createLableWithFrame:Frm(ct.endX-23, ct.y+20, 20, 20) color:@"#FFFFFF" font:FontPekanBlack(19) align:CENTER];
+        UILabel *count = [VILabel createLableWithFrame:Frm(ct.endX-23, ct.y+20, 20, 20) color:@"#FFFFFF" font:Black(19) align:CENTER];
         count.text = @"0";
         count.tag = -1000;
         [view addSubview:count];
@@ -125,7 +125,7 @@
     [change setTitle:Lang(@"head_change") hightTitle:Lang(@"head_change")];
     [change addTarget:self action:@selector(ChangeIt:)];
     [change setTitleColor:[@"#ffffff" hexColor] forState:UIControlStateNormal];
-    change.titleLabel.font = _FontPekanBold(16);
+    change.titleLabel.font = Bold(16);
     [ctn addSubview:change];
     
     UIButton *delete = [[UIButton alloc] initWithFrame:Frm(change.endX+10, change.y, 80, 30)];
@@ -134,7 +134,7 @@
     [delete setTitle:Lang(@"head_delete") hightTitle:Lang(@"head_delete")];
     [delete addTarget:self action:@selector(DeleIt:)];
     [delete setTitleColor:[@"#ffffff" hexColor] forState:UIControlStateNormal];
-    delete.titleLabel.font = _FontPekanBold(16);
+    delete.titleLabel.font = Bold(16);
     [ctn addSubview:delete];
     
     CMPopTipView *tip = [[CMPopTipView alloc] initWithCustomView:ctn];

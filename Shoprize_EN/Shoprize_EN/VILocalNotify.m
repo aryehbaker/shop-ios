@@ -79,7 +79,7 @@ static SystemSoundID shake_sound_male_id = 0;
     //确定跳转
     [pushView addTapTarget:pushView action:@selector(oktogo:)];
     
-    UILabel *tlab = [VILabel createLableWithFrame:Frm(appname.x,appname.endY+3, mainWind.w-(appname.x+20),40) color:@"#ffffff" font:_FontPekanRegular(13) align:LEFT];
+    UILabel *tlab = [VILabel createLableWithFrame:Frm(appname.x,appname.endY+3, mainWind.w-(appname.x+20),40) color:@"#ffffff" font:Regular(13) align:LEFT];
     tlab.text = text;
     tlab.numberOfLines = 2;
     [pushView addSubview:tlab];

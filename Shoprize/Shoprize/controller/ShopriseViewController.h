@@ -11,6 +11,7 @@
 #import "VINet.h"
 #import <iSQLite/iSQLite.h>
 #import "Models.h"
+#import "Fonts.h"
 
 typedef NS_ENUM(NSInteger, BarItem) {
     NONE,
@@ -22,17 +23,6 @@ typedef NS_ENUM(NSInteger, BarItem) {
 
 #define _USER_SELECTED_MALL_INFO    @"USER_SELECTED_MALL_INFO_KEY"
 #define _NOTIFY_MALL_CHANGED        @"NOTIFY_MALL_CHNAGED_KEY"
-
-#define FontPekanBlack(sz)    ([UIFont fontWithName:@"Pekan-Black" size:sz])
-#define FontPekanBold(sz)     ([UIFont fontWithName:@"Pekan-Bold" size:sz])
-#define FontPekanLight(sz)    ([UIFont fontWithName:@"Pekan-Light" size:sz])
-#define FontPekanRegular(sz)  ([UIFont fontWithName:@"Pekan-Regular" size:sz])
-
-//#define FontPekanBlack(sz)    ([UIFont boldSystemFontOfSize:sz])
-//#define FontPekanBold(sz)     ([UIFont boldSystemFontOfSize:sz])
-//#define FontPekanLight(sz)    ([UIFont systemFontOfSize:sz])
-//#define FontPekanRegular(sz)  ([UIFont systemFontOfSize:sz])
-
 
 #define _NS_NOTIFY_SHOW_MENU    @"_NS_NOTIFY_SHOW_MENU_"
 

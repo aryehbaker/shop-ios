@@ -84,6 +84,8 @@
 		1705D96819FA213E005F322F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1705D96719FA213E005F322F /* CFNetwork.framework */; };
 		1705D96A19FA2144005F322F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1705D96919FA2144005F322F /* SystemConfiguration.framework */; };
 		1705D96C19FA214F005F322F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1705D96B19FA214F005F322F /* AudioToolbox.framework */; };
+		1745EF0E19FDF33900E701F2 /* Fonts.m in Sources */ = {isa = PBXBuildFile; fileRef = 1745EF0D19FDF33900E701F2 /* Fonts.m */; };
+		1745EF0F19FDF51300E701F2 /* Fonts.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1745EF0C19FDF33900E701F2 /* Fonts.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +105,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				1745EF0F19FDF51300E701F2 /* Fonts.h in Copy Files */,
 				1705D7FB19F9FB45005F322F /* FavListViewController.h in Copy Files */,
 				1705D7FC19F9FB45005F322F /* REFrostedContainerViewController.h in Copy Files */,
 				1705D7FD19F9FB45005F322F /* REFrostedViewController.h in Copy Files */,
@@ -221,6 +224,8 @@
 		1705D96719FA213E005F322F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		1705D96919FA2144005F322F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		1705D96B19FA214F005F322F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		1745EF0C19FDF33900E701F2 /* Fonts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fonts.h; sourceTree = "<group>"; };
+		1745EF0D19FDF33900E701F2 /* Fonts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fonts.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -282,6 +287,8 @@
 				1705D79F19F9F657005F322F /* controller */,
 				1705D7C819F9F657005F322F /* utils */,
 				1705D71C19F9F4F4005F322F /* Shoprize.h */,
+				1745EF0C19FDF33900E701F2 /* Fonts.h */,
+				1745EF0D19FDF33900E701F2 /* Fonts.m */,
 			);
 			path = Shoprize;
 			sourceTree = "<group>";
@@ -515,6 +522,7 @@
 				1705D7DE19F9F657005F322F /* REFrostedContainerViewController.m in Sources */,
 				1705D7E219F9F657005F322F /* VIDealsDetailViewController.m in Sources */,
 				1705D7E119F9F657005F322F /* VIAddStroeViewController.m in Sources */,
+				1745EF0E19FDF33900E701F2 /* Fonts.m in Sources */,
 				1705D7F219F9F657005F322F /* CMPopTipView.m in Sources */,
 				1705D7E819F9F657005F322F /* VIMyStoreViewController.m in Sources */,
 			);

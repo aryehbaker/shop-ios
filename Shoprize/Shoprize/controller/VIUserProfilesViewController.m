@@ -243,12 +243,12 @@
 {
     [self textFieldShouldReturn:nil];
     UIView *cts = [[UIView alloc] initWithFrame:Frm(0, 0, 270, 0)];
-    UILabel *title = [VILabel createLableWithFrame:Frm(15, 15, 240, 25) color:@"#1C1C1C" font:FontPekanBlack(18) align:RIGHT];
+    UILabel *title = [VILabel createLableWithFrame:Frm(15, 15, 240, 25) color:@"#1C1C1C" font:Black(18) align:RIGHT];
     title.text = @"נשמח לדעת למה. אנחנו יכולים לעזור !";
     [cts addSubview:title];
     
     NSString *tx = @"שופרייז שואפת להפוך עבורך את חווית הקניות למהנה ומתגמלת יותר. במידה ונתקלת בבעיה או תקלה כלשהיא בזמן השימוש באפליקציה או בעת הביקור בחנות, יש לך הערות ודברים לשיפור באפליקציה או באתר נשמח לשמוע ולעזור בכל דרך אפשרית. פנה אלינו עכשיו בקלות !";
-    UILabel *ctx = [VILabel createManyLines:Frm(15, title.endY, 240, 0) color:@"#323232" ft:FontPekanRegular(15) text:tx];
+    UILabel *ctx = [VILabel createManyLines:Frm(15, title.endY, 240, 0) color:@"#323232" ft:Regular(15) text:tx];
     ctx.textAlignment = NSTextAlignmentRight;
     ctx.text = tx;
     [cts addSubview:ctx];
@@ -258,7 +258,7 @@
     [dele setTitle:@"מחק חשבון" hightTitle:@"מחק חשבון"];
     dele.frame = Frm(45, ctx.endY+5, 80,30);
     dele.layer.cornerRadius = 15;
-    dele.titleLabel.font = FontPekanBold(15);
+    dele.titleLabel.font = Bold(15);
     [dele addTarget:self action:@selector(deleteMe:)];
     [dele setTitleColor:@"#ffffff" hightColor:@"#ffffff"];
     [cts addSubview:dele];
@@ -266,7 +266,7 @@
     UIButton *ctsus = [UIButton buttonWithType:UIButtonTypeCustom];
     ctsus.frame = Frm(dele.endX+5,dele.y,80, 30);
     ctsus.layer.cornerRadius = 15;
-    ctsus.titleLabel.font = FontPekanBold(15);
+    ctsus.titleLabel.font = Bold(15);
     [ctsus addTarget:self action:@selector(contaactUs:)];
     [ctsus setTitle:Lang(@"menu_sub_ctus") hightTitle:Lang(@"menu_sub_ctus")];
     [ctsus setTitleColor:@"#ffffff" hightColor:@"#ffffff"];

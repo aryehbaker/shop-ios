@@ -76,7 +76,7 @@
         if (v.h == 65) { [v setHidden:YES];}
     }
     
-    UILabel *tipText = [VILabel createLableWithFrame:Frm(0, tabview.endY+10, 320, 20) color:@"#FC494D" font:FontPekanBold(16) align:CENTER];
+    UILabel *tipText = [VILabel createLableWithFrame:Frm(0, tabview.endY+10, 320, 20) color:@"#FC494D" font:Bold(16) align:CENTER];
     tipText.text = Lang(@"why_should_i_add");
     tipText.userInteractionEnabled = YES;
     [tipText addTapTarget:self action:@selector(showTip:)];
@@ -88,7 +88,7 @@
     [btn setTitle:Lang(@"add_store") forState:UIControlStateNormal];
     [btn setTitleColor:@"#464646" hightColor:@"#464646"];
     [btn addTarget:self action:@selector(gotochoose:)];
-    btn.titleLabel.font = FontPekanBold(22);
+    btn.titleLabel.font = Bold(22);
     [self.view addSubview:btn];
     
     if (displayData.count>0) {
@@ -135,12 +135,12 @@ static NSIndexPath *selected;
 - (void)showTip:(UITapGestureRecognizer *)gen
 {
     UIView *contentView = [[UIView alloc] initWithFrame:Frm(0, 0, 270, 0)];
-    UILabel *title = [VILabel createLableWithFrame:Frm(15, 20, 240, 25) color:@"#1C1C1C" font:FontPekanBlack(18) align:RIGHT];
+    UILabel *title = [VILabel createLableWithFrame:Frm(15, 20, 240, 25) color:@"#1C1C1C" font:Black(18) align:RIGHT];
     title.text = Lang(@"why_should_add_title");
     [contentView addSubview:title];
     
     NSString *tx = Lang(@"why_should_add_ctnt");
-    UILabel  *ctx = [VILabel createManyLines:Frm(15, title.endY+6, 240, 0) color:@"#323232" ft:FontPekanRegular(15) text:tx];
+    UILabel  *ctx = [VILabel createManyLines:Frm(15, title.endY+6, 240, 0) color:@"#323232" ft:Regular(15) text:tx];
     ctx.textAlignment = NSTextAlignmentRight;
     ctx.text = tx;
     [contentView addSubview:ctx];
@@ -196,7 +196,7 @@ static NSIndexPath *selected;
         imageview.contentMode = UIViewContentModeScaleAspectFit;
         imageview.tag = 200;
         [cell.contentView addSubview:imageview];
-        UILabel *sname = [VILabel createLableWithFrame:Frm(0, imageview.endY+8, 320, 20) color:@"#FF4F4F" font:FontPekanBold(15) align:CENTER];
+        UILabel *sname = [VILabel createLableWithFrame:Frm(0, imageview.endY+8, 320, 20) color:@"#FF4F4F" font:Bold(15) align:CENTER];
         sname.tag = 201;
         sname.text = left.StoreName;
         [cell.contentView addSubview:sname];

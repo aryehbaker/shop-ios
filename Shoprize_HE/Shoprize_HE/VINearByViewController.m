@@ -49,7 +49,7 @@ static ListType currentType;
     [section1 setBackgroundcolorByHex:@"#ff4747"];
     section1.tag = Suprises;
     [section1 setTitleColor:@"#ffffff" hightColor:@"#ffffff"];
-    section1.titleLabel.font = FontPekanBold(18);
+    section1.titleLabel.font = Bold(18);
     [section1 addTarget:self action:@selector(changeType:)];
     [top1 addSubview:section1];
     UIImageView *icon = [@"supriset_w.png" imageViewForImgSizeAtX:section1.w-27 Y:6];
@@ -60,7 +60,7 @@ static ListType currentType;
     [section2 setTitle:Lang(@"main_deals") hightTitle:Lang(@"main_deals")];
     [section2 setTitleColor:@"#ffffff" hightColor:@"#ffffff"];
     [section2 setBackgroundcolorByHex:@"#ff4747"];
-    section2.titleLabel.font = FontPekanBold(18);
+    section2.titleLabel.font = Bold(18);
     section2.tag = Deals;
     [section2 addTarget:self action:@selector(changeType:)];
     [top1 addSubview:section2];
@@ -73,7 +73,7 @@ static ListType currentType;
     [section3 setTitleColor:@"#ffffff" hightColor:@"#ffffff"];
     [section3 addTarget:self action:@selector(changeType:)];
     [section3 setBackgroundcolorByHex:@"#ff4747"];
-    section3.titleLabel.font = FontPekanBold(18);
+    section3.titleLabel.font = Bold(18);
     section3.tag = Stores;
     icon = [@"store_w.png" imageViewForImgSizeAtX:section1.w-27 Y:7];
     icon.tag = 100;
@@ -103,7 +103,7 @@ static ListType currentType;
         btn.backgroundColor = [@"#ff4747" hexColor];
         [btn setTitle:Lang(@"i_see_close_it") hightTitle:Lang(@"i_see_close_it")];
         btn.layer.cornerRadius = 20;
-        btn.titleLabel.font = _FontPekanBold(18);
+        btn.titleLabel.font = Bold(18);
         [btn addTarget:self action:@selector(closeThem:)];
         [al addSubview:btn];
         
@@ -262,7 +262,7 @@ static ListType currentType;
     nav.layer.cornerRadius = nav.w /2 ;
     [nav setTitle:Lang(@"navi_title") hightTitle:Lang(@"navi_title")];
     [nav setTitleColor:@"#ffffff" hightColor:@"#ffffff"];
-    nav.titleLabel.font = FontPekanBlack(16);
+    nav.titleLabel.font = Black(16);
     [nav addTarget:self action:@selector(goToMap:)];
 }
 
@@ -329,7 +329,7 @@ static ListType currentType;
             _tableView.tableHeaderView = ({
                 UIView *headerView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 320, 70)];
                 NSString *t = @"shoprize מתגמלת אתכם בכניסה לחנויות. \nהפתעות בלעדיות ממתינות בחנויות אלו, היכנסו עכשיו ותרוויחו";
-                UILabel *titleLabel = [VILabel createManyLines:Frm(10, 10, 300, 0) color:@"#464646" ft:FontPekanRegular(19)  text:t];
+                UILabel *titleLabel = [VILabel createManyLines:Frm(10, 10, 300, 0) color:@"#464646" ft:Regular(19)  text:t];
                 titleLabel.text = [t rtlTxt];
                 titleLabel.textAlignment = NSTextAlignmentCenter;
                 [headerView setH:titleLabel.endY+10];
@@ -361,7 +361,7 @@ static ListType currentType;
 - (void)showInfoMessage:(UIButton *)tap
 {
     UIView *inms = [[UIView alloc] initWithFrame:Frm(0, 0, 200, 90)];
-    UILabel *lab = [VILabel createLableWithFrame:Frm(15, 15, 170, 60) color:@"#000000" font:FontPekanBold(14) align:CENTER];
+    UILabel *lab = [VILabel createLableWithFrame:Frm(15, 15, 170, 60) color:@"#000000" font:Bold(14) align:CENTER];
     lab.text = Lang(@"store_has_sup");
     lab.numberOfLines = 0;
     [inms addSubview:lab];
@@ -421,7 +421,7 @@ static ListType currentType;
         [cellview egoimageView4Tag:1002].imageURL = [NSURL URLWithString:left.StoreImageUrl];
         [cellview label4Tag:1003].text = [left.Offer killQute];
         [[cellview label4Tag:1003] setRTL];
-        [cellview label4Tag:1003].font = FontPekanBold(13);
+        [cellview label4Tag:1003].font = Bold(13);
         
         BOOL isSup = left.StoreHasSuprise;
         [[cellview viewWithTag:1004] setHidden:!isSup];
@@ -438,7 +438,7 @@ static ListType currentType;
             [cellview egoimageView4Tag:1102].imageURL = [NSURL URLWithString:right.StoreImageUrl];
             [cellview label4Tag:1103].text = [right.Offer killQute];
             [[cellview label4Tag:1103] setRTL];
-            [cellview label4Tag:1103].font = FontPekanBold(13);
+            [cellview label4Tag:1103].font = Bold(13);
             
             isSup = right.StoreHasSuprise;
             [[cellview viewWithTag:1104] setHidden:!isSup];

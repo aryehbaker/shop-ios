@@ -40,7 +40,7 @@
     cycle.layer.borderColor = [@"#FC484D" hexColor].CGColor;
     cycle.backgroundColor = [UIColor whiteColor];
     [cycle setTitleColor:@"#FC484D" hightColor:@"#FC484D"];
-    cycle.titleLabel.font = FontPekanBold(20);
+    cycle.titleLabel.font = Bold(20);
     [cycle setTitle:Lang(@"index_skip") hightTitle:Lang(@"index_skip")];
     [cycle addTarget:self action:@selector(skipThis:)];
     [btn addSubview:cycle];
@@ -53,7 +53,7 @@
     finish.frame = Frm(cycle.endX+15, 10, 200, 50);
     [finish setTitle:Lang(@"index_finish") hightTitle:Lang(@"index_finish")];
     [finish setTitleColor:@"#464646" hightColor:@"#464646"];
-    finish.titleLabel.font = FontPekanRegular(25);
+    finish.titleLabel.font = Regular(25);
     [finish addTarget:self action:@selector(gotomain:)];
     [btn addSubview:finish];
     
@@ -105,7 +105,7 @@
         [dk setTitleColor:[@"ffffff" hexColor] forState:UIControlStateSelected];
         
         dk.titleEdgeInsets = UIEdgeInsetsMake(75, 5, 2, 5);
-        dk.titleLabel.font = FontPekanBlack(15);
+        dk.titleLabel.font = Black(15);
         dk.selected = [d boolValueForKey:@"IsMarked" defaultValue:NO];
         [dk setBackgroundColor:dk.selected ? [@"#ff4747" hexColor] : [UIColor clearColor]] ;
         [ctnt addSubview:dk];

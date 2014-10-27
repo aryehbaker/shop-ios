@@ -92,10 +92,10 @@
     UILabel *distance = [cell label4Tag:6001];
     UILabel *name     = [cell label4Tag:6002];
     MallInfo *mf = (MallInfo *)value;
-    distance.font = FontPekanBold(18);
+    distance.font = Bold(18);
     distance.text = [NSString stringWithFormat:@"\u200F %0.2f ק\"מ",mf.distance];
     name.text = mf.Name;
-    name.font = FontPekanRegular(18);
+    name.font = Regular(18);
 }
 
 @end
