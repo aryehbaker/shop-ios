@@ -1,0 +1,714 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1705D71D19F9F4F4005F322F /* Shoprize.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1705D71C19F9F4F4005F322F /* Shoprize.h */; };
+		1705D72519F9F4F5005F322F /* libShoprize.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1705D71919F9F4F4005F322F /* libShoprize.a */; };
+		1705D79C19F9F5A4005F322F /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1705D79919F9F5A4005F322F /* FacebookSDK.framework */; };
+		1705D79D19F9F5A4005F322F /* iSQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1705D79A19F9F5A4005F322F /* iSQLite.framework */; };
+		1705D79E19F9F5A4005F322F /* VICore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1705D79B19F9F5A4005F322F /* VICore.framework */; };
+		1705D7DD19F9F657005F322F /* FavListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7A119F9F657005F322F /* FavListViewController.m */; };
+		1705D7DE19F9F657005F322F /* REFrostedContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7A319F9F657005F322F /* REFrostedContainerViewController.m */; };
+		1705D7DF19F9F657005F322F /* REFrostedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7A519F9F657005F322F /* REFrostedViewController.m */; };
+		1705D7E019F9F657005F322F /* ShopriseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7A719F9F657005F322F /* ShopriseViewController.m */; };
+		1705D7E119F9F657005F322F /* VIAddStroeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7A919F9F657005F322F /* VIAddStroeViewController.m */; };
+		1705D7E219F9F657005F322F /* VIDealsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7AB19F9F657005F322F /* VIDealsDetailViewController.m */; };
+		1705D7E319F9F657005F322F /* VIHtmlFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7AD19F9F657005F322F /* VIHtmlFileViewController.m */; };
+		1705D7E419F9F657005F322F /* VIInviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7AF19F9F657005F322F /* VIInviteViewController.m */; };
+		1705D7E519F9F657005F322F /* VIMailLogonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7B119F9F657005F322F /* VIMailLogonViewController.m */; };
+		1705D7E619F9F657005F322F /* VIMallsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7B319F9F657005F322F /* VIMallsViewController.m */; };
+		1705D7E719F9F657005F322F /* VIMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7B519F9F657005F322F /* VIMenuTableViewCell.m */; };
+		1705D7E819F9F657005F322F /* VIMyStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7B719F9F657005F322F /* VIMyStoreViewController.m */; };
+		1705D7E919F9F657005F322F /* VIMySupriseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7B919F9F657005F322F /* VIMySupriseViewController.m */; };
+		1705D7EA19F9F657005F322F /* VINavMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7BB19F9F657005F322F /* VINavMapViewController.m */; };
+		1705D7EB19F9F657005F322F /* VIReedemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7BD19F9F657005F322F /* VIReedemViewController.m */; };
+		1705D7EC19F9F657005F322F /* VIStoreDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7BF19F9F657005F322F /* VIStoreDetailViewController.m */; };
+		1705D7ED19F9F657005F322F /* VIStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7C119F9F657005F322F /* VIStoreViewController.m */; };
+		1705D7EE19F9F657005F322F /* VITutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7C319F9F657005F322F /* VITutorialViewController.m */; };
+		1705D7EF19F9F657005F322F /* VIUserProfilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7C519F9F657005F322F /* VIUserProfilesViewController.m */; };
+		1705D7F019F9F657005F322F /* VIWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7C719F9F657005F322F /* VIWelcomeViewController.m */; };
+		1705D7F119F9F657005F322F /* Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7CA19F9F657005F322F /* Animations.m */; };
+		1705D7F219F9F657005F322F /* CMPopTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7CC19F9F657005F322F /* CMPopTipView.m */; };
+		1705D7F319F9F657005F322F /* KUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7CE19F9F657005F322F /* KUtils.m */; };
+		1705D7F419F9F657005F322F /* MHFacebookImageViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7D019F9F657005F322F /* MHFacebookImageViewer.m */; };
+		1705D7F519F9F657005F322F /* Modles.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7D219F9F657005F322F /* Modles.m */; };
+		1705D7F619F9F657005F322F /* VIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7D419F9F657005F322F /* VIButton.m */; };
+		1705D7F719F9F657005F322F /* VILineTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7D619F9F657005F322F /* VILineTextField.m */; };
+		1705D7F819F9F657005F322F /* VINet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7D819F9F657005F322F /* VINet.m */; };
+		1705D7F919F9F657005F322F /* VISurpriseTimeDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7DA19F9F657005F322F /* VISurpriseTimeDown.m */; };
+		1705D7FA19F9F657005F322F /* VITimeDownCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7DC19F9F657005F322F /* VITimeDownCell.m */; };
+		1705D7FB19F9FB45005F322F /* FavListViewController.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1705D7A019F9F657005F322F /* FavListViewController.h */; };
+		1705D7FC19F9FB45005F322F /* REFrostedContainerViewController.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1705D7A219F9F657005F322F /* REFrostedContainerViewController.h */; };
+		1705D7FD19F9FB45005F322F /* REFrostedViewController.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1705D7A419F9F657005F322F /* REFrostedViewController.h */; };
+		1705D7FE19F9FB45005F322F /* ShopriseViewController.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1705D7A619F9F657005F322F /* ShopriseViewController.h */; };
+		1705D7FF19F9FB45005F322F /* VIAddStroeViewController.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1705D7A819F9F657005F322F /* VIAddStroeViewController.h */; };
+		1705D80019F9FB45005F322F /* VIDealsDetailViewController.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1705D7AA19F9F657005F322F /* VIDealsDetailViewController.h */; };
+		1705D80119F9FB45005F322F /* VIHtmlFileViewController.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1705D7AC19F9F657005F322F /* VIHtmlFileViewController.h */; };
+		1705D80219F9FB45005F322F /* VIInviteViewController.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1705D7AE19F9F657005F322F /* VIInviteViewController.h */; };
+		1705D80319F9FB45005F322F /* VIMailLogonViewController.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1705D7B019F9F657005F322F /* VIMailLogonViewController.h */; };
+		1705D80419F9FB45005F322F /* VIMallsViewController.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1705D7B219F9F657005F322F /* VIMallsViewController.h */; };
+		1705D80519F9FB45005F322F /* VIMenuTableViewCell.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1705D7B419F9F657005F322F /* VIMenuTableViewCell.h */; };
+		1705D80619F9FB45005F322F /* VIMyStoreViewController.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1705D7B619F9F657005F322F /* VIMyStoreViewController.h */; };
+		1705D80719F9FB45005F322F /* VIMySupriseViewController.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1705D7B819F9F657005F322F /* VIMySupriseViewController.h */; };
+		1705D80819F9FB45005F322F /* VINavMapViewController.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1705D7BA19F9F657005F322F /* VINavMapViewController.h */; };
+		1705D80919F9FB45005F322F /* VIReedemViewController.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1705D7BC19F9F657005F322F /* VIReedemViewController.h */; };
+		1705D80A19F9FB45005F322F /* VIStoreDetailViewController.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1705D7BE19F9F657005F322F /* VIStoreDetailViewController.h */; };
+		1705D80B19F9FB45005F322F /* VIStoreViewController.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1705D7C019F9F657005F322F /* VIStoreViewController.h */; };
+		1705D80C19F9FB45005F322F /* VITutorialViewController.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1705D7C219F9F657005F322F /* VITutorialViewController.h */; };
+		1705D80D19F9FB45005F322F /* VIUserProfilesViewController.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1705D7C419F9F657005F322F /* VIUserProfilesViewController.h */; };
+		1705D80E19F9FB45005F322F /* VIWelcomeViewController.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1705D7C619F9F657005F322F /* VIWelcomeViewController.h */; };
+		1705D80F19F9FB45005F322F /* Animations.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1705D7C919F9F657005F322F /* Animations.h */; };
+		1705D81019F9FB45005F322F /* CMPopTipView.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1705D7CB19F9F657005F322F /* CMPopTipView.h */; };
+		1705D81119F9FB45005F322F /* KUtils.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1705D7CD19F9F657005F322F /* KUtils.h */; };
+		1705D81219F9FB45005F322F /* MHFacebookImageViewer.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1705D7CF19F9F657005F322F /* MHFacebookImageViewer.h */; };
+		1705D81319F9FB45005F322F /* Models.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1705D7D119F9F657005F322F /* Models.h */; };
+		1705D81419F9FB45005F322F /* VIButton.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1705D7D319F9F657005F322F /* VIButton.h */; };
+		1705D81519F9FB45005F322F /* VILineTextField.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1705D7D519F9F657005F322F /* VILineTextField.h */; };
+		1705D81619F9FB45005F322F /* VINet.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1705D7D719F9F657005F322F /* VINet.h */; };
+		1705D81719F9FB45005F322F /* VISurpriseTimeDown.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1705D7D919F9F657005F322F /* VISurpriseTimeDown.h */; };
+		1705D81819F9FB45005F322F /* VITimeDownCell.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1705D7DB19F9F657005F322F /* VITimeDownCell.h */; };
+		1705D95419FA1FDD005F322F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1705D95319FA1FDD005F322F /* UIKit.framework */; };
+		1705D95619FA1FE1005F322F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1705D95519FA1FE1005F322F /* Foundation.framework */; };
+		1705D95819FA1FE7005F322F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1705D95719FA1FE7005F322F /* CoreGraphics.framework */; };
+		1705D95A19FA1FED005F322F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1705D95919FA1FED005F322F /* CoreLocation.framework */; };
+		1705D95C19FA1FFC005F322F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1705D95B19FA1FFC005F322F /* MapKit.framework */; };
+		1705D95E19FA2003005F322F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1705D95D19FA2003005F322F /* QuartzCore.framework */; };
+		1705D96019FA200A005F322F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1705D95F19FA200A005F322F /* Security.framework */; };
+		1705D96419FA2132005F322F /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1705D96319FA2132005F322F /* ImageIO.framework */; };
+		1705D96619FA2138005F322F /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1705D96519FA2137005F322F /* CoreText.framework */; };
+		1705D96819FA213E005F322F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1705D96719FA213E005F322F /* CFNetwork.framework */; };
+		1705D96A19FA2144005F322F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1705D96919FA2144005F322F /* SystemConfiguration.framework */; };
+		1705D96C19FA214F005F322F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1705D96B19FA214F005F322F /* AudioToolbox.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1705D72619F9F4F5005F322F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1705D71119F9F4F4005F322F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1705D71819F9F4F4005F322F;
+			remoteInfo = Shoprize;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1705D71719F9F4F4005F322F /* Copy Files */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				1705D7FB19F9FB45005F322F /* FavListViewController.h in Copy Files */,
+				1705D7FC19F9FB45005F322F /* REFrostedContainerViewController.h in Copy Files */,
+				1705D7FD19F9FB45005F322F /* REFrostedViewController.h in Copy Files */,
+				1705D7FE19F9FB45005F322F /* ShopriseViewController.h in Copy Files */,
+				1705D7FF19F9FB45005F322F /* VIAddStroeViewController.h in Copy Files */,
+				1705D80019F9FB45005F322F /* VIDealsDetailViewController.h in Copy Files */,
+				1705D80119F9FB45005F322F /* VIHtmlFileViewController.h in Copy Files */,
+				1705D80219F9FB45005F322F /* VIInviteViewController.h in Copy Files */,
+				1705D80319F9FB45005F322F /* VIMailLogonViewController.h in Copy Files */,
+				1705D80419F9FB45005F322F /* VIMallsViewController.h in Copy Files */,
+				1705D80519F9FB45005F322F /* VIMenuTableViewCell.h in Copy Files */,
+				1705D80619F9FB45005F322F /* VIMyStoreViewController.h in Copy Files */,
+				1705D80719F9FB45005F322F /* VIMySupriseViewController.h in Copy Files */,
+				1705D80819F9FB45005F322F /* VINavMapViewController.h in Copy Files */,
+				1705D80919F9FB45005F322F /* VIReedemViewController.h in Copy Files */,
+				1705D80A19F9FB45005F322F /* VIStoreDetailViewController.h in Copy Files */,
+				1705D80B19F9FB45005F322F /* VIStoreViewController.h in Copy Files */,
+				1705D80C19F9FB45005F322F /* VITutorialViewController.h in Copy Files */,
+				1705D80D19F9FB45005F322F /* VIUserProfilesViewController.h in Copy Files */,
+				1705D80E19F9FB45005F322F /* VIWelcomeViewController.h in Copy Files */,
+				1705D80F19F9FB45005F322F /* Animations.h in Copy Files */,
+				1705D81019F9FB45005F322F /* CMPopTipView.h in Copy Files */,
+				1705D81119F9FB45005F322F /* KUtils.h in Copy Files */,
+				1705D81219F9FB45005F322F /* MHFacebookImageViewer.h in Copy Files */,
+				1705D81319F9FB45005F322F /* Models.h in Copy Files */,
+				1705D81419F9FB45005F322F /* VIButton.h in Copy Files */,
+				1705D81519F9FB45005F322F /* VILineTextField.h in Copy Files */,
+				1705D81619F9FB45005F322F /* VINet.h in Copy Files */,
+				1705D81719F9FB45005F322F /* VISurpriseTimeDown.h in Copy Files */,
+				1705D81819F9FB45005F322F /* VITimeDownCell.h in Copy Files */,
+				1705D71D19F9F4F4005F322F /* Shoprize.h in Copy Files */,
+			);
+			name = "Copy Files";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1705D71919F9F4F4005F322F /* libShoprize.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libShoprize.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		1705D71C19F9F4F4005F322F /* Shoprize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Shoprize.h; sourceTree = "<group>"; };
+		1705D72419F9F4F5005F322F /* ShoprizeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShoprizeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1705D72A19F9F4F5005F322F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1705D79919F9F5A4005F322F /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		1705D79A19F9F5A4005F322F /* iSQLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iSQLite.framework; sourceTree = "<group>"; };
+		1705D79B19F9F5A4005F322F /* VICore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VICore.framework; sourceTree = "<group>"; };
+		1705D7A019F9F657005F322F /* FavListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavListViewController.h; sourceTree = "<group>"; };
+		1705D7A119F9F657005F322F /* FavListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavListViewController.m; sourceTree = "<group>"; };
+		1705D7A219F9F657005F322F /* REFrostedContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REFrostedContainerViewController.h; sourceTree = "<group>"; };
+		1705D7A319F9F657005F322F /* REFrostedContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REFrostedContainerViewController.m; sourceTree = "<group>"; };
+		1705D7A419F9F657005F322F /* REFrostedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REFrostedViewController.h; sourceTree = "<group>"; };
+		1705D7A519F9F657005F322F /* REFrostedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REFrostedViewController.m; sourceTree = "<group>"; };
+		1705D7A619F9F657005F322F /* ShopriseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopriseViewController.h; sourceTree = "<group>"; };
+		1705D7A719F9F657005F322F /* ShopriseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopriseViewController.m; sourceTree = "<group>"; };
+		1705D7A819F9F657005F322F /* VIAddStroeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIAddStroeViewController.h; sourceTree = "<group>"; };
+		1705D7A919F9F657005F322F /* VIAddStroeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIAddStroeViewController.m; sourceTree = "<group>"; };
+		1705D7AA19F9F657005F322F /* VIDealsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIDealsDetailViewController.h; sourceTree = "<group>"; };
+		1705D7AB19F9F657005F322F /* VIDealsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIDealsDetailViewController.m; sourceTree = "<group>"; };
+		1705D7AC19F9F657005F322F /* VIHtmlFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIHtmlFileViewController.h; sourceTree = "<group>"; };
+		1705D7AD19F9F657005F322F /* VIHtmlFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIHtmlFileViewController.m; sourceTree = "<group>"; };
+		1705D7AE19F9F657005F322F /* VIInviteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIInviteViewController.h; sourceTree = "<group>"; };
+		1705D7AF19F9F657005F322F /* VIInviteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIInviteViewController.m; sourceTree = "<group>"; };
+		1705D7B019F9F657005F322F /* VIMailLogonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIMailLogonViewController.h; sourceTree = "<group>"; };
+		1705D7B119F9F657005F322F /* VIMailLogonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIMailLogonViewController.m; sourceTree = "<group>"; };
+		1705D7B219F9F657005F322F /* VIMallsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIMallsViewController.h; sourceTree = "<group>"; };
+		1705D7B319F9F657005F322F /* VIMallsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIMallsViewController.m; sourceTree = "<group>"; };
+		1705D7B419F9F657005F322F /* VIMenuTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIMenuTableViewCell.h; sourceTree = "<group>"; };
+		1705D7B519F9F657005F322F /* VIMenuTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIMenuTableViewCell.m; sourceTree = "<group>"; };
+		1705D7B619F9F657005F322F /* VIMyStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIMyStoreViewController.h; sourceTree = "<group>"; };
+		1705D7B719F9F657005F322F /* VIMyStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIMyStoreViewController.m; sourceTree = "<group>"; };
+		1705D7B819F9F657005F322F /* VIMySupriseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIMySupriseViewController.h; sourceTree = "<group>"; };
+		1705D7B919F9F657005F322F /* VIMySupriseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIMySupriseViewController.m; sourceTree = "<group>"; };
+		1705D7BA19F9F657005F322F /* VINavMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VINavMapViewController.h; sourceTree = "<group>"; };
+		1705D7BB19F9F657005F322F /* VINavMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VINavMapViewController.m; sourceTree = "<group>"; };
+		1705D7BC19F9F657005F322F /* VIReedemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIReedemViewController.h; sourceTree = "<group>"; };
+		1705D7BD19F9F657005F322F /* VIReedemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIReedemViewController.m; sourceTree = "<group>"; };
+		1705D7BE19F9F657005F322F /* VIStoreDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIStoreDetailViewController.h; sourceTree = "<group>"; };
+		1705D7BF19F9F657005F322F /* VIStoreDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIStoreDetailViewController.m; sourceTree = "<group>"; };
+		1705D7C019F9F657005F322F /* VIStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIStoreViewController.h; sourceTree = "<group>"; };
+		1705D7C119F9F657005F322F /* VIStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIStoreViewController.m; sourceTree = "<group>"; };
+		1705D7C219F9F657005F322F /* VITutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VITutorialViewController.h; sourceTree = "<group>"; };
+		1705D7C319F9F657005F322F /* VITutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VITutorialViewController.m; sourceTree = "<group>"; };
+		1705D7C419F9F657005F322F /* VIUserProfilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIUserProfilesViewController.h; sourceTree = "<group>"; };
+		1705D7C519F9F657005F322F /* VIUserProfilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIUserProfilesViewController.m; sourceTree = "<group>"; };
+		1705D7C619F9F657005F322F /* VIWelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIWelcomeViewController.h; sourceTree = "<group>"; };
+		1705D7C719F9F657005F322F /* VIWelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIWelcomeViewController.m; sourceTree = "<group>"; };
+		1705D7C919F9F657005F322F /* Animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animations.h; sourceTree = "<group>"; };
+		1705D7CA19F9F657005F322F /* Animations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Animations.m; sourceTree = "<group>"; };
+		1705D7CB19F9F657005F322F /* CMPopTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMPopTipView.h; sourceTree = "<group>"; };
+		1705D7CC19F9F657005F322F /* CMPopTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMPopTipView.m; sourceTree = "<group>"; };
+		1705D7CD19F9F657005F322F /* KUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUtils.h; sourceTree = "<group>"; };
+		1705D7CE19F9F657005F322F /* KUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUtils.m; sourceTree = "<group>"; };
+		1705D7CF19F9F657005F322F /* MHFacebookImageViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHFacebookImageViewer.h; sourceTree = "<group>"; };
+		1705D7D019F9F657005F322F /* MHFacebookImageViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHFacebookImageViewer.m; sourceTree = "<group>"; };
+		1705D7D119F9F657005F322F /* Models.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Models.h; sourceTree = "<group>"; };
+		1705D7D219F9F657005F322F /* Modles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Modles.m; sourceTree = "<group>"; };
+		1705D7D319F9F657005F322F /* VIButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIButton.h; sourceTree = "<group>"; };
+		1705D7D419F9F657005F322F /* VIButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIButton.m; sourceTree = "<group>"; };
+		1705D7D519F9F657005F322F /* VILineTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VILineTextField.h; sourceTree = "<group>"; };
+		1705D7D619F9F657005F322F /* VILineTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VILineTextField.m; sourceTree = "<group>"; };
+		1705D7D719F9F657005F322F /* VINet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VINet.h; sourceTree = "<group>"; };
+		1705D7D819F9F657005F322F /* VINet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VINet.m; sourceTree = "<group>"; };
+		1705D7D919F9F657005F322F /* VISurpriseTimeDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VISurpriseTimeDown.h; sourceTree = "<group>"; };
+		1705D7DA19F9F657005F322F /* VISurpriseTimeDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VISurpriseTimeDown.m; sourceTree = "<group>"; };
+		1705D7DB19F9F657005F322F /* VITimeDownCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VITimeDownCell.h; sourceTree = "<group>"; };
+		1705D7DC19F9F657005F322F /* VITimeDownCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VITimeDownCell.m; sourceTree = "<group>"; };
+		1705D95319FA1FDD005F322F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1705D95519FA1FE1005F322F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1705D95719FA1FE7005F322F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		1705D95919FA1FED005F322F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		1705D95B19FA1FFC005F322F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		1705D95D19FA2003005F322F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		1705D95F19FA200A005F322F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		1705D96119FA2013005F322F /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		1705D96319FA2132005F322F /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		1705D96519FA2137005F322F /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		1705D96719FA213E005F322F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		1705D96919FA2144005F322F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		1705D96B19FA214F005F322F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1705D71619F9F4F4005F322F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1705D96C19FA214F005F322F /* AudioToolbox.framework in Frameworks */,
+				1705D96A19FA2144005F322F /* SystemConfiguration.framework in Frameworks */,
+				1705D96819FA213E005F322F /* CFNetwork.framework in Frameworks */,
+				1705D96619FA2138005F322F /* CoreText.framework in Frameworks */,
+				1705D96419FA2132005F322F /* ImageIO.framework in Frameworks */,
+				1705D96019FA200A005F322F /* Security.framework in Frameworks */,
+				1705D95E19FA2003005F322F /* QuartzCore.framework in Frameworks */,
+				1705D95C19FA1FFC005F322F /* MapKit.framework in Frameworks */,
+				1705D95A19FA1FED005F322F /* CoreLocation.framework in Frameworks */,
+				1705D95819FA1FE7005F322F /* CoreGraphics.framework in Frameworks */,
+				1705D95619FA1FE1005F322F /* Foundation.framework in Frameworks */,
+				1705D95419FA1FDD005F322F /* UIKit.framework in Frameworks */,
+				1705D79D19F9F5A4005F322F /* iSQLite.framework in Frameworks */,
+				1705D79E19F9F5A4005F322F /* VICore.framework in Frameworks */,
+				1705D79C19F9F5A4005F322F /* FacebookSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1705D72119F9F4F5005F322F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1705D72519F9F4F5005F322F /* libShoprize.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1705D71019F9F4F4005F322F = {
+			isa = PBXGroup;
+			children = (
+				1705D79819F9F5A4005F322F /* fwks */,
+				1705D71B19F9F4F4005F322F /* Shoprize */,
+				1705D72819F9F4F5005F322F /* ShoprizeTests */,
+				1705D71A19F9F4F4005F322F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1705D71A19F9F4F4005F322F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1705D71919F9F4F4005F322F /* libShoprize.a */,
+				1705D72419F9F4F5005F322F /* ShoprizeTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1705D71B19F9F4F4005F322F /* Shoprize */ = {
+			isa = PBXGroup;
+			children = (
+				1705D79F19F9F657005F322F /* controller */,
+				1705D7C819F9F657005F322F /* utils */,
+				1705D71C19F9F4F4005F322F /* Shoprize.h */,
+			);
+			path = Shoprize;
+			sourceTree = "<group>";
+		};
+		1705D72819F9F4F5005F322F /* ShoprizeTests */ = {
+			isa = PBXGroup;
+			children = (
+				1705D72919F9F4F5005F322F /* Supporting Files */,
+			);
+			path = ShoprizeTests;
+			sourceTree = "<group>";
+		};
+		1705D72919F9F4F5005F322F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1705D72A19F9F4F5005F322F /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1705D79819F9F5A4005F322F /* fwks */ = {
+			isa = PBXGroup;
+			children = (
+				1705D96B19FA214F005F322F /* AudioToolbox.framework */,
+				1705D96919FA2144005F322F /* SystemConfiguration.framework */,
+				1705D96719FA213E005F322F /* CFNetwork.framework */,
+				1705D96519FA2137005F322F /* CoreText.framework */,
+				1705D96319FA2132005F322F /* ImageIO.framework */,
+				1705D96119FA2013005F322F /* libicucore.dylib */,
+				1705D95F19FA200A005F322F /* Security.framework */,
+				1705D95D19FA2003005F322F /* QuartzCore.framework */,
+				1705D95B19FA1FFC005F322F /* MapKit.framework */,
+				1705D95919FA1FED005F322F /* CoreLocation.framework */,
+				1705D95719FA1FE7005F322F /* CoreGraphics.framework */,
+				1705D95519FA1FE1005F322F /* Foundation.framework */,
+				1705D95319FA1FDD005F322F /* UIKit.framework */,
+				1705D79919F9F5A4005F322F /* FacebookSDK.framework */,
+				1705D79A19F9F5A4005F322F /* iSQLite.framework */,
+				1705D79B19F9F5A4005F322F /* VICore.framework */,
+			);
+			path = fwks;
+			sourceTree = "<group>";
+		};
+		1705D79F19F9F657005F322F /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				1705D7A019F9F657005F322F /* FavListViewController.h */,
+				1705D7A119F9F657005F322F /* FavListViewController.m */,
+				1705D7A219F9F657005F322F /* REFrostedContainerViewController.h */,
+				1705D7A319F9F657005F322F /* REFrostedContainerViewController.m */,
+				1705D7A419F9F657005F322F /* REFrostedViewController.h */,
+				1705D7A519F9F657005F322F /* REFrostedViewController.m */,
+				1705D7A619F9F657005F322F /* ShopriseViewController.h */,
+				1705D7A719F9F657005F322F /* ShopriseViewController.m */,
+				1705D7A819F9F657005F322F /* VIAddStroeViewController.h */,
+				1705D7A919F9F657005F322F /* VIAddStroeViewController.m */,
+				1705D7AA19F9F657005F322F /* VIDealsDetailViewController.h */,
+				1705D7AB19F9F657005F322F /* VIDealsDetailViewController.m */,
+				1705D7AC19F9F657005F322F /* VIHtmlFileViewController.h */,
+				1705D7AD19F9F657005F322F /* VIHtmlFileViewController.m */,
+				1705D7AE19F9F657005F322F /* VIInviteViewController.h */,
+				1705D7AF19F9F657005F322F /* VIInviteViewController.m */,
+				1705D7B019F9F657005F322F /* VIMailLogonViewController.h */,
+				1705D7B119F9F657005F322F /* VIMailLogonViewController.m */,
+				1705D7B219F9F657005F322F /* VIMallsViewController.h */,
+				1705D7B319F9F657005F322F /* VIMallsViewController.m */,
+				1705D7B419F9F657005F322F /* VIMenuTableViewCell.h */,
+				1705D7B519F9F657005F322F /* VIMenuTableViewCell.m */,
+				1705D7B619F9F657005F322F /* VIMyStoreViewController.h */,
+				1705D7B719F9F657005F322F /* VIMyStoreViewController.m */,
+				1705D7B819F9F657005F322F /* VIMySupriseViewController.h */,
+				1705D7B919F9F657005F322F /* VIMySupriseViewController.m */,
+				1705D7BA19F9F657005F322F /* VINavMapViewController.h */,
+				1705D7BB19F9F657005F322F /* VINavMapViewController.m */,
+				1705D7BC19F9F657005F322F /* VIReedemViewController.h */,
+				1705D7BD19F9F657005F322F /* VIReedemViewController.m */,
+				1705D7BE19F9F657005F322F /* VIStoreDetailViewController.h */,
+				1705D7BF19F9F657005F322F /* VIStoreDetailViewController.m */,
+				1705D7C019F9F657005F322F /* VIStoreViewController.h */,
+				1705D7C119F9F657005F322F /* VIStoreViewController.m */,
+				1705D7C219F9F657005F322F /* VITutorialViewController.h */,
+				1705D7C319F9F657005F322F /* VITutorialViewController.m */,
+				1705D7C419F9F657005F322F /* VIUserProfilesViewController.h */,
+				1705D7C519F9F657005F322F /* VIUserProfilesViewController.m */,
+				1705D7C619F9F657005F322F /* VIWelcomeViewController.h */,
+				1705D7C719F9F657005F322F /* VIWelcomeViewController.m */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		1705D7C819F9F657005F322F /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				1705D7C919F9F657005F322F /* Animations.h */,
+				1705D7CA19F9F657005F322F /* Animations.m */,
+				1705D7CB19F9F657005F322F /* CMPopTipView.h */,
+				1705D7CC19F9F657005F322F /* CMPopTipView.m */,
+				1705D7CD19F9F657005F322F /* KUtils.h */,
+				1705D7CE19F9F657005F322F /* KUtils.m */,
+				1705D7CF19F9F657005F322F /* MHFacebookImageViewer.h */,
+				1705D7D019F9F657005F322F /* MHFacebookImageViewer.m */,
+				1705D7D119F9F657005F322F /* Models.h */,
+				1705D7D219F9F657005F322F /* Modles.m */,
+				1705D7D319F9F657005F322F /* VIButton.h */,
+				1705D7D419F9F657005F322F /* VIButton.m */,
+				1705D7D519F9F657005F322F /* VILineTextField.h */,
+				1705D7D619F9F657005F322F /* VILineTextField.m */,
+				1705D7D719F9F657005F322F /* VINet.h */,
+				1705D7D819F9F657005F322F /* VINet.m */,
+				1705D7D919F9F657005F322F /* VISurpriseTimeDown.h */,
+				1705D7DA19F9F657005F322F /* VISurpriseTimeDown.m */,
+				1705D7DB19F9F657005F322F /* VITimeDownCell.h */,
+				1705D7DC19F9F657005F322F /* VITimeDownCell.m */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1705D71819F9F4F4005F322F /* Shoprize */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1705D72D19F9F4F5005F322F /* Build configuration list for PBXNativeTarget "Shoprize" */;
+			buildPhases = (
+				1705D71519F9F4F4005F322F /* Sources */,
+				1705D71619F9F4F4005F322F /* Frameworks */,
+				1705D71719F9F4F4005F322F /* Copy Files */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Shoprize;
+			productName = Shoprize;
+			productReference = 1705D71919F9F4F4005F322F /* libShoprize.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		1705D72319F9F4F5005F322F /* ShoprizeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1705D73019F9F4F5005F322F /* Build configuration list for PBXNativeTarget "ShoprizeTests" */;
+			buildPhases = (
+				1705D72019F9F4F5005F322F /* Sources */,
+				1705D72119F9F4F5005F322F /* Frameworks */,
+				1705D72219F9F4F5005F322F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1705D72719F9F4F5005F322F /* PBXTargetDependency */,
+			);
+			name = ShoprizeTests;
+			productName = ShoprizeTests;
+			productReference = 1705D72419F9F4F5005F322F /* ShoprizeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1705D71119F9F4F4005F322F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = techwuli.com;
+				TargetAttributes = {
+					1705D71819F9F4F4005F322F = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					1705D72319F9F4F5005F322F = {
+						CreatedOnToolsVersion = 6.1;
+					};
+				};
+			};
+			buildConfigurationList = 1705D71419F9F4F4005F322F /* Build configuration list for PBXProject "Shoprize" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1705D71019F9F4F4005F322F;
+			productRefGroup = 1705D71A19F9F4F4005F322F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1705D71819F9F4F4005F322F /* Shoprize */,
+				1705D72319F9F4F5005F322F /* ShoprizeTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1705D72219F9F4F5005F322F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1705D71519F9F4F4005F322F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1705D7E319F9F657005F322F /* VIHtmlFileViewController.m in Sources */,
+				1705D7E919F9F657005F322F /* VIMySupriseViewController.m in Sources */,
+				1705D7EF19F9F657005F322F /* VIUserProfilesViewController.m in Sources */,
+				1705D7F519F9F657005F322F /* Modles.m in Sources */,
+				1705D7EA19F9F657005F322F /* VINavMapViewController.m in Sources */,
+				1705D7F019F9F657005F322F /* VIWelcomeViewController.m in Sources */,
+				1705D7EB19F9F657005F322F /* VIReedemViewController.m in Sources */,
+				1705D7F419F9F657005F322F /* MHFacebookImageViewer.m in Sources */,
+				1705D7DD19F9F657005F322F /* FavListViewController.m in Sources */,
+				1705D7F619F9F657005F322F /* VIButton.m in Sources */,
+				1705D7F919F9F657005F322F /* VISurpriseTimeDown.m in Sources */,
+				1705D7F319F9F657005F322F /* KUtils.m in Sources */,
+				1705D7E019F9F657005F322F /* ShopriseViewController.m in Sources */,
+				1705D7E719F9F657005F322F /* VIMenuTableViewCell.m in Sources */,
+				1705D7FA19F9F657005F322F /* VITimeDownCell.m in Sources */,
+				1705D7E619F9F657005F322F /* VIMallsViewController.m in Sources */,
+				1705D7EE19F9F657005F322F /* VITutorialViewController.m in Sources */,
+				1705D7DF19F9F657005F322F /* REFrostedViewController.m in Sources */,
+				1705D7F719F9F657005F322F /* VILineTextField.m in Sources */,
+				1705D7E519F9F657005F322F /* VIMailLogonViewController.m in Sources */,
+				1705D7F819F9F657005F322F /* VINet.m in Sources */,
+				1705D7E419F9F657005F322F /* VIInviteViewController.m in Sources */,
+				1705D7F119F9F657005F322F /* Animations.m in Sources */,
+				1705D7ED19F9F657005F322F /* VIStoreViewController.m in Sources */,
+				1705D7EC19F9F657005F322F /* VIStoreDetailViewController.m in Sources */,
+				1705D7DE19F9F657005F322F /* REFrostedContainerViewController.m in Sources */,
+				1705D7E219F9F657005F322F /* VIDealsDetailViewController.m in Sources */,
+				1705D7E119F9F657005F322F /* VIAddStroeViewController.m in Sources */,
+				1705D7F219F9F657005F322F /* CMPopTipView.m in Sources */,
+				1705D7E819F9F657005F322F /* VIMyStoreViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1705D72019F9F4F5005F322F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1705D72719F9F4F5005F322F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1705D71819F9F4F4005F322F /* Shoprize */;
+			targetProxy = 1705D72619F9F4F5005F322F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1705D72B19F9F4F5005F322F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		1705D72C19F9F4F5005F322F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1705D72E19F9F4F5005F322F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/fwks",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		1705D72F19F9F4F5005F322F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/fwks",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		1705D73119F9F4F5005F322F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ShoprizeTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		1705D73219F9F4F5005F322F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ShoprizeTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1705D71419F9F4F4005F322F /* Build configuration list for PBXProject "Shoprize" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1705D72B19F9F4F5005F322F /* Debug */,
+				1705D72C19F9F4F5005F322F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1705D72D19F9F4F5005F322F /* Build configuration list for PBXNativeTarget "Shoprize" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1705D72E19F9F4F5005F322F /* Debug */,
+				1705D72F19F9F4F5005F322F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1705D73019F9F4F5005F322F /* Build configuration list for PBXNativeTarget "ShoprizeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1705D73119F9F4F5005F322F /* Debug */,
+				1705D73219F9F4F5005F322F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1705D71119F9F4F4005F322F /* Project object */;
+}

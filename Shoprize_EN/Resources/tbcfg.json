@@ -1,0 +1,24 @@
+{
+    "list_of_malls": {
+        "cell": {"xibtag": "UI.xib#6000"},
+        "view": {
+            "separatorInCell": true,
+            "background": "none",
+            "refreshStyle": "auto"
+        },
+        "datasource": {
+            "url": "/api/malls/nearby",
+            "post": false,
+            "pageable": false,
+            "datakey": "/",
+            "pageCfg": {
+                "itemskey": "data",
+                "pagenumkey": "pageIndex",
+                "pagenum": 1,
+                "pagesizekey": "pageSize",
+                "pagesize": 20,
+                "totalpagekey": "pagetotal"
+            }
+        }
+    }
+}

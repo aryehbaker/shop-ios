@@ -1,0 +1,142 @@
+{
+    "Http_0": {
+        "en": "Sorry, an error occurred and it’s not your fault…",
+        "he": "סליחה, קרתה תקלה, ולא בגללך…"
+    },
+    "Http_404": {
+        "en": "Not Found",
+        "he": "משאב לא נמצא"
+    },
+    "Http_1001": {
+        "en": "The deal cannot be found",
+        "he": "המבצע לא נמצא"
+    },
+    "Http_1002": {
+        "en": "The surprise cannot be found",
+        "he": "ההפתעה לא נמצאת"
+    },
+    "Http_1003": {
+        "en": "Cannot find category",
+        "he": "קטגוריה לא נמצאת"
+    },
+    "Http_1004": {
+        "en": "User not found",
+        "he": "המשתמש לא נמצא"
+    },
+    "Http_1005": {
+        "en": "Mall not found",
+        "he": "הקניון לא נמצא"
+    },
+    "Http_1006": {
+        "en": "App not found",
+        "he": "היישום לא נמצא"
+    },
+    "Http_1007": {
+        "en": "Token not found",
+        "he": "קרתה תקלה והיא לא באשמתך…"
+    },
+    "Http_1008": {
+        "en": "Store not found",
+        "he": "החנות לא נמצאה"
+    },
+    "Http_1009": {
+        "en": "Address not found",
+        "he": "הכתובת לא נמצאה"
+    },
+    "Http_1010": {
+        "en": "Article not found",
+        "he": "המאמר לא נמצא"
+    },
+    "Http_1011": {
+        "en": "Beacon not found",
+        "he": "\u200fלא נמצא ביקון"
+    },
+    "Http_1012": {
+        "en": "Credit card not found",
+        "he": "כרטיס האשראי לא נמצא"
+    },
+    "Http_1013": {
+        "en": "Package not found",
+        "he": "החבילה לא נמצאה"
+    },
+    "Http_2001": {
+        "en": "Category exists",
+        "he": "הקטגוריה קיימת"
+    },
+    "Http_2002": {
+        "en": "Mall exists",
+        "he": "הקניון קיים"
+    },
+    "Http_2003": {
+        "en": "User Name Exists",
+        "he": "שם משתמש קיים"
+    },
+    "Http_2004": {
+        "en": "Beacon Exists",
+        "he": "Beacon Exists"
+    },
+    "Http_3001": {
+        "en": "Redemption limit reached",
+        "he": "מימשתם את המקסימום האפשרי ליום זה"
+    },
+    "Http_3002": {
+        "en": "Coupons are already in use",
+        "he": "קופונים כבר בשימוש"
+    },
+    "Http_3003": {
+        "en": "No action provided",
+        "he": "לא הוגדרה פעולה לביצוע"
+    },
+    "Http_3004": {
+        "en": "EmptyImageFile",
+        "he": "EmptyImageFile"
+    },
+    "Http_3005": {
+        "en": "InvalidFileType",
+        "he": "InvalidFileType"
+    },
+    "Http_3006": {
+        "en": "Duplicated",
+        "he": "לחזור על"
+    },
+    "Http_3007": {
+        "en": "Invalid Account",
+        "he": "חשבון לא חוקי"
+    },
+    "Http_3008": {
+        "en": "ModelIsNotValid",
+        "he": "שגיאת שרת"
+    },
+    "Http_3009": {
+        "en": "Unauthorized",
+        "he": "לא מורשה"
+    },
+    "Http_3010": {
+        "en": "Unauthorized payment",
+        "he": "תשלום בלתי מורשה"
+    },
+    "Http_3011": {
+        "en": "Payment failed",
+        "he": "תשלום נכשל"
+    },
+    "Http_3013": {
+        "en": "MobiPromo Expired",
+        "he": "פג תוקף"
+    },
+    "Http_3014": {
+        "en": "Surprise Got And Used",
+        "he": "הפתעה הייתה בשימוש"
+    },
+    "Http_3015" : {
+        "en" : "UserName Or Password Not Correct",
+        "he": "שם משתמש או סיסמא אינה נכונה"
+    },
+    "Http_4000": {
+        "en": "Server Error",
+        "he": "שגיאת שרת"
+    },
+    "Http_4001": {
+        "en": "Bad Request",
+        "he": "בקשה שגויה"
+    }
+}

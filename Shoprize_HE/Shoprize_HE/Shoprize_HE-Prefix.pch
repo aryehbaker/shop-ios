@@ -1,0 +1,22 @@
+//
+//  initImport.pch
+//  Shoprize_HE
+//
+//  Created by ShawFung Chao on 10/24/14.
+//  Copyright (c) 2014 techwuli.com. All rights reserved.
+//
+
+#ifndef Shoprize_HE_initImport_pch
+#define Shoprize_HE_initImport_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#define _FontPekanBlack(sz)    ([UIFont fontWithName:@"Pekan-Black" size:sz])
+#define _FontPekanBold(sz)     ([UIFont fontWithName:@"Pekan-Bold" size:sz])
+#define _FontPekanLight(sz)    ([UIFont fontWithName:@"Pekan-Light" size:sz])
+#define _FontPekanRegular(sz)  ([UIFont fontWithName:@"Pekan-Regular" size:sz])
+
+
+
+#endif
