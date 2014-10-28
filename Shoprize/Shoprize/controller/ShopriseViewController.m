@@ -85,6 +85,15 @@
         [tacks addSubview:back];
         self.leftOne = back;
     }
+    if (left == Around) {
+        UIButton *back = [UIButton buttonWithType:UIButtonTypeCustom];
+        back.frame = Frm(10, 2, 40, 40);
+        back.tag = -10;
+        [back setImage:[@"aroundme.png" image] forState:UIControlStateNormal];
+        [back setImageEdgeInsets:UIEdgeInsetsMake(4, 3, 4, 3)];
+        [tacks addSubview:back];
+        self.leftOne = back;
+    }
     
     if (right == MENU) {
         UIButton *menu = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -146,8 +155,7 @@
         }else{
             t.textColor = [@"#1C1C1C" hexColor];
         }
-        if([Lang(@"lang") isEqualToString:@"he"])
-            t.textAlignment = NSTextAlignmentRight;
+        t.textAlignment = Align;
         t.returnKeyType = UIReturnKeyDone;
         t.delegate = self;
         [t becomeFirstResponder];

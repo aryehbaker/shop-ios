@@ -210,6 +210,10 @@ static NSMutableDictionary *stores;
     return 0;
 }
 
++ (void)regPushToken:(NSString *)token {
+    [VINet post:@"api/devices" args: @{@"DeviceToken": token,@"ApplicationType":@"iPhone"} target:nil succ:nil error:nil inv:nil];
+}
+
 //提交表单
 - (void)submitForm:(NSMutableDictionary *)baseArg {
 	@autoreleasepool {
@@ -388,7 +392,9 @@ static NSMutableDictionary *stores;
 	}
 	else {
 		[self hideHUDView];
-		[self.target performSelectorOnMainThread:self.succ withObject:backInfo waitUntilDone:YES];
+        if (self.succ!=nil) {
+            [self.target performSelectorOnMainThread:self.succ withObject:backInfo waitUntilDone:YES];
+        }
 	}
 }
 
@@ -405,7 +411,9 @@ static NSMutableDictionary *stores;
 	}
 	DEBUGS(@"Error MSG:%@", eroinfo);
 	[self hideHUDView];
-	[self.target performSelectorOnMainThread:self.fail withObject:eroinfo waitUntilDone:YES];
+    if (self.fail!=nil) {
+        [self.target performSelectorOnMainThread:self.fail withObject:eroinfo waitUntilDone:YES];
+    }
 }
 
 @end

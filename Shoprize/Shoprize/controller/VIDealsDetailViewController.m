@@ -11,6 +11,7 @@
 #import "KUtils.h"
 #import <iSQLite/iSQLite.h>
 #import "Models.h"
+#import "VINavMapViewController.h"
 
 @interface VIDealsDetailViewController ()<VIAutoPlayPageDelegate>
 {
@@ -26,6 +27,8 @@
     NSMutableArray *needShown;
     
     MobiPromo *mobipromo;
+    
+    Store *mobiStore;
 }
 
 @end
@@ -119,7 +122,7 @@
     
     UILabel *describe;
     describe =  [VILabel createManyLines:Frm(15, bg.endY+10, 290, 0) color:@"#2C2C2C" ft:Bold(22) text:[info stringValueForKey:@"Offer"]];
-    describe.textAlignment = NSTextAlignmentRight;
+    describe.textAlignment = Align;
     describe.text = [info stringValueForKey:@"Offer"];
     [contentView addSubview:describe];
 
@@ -131,13 +134,13 @@
         [moretext setH:45];
         moretext.tag = 10000;
         moretext.text= fullText;
-        moretext.textAlignment = NSTextAlignmentRight;
+        moretext.textAlignment = Align;
         [contentView addSubview:moretext];
         
         offset = moretext.endY;
          if (fullText.length > 100) {
              UIButton *showMore = [[UIButton alloc] initWithFrame:Frm(0, moretext.endY, 100, 30)];
-             showMore.titleLabel.textAlignment = NSTextAlignmentRight;
+             showMore.titleLabel.textAlignment = Align;
              [showMore setTitle:Lang(@"more_desc") hightTitle:Lang(@"more_desc")];
              showMore.titleLabel.font = Regular(15);
              [showMore setTitleColor:@"#FA2D38" hightColor:@"#FA2D38"];
@@ -150,7 +153,23 @@
     UIView *subItme = [[UIView alloc] initWithFrame:Frm(0,offset+20, 320, 0)];
     subItme.tag = 10001;
     
-    UIButton *like = [[UIButton alloc] initWithFrame:Frm((subItme.w - 140)/2,5, 60, 60)];
+    NSString *addid = [info stringValueForKey:@"AddressId"];
+    
+    int x = (subItme.w - 140)/2;
+    mobiStore = [[iSQLiteHelper getDefaultHelper] searchSingle:[Store class] where:@{@"AddressId":addid} orderBy:@"AddressId"];
+    if (isEn && mobiStore.Lat != 0 && mobiStore.Lon != 0) {
+        x = (subItme.w - 70 * 3)/2;
+        UIButton *share = [[UIButton alloc] initWithFrame:Frm(x,5, 60, 60)];
+        share.backgroundColor = [@"#FA2D38" hexColor];
+        share.layer.cornerRadius = 30;
+        [share setImage:[@"locfff.png" image] forState:UIControlStateNormal];
+        [share setImageEdgeInsets:UIEdgeInsetsMake(20, 20, 20, 20)];
+        [share addTarget:self action:@selector(whereIam:)];
+        [subItme addSubview:share];
+        x= x + 80;
+    }
+    
+    UIButton *like = [[UIButton alloc] initWithFrame:Frm(x,5, 60, 60)];
     like.backgroundColor = [@"#FA2D38" hexColor];
     like.layer.cornerRadius = 30;
     like.tag = 200;
@@ -175,7 +194,7 @@
     tip.text = Lang(@"more_by_store");
     [subItme addSubview:tip];
     
-    NSString *addid = [info stringValueForKey:@"AddressId"];
+    
     NSMutableString *inexp = [NSMutableString string];
     for (NSString *mid in self.exculedId) {
         [inexp appendFormat:@",'%@'",mid];
@@ -256,6 +275,13 @@
     [[iSQLiteHelper getDefaultHelper] insertOrUpdateUsingObj:mobipromo];
     
 }
+- (void)whereIam:(UIButton*)sneder {
+    VINavMapViewController *nav = [[VINavMapViewController alloc] init];
+    nav.destination = [[CLLocation alloc] initWithLatitude:mobiStore.Lat longitude:mobiStore.Lon];
+    nav.title = mobiStore.StoreName;
+    nav.subtitle = mobiStore.Address;
+    [self push:nav];
+}
 
 - (void)reward:(UIButton*)sneder
 {
@@ -321,7 +347,6 @@
     
     UILabel *lab = (UILabel *)[self.view viewWithTag:10000];
 
-    //CGSize size = [fullText sizeWithFont:FontPekanLight(16) constrainedToSize:CGSizeMake(300, 10000)];
     //[lab setText:fullText];
     
 //    [UIView animateWithDuration:.28 delay:.1 options:UIViewAnimationOptionCurveLinear animations:^{

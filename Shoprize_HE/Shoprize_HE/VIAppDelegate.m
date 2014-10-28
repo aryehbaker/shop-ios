@@ -172,9 +172,66 @@ static NSString *logpath;
 //  NSRunLoop *runloop=[NSRunLoop currentRunLoop];
 //  [runloop addTimer:t forMode:NSDefaultRunLoopMode];
     
+    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
+        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings
+                                                                             settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge)
+                                                                             categories:nil]];
+        
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }
+    else
+    {
+        //这里还是原来的代码
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+         (UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert)];
+    }
+    
     return YES;
-
 }
+
+/**
+ 原本在IOS7当中 判断PUSH是否打开的方法是：
+ UIRemoteNotificationType types = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
+ return (types & UIRemoteNotificationTypeAlert);
+ 
+ 如果将这段代码使用在 IOS当中，虽然不会出现crash的现象，但是基本没什么作用。
+ 在IOS8中，我们使用如下的新代码来取代以上的代码
+ 
+ {
+ UIRemoteNotificationType types;
+ if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+ {
+ types = [[UIApplication sharedApplication] currentUserNotificationSettings].types;
+ }
+ else
+ {
+ types = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
+ }
+ 
+ 
+ return (types & UIRemoteNotificationTypeAlert);
+ }
+ 
+ */
+
+#pragma mark 远程推送路径
+- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    NSString *token = [NSString stringWithFormat:@"%@", deviceToken];
+    [VINet regPushToken:token];
+}
+- (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+
+    NSLog(@"%@", error);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    // userInfo 就是push消息的Payload
+    // NSDictionary* userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    // NSLog(@"Payload: %@", userInfo);
+}
+
+#pragma  mark 推送结束
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
 {
@@ -704,7 +761,7 @@ static NSMutableDictionary *shareInfo;
     UITextView *t = ((UITextView *)[v viewWithTag:18003]);
     t.font = Regular(14);
     t.text = [msgs objectForKey:@"description"];
-    t.textAlignment = NSTextAlignmentRight;
+    t.textAlignment = Align;
     [t becomeFirstResponder];
     
     [(UIButton *)[v viewWithTag:18001] setTitle:Lang(@"share_cancel") hightTitle:Lang(@"share_cancel")];

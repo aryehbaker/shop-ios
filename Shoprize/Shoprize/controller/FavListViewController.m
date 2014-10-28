@@ -152,9 +152,7 @@
     }
 }
 
-
 - (void)emptyAction:(id)val { NSLog(@"%@",val);}
-
 
 - (void)gotomain:(id)val{
     NSMutableString *outs = [NSMutableString string];

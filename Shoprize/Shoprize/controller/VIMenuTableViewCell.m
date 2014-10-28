@@ -9,6 +9,7 @@
 #import "VIMenuTableViewCell.h"
 #import <VICore/VICore.h>
 #import "VINet.h"
+#import "Fonts.h"
 
 @interface VIMenuTableViewCell()
 @property(nonatomic,strong) UIImageView *icon;
@@ -25,16 +26,13 @@ static int show = 260;
     self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        BOOL isHe = [Lang(@"lang") isEqualToString:@"he"];
         self.icon = [[UIImageView alloc] initWithFrame:Frm(5, 2, 40, 40)];
         if (isHe) {
             [self.icon setFrame:Frm(show-40, 2, 40, 40)];
         }
         [self.contentView addSubview:self.icon];
-        self.text = [VILabel createLableWithFrame:Frm(35, 0, show-80, 44) color:@"#FFFFFF" font:FontS(16) align:LEFT];
-        if (isHe) {
-            self.text.textAlignment = VITextAlignmentRight;
-        }
+        self.text = [VILabel createLableWithFrame:Frm(50, 0, show-80, 44) color:@"#FFFFFF" font:FontS(16) align:LEFT];
+        self.text.textAlignment = Align;
         [self.contentView addSubview:self.text];
         
         UIView *line = [[UIView alloc] initWithFrame:Frm(self.text.x, self.text.endY-1, self.text.w, 1)];
@@ -50,38 +48,47 @@ static int show = 260;
     if ([data boolValueForKey:@"issub" defaultValue:NO])
     {
         [self.contentView removeSubviews];
-        
+
         UIView *line = [[UIView alloc] initWithFrame:Frm(75, 43, show-120, 1)];
+        if (isEn)
+            [line setX:50];
         line.backgroundColor = [@"#ffffff" hexColor];
         [self.contentView addSubview:line];
         
         NSString *titleStr = [data stringValueForKey:@"title"];
         if (![titleStr hasPrefix:@"@"]) {
-            UILabel *titlelab = [VILabel createLableWithFrame:Frm(line.x, 0, line.w-28, 44) color:@"#ffffff" font:[UIFont fontWithName:@"Pekan-Regular" size:16] align:RIGHT];
-            titlelab.textAlignment = VITextAlignmentRight;
+            UILabel *titlelab = [VILabel createLableWithFrame:Frm(line.x, 0, line.w-28, 44) color:@"#ffffff" font:Regular(16) align:RIGHT];
+            titlelab.textAlignment = Align;
             titlelab.text = Lang(titleStr);
+            if (isEn) {
+                [titlelab setX:line.x+30];
+            }
             [self.contentView addSubview:titlelab];
-            //titlelab.font = [UIFont fontWithName:@"Pekan-Regular" size:15];
         }else{
             self.text.text = @"";
             UIImageView *imagev = [[titleStr substringFromIndex:1] imageViewForImgSizeAtX:line.x+(line.w-95-28) Y:7];
             [self.contentView addSubview:imagev];
+            if (isEn) {
+                [imagev setX:line.x+30];
+            }
         }
-        
         UIImageView *smicon = [[UIImageView alloc] initWithFrame:Frm(line.endX-28, (44-25)/2, 25, 25)];
+        if(isEn)
+           [smicon setX:line.X];
         smicon.image = [[data stringValueForKey:@"icon"] image];
         [self.contentView addSubview:smicon];
         
     }else{
         NSString *titleStr = [data stringValueForKey:@"title"];
-        
         [[self.contentView viewWithTag:200] removeFromSuperview];
         if (![titleStr hasPrefix:@"@"]) {
             self.text.text = Lang(titleStr);
-            self.text.font = [UIFont fontWithName:@"Pekan-Regular" size:18];
+            self.text.font = Regular(18);
         }else{
             self.text.text = @"";
             UIImageView *imagev = [[titleStr substringFromIndex:1] imageViewForImgSizeAtX:show-90-44 Y:5];
+            if (isEn)
+               [imagev setX:50];
             imagev.tag = 200;
             [self.contentView addSubview:imagev];
         }
@@ -90,6 +97,7 @@ static int show = 260;
         
         int index = [data intValueForKey:@"index"];
         [[self.contentView viewWithTag:400] removeFromSuperview];
+        
         if (index == 23) { //邮件设置
             UIButton *swith = [[UIButton alloc] initWithFrame:Frm(self.text.x, 8, 62, 27)];
             [swith setBackgroundImage:[@"sw_off.png" image] forState:UIControlStateNormal];
@@ -99,9 +107,9 @@ static int show = 260;
             [swith setTitleColor:[@"#202121" hexColor] forState:UIControlStateSelected];
             swith.titleLabel.font = VI_FONT_B14;
             swith.tag = 400;
-            
+            if(isEn)
+                [swith setX:show - 100];
             swith.selected = [[NSUserDefaults standardUserDefaults] boolForKey:@"_close_notification_"];
-
             [self.contentView addSubview:swith];
             [self.contentView addSubview:[[UIView alloc] initWithFrame:swith.frame]];
         }

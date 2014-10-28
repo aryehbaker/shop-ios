@@ -27,7 +27,7 @@
 
     [self.view addSubview:mapkit];
     
-    VIPinAnnotationView *an = [[VIPinAnnotationView alloc] initWithTitle:self.title sub:self.subtitle lat:self.destination.latVal lon:self.destination.lonVal];
+    VIPinAnnotationView *an = [[VIPinAnnotationView alloc] initWithTitle:self.subtitle sub:self.title lat:self.destination.latVal lon:self.destination.lonVal];
     [mapkit addAnnotation:an];
     
     [self addNav:nil left:BACK right:NONE];

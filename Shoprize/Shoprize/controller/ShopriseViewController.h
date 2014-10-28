@@ -18,7 +18,8 @@ typedef NS_ENUM(NSInteger, BarItem) {
     BACK,
     HOME,
     MENU,
-    SEARCH
+    SEARCH,
+    Around
 };
 
 #define _USER_SELECTED_MALL_INFO    @"USER_SELECTED_MALL_INFO_KEY"

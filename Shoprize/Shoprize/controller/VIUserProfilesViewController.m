@@ -96,6 +96,7 @@
 {
     UITextField *email = [formView textfiled4Tag:10001];
     email.placeholder = Lang(@"fm_email");
+    
     UITextField *fisrtname = [formView textfiled4Tag:10002];
     fisrtname.placeholder = Lang(@"fm_FirstName");
     UITextField *lasttname = [formView textfiled4Tag:10003];
@@ -107,15 +108,12 @@
     UITextField *gemder = [formView textfiled4Tag:10010];
     gemder.placeholder = Lang(@"fm_gender");
     
-    
-    if ([Lang(@"lang") isEqualToString:@"he"]) {
-        email.textAlignment = NSTextAlignmentRight;
-        fisrtname.textAlignment = NSTextAlignmentRight;
-        lasttname.textAlignment = NSTextAlignmentRight;
-        phonenum.textAlignment = NSTextAlignmentRight;
-        birth.textAlignment = NSTextAlignmentRight;
-        gemder.textAlignment = NSTextAlignmentRight;
-    }
+    email.textAlignment = Align;
+    fisrtname.textAlignment = Align;
+    lasttname.textAlignment = Align;
+    phonenum.textAlignment = Align;
+    birth.textAlignment = Align;
+    gemder.textAlignment = Align;
     
     email.delegate = self;
     fisrtname.delegate = self;
@@ -249,7 +247,7 @@
     
     NSString *tx = @"שופרייז שואפת להפוך עבורך את חווית הקניות למהנה ומתגמלת יותר. במידה ונתקלת בבעיה או תקלה כלשהיא בזמן השימוש באפליקציה או בעת הביקור בחנות, יש לך הערות ודברים לשיפור באפליקציה או באתר נשמח לשמוע ולעזור בכל דרך אפשרית. פנה אלינו עכשיו בקלות !";
     UILabel *ctx = [VILabel createManyLines:Frm(15, title.endY, 240, 0) color:@"#323232" ft:Regular(15) text:tx];
-    ctx.textAlignment = NSTextAlignmentRight;
+    ctx.textAlignment = Align;
     ctx.text = tx;
     [cts addSubview:ctx];
     

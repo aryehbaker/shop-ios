@@ -75,8 +75,6 @@
         [imageView setUserInteractionEnabled:YES];
         [imageView addTapTarget:self action:@selector(changeHeadImage:)];
         
-
-        
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 180,200, 30)];
         label.text = [VINet info:LName];
         label.textAlignment = NSTextAlignmentCenter;
@@ -351,7 +349,6 @@
 //            }
 //        }
 //    }
-
     
     return cell;
 }

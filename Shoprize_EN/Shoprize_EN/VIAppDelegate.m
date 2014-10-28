@@ -24,6 +24,7 @@
 #import "VILocalNotify.h"
 #import "VIUncaughtExceptionHandler.h"
 
+
 @interface VIAppDelegate() {
      REFrostedViewController *frostedViewController;
 }
@@ -704,7 +705,7 @@ static NSMutableDictionary *shareInfo;
     UITextView *t = ((UITextView *)[v viewWithTag:18003]);
     t.font = Regular(14);
     t.text = [msgs objectForKey:@"description"];
-    t.textAlignment = NSTextAlignmentRight;
+    t.textAlignment = Align;
     [t becomeFirstResponder];
     
     [(UIButton *)[v viewWithTag:18001] setTitle:Lang(@"share_cancel") hightTitle:Lang(@"share_cancel")];

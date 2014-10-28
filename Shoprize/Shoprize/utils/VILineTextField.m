@@ -8,7 +8,7 @@
 
 #import "VILineTextField.h"
 #import <VICore/VICore.h>
-
+#import "Fonts.h"
 
 @implementation VILineTextField
 
@@ -19,7 +19,7 @@
         self.placeholder = holder;
         self.textColor = [@"#C2C2C3" hexColor];
         if ([Lang(@"lang") isEqual:@"he"]) {
-            self.textAlignment = NSTextAlignmentRight;
+            self.textAlignment = Align;
         }
         [self setValue:[@"#C2C2C3" hexColor] forKeyPath:@"_placeholderLabel.textColor"];
         [self addLeftPadding:10];

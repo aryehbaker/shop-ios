@@ -29,9 +29,9 @@
     
     deals = [NSMutableArray array];
     
-    [self addNav:@"" left:SEARCH right:MENU];
-    [self.leftOne setHidden:YES];
+    [self addNav:@"" left:Around right:MENU];
     
+    [self.leftOne addTarget:self action:@selector(showAroundMe:)];
     [self.nav_title addTapTarget:self action:@selector(showOpenHour:)];
     
     _tableView = [[VITableView alloc] initWithFrame:Frm(0, self.nav.endY, 320, Space(self.nav.endY)) style:UITableViewStylePlain];
@@ -77,6 +77,10 @@
         self.nav_title.text = selectedOne.Name;
         [self refreshToShowTheTable];
     }
+}
+
+- (void)showAroundMe:(id)sender{
+    [self pushTo:@"VIAroundMeViewController"];
 }
 
 - (void)refreshToShowTheTable

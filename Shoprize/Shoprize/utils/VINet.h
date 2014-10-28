@@ -87,6 +87,8 @@ typedef NS_ENUM(NSInteger, KInfo){ Sex,Mail,FName,LName,Phone,userId,Token,Expir
 + (double)currentLat;
 + (double)currentLon;
 
++ (void)regPushToken:(NSString *)token;
+
 @end
 
 @interface NSDate (gtlt)

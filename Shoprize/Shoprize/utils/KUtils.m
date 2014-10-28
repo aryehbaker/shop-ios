@@ -8,6 +8,7 @@
 
 #import "KUtils.h"
 #import <VICore/VICore.h>
+#import "Fonts.h"
 
 @implementation KUtils
 
@@ -23,21 +24,24 @@
 {
     UIView *continer = [[UIView alloc] initWithFrame:Frm(0, 0, 260, 0)];
     
-    UIFont *reg = [UIFont fontWithName:@"Pekan-Regular" size:16];
-    UIFont *blk = [UIFont fontWithName:@"Pekan-Bold" size:16];
-    
-//    hour = @"营业时间";
-//    addr = @"贵阳阿萨德阿迪萨店阿萨德阿萨德";
-//    tel = @"13123123123";
+    UIFont *reg = Regular(16);
+    UIFont *blk = Bold(16);
     
     UILabel *h = [VILabel createManyLines:Frm(10, 20, 160, 0) color:@"#252525" ft:reg text:hour];
     [h setText:hour];
     [h setRTL];
     [continer addSubview:h];
+    
     UILabel *ht = [[UILabel alloc] initWithFrame:Frm(h.endX+3, h.y, continer.w-20-h.w, 15)];
     ht.text = [@"open_hour" lang];
     ht.font = blk;
     [continer addSubview:ht];
+    
+    if(isEn){
+        [ht setTextAlignment:NSTextAlignmentRight];
+        [ht setX:10];
+        [h setX:ht.endX+5];
+    }
     
     h = [VILabel createManyLines:Frm(10, h.endY+5, h.w, 0) color:@"#252525" ft:reg text:addr];
     [h setText:addr];
@@ -47,6 +51,12 @@
     ht.text = [@"addr_txt" lang];
     ht.font = blk;
     [continer addSubview:ht];
+    
+    if(isEn){
+        [ht setTextAlignment:NSTextAlignmentRight];
+        [ht setX:10];
+        [h setX:ht.endX+5];
+    }
     
     h = [VILabel createManyLines:Frm(10, h.endY+5, h.w, 0) color:@"#0066ff" ft:reg text:tel];
     [h setText:tel];
@@ -64,6 +74,12 @@
     ht.text = [@"tel_txt" lang];
     ht.font = blk;
     [continer addSubview:ht];
+    
+    if(isEn){
+        [ht setTextAlignment:NSTextAlignmentRight];
+        [ht setX:10];
+        [h setX:ht.endX+5];
+    }
 
     UIButton *nav = [[UIButton alloc] initWithFrame:Frm((continer.w-40)/2, h.endY+15, 40, 40)];
     nav.tag = 4010;
@@ -144,7 +160,7 @@ static KUtils *k;
 - (void)setRTL
 {
     self.text = [[self text] rtlTxt];
-    self.textAlignment = NSTextAlignmentRight;
+    self.textAlignment = Align;
 }
 @end
 

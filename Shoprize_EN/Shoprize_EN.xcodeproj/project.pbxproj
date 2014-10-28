@@ -10,6 +10,8 @@
 		1705D77419F9F554005F322F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D77319F9F554005F322F /* main.m */; };
 		1705D77F19F9F554005F322F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1705D77E19F9F554005F322F /* Images.xcassets */; };
 		1705D78E19F9F554005F322F /* Shoprize_ENTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D78D19F9F554005F322F /* Shoprize_ENTests.m */; };
+		1745EF1119FE3D3800E701F2 /* aroundme.png in Resources */ = {isa = PBXBuildFile; fileRef = 1745EF1019FE3D3800E701F2 /* aroundme.png */; };
+		1745EF1519FE452800E701F2 /* VIAroundMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1745EF1419FE452800E701F2 /* VIAroundMeViewController.m */; };
 		175F0C0D19FA545700BCAD55 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175F0C0C19FA545700BCAD55 /* AudioToolbox.framework */; };
 		175F0C0F19FA548100BCAD55 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175F0C0E19FA548100BCAD55 /* SystemConfiguration.framework */; };
 		175F0C1119FA549600BCAD55 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175F0C1019FA549600BCAD55 /* CFNetwork.framework */; };
@@ -38,6 +40,7 @@
 		175F0C5019FA586A00BCAD55 /* VIUncaughtExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 175F0C4519FA586A00BCAD55 /* VIUncaughtExceptionHandler.m */; };
 		175F0C5119FA586A00BCAD55 /* VIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 175F0C4719FA586A00BCAD55 /* VIViewController.m */; };
 		175F0C5419FDC43F00BCAD55 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 175F0C5319FDC43F00BCAD55 /* libsqlite3.dylib */; };
+		176EEF0919FF2C16007AEB83 /* locfff.png in Resources */ = {isa = PBXBuildFile; fileRef = 176EEF0819FF2C16007AEB83 /* locfff.png */; };
 		177FE0DA19FDC5FF00D42AAA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 177FE0D919FDC5FF00D42AAA /* Default-568h@2x.png */; };
 		177FE15219FDC8C200D42AAA /* about_he.html in Resources */ = {isa = PBXBuildFile; fileRef = 177FE0DD19FDC8C100D42AAA /* about_he.html */; };
 		177FE15319FDC8C200D42AAA /* add_store_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 177FE0DE19FDC8C100D42AAA /* add_store_btn.png */; };
@@ -193,6 +196,9 @@
 		1705D78719F9F554005F322F /* Shoprize_ENTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Shoprize_ENTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1705D78C19F9F554005F322F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1705D78D19F9F554005F322F /* Shoprize_ENTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Shoprize_ENTests.m; sourceTree = "<group>"; };
+		1745EF1019FE3D3800E701F2 /* aroundme.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aroundme.png; sourceTree = "<group>"; };
+		1745EF1319FE452800E701F2 /* VIAroundMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIAroundMeViewController.h; sourceTree = "<group>"; };
+		1745EF1419FE452800E701F2 /* VIAroundMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIAroundMeViewController.m; sourceTree = "<group>"; };
 		175F0C0319FA3F4F00BCAD55 /* Shoprize.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Shoprize.xcodeproj; path = ../Shoprize/Shoprize.xcodeproj; sourceTree = "<group>"; };
 		175F0C0C19FA545700BCAD55 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		175F0C0E19FA548100BCAD55 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -232,6 +238,7 @@
 		175F0C4719FA586A00BCAD55 /* VIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIViewController.m; sourceTree = "<group>"; };
 		175F0C5219FDC33200BCAD55 /* Shoprize_EN-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Shoprize_EN-Prefix.pch"; sourceTree = "<group>"; };
 		175F0C5319FDC43F00BCAD55 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		176EEF0819FF2C16007AEB83 /* locfff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locfff.png; sourceTree = "<group>"; };
 		177FE0D919FDC5FF00D42AAA /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		177FE0DD19FDC8C100D42AAA /* about_he.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about_he.html; sourceTree = "<group>"; };
 		177FE0DE19FDC8C100D42AAA /* add_store_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_store_btn.png; sourceTree = "<group>"; };
@@ -430,6 +437,8 @@
 				175F0C4519FA586A00BCAD55 /* VIUncaughtExceptionHandler.m */,
 				175F0C4619FA586A00BCAD55 /* VIViewController.h */,
 				175F0C4719FA586A00BCAD55 /* VIViewController.m */,
+				1745EF1319FE452800E701F2 /* VIAroundMeViewController.h */,
+				1745EF1419FE452800E701F2 /* VIAroundMeViewController.m */,
 				1705D77E19F9F554005F322F /* Images.xcassets */,
 				1705D77119F9F554005F322F /* Supporting Files */,
 			);
@@ -502,7 +511,9 @@
 				177FE0DE19FDC8C100D42AAA /* add_store_btn.png */,
 				177FE0DF19FDC8C100D42AAA /* back.png */,
 				177FE0E019FDC8C100D42AAA /* back_w.png */,
+				176EEF0819FF2C16007AEB83 /* locfff.png */,
 				177FE0E119FDC8C100D42AAA /* back_w_small.png */,
+				1745EF1019FE3D3800E701F2 /* aroundme.png */,
 				177FE0E219FDC8C100D42AAA /* big_suprise.png */,
 				177FE0E319FDC8C100D42AAA /* boom_bg.png */,
 				177FE0E419FDC8C100D42AAA /* carmer_icon.png */,
@@ -807,6 +818,7 @@
 				177FE1AF19FDC8C200D42AAA /* suprise_buge.png in Resources */,
 				177FE1BF19FDC8C200D42AAA /* tor_4.png in Resources */,
 				177FE19319FDC8C200D42AAA /* about_us_icon.png in Resources */,
+				176EEF0919FF2C16007AEB83 /* locfff.png in Resources */,
 				177FE1B219FDC8C200D42AAA /* supriset_r.png in Resources */,
 				177FE19619FDC8C200D42AAA /* extra_w.png in Resources */,
 				177FE19D19FDC8C200D42AAA /* mail_w.png in Resources */,
@@ -825,6 +837,7 @@
 				177FE1BE19FDC8C200D42AAA /* tor_3.png in Resources */,
 				177FE1A719FDC8C200D42AAA /* setting.png in Resources */,
 				177FE1B819FDC8C200D42AAA /* heart.png in Resources */,
+				1745EF1119FE3D3800E701F2 /* aroundme.png in Resources */,
 				177FE19719FDC8C200D42AAA /* facebook.png in Resources */,
 				177FE1AA19FDC8C200D42AAA /* sigeup.html in Resources */,
 				177FE17119FDC8C200D42AAA /* icn_loc.png in Resources */,
@@ -893,6 +906,7 @@
 				1705D77419F9F554005F322F /* main.m in Sources */,
 				175F0C4C19FA586A00BCAD55 /* VIMenusViewController.m in Sources */,
 				175F0C4819FA586A00BCAD55 /* VIAppDelegate.m in Sources */,
+				1745EF1519FE452800E701F2 /* VIAroundMeViewController.m in Sources */,
 				175F0C5119FA586A00BCAD55 /* VIViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

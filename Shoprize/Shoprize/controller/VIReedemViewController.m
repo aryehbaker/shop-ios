@@ -41,7 +41,7 @@
     NSString *ctx = [[extra stringValueForKey:@"Offer"] killQute];
     UILabel *title = [VILabel createManyLines:Frm(10, 20, 300, 10) color:@"#252525" ft:Bold(18) text:ctx];
     title.text = ctx;
-    title.textAlignment = NSTextAlignmentRight;
+    title.textAlignment = Align;
     
     [ct addSubview:title];
     
@@ -80,7 +80,7 @@
 //        content.attributedText = attributedString;
         
         content.text = ctx2;
-        content.textAlignment = NSTextAlignmentRight;
+        content.textAlignment = Align;
         [ct addSubview:content];
         
         endY = content.endY;

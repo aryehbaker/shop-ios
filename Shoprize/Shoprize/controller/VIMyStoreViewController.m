@@ -137,11 +137,12 @@ static NSIndexPath *selected;
     UIView *contentView = [[UIView alloc] initWithFrame:Frm(0, 0, 270, 0)];
     UILabel *title = [VILabel createLableWithFrame:Frm(15, 20, 240, 25) color:@"#1C1C1C" font:Black(18) align:RIGHT];
     title.text = Lang(@"why_should_add_title");
+    title.textAlignment = Align;
     [contentView addSubview:title];
     
     NSString *tx = Lang(@"why_should_add_ctnt");
     UILabel  *ctx = [VILabel createManyLines:Frm(15, title.endY+6, 240, 0) color:@"#323232" ft:Regular(15) text:tx];
-    ctx.textAlignment = NSTextAlignmentRight;
+    ctx.textAlignment = Align;
     ctx.text = tx;
     [contentView addSubview:ctx];
     
