@@ -18,8 +18,6 @@
     NSString *fullText;
     UIScrollView *contentView;
     
-    NSDictionary *promo;
-    
     NSMutableArray *proms;
 
     int totalHeight;
@@ -39,23 +37,46 @@
 {
     [super viewDidLoad];
     
-    promo = [self getContentValueWithPath:@"VIDealsDetailViewController"];
-    if (self.exculedId == nil) {
-        self.exculedId = [NSMutableSet set];
+    if (self.dealid!=nil) {
+        [self addNav:@"Detail" left:BACK right:NONE];
+        [VINet get:Fmt(@"/api/mobipromos/%@/detail",_dealid)  args:nil target:self succ:@selector(loadOK:) error:@selector(loadFail:) inv:self.view];
+    }else{
+        NSDictionary *promo = [self getContentValueWithPath:@"VIDealsDetailViewController"];
+        mobipromo = [[MobiPromo alloc] initWithDictionary:promo error:nil];
+        
+        if (self.exculedId == nil) {
+            self.exculedId = [NSMutableSet set];
+        }
+        [self.exculedId addObject:[promo stringValueForKey:@"MobiPromoId"]];
+        
+        NSString *title = [promo stringValueForKey:@"StoreName"];
+        [self addNav:title left:BACK right:NONE];
+        self.nav_title.font = Black(22);
+        
+        self.nav.backgroundColor = [@"#DADADA" hexColor];
+        self.view.backgroundColor = self.nav.backgroundColor;
+        
+        [self loadComplete:promo];
+        
     }
-    [self.exculedId addObject:[promo stringValueForKey:@"MobiPromoId"]];
-    
-    NSString *title = [promo stringValueForKey:@"StoreName"];
-    [self addNav:title left:BACK right:NONE];
-    self.nav_title.font = Black(22);
-    
-    self.nav.backgroundColor = [@"#DADADA" hexColor];
-    self.view.backgroundColor = self.nav.backgroundColor;
-    
-    [self loadComplete:promo];
-    mobipromo = [[MobiPromo alloc] initWithDictionary:promo error:nil];
 }
 
+-(void)loadOK:(id)value {
+    NSMutableDictionary *resp = [value mutableCopy];
+    NSArray *addr = [resp arrayValueForKey:@"Addresses"];
+    if (addr!=nil && addr.count > 0) {
+        [resp addEntriesFromDictionary:[addr objectAtIndex:0]];
+    }
+    
+    [self loadComplete:resp];
+    mobipromo = [[MobiPromo alloc] initWithDictionary:resp error:nil];
+
+    NSLog(@"%@",value);
+}
+
+-(void)loadFail:(id)value {
+    [VIAlertView showErrorObj:value];
+}
 - (void)foucusImageFrame:(VIAutoPlayPageView *)imageFrame didSelectItem:(VIAutoPlayItem *)item
 {
     MHFacebookImageViewer *v = [[MHFacebookImageViewer alloc] init];
@@ -79,6 +100,8 @@
 
 - (void)loadComplete:(NSDictionary *)info
 {
+    self.nav_title.text = [info stringValueForKey:@"StoreName"];
+    
     self.imagelist = [NSMutableArray array];
     
     contentView = [[UIScrollView alloc] initWithFrame:Frm(0, self.nav.endY, 320, Space(self.nav.endY))];
@@ -86,8 +109,22 @@
     contentView.showsVerticalScrollIndicator = NO;
     
     NSString *mobiid = [info stringValueForKey:@"MobiPromoId"];
+    
     LKDBHelper *helper = [iSQLiteHelper getDefaultHelper];
-    NSMutableArray *pics = [helper searchModels:[Picture class] where:@{@"MobiPromoId":mobiid}];
+    
+    BOOL fromPush = self.dealid != nil;
+    
+    NSMutableArray *pics;
+    if (fromPush) {
+        
+        pics = [NSMutableArray array];
+        NSArray *pc = [info arrayValueForKey:@"Pictures"];
+        for (NSDictionary *d in pc) {
+           [pics addObject:[[Picture alloc] initWithDictionary:d error:nil]];
+        }
+    }else{
+        pics = [helper searchModels:[Picture class] where:@{@"MobiPromoId":mobiid}];
+    }
     
     NSMutableArray *itms = [NSMutableArray array];
     for (Picture *p in pics) {
@@ -194,14 +231,18 @@
     tip.text = Lang(@"more_by_store");
     [subItme addSubview:tip];
     
-    
-    NSMutableString *inexp = [NSMutableString string];
-    for (NSString *mid in self.exculedId) {
-        [inexp appendFormat:@",'%@'",mid];
+    if (!fromPush) {
+        NSMutableString *inexp = [NSMutableString string];
+        for (NSString *mid in self.exculedId) {
+            [inexp appendFormat:@",'%@'",mid];
+        }
+        NSString *ids = [inexp substringFromIndex:1];
+        NSString *sql = Fmt(@"select * from @t where AddressId='%@' and Type='Deal' and MobiPromoId not in(%@)",addid,ids);
+        needShown = [helper searchWithSQL:sql toClass:[MobiPromo class]];
+    }else{
+        NSString *sql = Fmt(@"select * from @t where AddressId='%@' and Type='Deal' ",addid);
+        needShown = [helper searchWithSQL:sql toClass:[MobiPromo class]];
     }
-    NSString *ids = [inexp substringFromIndex:1];
-    NSString *sql = Fmt(@"select * from @t where AddressId='%@' and Type='Deal' and MobiPromoId not in(%@)",addid,ids);
-    needShown = [helper searchWithSQL:sql toClass:[MobiPromo class]];
    
     if (needShown.count == 0) {
         [tip setHidden:YES];
@@ -261,7 +302,7 @@
 
 - (void)markIt:(id)sender
 {
-    [VINet post:Fmt(@"/api/mobipromos/%@/mark",[promo stringValueForKey:@"MobiPromoId"]) args:nil target:self succ:@selector(markedComplte:) error:@selector(showAlertError:) inv:self.view];
+    [VINet post:Fmt(@"/api/mobipromos/%@/mark",mobipromo.MobiPromoId) args:nil target:self succ:@selector(markedComplte:) error:@selector(showAlertError:) inv:self.view];
 }
 
 - (void)markedComplte:(id)info
@@ -288,10 +329,10 @@
     sneder.enabled = NO;
     
     NSMutableDictionary *pot = [NSMutableDictionary dictionary];
-    [pot setValue:[promo stringValueForKey:@"StoreImageUrl"] forKey:@"picture"];
-    [pot setValue:[promo stringValueForKey:@"Offer"] forKey:@"description"];
-    [pot setValue:[promo stringValueForKey:@"StoreName"] forKey:@"name"];
-    [pot setValue:@"http://www.google.com" forKey:@"link"];
+    [pot setValue:mobipromo.StoreImageUrl forKey:@"picture"];
+    [pot setValue:mobipromo.Offer forKey:@"description"];
+    [pot setValue:mobipromo.StoreName forKey:@"name"];
+    [pot setValue:mobipromo.StoreUrl forKey:@"link"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"_share_to_facebook_" object:pot];
     
     double delayInSeconds = 3.0;

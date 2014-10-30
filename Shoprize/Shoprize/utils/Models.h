@@ -168,3 +168,12 @@
 + (VisitStep *)insertStep:(NSString *)type value:(NSString *)value;
 
 @end
+
+@interface MobiPromoExt : MobiPromo
+
+@property(nonatomic,copy) NSString *Address;
+@property(nonatomic,assign) double Lat;
+@property(nonatomic,assign) double Lon;
+@property(nonatomic,assign) double Distance;
+
+@end

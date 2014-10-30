@@ -33,7 +33,7 @@ static NSMutableDictionary *stores;
         case KHead: return [values stringValueForKey:@"pictureUrl" defaultValue:@""];
         case KUserId: return [values stringValueForKey:@"userId" defaultValue:@""];
         case Kbirth: return [values stringValueForKey:@"birthday" defaultValue:@""];
-        case Sex: return [values stringValueForKey:@"Gender" defaultValue:@""];
+        case Sex: return [values stringValueForKey:@"gender" defaultValue:@""];
         case KFull : return Fmt(@"%@%@",[VINet info:FName],[VINet info:LName]) ;
         default:
             break;
@@ -210,10 +210,18 @@ static NSMutableDictionary *stores;
     return 0;
 }
 
-+ (void)regPushToken:(NSString *)token {
-    [VINet post:@"api/devices" args: @{@"DeviceToken": token,@"ApplicationType":@"iPhone"} target:nil succ:nil error:nil inv:nil];
++ (void)regPushToken {
+    NSString *tokenValue = [NSUserDefaults getValue:@"pushToken"];
+    if (tokenValue!=nil) {
+       [VINet post:@"/api/devices" args: @{@"DeviceToken": tokenValue,@"ApplicationType":@"iPhone"} target:self succ:@selector(doNothing:) error:@selector(doNothing:) inv:nil];
+    }
 }
-
++(void)doNothing:(id)val{
+    NSLog(@"%@",val);
+}
++ (double)distanceTo:(double)lat lon:(double)lon{
+    return [VINet distancOfTwolat1:[VINet currentLat] lon1:[VINet currentLon] lat2:lat lon2:lon];
+}
 //提交表单
 - (void)submitForm:(NSMutableDictionary *)baseArg {
 	@autoreleasepool {
@@ -273,14 +281,7 @@ static NSMutableDictionary *stores;
 - (void)submitAfterResponsed:(NSInteger)statusCode responseData:(id)requestResult error:(NSError *)jsonParseError api:(NSString *)apiName {
 
     
-	if (statusCode == Unauthorized) {
-		NSDictionary *error = [NSDictionary dictionaryWithObjectsAndKeys:
-		                       @"401", @"status",
-		                       [@"needLogin" lang], @"Message", nil];
-		[self submitFormFail:nil cusmInfo:error];
-	}
-	//////////////////////////////////// HTTP 403 /////////////////////////////////////////////
-	else if (statusCode == Forbidden) {
+	if (statusCode == Forbidden) {
 		[self resubmitWith403Code];
 		return;
 	}

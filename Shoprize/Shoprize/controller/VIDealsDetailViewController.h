@@ -14,4 +14,6 @@
 @property(nonatomic,strong) NSMutableSet *exculedId;
 @property(nonatomic,strong) NSMutableArray *imagelist;
 
+@property(nonatomic,strong) NSString *dealid;
+
 @end

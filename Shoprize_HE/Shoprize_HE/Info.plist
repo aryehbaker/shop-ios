@@ -65,7 +65,7 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>baseURL</key>
-	<string>http://108.168.221.124</string>
+	<string>http://spapine-dev.azurewebsites.net</string>
 	<key>apptoken</key>
 	<string>7d535daae10548af80fdf9488e4691ec</string>
 	<key>lang</key>

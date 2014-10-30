@@ -102,6 +102,15 @@
         [menu addTarget:self action:@selector(showMenu:)];
         [tacks addSubview:menu];
     }
+    
+    if (right == MapIt) {
+        UIButton *menu = [UIButton buttonWithType:UIButtonTypeCustom];
+        menu.frame = Frm(self.view.w-50, 2, 40, 40);
+        [menu setImage:[@"mapit.png" image] forState:UIControlStateNormal];
+        [tacks addSubview:menu];
+        self.rightOne = menu;
+    }
+    
     [self.view addSubview:self.nav];
 }
 

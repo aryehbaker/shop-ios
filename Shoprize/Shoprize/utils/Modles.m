@@ -267,3 +267,7 @@
     return nil;
 }
 @end
+
+@implementation MobiPromoExt
+
+@end

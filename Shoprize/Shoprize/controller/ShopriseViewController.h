@@ -19,7 +19,8 @@ typedef NS_ENUM(NSInteger, BarItem) {
     HOME,
     MENU,
     SEARCH,
-    Around
+    Around,
+    MapIt
 };
 
 #define _USER_SELECTED_MALL_INFO    @"USER_SELECTED_MALL_INFO_KEY"
@@ -34,6 +35,7 @@ typedef NS_ENUM(NSInteger, BarItem) {
 @property(nonatomic,strong) UIView *nav;
 @property(nonatomic,strong) UILabel *nav_title;
 @property(nonatomic,strong) UIButton *leftOne;
+@property(nonatomic,strong) UIButton *rightOne;
 
 - (void)addNav:(NSString *)title left:(BarItem)left right:(BarItem)right;
 

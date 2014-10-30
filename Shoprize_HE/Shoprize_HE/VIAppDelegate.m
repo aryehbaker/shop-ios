@@ -15,6 +15,7 @@
 #import <Shoprize/REFrostedContainerViewController.h>
 #import <Shoprize/VITutorialViewController.h>
 #import <Shoprize/VIReedemViewController.h>
+#import <Shoprize/VIDealsDetailViewController.h>
 #import <Shoprize/KUtils.h>
 
 #import <QuartzCore/QuartzCore.h>
@@ -187,6 +188,12 @@ static NSString *logpath;
          (UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert)];
     }
     
+    //延迟加载的内容
+    NSDictionary* userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    if (userInfo!=nil) {
+        [self checkWhereToGoFromPushMessage:userInfo];
+    }
+    
     return YES;
 }
 
@@ -209,7 +216,6 @@ static NSString *logpath;
  types = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
  }
  
- 
  return (types & UIRemoteNotificationTypeAlert);
  }
  
@@ -218,17 +224,29 @@ static NSString *logpath;
 #pragma mark 远程推送路径
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     NSString *token = [NSString stringWithFormat:@"%@", deviceToken];
-    [VINet regPushToken:token];
+    token = [[[token stringByReplacingOccurrencesOfString:@"<" withString:@""] stringByReplacingOccurrencesOfString:@">" withString:@""] stringByReplacingOccurrencesOfString:@" " withString:@""];
+    [NSUserDefaults setValue:token forKey:@"pushToken"];
 }
-- (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
 
+- (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
     NSLog(@"%@", error);
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    // userInfo 就是push消息的Payload
-    // NSDictionary* userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
-    // NSLog(@"Payload: %@", userInfo);
+    
+    NSLog(@"Recevie Message:%@",userInfo);
+    [self checkWhereToGoFromPushMessage:userInfo];
+
+}
+
+- (void) checkWhereToGoFromPushMessage:(NSDictionary *)userInfo
+{
+    NSString *type = [[userInfo stringValueForKey:@"type"] lowercaseString];
+    if ([type isEqualToString:@"deal"]) {
+        VIDealsDetailViewController *deal = [[VIDealsDetailViewController alloc] init];
+        deal.dealid = [userInfo stringValueForKey:@"value"];
+        [[self pushStack] pushViewController:deal animated:YES];
+    }
 }
 
 #pragma  mark 推送结束

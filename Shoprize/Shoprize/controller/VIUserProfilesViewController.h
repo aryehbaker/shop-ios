@@ -8,6 +8,6 @@
 
 #import "ShopriseViewController.h"
 
-@interface VIUserProfilesViewController : ShopriseViewController<UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
+@interface VIUserProfilesViewController : ShopriseViewController<UITextFieldDelegate>
 
 @end

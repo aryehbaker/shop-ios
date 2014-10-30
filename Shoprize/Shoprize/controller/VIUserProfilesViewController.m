@@ -9,6 +9,7 @@
 #import "VIUserProfilesViewController.h"
 #import "CMPopTipView.h"
 #import "VIHtmlFileViewController.h"
+#import <SystemConfiguration/SystemConfiguration.h>
 
 @interface VIUserProfilesViewController ()
 {
@@ -78,6 +79,7 @@
     [self renderView];
     [self.view addSubview:formView];
     [self addKeyboardNotify];
+    
 }
 
 - (void)_keyboard_WillHide:(NSNotification *)notify showTime:(NSTimeInterval)time{
@@ -154,12 +156,35 @@
     UITextField *birth = [formView textfiled4Tag:10005];
     UITextField *gender = [formView textfiled4Tag:10010];
     
+    NSString *msg = Fmt(@"%%@ %@",isHe ? @" עליך להזין " : @"Required");
+    
+    if ([fisrtname.text isEmpty]) {
+        [VIAlertView showErrorMsg:Fmt(msg,Lang(@"fm_FirstName"))]; return;
+    }
+    if ([lasttname.text isEmpty]) {
+        [VIAlertView showErrorMsg:Fmt(msg,Lang(@"fm_LastName"))]; return;
+    }
+    if ([phonenum.text isEmpty]) {
+        [VIAlertView showErrorMsg:Fmt(msg,Lang(@"fm_Phone"))]; return;
+    }
+    if ([birth.text isEmpty]) {
+        [VIAlertView showErrorMsg:Fmt(msg,Lang(@"fm_Brith"))]; return;
+    }
+    if ([gender.text isEmpty]) {
+        [VIAlertView showErrorMsg:Fmt(msg,Lang(@"fm_gender"))]; return;
+    }
+    
     NSMutableDictionary *mt = [NSMutableDictionary dictionary];
     [mt setValue:fisrtname.text forKey:@"FirstName"];
     [mt setValue:lasttname.text forKey:@"LastName"];
     [mt setValue:gender.text forKey:@"Gender"];
     [mt setValue:phonenum.text forKey:@"Phone"];
-    [mt setValue:[[birth.text parse:@"dd/MM/yyyy"] formatDefalut] forKey:@"BirthDate"];
+    NSString *data = [[birth.text parse:@"dd/MM/yyyy"] formatDefalut];
+    if (data != nil) {
+         [mt setValue:data forKey:@"BirthDate"];
+    } else{
+         [mt setValue:@"01/01/1970" forKey:@"BirthDate"];
+    }
     
     dict = mt;
     
@@ -172,8 +197,8 @@
     [pm setValue:[dict stringValueForKey:@"FirstName"] forKey:@"firstName"];
     [pm setValue:[dict stringValueForKey:@"LastName"] forKey:@"lastName"];
     [pm setValue:[dict stringValueForKey:@"Phone"] forKey:@"phone"];
-    [pm setValue:[dict stringValueForKey:@"BirthDate"] forKey:@"birthday"];
-    [pm setValue:[dict stringValueForKey:@"Gender"] forKey:@"Gender"];
+    [pm setValue:[dict stringValueForKey:@"BirthDate" ] forKey:@"birthday"];
+    [pm setValue:[dict stringValueForKey:@"Gender"] forKey:@"gender"];
     [self saveUserInfo:pm];
     
     [[NSUserDefaults standardUserDefaults] setValue:[pm jsonString] forKey:@"USER_INFO_MATION"];
@@ -183,6 +208,7 @@
 
 - (void)showChgpwdUI:(UIButton*)click{
     [self textFieldShouldReturn:nil];
+    
     UIView *passwd = [self loadXib:@"UI.xib" withTag:11000];
     
     [passwd textfiled4Tag:11001].placeholder = Lang(@"form_passwd");
@@ -342,41 +368,40 @@
     if(textField.tag == 10010)
     {
         int h = [UIApplication sharedApplication].keyWindow.bounds.size.height;
-        UIPickerView *pker = [[UIPickerView alloc] initWithFrame:Frm(0, h - 220, self.view.w, 220)];
-        pker.dataSource = self;
-        pker.delegate = self;
-        pker.backgroundColor = [UIColor whiteColor];
+        UIView *v = [self loadXib:@"UI.xib" withTag:1600];
+        [v setFrame:Frm(0, h - v.h, self.view.w, v.h)];
+        [self.view addSubview:v];
         
-        [self.view addSubview:pker];
+        NSString *tx = [self.view textfiled4Tag:10010].text;
+        
+        [[v button4Tag:100] addTarget:self action:@selector(closeAndChose:)];
+        [[v button4Tag:100] setTitle:Lang(@"fm_boy") hightTitle:Lang(@"fm_boy")];
+        if ([Lang(@"fm_boy") isEqualToString:tx]) {
+            [v button4Tag:100].selected = YES;
+        }
+        
+        [[v button4Tag:101] addTarget:self action:@selector(closeAndChose:)];
+        [[v button4Tag:101] setTitle:Lang(@"fm_girl") hightTitle:Lang(@"fm_girl")];
+        if ([Lang(@"fm_girl") isEqualToString:tx]) {
+            [v button4Tag:101].selected = YES;
+        }
         
         return NO;
     }
     return YES;
 }
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+
+-(void)closeAndChose:(UIButton *)btn
 {
-    [self.view textfiled4Tag:10010].text = [@[@"",Lang(@"fm_boy"),Lang(@"fm_girl")] objectAtIndex:row];
-    [UIView animateWithDuration:.28 animations:^{
-        pickerView.alpha = 0;
+    [self.view textfiled4Tag:10010].text = [@[Lang(@"fm_boy"),Lang(@"fm_girl")] objectAtIndex:btn.tag - 100];
+    
+    UIView *v = [self.view viewWithTag:1600];
+    [UIView animateWithDuration:.38 animations:^{
+        [v setY:self.view.h];
     } completion:^(BOOL finished) {
-         [pickerView removeFromSuperview];
+        [v removeFromSuperview];
     }];
 }
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    return  [@[@"",Lang(@"fm_boy"),Lang(@"fm_girl")] objectAtIndex:row];
-    
-}
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView;
-{
-    return 1;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    return 3;
-}
-
 
 - (void)didReceiveMemoryWarning
 {

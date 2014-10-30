@@ -364,7 +364,6 @@
     if(index == deals.count)
         return;
     MobiPromo *pdata = [deals objectAtIndex:index];
-    
     [self pushTo:@"VIDealsDetailViewController" data:[pdata toDictionary]];
 }
 

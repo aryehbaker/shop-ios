@@ -28,7 +28,7 @@ static int show = 260;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.icon = [[UIImageView alloc] initWithFrame:Frm(5, 2, 40, 40)];
         if (isHe) {
-            [self.icon setFrame:Frm(show-40, 2, 40, 40)];
+            [self.icon setFrame:Frm(show-30, 2, 40, 40)];
         }
         [self.contentView addSubview:self.icon];
         self.text = [VILabel createLableWithFrame:Frm(50, 0, show-80, 44) color:@"#FFFFFF" font:FontS(16) align:LEFT];
@@ -94,7 +94,6 @@ static int show = 260;
         }
         self.data = data;
         self.icon.image  = [[data stringValueForKey:@"icon"] image];
-        
         int index = [data intValueForKey:@"index"];
         [[self.contentView viewWithTag:400] removeFromSuperview];
         

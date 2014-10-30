@@ -155,6 +155,8 @@
 		177FE1C019FDC8C200D42AAA /* trash.png in Resources */ = {isa = PBXBuildFile; fileRef = 177FE14F19FDC8C200D42AAA /* trash.png */; };
 		177FE1C119FDC8C200D42AAA /* UI.xib in Resources */ = {isa = PBXBuildFile; fileRef = 177FE15019FDC8C200D42AAA /* UI.xib */; };
 		177FE1C219FDC8C200D42AAA /* VICore.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 177FE15119FDC8C200D42AAA /* VICore.bundle */; };
+		7A99E44B1A007EB500175E24 /* mapit.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A99E44A1A007EB500175E24 /* mapit.png */; };
+		7A99E4541A00D9FC00175E24 /* VIMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A99E4531A00D9FC00175E24 /* VIMapViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -353,6 +355,9 @@
 		177FE14F19FDC8C200D42AAA /* trash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trash.png; sourceTree = "<group>"; };
 		177FE15019FDC8C200D42AAA /* UI.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UI.xib; sourceTree = "<group>"; };
 		177FE15119FDC8C200D42AAA /* VICore.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = VICore.bundle; sourceTree = "<group>"; };
+		7A99E44A1A007EB500175E24 /* mapit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapit.png; sourceTree = "<group>"; };
+		7A99E4521A00D9FC00175E24 /* VIMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIMapViewController.h; sourceTree = "<group>"; };
+		7A99E4531A00D9FC00175E24 /* VIMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIMapViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -416,6 +421,8 @@
 		1705D77019F9F554005F322F /* Shoprize_EN */ = {
 			isa = PBXGroup;
 			children = (
+				7A99E4521A00D9FC00175E24 /* VIMapViewController.h */,
+				7A99E4531A00D9FC00175E24 /* VIMapViewController.m */,
 				175F0C3419FA586A00BCAD55 /* VIAppDelegate.h */,
 				175F0C3519FA586A00BCAD55 /* VIAppDelegate.m */,
 				175F0C3619FA586A00BCAD55 /* VIBigSuprise.h */,
@@ -516,6 +523,7 @@
 				1745EF1019FE3D3800E701F2 /* aroundme.png */,
 				177FE0E219FDC8C100D42AAA /* big_suprise.png */,
 				177FE0E319FDC8C100D42AAA /* boom_bg.png */,
+				7A99E44A1A007EB500175E24 /* mapit.png */,
 				177FE0E419FDC8C100D42AAA /* carmer_icon.png */,
 				177FE0E519FDC8C100D42AAA /* checked_right.png */,
 				177FE0E619FDC8C100D42AAA /* checked_right_check.png */,
@@ -873,6 +881,7 @@
 				177FE1AD19FDC8C200D42AAA /* store_r.png in Resources */,
 				177FE15819FDC8C200D42AAA /* boom_bg.png in Resources */,
 				177FE1AE19FDC8C200D42AAA /* store_w.png in Resources */,
+				7A99E44B1A007EB500175E24 /* mapit.png in Resources */,
 				177FE1B119FDC8C200D42AAA /* suprise_check_chekc.png in Resources */,
 				177FE17B19FDC8C200D42AAA /* mail_logon_btn.png in Resources */,
 				177FE1BD19FDC8C200D42AAA /* tor_2.png in Resources */,
@@ -902,6 +911,7 @@
 				175F0C4E19FA586A00BCAD55 /* VINearByViewController.m in Sources */,
 				175F0C4A19FA586A00BCAD55 /* VIHtmlViewController.m in Sources */,
 				175F0C4919FA586A00BCAD55 /* VIBigSuprise.m in Sources */,
+				7A99E4541A00D9FC00175E24 /* VIMapViewController.m in Sources */,
 				175F0C5019FA586A00BCAD55 /* VIUncaughtExceptionHandler.m in Sources */,
 				1705D77419F9F554005F322F /* main.m in Sources */,
 				175F0C4C19FA586A00BCAD55 /* VIMenusViewController.m in Sources */,

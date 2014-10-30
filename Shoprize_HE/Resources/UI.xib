@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="14A361c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -86,14 +86,14 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <button appearanceType="aqua" opaque="NO" tag="1004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="F9O-7q-T9Q">
+                <button opaque="NO" tag="1004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="F9O-7q-T9Q">
                     <rect key="frame" x="132" y="4" width="32" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Button" image="suprise_buge.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <button appearanceType="aqua" opaque="NO" tag="1104" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="SPI-1C-LhJ">
+                <button opaque="NO" tag="1104" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="SPI-1C-LhJ">
                     <rect key="frame" x="288" y="4" width="32" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Button" image="suprise_buge.png">
@@ -102,7 +102,9 @@
                 </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="304" y="264"/>
         </view>
         <view tag="2000" contentMode="scaleToFill" id="Kl7-a3-gui" userLabel="店铺的单元格2000">
             <rect key="frame" x="0.0" y="0.0" width="320" height="68"/>
@@ -116,6 +118,7 @@
                 </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
         <view tag="3000" contentMode="scaleToFill" id="3fb-pj-bU4" userLabel="Store的单元格 3000">
@@ -144,14 +147,14 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
-                <button appearanceType="aqua" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qNa-Bf-kBR" customClass="VICfgCellBtn">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qNa-Bf-kBR" customClass="VICfgCellBtn">
                     <rect key="frame" x="4" y="10" width="151" height="92"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <button appearanceType="aqua" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zZq-wZ-zUN" customClass="VICfgCellBtn">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zZq-wZ-zUN" customClass="VICfgCellBtn">
                     <rect key="frame" x="164" y="10" width="151" height="92"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal">
@@ -160,6 +163,7 @@
                 </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
         <view contentMode="scaleToFill" id="FZv-BZ-LxO" userLabel="My Store 5000">
@@ -179,6 +183,7 @@
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
         <view tag="6000" contentMode="scaleToFill" id="Xnc-He-kMA" userLabel="Mails List Cell 6000">
@@ -206,6 +211,7 @@
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
         <view tag="7000" contentMode="scaleToFill" id="u6w-Xg-OLx" userLabel="my store cell 7000">
@@ -230,14 +236,14 @@
                     <rect key="frame" x="169" y="7" width="140" height="96"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <button appearanceType="aqua" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Jb3-PA-kPb" customClass="VICfgCellBtn">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Jb3-PA-kPb" customClass="VICfgCellBtn">
                     <rect key="frame" x="10" y="7" width="140" height="96"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <button appearanceType="aqua" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="78f-Ly-QJT" customClass="VICfgCellBtn">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="78f-Ly-QJT" customClass="VICfgCellBtn">
                     <rect key="frame" x="169" y="7" width="140" height="96"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal">
@@ -246,6 +252,7 @@
                 </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
         <view tag="8000" contentMode="scaleToFill" id="Xu3-iq-Hmb" userLabel="invite firends top 8000">
@@ -272,6 +279,7 @@
                 </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
         <view tag="9000" contentMode="scaleToFill" id="MnQ-Wc-k3S" userLabel="Search box 9000">
@@ -310,6 +318,7 @@
                 </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
         <view tag="10000" contentMode="scaleToFill" id="4hO-0u-EJZ" userLabel="修改个人信息内容 10000">
@@ -426,22 +435,22 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <view appearanceType="aqua" contentMode="scaleToFill" id="Qa9-5m-TDm">
+                <view contentMode="scaleToFill" id="Qa9-5m-TDm">
                     <rect key="frame" x="49" y="234" width="225" height="1"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="deviceRGB"/>
                 </view>
-                <view appearanceType="aqua" contentMode="scaleToFill" id="5jx-0v-eJT">
+                <view contentMode="scaleToFill" id="5jx-0v-eJT">
                     <rect key="frame" x="48" y="229" width="1" height="6"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="deviceRGB"/>
                 </view>
-                <view appearanceType="aqua" contentMode="scaleToFill" id="Qnl-6D-eLR">
+                <view contentMode="scaleToFill" id="Qnl-6D-eLR">
                     <rect key="frame" x="274" y="229" width="1" height="6"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="deviceRGB"/>
                 </view>
-                <textField appearanceType="aqua" opaque="NO" clipsSubviews="YES" tag="10010" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="SkS-P1-2Y3">
+                <textField opaque="NO" clipsSubviews="YES" tag="10010" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="SkS-P1-2Y3">
                     <rect key="frame" x="51" y="206" width="217" height="29"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -485,6 +494,7 @@
                 </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
         <view tag="11000" contentMode="scaleToFill" id="MGk-jZ-ths" userLabel="修改个人密码 11000">
@@ -568,13 +578,14 @@
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
         <view tag="12000" contentMode="scaleToFill" id="prh-9f-ORq" userLabel="添加Store的的单元格 12000">
             <rect key="frame" x="0.0" y="0.0" width="320" height="115"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view appearanceType="aqua" tag="12001" contentMode="scaleToFill" id="Jhp-z7-qWh">
+                <view tag="12001" contentMode="scaleToFill" id="Jhp-z7-qWh">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="114"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
@@ -582,11 +593,11 @@
                             <rect key="frame" x="44" y="15" width="233" height="69"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <imageView appearanceType="aqua" userInteractionEnabled="NO" tag="12003" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart_gray.png" id="hXl-Ot-jSf">
+                        <imageView userInteractionEnabled="NO" tag="12003" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart_gray.png" id="hXl-Ot-jSf">
                             <rect key="frame" x="279" y="43" width="20" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="12004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Demo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9Um-t0-YqL">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="12004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Demo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9Um-t0-YqL">
                             <rect key="frame" x="20" y="91" width="280" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -598,6 +609,7 @@
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
         <view tag="13000" contentMode="scaleToFill" id="ngb-Yg-ky9" userLabel="reedem code 13000">
@@ -633,17 +645,18 @@
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
         <view tag="14000" contentMode="scaleToFill" id="DB9-jX-uTG" userLabel="Suprise的格子 14000">
             <rect key="frame" x="0.0" y="0.0" width="320" height="123"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view appearanceType="aqua" tag="-1000" contentMode="scaleToFill" id="7Ga-8i-m8h">
+                <view tag="-1000" contentMode="scaleToFill" id="7Ga-8i-m8h">
                     <rect key="frame" x="5" y="5" width="150" height="112"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <view appearanceType="aqua" contentMode="scaleToFill" id="Ani-k3-1fc">
+                        <view contentMode="scaleToFill" id="Ani-k3-1fc">
                             <rect key="frame" x="1" y="1" width="148" height="110"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
@@ -669,7 +682,7 @@
                                     <rect key="frame" x="4" y="85" width="140" height="23"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="14004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ened" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dUq-yQ-v2V">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="14004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ened" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dUq-yQ-v2V">
                                             <rect key="frame" x="0.0" y="0.0" width="140" height="23"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
@@ -702,11 +715,11 @@
                     </subviews>
                     <color key="backgroundColor" red="0.70196078431372544" green="0.70196078431372544" blue="0.70196078431372544" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
-                <view appearanceType="aqua" tag="-2000" contentMode="scaleToFill" id="KAu-3E-2MF">
+                <view tag="-2000" contentMode="scaleToFill" id="KAu-3E-2MF">
                     <rect key="frame" x="163" y="5" width="150" height="112"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <view appearanceType="aqua" contentMode="scaleToFill" id="65K-vS-hdK">
+                        <view contentMode="scaleToFill" id="65K-vS-hdK">
                             <rect key="frame" x="1" y="1" width="148" height="110"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
@@ -732,7 +745,7 @@
                                     <rect key="frame" x="4" y="83" width="140" height="23"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="14104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ened" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Sal-ya-JHm">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="14104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ened" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Sal-ya-JHm">
                                             <rect key="frame" x="0.0" y="0.0" width="140" height="23"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
@@ -765,14 +778,14 @@
                     </subviews>
                     <color key="backgroundColor" red="0.70196078429999997" green="0.70196078429999997" blue="0.70196078429999997" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
-                <button appearanceType="aqua" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0oF-sc-TYH" customClass="VICfgCellBtn">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0oF-sc-TYH" customClass="VICfgCellBtn">
                     <rect key="frame" x="6" y="6" width="149" height="112"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <button appearanceType="aqua" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="h5r-2r-kOo" customClass="VICfgCellBtn">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="h5r-2r-kOo" customClass="VICfgCellBtn">
                     <rect key="frame" x="163" y="6" width="149" height="111"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal">
@@ -781,26 +794,27 @@
                 </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
         <view tag="15000" contentMode="scaleToFill" id="EgG-ZF-eTi" userLabel="Store Cell Big 15000">
             <rect key="frame" x="0.0" y="0.0" width="320" height="256"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view appearanceType="aqua" tag="15000" contentMode="scaleToFill" id="qix-w0-b5c" userLabel="Store Cell Big">
+                <view tag="15000" contentMode="scaleToFill" id="qix-w0-b5c" userLabel="Store Cell Big">
                     <rect key="frame" x="10" y="8" width="300" height="238"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <view appearanceType="aqua" tag="15000" contentMode="scaleToFill" id="3M4-gl-JOg" userLabel="Store Cell Big">
+                        <view tag="15000" contentMode="scaleToFill" id="3M4-gl-JOg" userLabel="Store Cell Big">
                             <rect key="frame" x="1" y="1" width="298" height="236"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <imageView appearanceType="aqua" userInteractionEnabled="NO" tag="15001" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="9zd-m8-9mz" customClass="EGOImageView">
+                                <imageView userInteractionEnabled="NO" tag="15001" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="9zd-m8-9mz" customClass="EGOImageView">
                                     <rect key="frame" x="5" y="5" width="288" height="182"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </imageView>
-                                <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="15002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="icJ-c0-Xu5">
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="15002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="icJ-c0-Xu5">
                                     <rect key="frame" x="5" y="190" width="286" height="41"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <string key="text">Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo </string>
@@ -808,15 +822,15 @@
                                     <color key="textColor" red="1" green="0.20000000000000001" blue="0.23137254901960785" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView hidden="YES" appearanceType="aqua" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="red_haert_1.png" id="lln-Es-fIE">
+                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="red_haert_1.png" id="lln-Es-fIE">
                                     <rect key="frame" x="10" y="196" width="20" height="20"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
-                                <imageView hidden="YES" appearanceType="aqua" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="red_share.png" id="1gd-kf-RKP">
+                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="red_share.png" id="1gd-kf-RKP">
                                     <rect key="frame" x="43" y="197" width="20" height="20"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
-                                <label hidden="YES" appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="15003" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="255" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="v42-B5-4bL">
+                                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="15003" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="255" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="v42-B5-4bL">
                                     <rect key="frame" x="5" y="218" width="31" height="14"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
@@ -825,34 +839,33 @@
                                 </label>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                         </view>
                     </subviews>
                     <color key="backgroundColor" red="0.65490196078431373" green="0.65490196078431373" blue="0.65490196078431373" alpha="1" colorSpace="calibratedRGB"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
         <view tag="16000" contentMode="scaleToFill" id="WdY-o5-guu" userLabel="Store Cell Big 16000">
             <rect key="frame" x="0.0" y="0.0" width="141" height="195"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view appearanceType="aqua" tag="15000" contentMode="scaleToFill" id="mSv-vy-cjI" userLabel="Store Cell Big">
+                <view tag="15000" contentMode="scaleToFill" id="mSv-vy-cjI" userLabel="Store Cell Big">
                     <rect key="frame" x="0.0" y="0.0" width="141" height="195"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <view appearanceType="aqua" tag="15000" contentMode="scaleToFill" id="IE9-D7-gXd" userLabel="Store Cell Big">
+                        <view tag="15000" contentMode="scaleToFill" id="IE9-D7-gXd" userLabel="Store Cell Big">
                             <rect key="frame" x="1" y="1" width="139" height="193"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <imageView appearanceType="aqua" userInteractionEnabled="NO" tag="16001" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="H0l-jd-ZDl" customClass="EGOImageView">
+                                <imageView userInteractionEnabled="NO" tag="16001" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="H0l-jd-ZDl" customClass="EGOImageView">
                                     <rect key="frame" x="5" y="5" width="128" height="142"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </imageView>
-                                <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="16002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hy6-Lf-rxo">
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="16002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hy6-Lf-rxo">
                                     <rect key="frame" x="7" y="149" width="125" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <string key="text">Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo Demo </string>
@@ -860,53 +873,52 @@
                                     <color key="textColor" red="0.31372549019607843" green="0.31372549019607843" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView hidden="YES" appearanceType="aqua" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hear_share_1.png" id="lp3-fU-D4e">
+                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hear_share_1.png" id="lp3-fU-D4e">
                                     <rect key="frame" x="8" y="196" width="20" height="20"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
-                                <label hidden="YES" appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="16003" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="255" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9zO-ne-TDJ">
+                                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="16003" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="255" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9zO-ne-TDJ">
                                     <rect key="frame" x="31" y="199" width="31" height="14"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                     <color key="textColor" red="0.31372549020000001" green="0.31372549020000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView hidden="YES" appearanceType="aqua" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="share_gray_1.png" id="lD4-23-1Ik">
+                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="share_gray_1.png" id="lD4-23-1Ik">
                                     <rect key="frame" x="112" y="196" width="20" height="20"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                         </view>
                     </subviews>
                     <color key="backgroundColor" red="0.65490196079999996" green="0.65490196079999996" blue="0.65490196079999996" alpha="1" colorSpace="calibratedRGB"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
         <view tag="17000" contentMode="scaleToFill" id="gIW-6d-5UD" userLabel="顶部搜索工具条 17000">
             <rect key="frame" x="0.0" y="0.0" width="221" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view appearanceType="aqua" contentMode="scaleToFill" id="UeJ-VA-sIW">
+                <view contentMode="scaleToFill" id="UeJ-VA-sIW">
                     <rect key="frame" x="8" y="36" width="208" height="1"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
-                <view appearanceType="aqua" contentMode="scaleToFill" id="8ca-HY-KrC">
+                <view contentMode="scaleToFill" id="8ca-HY-KrC">
                     <rect key="frame" x="214" y="29" width="1" height="8"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
-                <view appearanceType="aqua" contentMode="scaleToFill" id="cR3-dt-H21">
+                <view contentMode="scaleToFill" id="cR3-dt-H21">
                     <rect key="frame" x="8" y="29" width="1" height="8"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
-                <textField appearanceType="aqua" opaque="NO" clipsSubviews="YES" tag="17001" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search Key" minimumFontSize="15" clearButtonMode="always" id="ILb-CR-Kkx">
+                <textField opaque="NO" clipsSubviews="YES" tag="17001" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search Key" minimumFontSize="15" clearButtonMode="always" id="ILb-CR-Kkx">
                     <rect key="frame" x="14" y="7" width="197" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -914,24 +926,25 @@
                 </textField>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
         <view tag="18000" contentMode="scaleToFill" id="pPb-WL-LT9" userLabel="分享的外框 18000">
             <rect key="frame" x="0.0" y="0.0" width="280" height="162"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <textView appearanceType="aqua" clipsSubviews="YES" multipleTouchEnabled="YES" tag="18003" contentMode="scaleToFill" text="demo" id="a9u-kn-0YY">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="18003" contentMode="scaleToFill" text="demo" id="a9u-kn-0YY">
                     <rect key="frame" x="10" y="46" width="183" height="106"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <imageView appearanceType="aqua" userInteractionEnabled="NO" tag="18004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="aH1-hb-thW" customClass="EGOImageView">
+                <imageView userInteractionEnabled="NO" tag="18004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="aH1-hb-thW" customClass="EGOImageView">
                     <rect key="frame" x="198" y="46" width="75" height="75"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <button appearanceType="aqua" opaque="NO" tag="18001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="k7J-kk-ynB">
+                <button opaque="NO" tag="18001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="k7J-kk-ynB">
                     <rect key="frame" x="10" y="4" width="66" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -939,7 +952,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <button appearanceType="aqua" opaque="NO" tag="18002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="z1c-je-Lrt">
+                <button opaque="NO" tag="18002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="z1c-je-Lrt">
                     <rect key="frame" x="207" y="4" width="66" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -947,50 +960,88 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Facebook" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xpA-8O-Tl1">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Facebook" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xpA-8O-Tl1">
                     <rect key="frame" x="69" y="12" width="142" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" red="0.58823529409999997" green="0.58823529409999997" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view appearanceType="aqua" contentMode="scaleToFill" id="52K-kb-93Y">
+                <view contentMode="scaleToFill" id="52K-kb-93Y">
                     <rect key="frame" x="0.0" y="39" width="280" height="1"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.81960784313725488" green="0.81960784313725488" blue="0.81960784313725488" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
         <view tag="1500" contentMode="scaleToFill" id="cVk-IE-lTl" userLabel="重置密码 1500">
             <rect key="frame" x="0.0" y="0.0" width="250" height="69"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <textField appearanceType="aqua" opaque="NO" clipsSubviews="YES" tag="1501" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" textAlignment="right" minimumFontSize="15" id="ZUb-nc-rCs">
+                <textField opaque="NO" clipsSubviews="YES" tag="1501" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" textAlignment="right" minimumFontSize="15" id="ZUb-nc-rCs">
                     <rect key="frame" x="25" y="19" width="201" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" returnKeyType="send"/>
                 </textField>
-                <view appearanceType="aqua" contentMode="scaleToFill" id="FgN-gB-QSf">
+                <view contentMode="scaleToFill" id="FgN-gB-QSf">
                     <rect key="frame" x="20" y="48" width="210" height="1"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
-                <view appearanceType="aqua" contentMode="scaleToFill" id="Zzq-uS-gQp">
+                <view contentMode="scaleToFill" id="Zzq-uS-gQp">
                     <rect key="frame" x="20" y="43" width="1" height="5"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
-                <view appearanceType="aqua" contentMode="scaleToFill" id="CCb-Ru-4Fq">
+                <view contentMode="scaleToFill" id="CCb-Ru-4Fq">
                     <rect key="frame" x="229" y="43" width="1" height="5"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+        <view tag="1600" contentMode="scaleToFill" id="1aC-EX-i7F" userLabel="选择性别">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="86"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="DFH-ph-B6t">
+                    <rect key="frame" x="8" y="8" width="304" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="Button">
+                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected">
+                        <color key="titleColor" red="0.043137254899999998" green="0.37647058820000001" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gtg-5e-er2">
+                    <rect key="frame" x="8" y="46" width="304" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="Button">
+                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected">
+                        <color key="titleColor" red="0.043137254899999998" green="0.37647058820000001" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="304" y="543"/>
         </view>
     </objects>
     <resources>
@@ -1005,4 +1056,9 @@
         <image name="suprise_buge.png" width="62" height="62"/>
         <image name="supriset_r.png" width="40" height="40"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

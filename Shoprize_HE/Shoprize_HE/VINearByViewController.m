@@ -125,6 +125,8 @@ static ListType currentType;
         self.nav_title.text = selectedOne.Name;
         [self refreshToShowTheTable];
     }
+    
+    [VINet regPushToken];
 }
 
 - (void)refreshToShowTheTable
