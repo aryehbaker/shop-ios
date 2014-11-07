@@ -7,6 +7,7 @@
 //
 
 #import <VICore/VICore.h>
+#import <Shoprize/VIHtmlFileViewController.h>
 
 @interface VIMenusViewController : VIBaseViewController <UITableViewDataSource, UITableViewDelegate>
 

@@ -8,11 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "VIUtilsViewController.h"
+#import "App.h"
+#import "MKNetworkKit.h"
 /**
  *    基础类
  *    @author mk
  */
 @interface VIBaseViewController : VIUtilsViewController
+
+@property(nonatomic,retain) HttpCfg         *defcfg;
+@property(nonatomic,retain) NSMutableDictionary  *requests;
 
 /**
  *    中间变量的处理
@@ -27,11 +32,6 @@
  */
 - (id)getContentValueWithPath:(NSString *)path;
 - (id)contentValueForKey:(NSString *)path;
-/**
- *    设置值到存储当中
- *    @param value 值
- *    @param key 类容
- */
 - (void)setValueToContent:(id)value forKey:(NSString *)key;
 
 /**
@@ -80,10 +80,6 @@
  * @param     controller 需要显示的框架
  */
 - (void)presentModalViewController:(UIViewController *)controller;
-
-/**
- * 回弹出下拉的效果
- */
 - (void)dismissModalViewController;
 
 /**
@@ -97,9 +93,6 @@
  */
 - (void)saveUserInfo:(NSDictionary *)userInfo;
 
-/**
- * 获得登陆用户的信息
- */
 - (NSDictionary *)getLoginInfo;
 
 /**
@@ -127,6 +120,20 @@
  */
 - (void)_keyboard_WillShow:(NSNotification *)notify withBoardFrame:(CGRect)frame showTime:(NSTimeInterval)time;
 - (void)_keyboard_WillHide:(NSNotification *)notify showTime:(NSTimeInterval)time;
+
+
+#pragma mark 扩展函数
+
+- (void)startLoading;
+- (void)startLockLoading;
+- (void)stopLoading;
+
+- (void)setCfg:(HttpCfg*)cfg;
+
+- (void)post:(NSString*)url args:(id)args complete:(void(^)(BOOL iscomplete,id resp))complete;
+- (void) get:(NSString*)url args:(id)args complete:(void(^)(BOOL iscomplete,id resp))complete;
+- (void)down:(NSString*)url args:(id)args toFile:(NSString *)path progress:(MKNKProgressBlock)progress;
+- (void)stopReqIn:(UIViewController *)ctrl;
 
 @end
 

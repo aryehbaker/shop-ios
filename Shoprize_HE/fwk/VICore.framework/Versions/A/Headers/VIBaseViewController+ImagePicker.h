@@ -6,8 +6,9 @@
 //  Copyright (c) 2013年 app1580.com. All rights reserved.
 //
 
-#import <VICore/VICtrls.h>
+
 #import <VICore/VIMacro.h>
+#import <VICore/VIBaseViewController.h>
 
 @interface VIBaseViewController (ImagePicker)
 

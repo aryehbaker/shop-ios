@@ -178,9 +178,9 @@
          if (fullText.length > 100) {
              UIButton *showMore = [[UIButton alloc] initWithFrame:Frm(0, moretext.endY, 100, 30)];
              showMore.titleLabel.textAlignment = Align;
-             [showMore setTitle:Lang(@"more_desc") hightTitle:Lang(@"more_desc")];
+             [showMore setTitle:Lang(@"more_desc") selected:Lang(@"more_desc")];
              showMore.titleLabel.font = Regular(15);
-             [showMore setTitleColor:@"#FA2D38" hightColor:@"#FA2D38"];
+             [showMore setTitleColor:[@"#FA2D38" hexColor] forState:UIControlStateNormal];
              [showMore addTarget:self action:@selector(showFull:)];
              [contentView addSubview:showMore];
              offset = showMore.endY;
@@ -214,7 +214,7 @@
     UIImageView *v = [@"gray_heart.png" imageViewForImgSizeAtX:10 Y:22];
     [like addTarget:self action:@selector(markIt:)];
     [like addSubview:v];
-    [like setTitle:Fmt(@"%d",[info intValueForKey:@"MarkedCount"]) hightTitle:Fmt(@"%d",[info intValueForKey:@"MarkedCount"])];
+    [like setTitle:Fmt(@"%d",[info intValueForKey:@"MarkedCount"]) selected:Fmt(@"%d",[info intValueForKey:@"MarkedCount"])];
     like.enabled = ![info boolValueForKey:@"IsMarked" defaultValue:NO];
     
     [subItme addSubview:like];
@@ -308,7 +308,7 @@
 - (void)markedComplte:(id)info
 {
     UIButton *t = ((UIButton *)[self.view viewWithTag:200]);
-    [t setTitle:Fmt(@"%d",[t.titleLabel.text intValue]+1) hightTitle:Fmt(@"%d",[t.titleLabel.text intValue]+1)];
+    [t setTitle:Fmt(@"%d",[t.titleLabel.text intValue]+1) selected:Fmt(@"%d",[t.titleLabel.text intValue]+1)];
     [t setEnabled:NO];
     
     [mobipromo setIsMarked:YES];

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <VICore/VICore.h>
+#import "VIHttpBase.h"
 
 typedef NS_ENUM (NSUInteger, HttpCode) {
 	Continue = 100,

@@ -80,10 +80,8 @@
 }
 
 
-- (void)signUp:(id)sender
-{
-    [self pushTo:@"VIHtmlViewController" data:@"sigeup.html"];
-    //[self pushTo:@"VIHtmlViewController" data:@"whichULike.html"];
+- (void)signUp:(id)sender {
+    [self pushTo:@"VIHtmlViewController" data:Lang(@"sigeup_html")];
 }
 
 - (void)didReceiveMemoryWarning

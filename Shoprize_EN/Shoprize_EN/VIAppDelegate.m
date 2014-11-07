@@ -295,7 +295,7 @@ static NSString *logpath;
     MallInfo *nearest = [MallInfo nearestMall];
     if (nearest !=nil && nearest.distance< _NEAREST_PLACE_KM_ )  { //if had load address
         VisitStep *visted = [VisitStep insertStep:@"mall" value:nearest.MallAddressId];
-        if (visted==nil || ([[NSDate date] timeIntervalSince1970] - visted.time) > 5 * 60) {
+        if (visted==nil || ([[NSDate date] timeIntervalSince1970] - visted.time) > 90) {
             VisitStep *v = [[VisitStep alloc] init];
             [v setType:@"mall"];
             [v setID:nearest.MallAddressId];
@@ -708,11 +708,11 @@ static NSMutableDictionary *shareInfo;
     t.textAlignment = Align;
     [t becomeFirstResponder];
     
-    [(UIButton *)[v viewWithTag:18001] setTitle:Lang(@"share_cancel") hightTitle:Lang(@"share_cancel")];
+    [(UIButton *)[v viewWithTag:18001] setTitle:Lang(@"share_cancel") selected:Lang(@"share_cancel")];
     ((UIButton *)[v viewWithTag:18001]).titleLabel.font = Bold(16);
     [((UIButton *)[v viewWithTag:18001]) addTapTarget:self action:@selector(cancelShareAct:)];
     [((UIButton *)[v viewWithTag:18002]) addTapTarget:self action:@selector(shareNow:)];
-    [((UIButton *)[v viewWithTag:18002]) setTitle:Lang(@"share_ok") hightTitle:Lang(@"share_ok")];
+    [((UIButton *)[v viewWithTag:18002]) setTitle:Lang(@"share_ok") selected:Lang(@"share_ok")];
     ((UIButton *)[v viewWithTag:18002]).titleLabel.font = Bold(16);
     id pic = [msgs objectForKey:@"picture"];
     if ([pic isKindOfClass:[NSString class]]) {
@@ -729,6 +729,7 @@ static NSMutableDictionary *shareInfo;
         [v setY:20];
     }];
    
+    
 }
 
 - (void)shareNow:(UIButton *)share

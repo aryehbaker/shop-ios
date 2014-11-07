@@ -27,7 +27,7 @@
     UIFont *reg = Regular(16);
     UIFont *blk = Bold(16);
     
-    UILabel *h = [VILabel createManyLines:Frm(10, 20, 160, 0) color:@"#252525" ft:reg text:hour];
+    UILabel *h =  [UILabel initManyLineWithFrame:Frm(10, 20, 160, 0) color:@"#252525" font:reg text:hour];
     [h setText:hour];
     [h setRTL];
     [continer addSubview:h];
@@ -43,7 +43,7 @@
         [h setX:ht.endX+5];
     }
     
-    h = [VILabel createManyLines:Frm(10, h.endY+5, h.w, 0) color:@"#252525" ft:reg text:addr];
+    h = [UILabel initManyLineWithFrame:Frm(10, h.endY+5, h.w, 0) color:@"#252525" font:reg text:addr];
     [h setText:addr];
     [h setRTL];
     [continer addSubview:h];
@@ -58,7 +58,7 @@
         [h setX:ht.endX+5];
     }
     
-    h = [VILabel createManyLines:Frm(10, h.endY+5, h.w, 0) color:@"#0066ff" ft:reg text:tel];
+    h = [UILabel initManyLineWithFrame:Frm(10, h.endY+5, h.w, 0) color:@"#0066ff" font:reg text:tel];
     [h setText:tel];
     [h setRTL];
     [h setUserInteractionEnabled:YES];

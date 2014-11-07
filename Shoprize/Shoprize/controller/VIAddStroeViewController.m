@@ -45,8 +45,8 @@
     tbn.layer.borderWidth = 1;
     tbn.layer.cornerRadius = 20;
     tbn.layer.borderColor = [@"#9e9e9e" hexColor].CGColor;
-    [tbn setTitle:Lang(@"add_store_done") hightTitle:Lang(@"add_store_done")];
-    [tbn setTitleColor:@"#464646" hightColor:@"#464646"];
+    [tbn setTitle:Lang(@"add_store_done") selected:Lang(@"add_store_done")];
+    [tbn setTitleColor:[@"#464646" hexColor] forState:UIControlStateNormal];
     [tbn addTarget:self action:@selector(completeSelect:)];
     [v addSubview:tbn];
     

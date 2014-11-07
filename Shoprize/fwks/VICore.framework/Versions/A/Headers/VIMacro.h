@@ -163,8 +163,6 @@ typedef enum { DONE,/*完成*/ CANCEL,/*取消*/ CLEAN /*清除*/} IMAGE_ACTION;
 #define VI_RETAIN(exp)		[exp retain]
 #endif
 
-#define OS7  ([UIDevice isIOS7])
-
 #define   VI_DEPRECATED __attribute__((deprecated))
 
 

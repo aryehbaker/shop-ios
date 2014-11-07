@@ -38,7 +38,7 @@
     UIView *action = [self loadXib:@"UI.xib" withTag:8000];
     [action label4Tag:8001].text = Lang(@"shoose_all");
     [action label4Tag:8001].font = Bold(19);
-    [[action button4Tag:8002] setTitle:Lang(@"ck_all") hightTitle:Lang(@"ck_all")];
+    [[action button4Tag:8002] setTitle:Lang(@"ck_all") selected:Lang(@"ck_all")];
     [[action button4Tag:8002] addTarget:self action:@selector(checkAll:)];
     [[action button4Tag:8002] titleLabel].font = Regular(14);
     [action setY:self.nav.endY];
@@ -54,8 +54,8 @@
     
     UIButton *inVIen = [[UIButton alloc] initWithFrame:Frm(-1, self.view.h - 39, 322, 40)];
     inVIen.backgroundColor = [@"#ff4747" hexColor];
-    [inVIen setTitleColor:@"#ffffff" hightColor:@"#ffffff"];
-    [inVIen setTitle:Lang(@"invite_now") hightTitle:Lang(@"invite_now")];
+    [inVIen setTitleColor:[@"#ffffff" hexColor] forState:UIControlStateNormal ];
+    [inVIen setTitle:Lang(@"invite_now") selected:Lang(@"invite_now")];
     inVIen.titleLabel.font = Bold(20);
     [inVIen addTarget:self action:@selector(sendMessage:)];
     [self.view addSubview:inVIen];
@@ -96,7 +96,7 @@
         [self.contacts replaceObjectAtIndex:index withObject:dict];
     }
     isAllChecked = !isAllChecked;
-    [sender setTitle:!isAllChecked ? Lang(@"ck_all") : Lang(@"ck_none") hightTitle:isAllChecked ? Lang(@"ck_all") : Lang(@"ck_none") ];
+    [sender setTitle:!isAllChecked ? Lang(@"ck_all") : Lang(@"ck_none") selected:isAllChecked ? Lang(@"ck_all") : Lang(@"ck_none") ];
     
     [listTable reloadData];
 }
@@ -223,7 +223,7 @@
     UIView *line = [[UIView alloc] initWithFrame:Frm(51,0, 194, 1)];
     line.backgroundColor = [@"#AEB1B4" hexColor];
     [cell.contentView addSubview:line];
-    UILabel *rtlable = [VILabel createLableWithFrame:Frm(51, 0, 194, 44) color:@"#ffffff" font:FontS(20) align:RIGHT];
+    UILabel *rtlable = [UILabel initWithFrame:Frm(51, 0, 194, 44) color:@"#ffffff" font:FontS(20) align:RIGHT];
     rtlable.text = [data stringValueForKey:@"name"];
     [cell.contentView addSubview:rtlable];
     UIButton *checked = [UIButton buttonWithType:UIButtonTypeCustom];

@@ -169,7 +169,7 @@ static NSMutableDictionary *stores;
 	id token = [[NSUserDefaults standardUserDefaults] objectForKey:@"k4_ACCESS_TOKEN"];
 	if (token == nil || focuse) {
 		NSString *apptoken = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"apptoken"];
-		NSString *authURL = Fmt(@"%@/api/auth?apptoken=%@", [VIHttpKit baseURL], apptoken);
+		NSString *authURL = Fmt(@"%@/api/auth?apptoken=%@", [App baseURL], apptoken);
 		NSError *reqEr;
 		NSString *resp = [NSString stringWithContentsOfURL:[NSURL URLWithString:authURL] encoding:NSUTF8StringEncoding error:&reqEr];
 		id jsonValue = [resp jsonVal];

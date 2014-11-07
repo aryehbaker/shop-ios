@@ -7,7 +7,6 @@
 //
 
 #import "VIMenusViewController.h"
-#import "VIPreffrenceViewController.h"
 
 #import <Shoprize/REFrostedContainerViewController.h>
 #import <Shoprize/REFrostedViewController.h>
@@ -120,7 +119,7 @@
     UIButton *change = [[UIButton alloc] initWithFrame:Frm(15, 15,80, 30)];
     change.backgroundColor = [@"#676767" hexColor];
     change.layer.cornerRadius = 8;
-    [change setTitle:Lang(@"head_change") hightTitle:Lang(@"head_change")];
+    [change setTitle:Lang(@"head_change") selected:Lang(@"head_change")];
     [change addTarget:self action:@selector(ChangeIt:)];
     [change setTitleColor:[@"#ffffff" hexColor] forState:UIControlStateNormal];
     change.titleLabel.font = Bold(16);
@@ -129,7 +128,7 @@
     UIButton *delete = [[UIButton alloc] initWithFrame:Frm(change.endX+10, change.y, 80, 30)];
     delete.backgroundColor = [@"#FD2D38" hexColor];
     delete.layer.cornerRadius = 8;
-    [delete setTitle:Lang(@"head_delete") hightTitle:Lang(@"head_delete")];
+    [delete setTitle:Lang(@"head_delete") selected:Lang(@"head_delete")];
     [delete addTarget:self action:@selector(DeleIt:)];
     [delete setTitleColor:[@"#ffffff" hexColor] forState:UIControlStateNormal];
     delete.titleLabel.font = Bold(16);
@@ -239,11 +238,11 @@
         return;
     }
     
-    else if (index == 24 && ![self checkHtmlName:v htmlName:@"pliaylice.html"])
+    else if (index == 24 && ![self checkHtmlName:v htmlName:Lang(@"pliaylice_html")])
     {
         VIHtmlFileViewController *us = [[VIHtmlFileViewController alloc] init];
-        us.htmlFile = @"pliaylice.html";
-        us.headTitle = @"Privacy Plicy";
+        us.htmlFile = Lang(@"pliaylice_html");
+        us.headTitle = Lang(@"pliaylice_title");
         [navigationController pushViewController:us animated:YES];
     }
     else if (index == 25)

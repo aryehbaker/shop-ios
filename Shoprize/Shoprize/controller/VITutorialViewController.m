@@ -95,7 +95,7 @@
 
     
     UIButton *skip = [[UIButton alloc] initWithFrame:Frm(110, self.view.h-110, 100, 40)];
-    [skip setTitle:Lang(@"index_skip") hightTitle:Lang(@"index_skip")];
+    [skip setTitle:Lang(@"index_skip") selected:Lang(@"index_skip")];
     skip.titleLabel.font = Bold(18);
     [skip setTitleColor:[@"#ffffff" hexColor] forState:UIControlStateNormal];
     [self.view addSubview:skip];
@@ -105,7 +105,7 @@
     [reg setBackgroundcolorByHex:@"#FD2D38"];
     reg.tag = 10086;
     reg.titleLabel.font = Bold(19);
-    [reg setTitle:Lang(@"index_signup_signin") hightTitle:Lang(@"index_signup_signin")];
+    [reg setTitle:Lang(@"index_signup_signin") selected:Lang(@"index_signup_signin")];
     [reg setTitleColor:[@"#ffffff" hexColor] forState:UIControlStateNormal];
     [self.view addSubview:reg];
     [reg addTarget:self action:@selector(loginVe:)];

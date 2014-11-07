@@ -29,7 +29,7 @@
 //    delete
 }
 
-- (void)callObjcFunc:(NSString *)funName args:(id)args
+- (void)callObjcInWebview:(VIHtmlLoadView*)webview func:(NSString *)funName args:(id)args
 {
     if ([funName isEqualToString:@"addNew"]) {
         NSMutableDictionary *p = [NSMutableDictionary dictionary];

@@ -29,9 +29,6 @@
 // formAction.js
 #import <VICore/VIHtmlLoadView.h>
 
-// 日期选择框
-#import <VICore/VIDatePciker.h>
-
 // 地图显示的视图
 #import <VICore/VIMapView.h>
 
@@ -40,18 +37,11 @@
 // 自定义图片的分页
 #import <VICore/VIPageControl.h>
 
-// 添加自定义的TabBar控件
-#import <VICore/VITabBar.h>
-
 // 自定义的富文本Lable的内容
 #import <VICore/VIRTLabel.h>
 
 //自动滚动的Label
 #import <VICore/VIAutoScrollLabel.h>
-
-#import <VICore/VIImageBtn.h>
-
-#import <VICore/VIDrawImage.h>
 
 #import <VICore/VIWebViewer.h>
 

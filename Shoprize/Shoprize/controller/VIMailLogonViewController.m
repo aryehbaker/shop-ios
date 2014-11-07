@@ -49,13 +49,13 @@
     [Login addTarget:self action:@selector(showMainview:)];
     [self.view addSubview:Login];
  
-    UILabel *fg = [VILabel createLableWithFrame:Frm(Login.x, Login.endY+10, Login.w, 30) color:@"#ffffff" font:Regular(14) align:CENTER];
+    UILabel *fg = [UILabel initWithFrame:Frm(Login.x, Login.endY+10, Login.w, 30) color:@"#ffffff" font:Regular(14) align:CENTER];
     fg.text = Lang(@"forgetPwd");
     fg.userInteractionEnabled = YES;
     [fg addTapTarget:self action:@selector(forgetPasswordView:)];
     [self.view addSubview:fg];
   
-    UILabel *sinup  = [VILabel createLableWithFrame:Frm(0, self.view.h-40, self.view.w, 40) color:@"#FFFFFF" font:Bold(22) align:CENTER];
+    UILabel *sinup  = [UILabel initWithFrame:Frm(0, self.view.h-40, self.view.w, 40) color:@"#FFFFFF" font:Bold(22) align:CENTER];
     sinup.text = Lang(@"index_signup");
     sinup.backgroundColor = [@"#FF4745" hexColor];
     sinup.userInteractionEnabled = YES;
@@ -117,7 +117,7 @@ static int y ;
 
 -(void)gotoSignUp:(id)sender
 {
-    [self pushTo:@"VIHtmlViewController" data:@"sigeup.html"];
+    [self pushTo:@"VIHtmlViewController" data:Lang(@"sigeup_html")];
 }
 
 -(void)showMainview:(id)sender

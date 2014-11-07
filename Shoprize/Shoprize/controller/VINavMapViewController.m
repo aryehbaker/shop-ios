@@ -21,7 +21,9 @@
     [super viewDidLoad];
     
 #ifdef __IPHONE_7_0
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    if ([UIDevice isGe:7]) {
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    }
 #endif
     VIMapView *mapkit = [[VIMapView alloc] initWithFrame:Frm(0, 0, self.view.w, self.view.h) showLocation:YES];
 

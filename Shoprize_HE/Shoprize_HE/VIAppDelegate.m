@@ -33,7 +33,6 @@
 
 @implementation VIAppDelegate
 
-
 - (void)openIt:(NSDictionary *)info
 {
     if(info != nil)
@@ -247,6 +246,12 @@ static NSString *logpath;
         deal.dealid = [userInfo stringValueForKey:@"value"];
         [[self pushStack] pushViewController:deal animated:YES];
     }
+    if ([type isEqualToString:@"surprise"]) {
+        VIDealsDetailViewController *deal = [[VIDealsDetailViewController alloc] init];
+        deal.dealid = [userInfo stringValueForKey:@"value"];
+        [[self pushStack] pushViewController:deal animated:YES];
+    }
+    
 }
 
 #pragma  mark 推送结束
@@ -755,6 +760,8 @@ static NSString *logpath;
     }];
 }
 
+
+
 static NSMutableDictionary *shareInfo;
 
 -(void)doPostMessage2FaceBook:(NSDictionary *)msgs{
@@ -782,11 +789,11 @@ static NSMutableDictionary *shareInfo;
     t.textAlignment = Align;
     [t becomeFirstResponder];
     
-    [(UIButton *)[v viewWithTag:18001] setTitle:Lang(@"share_cancel") hightTitle:Lang(@"share_cancel")];
+    [(UIButton *)[v viewWithTag:18001] setTitle:Lang(@"share_cancel") selected:Lang(@"share_cancel")];
     ((UIButton *)[v viewWithTag:18001]).titleLabel.font = Bold(16);
     [((UIButton *)[v viewWithTag:18001]) addTapTarget:self action:@selector(cancelShareAct:)];
     [((UIButton *)[v viewWithTag:18002]) addTapTarget:self action:@selector(shareNow:)];
-    [((UIButton *)[v viewWithTag:18002]) setTitle:Lang(@"share_ok") hightTitle:Lang(@"share_ok")];
+    [((UIButton *)[v viewWithTag:18002]) setTitle:Lang(@"share_ok") selected:Lang(@"share_ok")];
     ((UIButton *)[v viewWithTag:18002]).titleLabel.font = Bold(16);
     id pic = [msgs objectForKey:@"picture"];
     if ([pic isKindOfClass:[NSString class]]) {
@@ -897,7 +904,6 @@ static bool scaning = NO;
         }
     }
     NSArray *near = [allNearBeacons objectForKey:@(2)];
-    
     have_stroe_around_me = NO;
     for (CLBeacon *bean in near) {
         [self cheackAndRedeem:bean];
@@ -912,7 +918,7 @@ BOOL reading = NO;
     
     NSString *uuid = [[bean proximityUUID] UUIDString];
     Beacon *infos = [[self beancons] objectForKey:uuid];
-    if (bean.accuracy < [infos.SignalRadius doubleValue]) {
+    if (bean.accuracy < 10 /*[infos.SignalRadius doubleValue]*/) {
         
         if (!scaning) {
             return;

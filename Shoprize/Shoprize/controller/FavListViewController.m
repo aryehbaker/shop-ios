@@ -39,9 +39,9 @@
     cycle.layer.cornerRadius = 25;
     cycle.layer.borderColor = [@"#FC484D" hexColor].CGColor;
     cycle.backgroundColor = [UIColor whiteColor];
-    [cycle setTitleColor:@"#FC484D" hightColor:@"#FC484D"];
+    [cycle setTitleColor:[@"#FC484D" hexColor] forState: UIControlStateNormal ];
     cycle.titleLabel.font = Bold(20);
-    [cycle setTitle:Lang(@"index_skip") hightTitle:Lang(@"index_skip")];
+    [cycle setTitle:Lang(@"index_skip") selected:Lang(@"index_skip")];
     [cycle addTarget:self action:@selector(skipThis:)];
     [btn addSubview:cycle];
     
@@ -51,8 +51,8 @@
     finish.layer.cornerRadius = 25;
     finish.layer.borderColor = [@"#A9A9A9" hexColor].CGColor;
     finish.frame = Frm(cycle.endX+15, 10, 200, 50);
-    [finish setTitle:Lang(@"index_finish") hightTitle:Lang(@"index_finish")];
-    [finish setTitleColor:@"#464646" hightColor:@"#464646"];
+    [finish setTitle:Lang(@"index_finish") selected:Lang(@"index_finish")];
+    [finish setTitleColor:[@"#464646" hexColor] forState:UIControlStateNormal];
     finish.titleLabel.font = Regular(25);
     [finish addTarget:self action:@selector(gotomain:)];
     [btn addSubview:finish];
@@ -100,7 +100,7 @@
             [dk addSubview:lt4];
         }
         
-        [dk setTitle:[d stringValueForKey:@"Name"] hightTitle:[d stringValueForKey:@"Name"]];
+        [dk setTitle:[d stringValueForKey:@"Name"] selected:[d stringValueForKey:@"Name"]];
         [dk setTitleColor:[@"ff4747" hexColor] forState:UIControlStateNormal];
         [dk setTitleColor:[@"ffffff" hexColor] forState:UIControlStateSelected];
         

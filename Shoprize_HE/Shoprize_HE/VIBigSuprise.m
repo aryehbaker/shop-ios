@@ -10,6 +10,7 @@
 #import <VICore/VICore.h>
 #import <QuartzCore/QuartzCore.h>
 #import <Shoprize/Fonts.h>
+#import <Shoprize/ShopriseViewController.h>
 
 @interface VIBigSuprise()
 {

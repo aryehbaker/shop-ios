@@ -35,11 +35,12 @@
     
     [self addNav:[extra stringValueForKey:@"StoreName"] left:BACK right:NONE];
     
-    ct = [[UIScrollView alloc] initWithFrame:Frm(0, self.nav.endY, 320, Space(self.nav.endY) - 40)];
+    ct = [[UIScrollView alloc] initWithFrame:Frm(0, self.nav.endY, self.view.w, Space(self.nav.endY) - 40)];
     ct.backgroundColor = [UIColor clearColor];
     
     NSString *ctx = [[extra stringValueForKey:@"Offer"] killQute];
-    UILabel *title = [VILabel createManyLines:Frm(10, 20, 300, 10) color:@"#252525" ft:Bold(18) text:ctx];
+    UILabel *title = [UILabel initManyLineWithFrame:Frm(10, 20, self.view.w-20, 20) color:@"#252525" font:Bold(18) text:ctx];
+    
     title.text = ctx;
     title.textAlignment = Align;
     
@@ -59,7 +60,7 @@
         [imagelist addObject:[NSURL URLWithString:p.PictureUrl]];
     }
     
-    UIView *container = [[UIView alloc] initWithFrame:Frm(10, title.endY+10, 300, 200)];
+    UIView *container = [[UIView alloc] initWithFrame:Frm(10, title.endY+10, self.view.w-20, 200)];
     container.backgroundColor = [@"#ffffff" hexColor];
     container.layer.borderWidth = 1;
     container.layer.borderColor = [@"#B2B2B2" hexColor].CGColor;
@@ -71,7 +72,7 @@
     
     NSString *ctx2 = [extra stringValueForKey:@"Description" defaultValue:nil];
     if (ctx2!=nil) {
-        UILabel *content = [VILabel createManyLines:Frm(20, endY+10, 280, 10) color:@"#252525" ft:Regular(16) text:ctx2];
+        UILabel *content = [UILabel initManyLineWithFrame:Frm(20, endY+10, 280, 20) color:@"#252525" font:Regular(16) text:ctx2];
         
 //        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:ctx2];
 //        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
@@ -92,9 +93,9 @@
     reedem.backgroundColor = [@"#F0F0F0" hexColor];
     reedem.layer.cornerRadius = 20;
     reedem.layer.borderColor = [@"#9e9e9e" hexColor].CGColor;
-    [reedem setTitle:@"מימוש הפתעה" hightTitle:@"מימוש הפתעה"];
+    [reedem setTitle:Lang(@"reedem_button_text") selected:Lang(@"reedem_button_text")];
     reedem.titleLabel.font = Bold(20);
-    [reedem setTitleColor:@"#464646" hightColor:@"#464646"];
+    [reedem setTitleColor:[@"#464646" hexColor] forState:UIControlStateNormal];
     [reedem addTarget:self action:@selector(reedemStart:)];
     [ct addSubview:reedem];
     
@@ -118,7 +119,7 @@
     if ([usersuprise.ExpireTime timeIntervalSinceNow] < -24 * 60 * 60) {
         UIView *buttomView = [[UIView alloc] initWithFrame:Frm(0, ct.endY, 320, 40)];
         delete = [[UIButton alloc] initWithFrame:Frm(270, 0, 35, 35)];
-        [delete setImage:@"trash.png" hightImg:@"trash.png"];
+        [delete setImage:@"trash.png"  selectd:@"trash.png"];
         [delete addTarget:self action:@selector(removeMobiProms:)];
         [buttomView addSubview:delete];
         [self.view addSubview:buttomView];
@@ -172,7 +173,7 @@
 
 - (void)reedemStart:(UIButton *)button
 {
-    [self showConfirmWithTitle:@"" msg:@"האם אתה בטוח לגאול?" callbk:^(BOOL isOk) {
+    [self showConfirmWithTitle:@"" msg:Lang(@"reedem_cfm") callbk:^(BOOL isOk) {
         if (isOk) {
               [VINet post:Fmt(@"/api/mobipromos/%@/redeem",usersuprise.MobiPromoId) args:nil target:self succ:@selector(completeReedem:) error:@selector(showAlertError:) inv:self.view];
         }

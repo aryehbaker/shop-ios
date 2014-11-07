@@ -52,7 +52,7 @@
  *    @param Name 文件名字
  *    @returns 整个文件所在的路径
  */
-+ (NSString *)createList:(NSString *)List listName:(NSString *)Name;
++ (NSString *)createList:(NSString *)list listName:(NSString *)Name;
 
 /**
  *    写入NsArray文件

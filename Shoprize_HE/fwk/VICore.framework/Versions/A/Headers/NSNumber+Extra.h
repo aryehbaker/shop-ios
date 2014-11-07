@@ -22,10 +22,8 @@
 //是否为第0页
 - (BOOL)isZeroPage;
 
-
 + (NSNumber *)firstPage;
 
 + (NSNumber *)zeroPage;
-
 
 @end

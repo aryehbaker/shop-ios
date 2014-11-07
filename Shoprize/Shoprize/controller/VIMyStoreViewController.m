@@ -86,7 +86,7 @@
     btn.frame = Frm(25, self.view.h - 60, 270, 51);
     [btn setBackgroundImage:[@"add_store_btn.png" image] forState:UIControlStateNormal];
     [btn setTitle:Lang(@"add_store") forState:UIControlStateNormal];
-    [btn setTitleColor:@"#464646" hightColor:@"#464646"];
+    [btn setTitleColor:[@"#464646" hexColor] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(gotochoose:)];
     btn.titleLabel.font = Bold(22);
     [self.view addSubview:btn];

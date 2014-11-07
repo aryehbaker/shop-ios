@@ -93,7 +93,11 @@
     UILabel *name     = [cell label4Tag:6002];
     MallInfo *mf = (MallInfo *)value;
     distance.font = Bold(18);
-    distance.text = [NSString stringWithFormat:@"\u200F %0.2f ק\"מ",mf.distance];
+    if (isHe) {
+       distance.text = [NSString stringWithFormat:@"\u200F %0.2f ק\"מ",mf.distance];
+    }else{
+       distance.text = [NSString stringWithFormat:@"%0.2f km",mf.distance];
+    }
     name.text = mf.Name;
     name.font = Regular(18);
 }

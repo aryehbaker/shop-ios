@@ -154,5 +154,37 @@
      "check_mail": {
         "en": "Please check your e-mail",
         "he" : "אנא בדוק את הדואר האלקטרוני"
-     }
+    },
+    "reedem_cfm" : {
+        "en" : "Are you sure you want to use it?",
+        "he" : "האם אתה בטוח שאתה רוצה להשתמש בו?"
+    },
+    "delete_accout_title" : {
+        "he" : "נשמח לדעת למה. אנחנו יכולים לעזור !",
+        "en" : "We will be glad to know why. We can help!"
+    },
+    "delete_accout_ctnt" : {
+        "en" : "Shoprize aims to make your shopping experience more enjoyable and rewarding. If you encounter any problem or malfunction while using the app or while visiting the store, you have comments and things improve app or website will be happy to listen and help in any way possible. Easily contact us now!",
+        "he" : "שופרייז שואפת להפוך עבורך את חווית הקניות למהנה ומתגמלת יותר. במידה ונתקלת בבעיה או תקלה כלשהיא בזמן השימוש באפליקציה או בעת הביקור בחנות, יש לך הערות ודברים לשיפור באפליקציה או באתר נשמח לשמוע ולעזור בכל דרך אפשרית. פנה אלינו עכשיו בקלות !"
+    },
+    "sigeup_html" : {
+        "en" : "sigeup_en.html",
+        "he" : "sigeup_he.html"
+    },
+    "pliaylice_html" : {
+        "en" : "pliaylice_en.html",
+        "he" : "pliaylice_he.html",
+    },
+    "pliaylice_title" : {
+        "en" : "Privacy Plicy",
+        "he" : "Privacy Plicy",
+    },
+    "reedem_button_text" : {
+        "en" : "Reedem",
+        "he" : "מימוש הפתעה"
+    },
+    "delete_account_button_text" : {
+        "en" : "Delete Account",
+        "he" : "מחק חשבון"
+    }
 }

@@ -70,18 +70,5 @@
  */
 + (NSCalendar *)calendar;
 
-/**
- *    获取某一天为周几
- *    @param date 需要传入的日期
- *    @returns 返回星期几 (0 周一，1：周二，2 周三 ，3 周四 4 周五，5 周六，6周日）
- *    用 weekDay 代替
- */
-+ (NSInteger)weekDay:(NSDate *)date VI_DEPRECATED;
-- (NSString *)lastDayOfMonth VI_DEPRECATED;
-+ (NSInteger)hour VI_DEPRECATED;
-+ (NSInteger)hour:(NSDate *)date VI_DEPRECATED;
-+ (NSInteger)minute VI_DEPRECATED;
-+ (NSInteger)minute:(NSDate *)date VI_DEPRECATED;
-
 @end
 

@@ -44,7 +44,7 @@ typedef NS_ENUM(NSInteger, Tabs) { USED,ACT};
     [self addNav:Lang(@"my_suprise") left:SEARCH right:MENU];
     
     UIButton *left = [[UIButton alloc] initWithFrame:Frm(0, self.nav.endY, self.view.w/2, 34)];
-    [left setTitle:Lang(@"menu_exp_exp") hightTitle:Lang(@"menu_exp_exp")];
+    [left setTitle:Lang(@"menu_exp_exp") selected:Lang(@"menu_exp_exp")];
     left.titleLabel.font = Bold(16);
     left.tag = 100;
     left.backgroundColor = [@"#ff4747" hexColor];
@@ -58,7 +58,7 @@ typedef NS_ENUM(NSInteger, Tabs) { USED,ACT};
     [self.view addSubview:left];
     
     UIButton *right = [[UIButton alloc] initWithFrame:Frm(left.endX, self.nav.endY, self.view.w-left.endX, left.h)];
-    [right setTitle:Lang(@"menu_sprise_active") hightTitle:Lang(@"menu_sprise_active")];
+    [right setTitle:Lang(@"menu_sprise_active") selected:Lang(@"menu_sprise_active")];
     right.titleLabel.font = Bold(16);
     right.tag = 101;
     right.backgroundColor = [@"#ff4747" hexColor];

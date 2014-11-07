@@ -1,3 +1,4 @@
+
 //
 //  VISignUpViewController.m
 //  Shoprise_EN
@@ -24,13 +25,13 @@
 	NSString *target = [self getContentValueWithPath:@"VIHtmlViewController"];
 
 	//注册
-	if ([target isEqualToString:@"sigeup.html"]) {
+	if ([target isEqualToString:Lang(@"sigeup_html")]) {
 		[self addNav:nil left:NONE right:NONE];
         
         UIButton *logon = [[UIButton alloc] initWithFrame:Frm(0, self.view.h-40, 320, 40)];
         logon.backgroundColor = [@"#ff4747" hexColor];
-        [logon setTitle:Lang(@"ready_member_to_logon") hightTitle:Lang(@"ready_member_to_logon")];
-        [logon setTitleColor:@"#ffffff" hightColor:@"#ffffff"];
+        [logon setTitle:Lang(@"ready_member_to_logon") selected:Lang(@"ready_member_to_logon")];
+        [logon setTitleColor:[@"#ffffff" hexColor] forState:UIControlStateNormal];
         logon.titleLabel.font = Bold(18);
         [self.view addSubview:logon];
         [logon addTarget:self action:@selector(gotoLogin:)];
@@ -47,7 +48,7 @@
 }
 
 static NSString *_args;
-- (void)callObjcFunc:(NSString *)funName args:(id)args {
+- (void)callObjcInWebview:(VIHtmlLoadView*)webview func:(NSString *)funName args:(id)args{
 	if ([funName isEqualToString:@"regederUser"]) {
 		htmlArgs = [self.htmlview getFormValus];
 		[VINet post:@"/api/Account/Register" args:htmlArgs target:self succ:@selector(regOk:) error:@selector(showErr:) inv:self.view];

@@ -11,7 +11,7 @@
 // 确认的回调
 typedef void (^ ConfirmBack)(BOOL isOk);
 // Alert的回调
-typedef void (^ AlertCallBack)(int btnIndex, NSString *text);
+typedef void (^ AlertCallBack)(NSInteger btnIndex, NSString *text);
 
 typedef enum { T_Long  , T_Middle , T_Short } VI_TIME;
 typedef enum { M_ERROR , M_INFO  , M_WARING } VI_MType;
@@ -54,15 +54,6 @@ typedef enum { M_ERROR , M_INFO  , M_WARING } VI_MType;
  */
 - (void)showActionSheets:(NSString *)title btns:(NSArray *)actions callbk:(AlertCallBack)callback;
 
-/**
- *    弹出一个错误提示框
- *    @param msg 标题内容
- */
-- (void)showPopErrorMsg:(NSString *)msg;
-- (void)showPopInfoMsg:(NSString *)msg;
-- (void)showPopWarningMsg:(NSString *)msg;
-- (void)showPopMsg:(VI_MType)type msg:(NSString *)msg time:(VI_TIME)time;
-
 - (void)showAlertMsg    :(id)stringOrDict;
 - (void)showAlertError  :(id)stringOrDict;
 
@@ -76,15 +67,6 @@ typedef enum { M_ERROR , M_INFO  , M_WARING } VI_MType;
 
 - (void)doNothing:(id)onOption;
 
-
-/** HTTP 网络请求的一些方法 */
-- (void)httpPostInViewApi:(NSString *)api args:(id)args succ:(SEL)succ;
-- (void)httpGetInViewApi :(NSString *)api args:(id)args succ:(SEL)succ;
-- (void)httpPostInViewApi:(NSString *)api args:(id)args;
-- (void)httpGetDoNothing :(NSString *)api args:(id)args;
-- (void)httpPostDoNothing:(NSString *)api args:(id)args;
-
-
 @end
 
 /*!
@@ -94,5 +76,6 @@ typedef enum { M_ERROR , M_INFO  , M_WARING } VI_MType;
 
 @property(copy) ConfirmBack callback;
 @property(copy) AlertCallBack alertBack;
+
 @end
 

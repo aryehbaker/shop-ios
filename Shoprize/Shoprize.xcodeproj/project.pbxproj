@@ -86,6 +86,8 @@
 		1705D96C19FA214F005F322F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1705D96B19FA214F005F322F /* AudioToolbox.framework */; };
 		1745EF0E19FDF33900E701F2 /* Fonts.m in Sources */ = {isa = PBXBuildFile; fileRef = 1745EF0D19FDF33900E701F2 /* Fonts.m */; };
 		1745EF0F19FDF51300E701F2 /* Fonts.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1745EF0C19FDF33900E701F2 /* Fonts.h */; };
+		7A6A1C861A0797FD000305F1 /* VIHttpBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A6A1C851A0797FD000305F1 /* VIHttpBase.m */; };
+		7A6A1C871A079808000305F1 /* VIHttpBase.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 7A6A1C841A0797FD000305F1 /* VIHttpBase.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +107,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				7A6A1C871A079808000305F1 /* VIHttpBase.h in Copy Files */,
 				1745EF0F19FDF51300E701F2 /* Fonts.h in Copy Files */,
 				1705D7FB19F9FB45005F322F /* FavListViewController.h in Copy Files */,
 				1705D7FC19F9FB45005F322F /* REFrostedContainerViewController.h in Copy Files */,
@@ -226,6 +229,8 @@
 		1705D96B19FA214F005F322F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		1745EF0C19FDF33900E701F2 /* Fonts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fonts.h; sourceTree = "<group>"; };
 		1745EF0D19FDF33900E701F2 /* Fonts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fonts.m; sourceTree = "<group>"; };
+		7A6A1C841A0797FD000305F1 /* VIHttpBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIHttpBase.h; sourceTree = "<group>"; };
+		7A6A1C851A0797FD000305F1 /* VIHttpBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIHttpBase.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -402,6 +407,8 @@
 				1705D7DA19F9F657005F322F /* VISurpriseTimeDown.m */,
 				1705D7DB19F9F657005F322F /* VITimeDownCell.h */,
 				1705D7DC19F9F657005F322F /* VITimeDownCell.m */,
+				7A6A1C841A0797FD000305F1 /* VIHttpBase.h */,
+				7A6A1C851A0797FD000305F1 /* VIHttpBase.m */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -506,6 +513,7 @@
 				1705D7F619F9F657005F322F /* VIButton.m in Sources */,
 				1705D7F919F9F657005F322F /* VISurpriseTimeDown.m in Sources */,
 				1705D7F319F9F657005F322F /* KUtils.m in Sources */,
+				7A6A1C861A0797FD000305F1 /* VIHttpBase.m in Sources */,
 				1705D7E019F9F657005F322F /* ShopriseViewController.m in Sources */,
 				1705D7E719F9F657005F322F /* VIMenuTableViewCell.m in Sources */,
 				1705D7FA19F9F657005F322F /* VITimeDownCell.m in Sources */,

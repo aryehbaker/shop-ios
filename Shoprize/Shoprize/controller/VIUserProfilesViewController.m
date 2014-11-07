@@ -19,6 +19,9 @@
     CMPopTipView *p;
     
     NSDictionary *dict;
+    
+    UIView *full;
+    UIDatePicker *pick;
 }
 
 @end
@@ -126,13 +129,13 @@
     
     UIButton *saveInfo = [formView button4Tag:10006];
     saveInfo.layer.cornerRadius = saveInfo.h / 2;
-    [saveInfo setTitle:Lang(@"save_user_info") hightTitle:Lang(@"save_user_info")];
+    [saveInfo setTitle:Lang(@"save_user_info") selected:Lang(@"save_user_info")];
     [saveInfo addTarget:self action:@selector(updateInfo:)];
     
     UIButton *changepwd = [formView button4Tag:10007];
     changepwd.layer.cornerRadius = changepwd.h / 2;
     [changepwd addTarget:self action:@selector(showChgpwdUI:)];
-    [changepwd setTitle:Lang(@"chg_user_passwd") hightTitle:Lang(@"chg_user_passwd")];
+    [changepwd setTitle:Lang(@"chg_user_passwd") selected:Lang(@"chg_user_passwd")];
     
     UIButton *logout = [formView button4Tag:10008];
     [logout setHidden:YES];
@@ -141,10 +144,10 @@
     logout.layer.cornerRadius = changepwd.h / 2;
     logout.layer.borderColor = [@"#995859" hexColor].CGColor;
     logout.backgroundColor = [@"#ffffff" hexColorAlpha:.4];
-    [logout setTitle:Lang(@"user_logout") hightTitle:Lang(@"user_logout")];
+    [logout setTitle:Lang(@"user_logout") selected:Lang(@"user_logout")];
     
     UIButton *delet = [formView button4Tag:10009];
-    [delet setTitle:Lang(@"del_user_accoutn") hightTitle:Lang(@"del_user_accoutn")];
+    [delet setTitle:Lang(@"del_user_accoutn") selected:Lang(@"del_user_accoutn")];
     [delet addTarget:self action:@selector(showDeleteView:)];
 }
 
@@ -158,19 +161,19 @@
     
     NSString *msg = Fmt(@"%%@ %@",isHe ? @" עליך להזין " : @"Required");
     
-    if ([fisrtname.text isEmpty]) {
+    if ([fisrtname isEmptyValue]) {
         [VIAlertView showErrorMsg:Fmt(msg,Lang(@"fm_FirstName"))]; return;
     }
-    if ([lasttname.text isEmpty]) {
+    if ([lasttname isEmptyValue]) {
         [VIAlertView showErrorMsg:Fmt(msg,Lang(@"fm_LastName"))]; return;
     }
-    if ([phonenum.text isEmpty]) {
+    if ([phonenum isEmptyValue]) {
         [VIAlertView showErrorMsg:Fmt(msg,Lang(@"fm_Phone"))]; return;
     }
-    if ([birth.text isEmpty]) {
+    if ([birth isEmptyValue]) {
         [VIAlertView showErrorMsg:Fmt(msg,Lang(@"fm_Brith"))]; return;
     }
-    if ([gender.text isEmpty]) {
+    if ([gender isEmptyValue]) {
         [VIAlertView showErrorMsg:Fmt(msg,Lang(@"fm_gender"))]; return;
     }
     
@@ -225,7 +228,7 @@
     
     UIButton *btn = [passwd button4Tag:11004];
     btn.layer.cornerRadius = btn.h/2;
-    [btn setTitle:Lang(@"form_modify_comit") hightTitle:Lang(@"form_modify_comit")];
+    [btn setTitle:Lang(@"form_modify_comit") selected:Lang(@"form_modify_comit")];
     [btn addTarget:self action:@selector(submitPassword:)];
     
     passwd.backgroundColor = [UIColor clearColor];
@@ -268,10 +271,10 @@
     [self textFieldShouldReturn:nil];
     UIView *cts = [[UIView alloc] initWithFrame:Frm(0, 0, 270, 0)];
     UILabel *title = [VILabel createLableWithFrame:Frm(15, 15, 240, 25) color:@"#1C1C1C" font:Black(18) align:RIGHT];
-    title.text = @"נשמח לדעת למה. אנחנו יכולים לעזור !";
+    title.text = Lang(@"delete_accout_title");
     [cts addSubview:title];
     
-    NSString *tx = @"שופרייז שואפת להפוך עבורך את חווית הקניות למהנה ומתגמלת יותר. במידה ונתקלת בבעיה או תקלה כלשהיא בזמן השימוש באפליקציה או בעת הביקור בחנות, יש לך הערות ודברים לשיפור באפליקציה או באתר נשמח לשמוע ולעזור בכל דרך אפשרית. פנה אלינו עכשיו בקלות !";
+    NSString *tx = Lang(@"delete_accout_ctnt");
     UILabel *ctx = [VILabel createManyLines:Frm(15, title.endY, 240, 0) color:@"#323232" ft:Regular(15) text:tx];
     ctx.textAlignment = Align;
     ctx.text = tx;
@@ -279,12 +282,12 @@
     
     UIButton *dele = [UIButton buttonWithType:UIButtonTypeCustom];
     [dele setBackgroundcolorByHex:@"#FC494D"];
-    [dele setTitle:@"מחק חשבון" hightTitle:@"מחק חשבון"];
+    [dele setTitle:Lang(@"delete_account_button_text") selected:Lang(@"delete_account_button_text")];
     dele.frame = Frm(45, ctx.endY+5, 80,30);
     dele.layer.cornerRadius = 15;
     dele.titleLabel.font = Bold(15);
     [dele addTarget:self action:@selector(deleteMe:)];
-    [dele setTitleColor:@"#ffffff" hightColor:@"#ffffff"];
+    [dele setTitleColor:[@"#ffffff" hexColor] forState:UIControlStateNormal];
     [cts addSubview:dele];
     
     UIButton *ctsus = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -292,8 +295,8 @@
     ctsus.layer.cornerRadius = 15;
     ctsus.titleLabel.font = Bold(15);
     [ctsus addTarget:self action:@selector(contaactUs:)];
-    [ctsus setTitle:Lang(@"menu_sub_ctus") hightTitle:Lang(@"menu_sub_ctus")];
-    [ctsus setTitleColor:@"#ffffff" hightColor:@"#ffffff"];
+    [ctsus setTitle:Lang(@"menu_sub_ctus") selected:Lang(@"menu_sub_ctus")];
+    [ctsus setTitleColor:[@"#ffffff" hexColor] forState:UIControlStateNormal];
     [ctsus setBackgroundcolorByHex:@"#464646"];
     [cts addSubview:ctsus];
     
@@ -326,9 +329,9 @@
 
 - (void)showlogout:(UIButton*)click
 {
-    [VIAlertView showConfirmWithTitle:@"" msg:Lang(@"logout_confirm") atVc:self callbk:^(id ctrler, BOOL ok) {
-        if (ok) {
-            [((VIUserProfilesViewController *)ctrler) logoutAction];
+    [self showConfirmWithTitle:@"" msg:Lang(@"logout_confirm") callbk:^(BOOL isOk) {
+        if (isOk) {
+            [self logoutAction];
         }
     }];
 }
@@ -358,11 +361,33 @@
 {
     if(textField.tag == 10005)
     {
-        UIView *pt = [[VIDatePciker alloc] initWithDateModel:VIDatePcikerModelYMD style:TAB_NO_NAV_NO inc:self afterChoose:^(NSString *start, NSString *end, UIViewController *inv) {
-            [inv.view textfiled4Tag:10005].text = [[start parseDefalut] format:@"dd/MM/yyyy"];
-        }];
-        [pt setBackgroundColor:[@"#FFFFFF" hexColorAlpha:.7]];
-        [self.view addSubview:pt];
+    
+        NSDate *cd = [textField.text parse:@"dd/MM/yyyy"];
+        full = [[UIView alloc] initWithFrame:self.view.frame];
+        
+        pick = [[UIDatePicker alloc] init];
+        [pick setBackgroundColor:[UIColor whiteColor]];
+        [pick setDatePickerMode:UIDatePickerModeDate];
+        [pick setY:self.view.h - (pick.h+40)];
+        [full addSubview:pick];
+        [pick setDate:cd];
+        UIView *buttom = [[UIView alloc] initWithFrame:Frm(0, pick.endY, pick.w, 40)];
+        buttom.backgroundColor = [UIColor whiteColor];
+        UIButton *l1 = [[UIButton alloc] initWithFrame:Frm(0, 0, self.view.w/3, 40) font:FontS(14) title:@"Cancel" color:@"#000000"];
+        [buttom addSubview:l1];
+        UIButton *l2 = [[UIButton alloc] initWithFrame:Frm(l1.endX, 0, l1.w, l1.h) font:FontS(14) title:@"Clear" color:@"#000000"];
+        [buttom addSubview:l1];
+        UIButton *l3 = [[UIButton alloc] initWithFrame:Frm(l2.endX, 0, l1.w, l1.h) font:FontS(14) title:@"Done" color:@"#000000"];
+        [buttom addSubview:l1];
+        [buttom addSubview:l2];
+        [buttom addSubview:l3];
+        [full addSubview:buttom];
+        [l1 addTarget:self action:@selector(doCancel:)];
+        [l2 addTarget:self action:@selector(doClear:)];
+        [l3 addTarget:self action:@selector(doDone:)];
+        
+        [self.view addSubview:full];
+        
         return NO;
     }
     if(textField.tag == 10010)
@@ -375,13 +400,13 @@
         NSString *tx = [self.view textfiled4Tag:10010].text;
         
         [[v button4Tag:100] addTarget:self action:@selector(closeAndChose:)];
-        [[v button4Tag:100] setTitle:Lang(@"fm_boy") hightTitle:Lang(@"fm_boy")];
+        [[v button4Tag:100] setTitle:Lang(@"fm_boy") selected:Lang(@"fm_boy")];
         if ([Lang(@"fm_boy") isEqualToString:tx]) {
             [v button4Tag:100].selected = YES;
         }
         
         [[v button4Tag:101] addTarget:self action:@selector(closeAndChose:)];
-        [[v button4Tag:101] setTitle:Lang(@"fm_girl") hightTitle:Lang(@"fm_girl")];
+        [[v button4Tag:101] setTitle:Lang(@"fm_girl") selected:Lang(@"fm_girl")];
         if ([Lang(@"fm_girl") isEqualToString:tx]) {
             [v button4Tag:101].selected = YES;
         }
@@ -389,6 +414,27 @@
         return NO;
     }
     return YES;
+}
+
+-(void)doCancel:(id)btn
+{
+    [UIView animateWithDuration:.38 animations:^{
+        [full setY:300];
+    } completion:^(BOOL finished) {
+        if (finished) {
+            [full removeFromSuperview];
+        }
+    }];
+}
+-(void)doClear:(id)btn
+{
+    [[self.view textfiled4Tag:10005] setText:@""];
+    [self doCancel:btn];
+}
+-(void)doDone:(id)btn
+{
+    [[self.view textfiled4Tag:10005] setText:[[pick date] format:@"dd/MM/yyyy"]];
+    [self doCancel:btn];
 }
 
 -(void)closeAndChose:(UIButton *)btn

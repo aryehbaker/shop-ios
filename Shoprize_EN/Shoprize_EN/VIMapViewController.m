@@ -69,10 +69,7 @@
         
     }
     
-    [VILocation locationIn:self finish:^(CLLocation *location, UIViewController *inv) {
-        [(VIMapViewController *)(inv) fitToPinsRegion];
-    }];
-
+    [self fitToPinsRegion];
 }
 
 //-(void)shoFilterView:(id)sender{
@@ -167,8 +164,8 @@
 
 - (void)fitToPinsRegion {
     
-	CLLocationCoordinate2D topLeftCoord = VILocation.lastPoint.coordinate;
-	CLLocationCoordinate2D bottomRightCoord = VILocation.lastPoint.coordinate;
+    CLLocationCoordinate2D topLeftCoord = CLLocationCoordinate2DMake([VINet currentLat], [VINet currentLon]);
+    CLLocationCoordinate2D bottomRightCoord = CLLocationCoordinate2DMake([VINet currentLat], [VINet currentLon]);
    
     NSLog(@"%f %f",topLeftCoord.latitude,topLeftCoord.longitude);
     NSLog(@"%f %f",bottomRightCoord.latitude,bottomRightCoord.longitude);
@@ -204,19 +201,19 @@
         region.span.longitudeDelta = 0;
     }
 	region = [self.map regionThatFits:region];
-	[self.map setRegion:region animated:YES];
+	[map setRegion:region];
 }
 
 - (void)infor:(UIButton *)sender{
     
     currentIndex = (sender.tag - 20000);    
     PlaceMark *mapint = [_mappoints objectAtIndex:currentIndex];
-    [self showActionSheets:@"What You Want To Do ?" btns:@[@"Show More",@"Get Route",@"Cancel"] callbk:^(int btnIndex, NSString *text) {
+    
+    [self showActionSheets:@"What You Want To Do ?" btns:@[@"Show More",@"Get Route",@"Cancel"] callbk:^(NSInteger btnIndex, NSString *text) {
         if (btnIndex == 0) {
             MobiPromoExt *pdata = mapint.extinfo;
             [self pushTo:@"VIDealsDetailViewController" data:[pdata toDictionary]];
         }
-        
         if(btnIndex == 1) {
             
         }
@@ -270,21 +267,20 @@
     if(annotation != mapView.userLocation) {
 
         NSInteger	tagInt	= [(PlaceMark *)annotation displayIndex];
-        NSString	*tag	= [NSString stringWithFormat:@"View_%d", tagInt];
+        NSString	*tag	= [NSString stringWithFormat:@"View_%ld", (long)tagInt];
 
         pinAnnotation = (PlaceMark *)[mapView dequeueReusableAnnotationViewWithIdentifier:tag];
 
         if(pinAnnotation == nil) {
             pinAnnotation = [[PlaceMark alloc] initWithAnnotation:annotation reuseIdentifier:tag];
-			//pinAnnotation.pinColor = MKPinAnnotationColorGreen;
+			pinAnnotation.pinColor = MKPinAnnotationColorGreen;
 			pinAnnotation.enabled = YES;
 			pinAnnotation.animatesDrop = YES;	
             pinAnnotation.canShowCallout = YES;
             pinAnnotation.calloutOffset = CGPointMake(-5, 5);
         }
-
-//        POI *bean = [_mappin objectAtIndex:tagInt];
-//        pinAnnotation.pinColor = [bean closed] ? MKPinAnnotationColorRed : MKPinAnnotationColorGreen;
+        
+        //pinAnnotation.pinColor = [bean closed] ? MKPinAnnotationColorRed : MKPinAnnotationColorGreen;
 
         UIButton *button = [UIButton buttonWithType:UIButtonTypeDetailDisclosure]; 
         [button addTarget:self action:@selector(infor:) forControlEvents:UIControlEventTouchUpInside];

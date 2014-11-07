@@ -45,10 +45,10 @@ static ListType currentType;
     UIView *top1 = [[UIView alloc] initWithFrame:Frm(0, self.nav.endY, 320, 35)];
     
     section1 = [[UIButton alloc] initWithFrame:Frm(0, 0, 106, 35)];
-    [section1 setTitle:Lang(@"main_suprises") hightTitle:Lang(@"main_suprises")];
+    [section1 setTitle:Lang(@"main_suprises") selected:Lang(@"main_suprises")];
     [section1 setBackgroundcolorByHex:@"#ff4747"];
     section1.tag = Suprises;
-    [section1 setTitleColor:@"#ffffff" hightColor:@"#ffffff"];
+    [section1 setTitleColor:[@"#ffffff" hexColor] forState:UIControlStateNormal];
     section1.titleLabel.font = Bold(18);
     [section1 addTarget:self action:@selector(changeType:)];
     [top1 addSubview:section1];
@@ -57,8 +57,8 @@ static ListType currentType;
     [section1 addSubview:icon];
     
     section2 = [[UIButton alloc] initWithFrame:Frm(section1.endX, section1.y, 106, 35)];
-    [section2 setTitle:Lang(@"main_deals") hightTitle:Lang(@"main_deals")];
-    [section2 setTitleColor:@"#ffffff" hightColor:@"#ffffff"];
+    [section2 setTitle:Lang(@"main_deals") selected:Lang(@"main_deals")];
+    [section2 setTitleColor:[@"#ffffff" hexColor] forState:UIControlStateNormal];
     [section2 setBackgroundcolorByHex:@"#ff4747"];
     section2.titleLabel.font = Bold(18);
     section2.tag = Deals;
@@ -69,8 +69,8 @@ static ListType currentType;
     [section2 addSubview:icon];
     
     section3 = [[UIButton alloc] initWithFrame:Frm(section2.endX, section1.y, 108, 35)];
-    [section3 setTitle:Lang(@"main_stores") hightTitle:Lang(@"main_stores") ];
-    [section3 setTitleColor:@"#ffffff" hightColor:@"#ffffff"];
+    [section3 setTitle:Lang(@"main_stores") selected:Lang(@"main_stores") ];
+    [section3 setTitleColor:[@"#ffffff" hexColor] forState:UIControlStateNormal];
     [section3 addTarget:self action:@selector(changeType:)];
     [section3 setBackgroundcolorByHex:@"#ff4747"];
     section3.titleLabel.font = Bold(18);
@@ -101,7 +101,7 @@ static ListType currentType;
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = Frm(50, w.h - 60, 320-100, 40);
         btn.backgroundColor = [@"#ff4747" hexColor];
-        [btn setTitle:Lang(@"i_see_close_it") hightTitle:Lang(@"i_see_close_it")];
+        [btn setTitle:Lang(@"i_see_close_it") selected:Lang(@"i_see_close_it")];
         btn.layer.cornerRadius = 20;
         btn.titleLabel.font = Bold(18);
         [btn addTarget:self action:@selector(closeThem:)];
@@ -262,8 +262,8 @@ static ListType currentType;
     
     UIButton *nav = [load button4Tag:4010];
     nav.layer.cornerRadius = nav.w /2 ;
-    [nav setTitle:Lang(@"navi_title") hightTitle:Lang(@"navi_title")];
-    [nav setTitleColor:@"#ffffff" hightColor:@"#ffffff"];
+    [nav setTitle:Lang(@"navi_title") selected:Lang(@"navi_title")];
+    [nav setTitleColor:[@"#ffffff" hexColor] forState:UIControlStateNormal];
     nav.titleLabel.font = Black(16);
     [nav addTarget:self action:@selector(goToMap:)];
 }
@@ -297,18 +297,19 @@ static ListType currentType;
 {
     [section1 setBackgroundcolorByHex:@"#ff4747"];
     [section1 imageView4Tag:100].image = [@"supriset_w.png" image];
-    [section1 setTitleColor:@"#ffffff" hightColor:@"#ffffff"];
+    [section1 setTitleColor:[@"#ffffff" hexColor] forState:UIControlStateNormal];
     
     [section2 setBackgroundcolorByHex:@"#ff4747"];
     [section2 imageView4Tag:100].image = [@"deal_w.png" image];
-    [section2 setTitleColor:@"#ffffff" hightColor:@"#ffffff"];
-    
+    [section2 setTitleColor:[@"#ffffff" hexColor] forState:UIControlStateNormal];
+
     [section3 setBackgroundcolorByHex:@"#ff4747"];
     [section3 imageView4Tag:100].image = [@"store_w.png" image];
-    [section3 setTitleColor:@"#ffffff" hightColor:@"#ffffff"];
+    [section3 setTitleColor:[@"#ffffff" hexColor] forState:UIControlStateNormal];
     
     [btn setBackgroundcolorByHex:@"#ffffff"];
-    [btn setTitleColor:@"ff4747" hightColor:@"ff4747"];
+    [btn setTitleColor:[@"#ff4747" hexColor] forState:UIControlStateNormal];
+    
     [btn imageView4Tag:100].image = [[@[@"",@"deal_r.png",@"supriset_r.png",@"store_r.png"] objectAtIndex:btn.tag] image];
     
     [self.leftOne setHidden:btn.tag!=3];

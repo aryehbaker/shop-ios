@@ -6,14 +6,14 @@
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
 	<string>SOTG</string>
-	<key>CFBundleName</key>
-	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.mobiconsumers.$(PRODUCT_NAME:rfc1034identifier)</string>
+	<string>com.mobiconsumers.sotg</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -39,10 +39,10 @@
 	<string>Login </string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSLocationWhenInUseDescription</key>
-	<string>אנא לחץ על &quot;אישור&quot; כדי לאפשר App כדי לקבל מידע GPS. אחרת אתה לא יכול לקבל את ההפתעה מסביב</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>אנא לחץ על &quot;אישור&quot; כדי לאפשר App כדי לקבל מידע GPS. אחרת אתה לא יכול לקבל את ההפתעה מסביב</string>
+	<string>Please click &quot;OK&quot; to allow the app to get GPS information. Otherwise you can not get the surprise round</string>
+	<key>NSLocationWhenInUseDescription</key>
+	<string>Please click &quot;OK&quot; to allow the app to get GPS information. Otherwise you can not get the surprise round</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
@@ -59,10 +59,10 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>baseURL</key>
-	<string>http://108.168.221.124</string>
 	<key>apptoken</key>
 	<string>7d535daae10548af80fdf9488e4691ec</string>
+	<key>baseURL</key>
+	<string>http://spapine-dev.azurewebsites.net</string>
 	<key>lang</key>
 	<string>en</string>
 </dict>

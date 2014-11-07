@@ -235,7 +235,6 @@
 
 - (NSDate *)NSDateFromNSString:(NSString*)string {
     NSDate *time =  [string toLocalDate];
-    NSLog(@"%@ \n %@" ,time,[time format:@"yyyy-MM-dd HH:mm:ss"]);
     return time;
 }
 

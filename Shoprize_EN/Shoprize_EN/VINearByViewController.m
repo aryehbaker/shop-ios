@@ -53,7 +53,7 @@
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = Frm(50, w.h - 60, 320-100, 40);
         btn.backgroundColor = [@"#ff4747" hexColor];
-        [btn setTitle:Lang(@"i_see_close_it") hightTitle:Lang(@"i_see_close_it")];
+        [btn setTitle:Lang(@"i_see_close_it") selected:Lang(@"i_see_close_it")];
         btn.layer.cornerRadius = 20;
         btn.titleLabel.font = Bold(18);
         [btn addTarget:self action:@selector(closeThem:)];
@@ -213,8 +213,8 @@
     
     UIButton *nav = [load button4Tag:4010];
     nav.layer.cornerRadius = nav.w /2 ;
-    [nav setTitle:Lang(@"navi_title") hightTitle:Lang(@"navi_title")];
-    [nav setTitleColor:@"#ffffff" hightColor:@"#ffffff"];
+    [nav setTitle:Lang(@"navi_title") selected:Lang(@"navi_title")];
+    [nav setTitleColor:[@"#ffffff" hexColor] forState:UIControlStateNormal];
     nav.titleLabel.font = Black(16);
     [nav addTarget:self action:@selector(goToMap:)];
 }

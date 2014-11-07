@@ -54,8 +54,8 @@
             [tacks addSubview:imagev];
             [imagev addTapTarget:self action:@selector(doCenterIconClick:)];
         }else{
-            self.nav_title = [VILabel createLableWithFrame:Frm(50, 0, 220, 44) color:self.lightContent ? @"#ffffff" :  @"#000000" font:Bold(20) align:CENTER];
-            self.nav_title.lineBreakMode = NSLineBreakByTruncatingMiddle;
+            self.nav_title = [UILabel initWithFrame:Frm(50, 0, 220, 44) color:self.lightContent ? @"#ffffff" :  @"#000000" font:Bold(20) align:CENTER | MIDDLE];
+            self.nav_title.textAlignment = NSTextAlignmentCenter;
             [tacks addSubview:_nav_title];
             [_nav_title setUserInteractionEnabled:YES];
             _nav_title.text = title;
@@ -107,6 +107,15 @@
         UIButton *menu = [UIButton buttonWithType:UIButtonTypeCustom];
         menu.frame = Frm(self.view.w-50, 2, 40, 40);
         [menu setImage:[@"mapit.png" image] forState:UIControlStateNormal];
+        [tacks addSubview:menu];
+        self.rightOne = menu;
+    }
+    
+    if (right == Done) {
+        UIButton *menu = [UIButton buttonWithType:UIButtonTypeCustom];
+        menu.frame = Frm(self.view.w-50, 2, 40, 40);
+        [menu setImageEdgeInsets:UIEdgeInsetsMake(3, 3, 3, 3)];
+        [menu setImage:[@"checked_right_check.png" image] forState:UIControlStateNormal];
         [tacks addSubview:menu];
         self.rightOne = menu;
     }
@@ -266,7 +275,7 @@
 - (void)showInfoMessage:(UITapGestureRecognizer *)tap
 {
     UIView *inms = [[UIView alloc] initWithFrame:Frm(0, 0, 200, 130)];
-    UILabel *lab = [VILabel createLableWithFrame:Frm(15, 15, 170, 100) color:@"#000000" font:Bold(14) align:CENTER];
+    UILabel *lab = [ UILabel initWithFrame:Frm(15, 15, 170, 100) color:@"#000000" font:Bold(14) align:CENTER];
     lab.text = Lang(@"store_has_sup");    lab.numberOfLines = 0;
     [inms addSubview:lab];
     
@@ -278,5 +287,27 @@
     [pop presentPointingAtView:tap.view inView:self.view animated:YES];
 }
 
+- (BOOL)isEmpty:(id)value {
+    if (value == nil) {
+        return YES;
+    }
+    if ([Fmt(@"%@",value) isEqualToString:@""]) {
+        return YES;
+    }
+    return NO;
+}
+
+@end
+
+@implementation  VILabel
+
++(UILabel *)createLableWithFrame:(CGRect)frm color:(NSString *)color font:(UIFont *)ft align:(TxtOpt)opt
+{
+    return [UILabel initWithFrame:frm color:color font:ft align:opt];
+}
+
++(UILabel *)createManyLines:(CGRect)frm color:(NSString *)color ft:(UIFont *)ft text:(NSString *)text {
+    return [UILabel initManyLineWithFrame:frm color:color font:ft text:text];
+}
 
 @end

@@ -31,7 +31,8 @@ static int show = 260;
             [self.icon setFrame:Frm(show-30, 2, 40, 40)];
         }
         [self.contentView addSubview:self.icon];
-        self.text = [VILabel createLableWithFrame:Frm(50, 0, show-80, 44) color:@"#FFFFFF" font:FontS(16) align:LEFT];
+        self.text = [UILabel initWithFrame:Frm(50, 0, show-80, 44) color:@"#FFFFFF" font:FontS(16)  align:LEFT];
+                     
         self.text.textAlignment = Align;
         [self.contentView addSubview:self.text];
         
@@ -57,7 +58,7 @@ static int show = 260;
         
         NSString *titleStr = [data stringValueForKey:@"title"];
         if (![titleStr hasPrefix:@"@"]) {
-            UILabel *titlelab = [VILabel createLableWithFrame:Frm(line.x, 0, line.w-28, 44) color:@"#ffffff" font:Regular(16) align:RIGHT];
+            UILabel *titlelab = [UILabel initWithFrame:Frm(line.x, 0, line.w-28, 44) color:@"#ffffff" font:Regular(16) align:LEFT];
             titlelab.textAlignment = Align;
             titlelab.text = Lang(titleStr);
             if (isEn) {
@@ -84,6 +85,8 @@ static int show = 260;
         if (![titleStr hasPrefix:@"@"]) {
             self.text.text = Lang(titleStr);
             self.text.font = Regular(18);
+            [self.text setTextColor:[@"#ffffff" hexColor]];
+            
         }else{
             self.text.text = @"";
             UIImageView *imagev = [[titleStr substringFromIndex:1] imageViewForImgSizeAtX:show-90-44 Y:5];
@@ -123,7 +126,7 @@ static int show = 260;
        icon =  [icon stringByReplacingOccurrencesOfString:@"_w" withString:@"_r"];
     }
     self.icon.image = [icon image];
-    self.text.textColor = [(selected? @"#FC494D" : @"#ffffff") hexColor];
+    self.text.textColor = [@"#ffffff" hexColor];
 }
 
 @end

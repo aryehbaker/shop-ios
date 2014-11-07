@@ -20,7 +20,8 @@ typedef NS_ENUM(NSInteger, BarItem) {
     MENU,
     SEARCH,
     Around,
-    MapIt
+    MapIt,
+    Done
 };
 
 #define _USER_SELECTED_MALL_INFO    @"USER_SELECTED_MALL_INFO_KEY"
@@ -58,4 +59,15 @@ typedef NS_ENUM(NSInteger, BarItem) {
 
 - (void)showInfoMessage:(UITapGestureRecognizer *)tap;
 
+- (BOOL)isEmpty:(id)value;
+
 @end
+
+@interface VILabel : UILabel
+
++(UILabel *)createLableWithFrame:(CGRect)frm color:(NSString *)color font:(UIFont *)ft align:(TxtOpt)opt;
+
++(UILabel *)createManyLines:(CGRect)frm color:(NSString *)color ft:(UIFont *)ft text:(NSString *)text;
+
+@end
+

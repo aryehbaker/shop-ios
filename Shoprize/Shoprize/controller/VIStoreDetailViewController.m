@@ -53,7 +53,7 @@
     if (extraProms.count == 0) {
         UIImageView *img = [@"no_promos.png" imageViewForImgSizeAtX:0 Y:80];
         [scrll addSubview:img];
-        UILabel *nop  = [VILabel createLableWithFrame:Frm(0, img.endY+5, 320, 40) color:@"#8F8F8F" font:Bold(16) align:CENTER];
+        UILabel *nop  = [UILabel initWithFrame:Frm(0, img.endY+5, 320, 40) color:@"#8F8F8F" font:Bold(16) align:CENTER];
         nop.text = Lang(@"no_promos");
         [scrll addSubview:nop];
     }
@@ -162,8 +162,8 @@
   
     UIButton *nav = [load button4Tag:4010];
     nav.layer.cornerRadius = nav.w /2 ;
-    [nav setTitle:Lang(@"navi_title") hightTitle:Lang(@"navi_title")];
-    [nav setTitleColor:@"#ffffff" hightColor:@"#ffffff"];
+    [nav setTitle:Lang(@"navi_title") selected:Lang(@"navi_title")];
+    [nav setTitleColor:[@"#ffffff" hexColor] forState:UIControlStateNormal];
     nav.titleLabel.font = Bold(18);
     
 }

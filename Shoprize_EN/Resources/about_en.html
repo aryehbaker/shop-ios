@@ -1,0 +1,28 @@
+<!DOCTYPE>
+<html lang="en">
+	<head>
+        <meta http-equiv=Content-Type content="text/html;charset=utf-8" />
+		<meta name="viewport" content="width=device-width,target-densitydpi=high-dpi,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        <link href="VICore.bundle/webres/VICore.css" rel="stylesheet">
+		<style type="text/css">
+			.item{height:40px;line-height: 40px;border-bottom: 1px solid black;margin: 0;padding: 0;}
+			body{color:#fff;font-size:18px;}
+            .submit{width:80%;margin:10px auto;height:40px;border:1px solid #AA4F50;-webkit-border-radius:23px;background:rgba(255,255,255,.6);font-size:20px;text-align:center;line-height:40px;color:#464646;font-weight:bold;}
+		</style>
+	</head>
+	<body padding="20px">
+        <center>
+            <img src="logo.png" width="250px" height="80px" style="margin:5px auto;" />
+        </center>
+		<p style="padding:20px;">  Demo </p>
+        <br/>
+        <div class="submit" ontouchstart="submitNow();">Contact Us</div>
+        <script type="text/javascript" src="VICore.bundle/webres/jquip.min.js"></script>
+        <script type="text/javascript" src="VICore.bundle/webres/VICore.js"></script>
+        <script type="text/javascript">
+             function submitNow(){
+                  Js.call('contactUs','');
+             }
+         </script>
+	</body>
+</html>

@@ -7,21 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
-/**
-* 这个是当你确认之后的确认回调函数
-*  vc 当前事件的Controller
-*  isOk 是否点击的是确认按钮
-*/
-typedef void (^Confirm)(id ctrler, BOOL ok);
-
 /**
 * 系统默认的弹出信息对话框的封装
 */
 @interface VIAlertView : UIAlertView <UIAlertViewDelegate, UIActionSheetDelegate>
-
-@property(nonatomic, assign) Confirm confirmBack;
-@property(nonatomic, assign) UIViewController *inViewContrl;
 
 /**
 * 仅显示一个对话框，和一个取消按钮
@@ -43,14 +32,5 @@ typedef void (^Confirm)(id ctrler, BOOL ok);
 /*! 显示一条警告消息  @param errdict errdic里面要包含 message Key */
 +(void)showErrorDict:(NSDictionary *)errdict;
 
-/**
-* 弹出的是确认对话框 : 确认 ,取消
-*/
-+ (void)showConfirmWithTitle:(NSString *)t msg:(NSString *)msg atVc:(id)vc callbk:(Confirm)callback;
-
-/**
-*  弹出3个操作， 是,否，取消
-*/
-+ (void)showConfirm3With:(NSString *)title msg:(NSString *)msg acVc:(id)vc callbk:(Confirm)callback;
 
 @end

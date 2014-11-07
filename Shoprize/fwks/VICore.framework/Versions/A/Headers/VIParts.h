@@ -16,25 +16,12 @@
 #import <VICore/EGOImageView.h>
 
 #import <VICore/MKNetworkKit.h>
-
-//这个是对应的Tabbar的工具
-#import <VICore/AKTabBarController.h>
-#import <VICore/AKTabBar.h>
-#import <VICore/AKTab.h>
-#import <VICore/AKTabBarView.h>
-
 //动画效果
 #import <VICore/iCarousel.h>
-
 //支持库
 #import <VICore/RegexKitLite.h>
-
-//提示条的公共类
-#import <VICore/WLNotificationView.h>
-
 //下载的进度展示
 #import <VICore/VIMBProgressHUD.h>
-
 //iToast.h
 #import <VICore/iOSToast.h>
 

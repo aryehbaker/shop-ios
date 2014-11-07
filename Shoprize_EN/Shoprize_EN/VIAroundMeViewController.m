@@ -11,6 +11,9 @@
 #import <iSQLite/iSQLite.h>
 #import <Shoprize/CMPopTipView.h>
 #import "VIMapViewController.h"
+#import "CategoryFilterViewController.h"
+#import "CategoryFilterViewController.h"
+#import <VICore/VICore.h>
 
 @interface VIAroundMeViewController ()
 {
@@ -44,14 +47,15 @@
     [filter addSubview:l];
     
     UIButton *lter = [[UIButton alloc] initWithFrame:Frm(0, 2, 80, 31)];
-    [lter setTitle:@"Filter" hightTitle:@"Filter"];
+    [lter setTitle:@"Filter" selected:@"Filter"];
+    [lter addTarget:self action:@selector(showFiler:)];
     lter.titleLabel.font = FontB(15);
     [filter addSubview:lter];
     
     UIButton *plus = [[UIButton alloc] initWithFrame:Frm(filter.w-40, 3, 28, 28)];
     plus.tag = 1;
     [plus addTarget:self action:@selector(doPlus:)];
-    [plus setTitle:@"+" hightTitle:@"+"];
+    [plus setTitle:@"+" selected:@"+"];
     [filter addSubview:plus];
     
     distance = [[UILabel alloc] initWithFrame:Frm(plus.x-55, 2, 50, 30)];
@@ -62,7 +66,7 @@
     [filter addSubview:distance];
     
     UIButton *mins = [[UIButton alloc] initWithFrame:Frm(distance.x-35, 3, 28, 28)];
-    [mins setTitle:@"-" hightTitle:@"-"];
+    [mins setTitle:@"-" selected:@"-"];
     [filter addSubview:mins];
     mins.tag = -1;
     [mins addTarget:self action:@selector(doPlus:)];
@@ -70,6 +74,22 @@
     [self.view addSubview:filter];
     
     [self loadData];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(filter_ed:) name:@"_filtered_" object:nil];
+}
+static NSString *filervalue;
+-(void)filter_ed:(NSNotification *)noti {
+    filervalue = noti.object;
+    if ([filervalue isEqualToString:@""]) {
+        filervalue = @" '1' ";
+    }
+    [self loadData];
+}
+
+-(void)showFiler:(id)sender
+{
+    CategoryFilterViewController *ctrl = [[CategoryFilterViewController alloc] initWith:filervalue];
+    [self presentModalViewController:ctrl];
 }
 
 -(void)mapMe:(id)sender
@@ -178,8 +198,8 @@
 - (void)loadData {
     
     [[iSQLiteHelper getDefaultHelper] executeDB:^(FMDatabase *db) {
-       
-       FMResultSet *set2 = [db executeQuery:@"select t.*,s.Lat,s.Lon,s.Lon from MobiPromo t inner join Store s on t.Type = 'Deal' and t.AddressId =s.AddressId"];
+       NSString *filter = filervalue == nil ? @"" : Fmt(@" and t.CategoryId in(%@)",filervalue);
+       FMResultSet *set2 = [db executeQuery:Fmt(@"select t.*,s.Lat,s.Lon,s.Lon from MobiPromo t inner join Store s on t.Type = 'Deal' and t.AddressId =s.AddressId %@",filter)];
         deals = [NSMutableArray array];
         int distance2 = [[distance text] intValue];
         
@@ -199,7 +219,8 @@
 - (void)showInfoMessage:(UIButton *)tap
 {
     UIView *inms = [[UIView alloc] initWithFrame:Frm(0, 0, 200, 90)];
-    UILabel *lab = [VILabel createLableWithFrame:Frm(15, 15, 170, 60) color:@"#000000" font:Bold(14) align:CENTER];
+    UILabel *lab = [UILabel initManyLineWithFrame:Frm(15, 15, 170, 60) color:@"#000000" font:Bold(14) text:Lang(@"store_has_sup")];
+    lab.textAlignment = CENTER;
     lab.text = Lang(@"store_has_sup");
     lab.numberOfLines = 0;
     [inms addSubview:lab];

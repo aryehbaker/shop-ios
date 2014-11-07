@@ -19,7 +19,7 @@
     
     MKMapView *map;
     
-    int currentIndex;
+    long currentIndex;
     
 }
 

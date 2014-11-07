@@ -108,7 +108,7 @@ static NSMutableDictionary *dictionaray;
        UserSurprise *RightUsr = [dictionaray objectForKey:rightMId];
        if (RightUsr == nil) {
            RightUsr = [[iSQLiteHelper getDefaultHelper] searchSingle:[UserSurprise class] where:@{@"MobiPromoId":rightMId} orderBy:@"MobiPromoId"];
-           [dictionaray setValue:RightUsr forKey:leftMId];
+           [dictionaray setValue:RightUsr forKey:rightMId];
        }
        
         NSDate *lExp   = RightUsr.ExpireTime;
