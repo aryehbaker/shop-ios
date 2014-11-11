@@ -222,6 +222,7 @@ static NSMutableDictionary *stores;
 + (double)distanceTo:(double)lat lon:(double)lon{
     return [VINet distancOfTwolat1:[VINet currentLat] lon1:[VINet currentLon] lat2:lat lon2:lon];
 }
+
 //提交表单
 - (void)submitForm:(NSMutableDictionary *)baseArg {
 	@autoreleasepool {

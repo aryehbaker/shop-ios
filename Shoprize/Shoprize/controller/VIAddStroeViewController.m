@@ -24,7 +24,7 @@
     [super viewDidLoad];
     [self addNav:Lang(@"nav_my_store") left:SEARCH right:MENU];
     
-    tabview = [[UITableView alloc] initWithFrame:Frm(0, self.nav.endY, 320,self.view.h -self.nav.endY-70)];
+    tabview = [[UITableView alloc] initWithFrame:Frm(0, self.nav.endY,self.view.w,self.view.h -self.nav.endY-70)];
     tabview.delegate = self;
     tabview.dataSource = self;
     

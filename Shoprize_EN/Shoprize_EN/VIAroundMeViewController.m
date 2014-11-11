@@ -12,7 +12,6 @@
 #import <Shoprize/CMPopTipView.h>
 #import "VIMapViewController.h"
 #import "CategoryFilterViewController.h"
-#import "CategoryFilterViewController.h"
 #import <VICore/VICore.h>
 
 @interface VIAroundMeViewController ()
@@ -28,10 +27,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self addNav:@"Aroud Me" left:BACK right:MapIt];
-    [self.rightOne addTarget:self action:@selector(mapMe:)];
+    [self addNav:@"Aroud Me" left:MapIt right:MENU];
     
-    _tableView = [[VITableView alloc] initWithFrame:Frm(0, self.nav.endY, 320, Space(self.nav.endY) - 35) style:UITableViewStylePlain];
+    [self.leftOne addTarget:self action:@selector(mapMe:)];
+    
+    deals = [NSMutableArray array];
+    
+    _tableView = [[VITableView alloc] initWithFrame:Frm(0, self.nav.endY, self.view.w, Space(self.nav.endY) - 35) style:UITableViewStylePlain];
     _tableView.delegate = _tableView;
     _tableView.backgroundColor = [UIColor clearColor];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -52,24 +54,29 @@
     lter.titleLabel.font = FontB(15);
     [filter addSubview:lter];
     
-    UIButton *plus = [[UIButton alloc] initWithFrame:Frm(filter.w-40, 3, 28, 28)];
-    plus.tag = 1;
-    [plus addTarget:self action:@selector(doPlus:)];
-    [plus setTitle:@"+" selected:@"+"];
-    [filter addSubview:plus];
+    UIButton *search = [[UIButton alloc] initWithFrame:Frm(filter.w-72, 3, 60, 28) font:FontS(14) title:@"Search" color:@"#ffffff"];
+    [search addTarget:self action:@selector(loadDataNew:)];
+    [filter addSubview:search];
     
-    distance = [[UILabel alloc] initWithFrame:Frm(plus.x-55, 2, 50, 30)];
+    
+    UIButton *mins = [[UIButton alloc] initWithFrame:Frm((self.view.w - 140)/2, 3, 28, 28)];
+    [mins setTitle:@"-" selected:@"-"];
+    [filter addSubview:mins];
+    mins.tag = -1;
+    [mins addTarget:self action:@selector(doPlus:)];
+
+    distance = [[UILabel alloc] initWithFrame:Frm(mins.endX+15, 2, 50, 30)];
     [distance setFont:FontS(14)];
     [distance setTextAlignment:NSTextAlignmentCenter];
     [distance setText:@"2mile"];
     [distance setTextColor:[UIColor whiteColor]];
     [filter addSubview:distance];
     
-    UIButton *mins = [[UIButton alloc] initWithFrame:Frm(distance.x-35, 3, 28, 28)];
-    [mins setTitle:@"-" selected:@"-"];
-    [filter addSubview:mins];
-    mins.tag = -1;
-    [mins addTarget:self action:@selector(doPlus:)];
+    UIButton *plus = [[UIButton alloc] initWithFrame:Frm(distance.endX+15, 3, 28, 28)];
+    plus.tag = 1;
+    [plus addTarget:self action:@selector(doPlus:)];
+    [plus setTitle:@"+" selected:@"+"];
+    [filter addSubview:plus];
     
     [self.view addSubview:filter];
     
@@ -104,18 +111,18 @@ static NSString *filervalue;
 
 -(void)doPlus:(UIButton *)sender
 {
-    int value = [distance.text integerValue];
-    int mile = value+sender.tag;
+    long value = [distance.text integerValue];
+    long mile = value+sender.tag;
     if (mile <= 0) {
         mile = 1;
     }
-    [distance setText:Fmt(@"%dmile",mile)];
-    [self loadData];
+    [distance setText:Fmt(@"%ldmile",mile)];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
 - (void)loadMoreStarted:(VITableView *)t
 {
     
@@ -144,7 +151,7 @@ static NSString *filervalue;
         [cellview egoimageView4Tag:1101].placeholderImage = [@"no_pic.png" image];
     }
     
-    MobiPromoExt *left =   [deals objectAtIndex:2 * indexPath.row];
+    MobiPromoAR *left =   [deals objectAtIndex:2 * indexPath.row];
     
     [cellview egoimageView4Tag:1001].imageURL = [NSURL URLWithString:left.defPicture];
     
@@ -161,7 +168,7 @@ static NSString *filervalue;
     
     [[cellview viewWithTag:1104] setHidden:YES];
     
-    MobiPromoExt *right =  nil;
+    MobiPromoAR *right =  nil;
     if ((2 * indexPath.row + 1) < deals.count) {
         right = [deals objectAtIndex:(2 * indexPath.row + 1)];
         [cellview egoimageView4Tag:1101].imageURL = [NSURL URLWithString:right.defPicture];
@@ -195,25 +202,57 @@ static NSString *filervalue;
     return cellview;
 }
 
+-(void)loadDataNew:(id)sender
+{
+    filervalue = nil;
+    [self loadData];
+}
+
 - (void)loadData {
-    
-    [[iSQLiteHelper getDefaultHelper] executeDB:^(FMDatabase *db) {
-       NSString *filter = filervalue == nil ? @"" : Fmt(@" and t.CategoryId in(%@)",filervalue);
-       FMResultSet *set2 = [db executeQuery:Fmt(@"select t.*,s.Lat,s.Lon,s.Lon from MobiPromo t inner join Store s on t.Type = 'Deal' and t.AddressId =s.AddressId %@",filter)];
-        deals = [NSMutableArray array];
-        int distance2 = [[distance text] intValue];
+    if (filervalue!=nil) {
+        LKDBHelper *helper = [iSQLiteHelper getDefaultHelper];
+        deals = [helper search:[MobiPromoAR class] where:Fmt(@"CategoryId in (%@)",filervalue) orderBy:@"CreateDate desc" offset:0 count:100000];
+        [_tableView reloadAndHideLoadMore:YES];
         
-        while ([set2 next]) {
-            NSDictionary *dct = [set2 resultDictionary];
-            MobiPromoExt *ext = [[MobiPromoExt alloc] initWithDictionary:dct error:nil];
-            double dis = ([VINet distanceTo:ext.Lat lon:ext.Lon] / 1000) * 0.621;//km to m
-            if (dis < distance2) {
-                [deals addObject:ext];
+    }else{
+        int distance2 = [[distance text] intValue];
+        [VINet get:Fmt(@"/api/mobipromos/nearby?radius=%d",distance2) args:nil target:self succ:@selector(loadComplete:) error:@selector(loadCompleteFail:) inv:self.view];
+    }
+}
+
+-(void)loadComplete:(id)values{
+    
+    LKDBHelper *helper = [iSQLiteHelper getDefaultHelper];
+    [helper clearTableData:[MobiPromoAR class]];
+    
+    for (NSDictionary *dct in values) {
+        NSMutableDictionary *mtdct = [dct mutableCopy];
+        
+        NSArray *adds = [dct arrayValueForKey:@"Addresses"];
+        if(adds.count > 0){
+            [mtdct addEntriesFromDictionary:[adds objectAtIndex:0]];
+        }
+        MobiPromoAR *mob = [[MobiPromoAR alloc] initWithDictionary:mtdct error:nil];
+        
+        for (NSDictionary *p in [dct arrayValueForKey:@"Pictures"]) {
+            Picture *sp = [[Picture alloc] initWithDictionary:p error:nil];
+            sp.MobiPromoId = mob.MobiPromoId;
+            [helper insertOrUpdateUsingObj:sp];
+            
+            if (mob.defPicture == nil) {
+                mob.defPicture = sp.PictureUrl;
             }
         }
-        [_tableView reloadAndHideLoadMore:YES];
-    }];
+        [helper insertOrUpdateUsingObj:mob];
+        
+    }
     
+    deals = [helper search:[MobiPromoAR class] where:@"" orderBy:@"CreateDate desc" offset:0 count:100000];
+    [_tableView reloadAndHideLoadMore:YES];
+}
+
+-(void)loadCompleteFail:(id)values{
+    [VIAlertView showErrorMsg:@"Load Error"];
 }
 
 - (void)showInfoMessage:(UIButton *)tap
@@ -234,8 +273,7 @@ static NSString *filervalue;
     [pop presentPointingAtView:tap inView:self.view animated:YES];
 }
 
--(CGFloat)heightAtRow:(NSIndexPath *)indexPath
-{
+-(CGFloat)heightAtRow:(NSIndexPath *)indexPath {
     return 222;
 }
 
@@ -244,9 +282,10 @@ static NSString *filervalue;
     long index = 2 * (clickBtn.tag / 10) + clickBtn.tag % 2;
     if(index == deals.count)
         return;
-    MobiPromo *pdata = [deals objectAtIndex:index];
+    MobiPromoAR *pdata = [deals objectAtIndex:index];
     
     [self pushTo:@"VIDealsDetailViewController" data:[pdata toDictionary]];
+    
 }
 
 @end

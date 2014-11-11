@@ -26,7 +26,7 @@
     
     MobiPromo *mobipromo;
     
-    Store *mobiStore;
+    NSDictionary *mobiInfo;
 }
 
 @end
@@ -37,27 +37,29 @@
 {
     [super viewDidLoad];
     
+    //from push
     if (self.dealid!=nil) {
         [self addNav:@"Detail" left:BACK right:NONE];
         [VINet get:Fmt(@"/api/mobipromos/%@/detail",_dealid)  args:nil target:self succ:@selector(loadOK:) error:@selector(loadFail:) inv:self.view];
-    }else{
-        NSDictionary *promo = [self getContentValueWithPath:@"VIDealsDetailViewController"];
-        mobipromo = [[MobiPromo alloc] initWithDictionary:promo error:nil];
+    }
+    else{
+        //otherwish from another way
+        mobiInfo = [self getContentValueWithPath:@"VIDealsDetailViewController"];
+        mobipromo = [[MobiPromo alloc] initWithDictionary:mobiInfo error:nil];
         
         if (self.exculedId == nil) {
             self.exculedId = [NSMutableSet set];
         }
-        [self.exculedId addObject:[promo stringValueForKey:@"MobiPromoId"]];
+        [self.exculedId addObject:[mobiInfo stringValueForKey:@"MobiPromoId"]];
         
-        NSString *title = [promo stringValueForKey:@"StoreName"];
+        NSString *title = [mobiInfo stringValueForKey:@"StoreName"];
         [self addNav:title left:BACK right:NONE];
         self.nav_title.font = Black(22);
         
         self.nav.backgroundColor = [@"#DADADA" hexColor];
         self.view.backgroundColor = self.nav.backgroundColor;
         
-        [self loadComplete:promo];
-        
+        [self loadComplete:mobiInfo];
     }
 }
 
@@ -104,7 +106,7 @@
     
     self.imagelist = [NSMutableArray array];
     
-    contentView = [[UIScrollView alloc] initWithFrame:Frm(0, self.nav.endY, 320, Space(self.nav.endY))];
+    contentView = [[UIScrollView alloc] initWithFrame:Frm(0, self.nav.endY, self.view.w, Space(self.nav.endY))];
     contentView.showsHorizontalScrollIndicator = NO;
     contentView.showsVerticalScrollIndicator = NO;
     
@@ -116,7 +118,6 @@
     
     NSMutableArray *pics;
     if (fromPush) {
-        
         pics = [NSMutableArray array];
         NSArray *pc = [info arrayValueForKey:@"Pictures"];
         for (NSDictionary *d in pc) {
@@ -187,14 +188,15 @@
          }
     }
 
-    UIView *subItme = [[UIView alloc] initWithFrame:Frm(0,offset+20, 320, 0)];
+    UIView *subItme = [[UIView alloc] initWithFrame:Frm(0,offset+20, self.view.w, 0)];
     subItme.tag = 10001;
     
-    NSString *addid = [info stringValueForKey:@"AddressId"];
+    NSString *addid = [info stringValueForKey:@"AddressId" defaultValue:@"0"];
     
     int x = (subItme.w - 140)/2;
-    mobiStore = [[iSQLiteHelper getDefaultHelper] searchSingle:[Store class] where:@{@"AddressId":addid} orderBy:@"AddressId"];
-    if (isEn && mobiStore.Lat != 0 && mobiStore.Lon != 0) {
+    
+    
+    if (isEn && [info doubleValueForKey:@"Lat"] > 0) {
         x = (subItme.w - 70 * 3)/2;
         UIButton *share = [[UIButton alloc] initWithFrame:Frm(x,5, 60, 60)];
         share.backgroundColor = [@"#FA2D38" hexColor];
@@ -227,7 +229,7 @@
     [share addTarget:self action:@selector(reward:)];
     [subItme addSubview:share];
     
-    UILabel *tip = [VILabel createLableWithFrame:Frm(0, share.endY+15, 320, 20) color:@"#FA2D38" font:Bold(15) align:CENTER];
+    UILabel *tip = [VILabel createLableWithFrame:Frm(0, share.endY+15, self.view.w, 20) color:@"#FA2D38" font:Bold(15) align:CENTER];
     tip.text = Lang(@"more_by_store");
     [subItme addSubview:tip];
     
@@ -286,12 +288,12 @@
     [subItme setH:height+10];
     [contentView addSubview:subItme];
 
-    [contentView setContentSize:CGSizeMake(320, subItme.endY)];
+    [contentView setContentSize:CGSizeMake(self.view.w, subItme.endY)];
     
     [self.view addSubview:contentView];
     //Mall Store MobiPromo Data Other
     [[NSNotificationCenter defaultCenter] postNotificationName:@"_add_current_track_" object:
-                                          @{@"Type": @"MobiPromo",@"ReferenceId": [info stringValueForKey:@"MobiPromoId"] ,@"StoreAddressId":[info stringValueForKey:@"AddressId"]}];
+                                          @{@"Type": @"MobiPromo",@"ReferenceId": [info stringValueForKey:@"MobiPromoId" defaultValue:@""] ,@"StoreAddressId":[info stringValueForKey:@"AddressId" defaultValue:@""]}];
     if ([info boolValueForKey:@"StoreHasSuprise"]) {
         UIImageView *view = [@"suprise_buge.png" imageViewForImgSizeAtX:self.view.w-31-16 Y:6];
         [[[self.nav subviews] objectAtIndex:0] addSubview:view];
@@ -318,21 +320,24 @@
 }
 - (void)whereIam:(UIButton*)sneder {
     VINavMapViewController *nav = [[VINavMapViewController alloc] init];
-    nav.destination = [[CLLocation alloc] initWithLatitude:mobiStore.Lat longitude:mobiStore.Lon];
-    nav.title = mobiStore.StoreName;
-    nav.subtitle = mobiStore.Address;
+    double lat = [mobiInfo doubleValueForKey:@"Lat"];
+    double lon = [mobiInfo doubleValueForKey:@"Lon"];
+    nav.destination = [[CLLocation alloc] initWithLatitude:lat longitude:lon];
+    nav.title = [mobiInfo stringValueForKey:@"StoreName"];
+    nav.subtitle = [mobiInfo stringValueForKey:@"Address"];
     [self push:nav];
 }
 
 - (void)reward:(UIButton*)sneder
 {
     sneder.enabled = NO;
-    
+
     NSMutableDictionary *pot = [NSMutableDictionary dictionary];
     [pot setValue:mobipromo.StoreImageUrl forKey:@"picture"];
     [pot setValue:mobipromo.Offer forKey:@"description"];
     [pot setValue:mobipromo.StoreName forKey:@"name"];
     [pot setValue:mobipromo.StoreUrl forKey:@"link"];
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"_share_to_facebook_" object:pot];
     
     double delayInSeconds = 3.0;
@@ -366,7 +371,6 @@
 //    
 //    [[NSNotificationCenter defaultCenter] postNotificationName:@"_get_a_bigsuprise_" object:pp];
     
-    //
 }
 
 - (void)seeDetail:(UITapGestureRecognizer *)tap

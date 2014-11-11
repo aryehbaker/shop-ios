@@ -45,7 +45,7 @@
     [small addTarget:self action:@selector(showTime:)];
     [self.view addSubview:small];
 
-    UIScrollView *scrll = [[UIScrollView alloc] initWithFrame:Frm(0,small.endY+10, 320, self.view.h - small.endY-10)];
+    UIScrollView *scrll = [[UIScrollView alloc] initWithFrame:Frm(0,small.endY+10, self.view.w, self.view.h - small.endY-10)];
     
     NSString *addid = [storeInfo objectForKey:@"AddressId"];
     extraProms = [[iSQLiteHelper getDefaultHelper] searchModels:[MobiPromo class] where:@{@"Type": @"Deal",@"AddressId":addid}];
@@ -53,7 +53,7 @@
     if (extraProms.count == 0) {
         UIImageView *img = [@"no_promos.png" imageViewForImgSizeAtX:0 Y:80];
         [scrll addSubview:img];
-        UILabel *nop  = [UILabel initWithFrame:Frm(0, img.endY+5, 320, 40) color:@"#8F8F8F" font:Bold(16) align:CENTER];
+        UILabel *nop  = [UILabel initWithFrame:Frm(0, img.endY+5, self.view.w, 40) color:@"#8F8F8F" font:Bold(16) align:CENTER];
         nop.text = Lang(@"no_promos");
         [scrll addSubview:nop];
     }
@@ -123,7 +123,7 @@
     
     scrll.showsHorizontalScrollIndicator = NO;
     scrll.showsVerticalScrollIndicator = NO;
-    [scrll setContentSize:CGSizeMake(320,height<scrll.h ? scrll.h : height+10)];
+    [scrll setContentSize:CGSizeMake(self.view.w,height<scrll.h ? scrll.h : height+10)];
     [self.view addSubview:scrll];
     
     //notifycation

@@ -31,7 +31,7 @@
     
     [self addNav:Lang(@"list_of_malls") left:SEARCH right:MENU];
     
-    cfg = [[VICfgTableView alloc] initWithFrame:Frm(0, self.nav.endY, 320, Space(self.nav.endY)) cfg:@"tbcfg.json#list_of_malls"];
+    cfg = [[VICfgTableView alloc] initWithFrame:Frm(0, self.nav.endY, self.view.w, Space(self.nav.endY)) cfg:@"tbcfg.json#list_of_malls"];
     
     NSMutableArray *citys = [[iSQLiteHelper getDefaultHelper] searchAllModel:[MallInfo class]];
     

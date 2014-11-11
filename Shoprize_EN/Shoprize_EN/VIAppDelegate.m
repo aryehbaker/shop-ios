@@ -23,6 +23,7 @@
 #import "VINearByViewController.h"
 #import "VILocalNotify.h"
 #import "VIUncaughtExceptionHandler.h"
+#import "VIAroundMeViewController.h"
 
 
 @interface VIAppDelegate() {
@@ -116,7 +117,7 @@ static NSString *logpath;
     NSMutableArray *navp = [NSMutableArray arrayWithObject:welcome];
     
     if (![[VINet info:Token] isEqualToString:@""]) {
-        [navp addObject:[[VINearByViewController alloc] init]];
+        [navp addObject:[[VIAroundMeViewController alloc] init]];
     }
     
     VINavigationController *nav = [[VINavigationController alloc] init];
@@ -250,45 +251,6 @@ static NSString *logpath;
     DEBUGS(@"%@",error.description);
 }
 
-//remove gps welcome
-// 已经在上面注释掉了
-//- (void)calcUserNearStore:(CLLocation *)location
-//{
-//    NSArray *stroes = [@"stores" cacheValue];
-//    if (stroes.count !=0 )  { //if had load address
-//        //这个值会在切换Mall之后清空掉
-//        NSString *lastPlace = [[NSUserDefaults standardUserDefaults] stringForKey:@"storeview"];
-//        NSMutableArray *vistedIds = [NSMutableArray array];
-//        if (lastPlace != nil) {
-//            vistedIds = [[lastPlace jsonVal] mutableCopy];
-//        }
-//        for (NSDictionary *dct in stroes) {
-//            double lat = [dct doubleValueForKey:@"Lat"];
-//            double lon = [dct doubleValueForKey:@"Lon"];
-//            CLLocation *target = [[CLLocation alloc] initWithLatitude:lat longitude:lon];
-//            CLLocationDistance dis = [location distanceFromLocation:target];
-//            
-//            NSString *addressId = [dct stringValueForKey:@"AddressId"];
-//            if (dis <= 10 && ![vistedIds containsObject:addressId]) {
-//                NSString *mallName = [dct stringValueForKey:@"StoreName"];
-//                NSString *uname    = [VINet info:KFull];
-//                NSString *msg = Fmt(Lang(@"welcome_store"),uname,mallName);
-//                
-//                NSMutableDictionary *mt = [NSMutableDictionary dictionary];
-//                [mt setValue:@"Store" forKey:@"NotifyType"];
-//                [mt setValue:addressId forKey:@"Udid"];
-//                
-//                [self pushNotification:msg withObj:mt];
-//                [vistedIds addObject:addressId];
-//
-//                [[NSUserDefaults standardUserDefaults]  setValue:[vistedIds jsonString] forKey:@"storeview"];
-//
-//                break;
-//            }
-//        }
-//    }
-//}
-
 //已经在上面注释掉了调研
 -(void)calcUserIsInMall:(CLLocation*)location
 {
@@ -400,36 +362,43 @@ static NSString *logpath;
 {
     BOOL hadUserd = [[NSUserDefaults standardUserDefaults] boolForKey:@"userHasUsed"];
     if (!hadUserd) {
-        VITutorialViewController *torle = [[VITutorialViewController alloc] initWithPath:@[@"tor_1.png",@"tor_2.png",@"tor_3.png",@"tor_4.png"]];
+        VITutorialViewController *torle = [[VITutorialViewController alloc] initWithPath:@[@"tor1.png",@"tor2.png",@"tor3.png"]];
         
-        UIImageView *t1 = [@"logo.png" imageViewForImgSizeAtX:0 Y:80];
+        int fuw = self.window.w;
+        
+        UIImageView *t1 = [@"suplogo.png" imageViewForImgSizeAtX:(fuw-279)/2 Y:80];
         [torle addView:t1 page:0];
-        UILabel *txt = [VILabel createLableWithFrame:Frm(36, t1.endY,t1.w - 72  , 40) color:@"#ffffff" font:Regular(18) align:CENTER];
+        
+        UILabel *txt = [VILabel createLableWithFrame:Frm(0, t1.endY,fuw , 40) color:@"#ffffff" font:Regular(18) align:CENTER];
+        txt.textAlignment = NSTextAlignmentCenter;
         txt.numberOfLines = 2;
         txt.text = Lang(@"index_welcome_01");
         [torle addView:txt page:0];
         int y = IS_RETINA_4 ? 220 : 180;
         UIImageView *t2 = [@"search.png" imageViewForImgSizeAtX:111.5 Y:y];
-        [torle addView:t2 page:1];
-        txt = [VILabel createLableWithFrame:Frm(36, t2.endY,t1.w - 72  , 40) color:@"#ffffff" font:Regular(18) align:CENTER];
+        
+        //[torle addView:t2 page:1];
+
+        txt = [VILabel createLableWithFrame:Frm(36, t2.endY,fuw - 72  , 40) color:@"#ffffff" font:Regular(18) align:CENTER];
+        txt.textAlignment = NSTextAlignmentCenter;
         txt.numberOfLines = 2;
         txt.text = Lang(@"index_welcome_02");
         [torle addView:txt page:1];
         
         t2 = [@"gift.png" imageViewForImgSizeAtX:111.5 Y:y];
-        [torle addView:t2 page:2];
-        txt = [VILabel createLableWithFrame:Frm(36, t2.endY,t1.w - 72  , 40) color:@"#ffffff" font:Regular(18) align:CENTER];
+        //[torle addView:t2 page:2];
+        txt = [VILabel createLableWithFrame:Frm(20,t2.endY,fuw - 40, 60) color:@"#ffffff" font:Regular(17) align:CENTER];
+        txt.textAlignment = NSTextAlignmentCenter;
         txt.numberOfLines = 2;
         txt.text = Lang(@"index_welcome_03");
         [torle addView:txt page:2];
         
-        
-        t2 = [@"heart.png" imageViewForImgSizeAtX:111.5 Y:y];
-        [torle addView:t2 page:3];
-        txt = [VILabel createLableWithFrame:Frm(30, t2.endY,t1.w - 60  , 60) color:@"#ffffff" font:Regular(16) align:CENTER];
-        txt.numberOfLines = 3;
-        txt.text = Lang(@"index_welcome_04");
-        [torle addView:txt page:3];
+//      t2 = [@"heart.png" imageViewForImgSizeAtX:111.5 Y:y];
+//      [torle addView:t2 page:3];
+//      txt = [VILabel createLableWithFrame:Frm(30, t2.endY,t1.w - 60  , 60) color:@"#ffffff" font:Regular(16) align:CENTER];
+//        txt.numberOfLines = 3;
+//        txt.text = Lang(@"index_welcome_04");
+//        [torle addView:txt page:3];
         
         [first addChildViewController:torle];
         [first.view addSubview:torle.view];

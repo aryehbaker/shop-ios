@@ -44,7 +44,7 @@
     [action setY:self.nav.endY];
     [self.view addSubview:action];
     
-    listTable = [[UITableView alloc] initWithFrame:Frm(0, action.endY, 320, Space(action.endY)-40) style:UITableViewStylePlain];
+    listTable = [[UITableView alloc] initWithFrame:Frm(0, action.endY, self.view.w, Space(action.endY)-40) style:UITableViewStylePlain];
     listTable.delegate = self;
     listTable.dataSource = self;
     listTable.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -69,7 +69,7 @@
         [self showSearchFiled:nil];
         [UIView animateWithDuration:.28 animations:^{
             [self.view viewWithTag:-10010].x = 10;
-            evt.view.x = (320 - evt.view.w)/2;
+            evt.view.x = (self.view.w - evt.view.w)/2;
         } completion:^(BOOL finished) {
            
         }];

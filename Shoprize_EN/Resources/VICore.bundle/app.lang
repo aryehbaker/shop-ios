@@ -5,7 +5,7 @@
     },
      "index_welcome_01" : 
      {
-          "en" : "Loading message",
+          "en" : "Welcome",
            "he":"להרוויח וליהנות יותר מהביקורים בקניון ! \nמבצעים והפתעות בכניסה לחנויות"
      },
      "index_welcome_02" : 
@@ -65,7 +65,7 @@
      "invite_now"           :{ "en" : "Invite","he": "הזמנת חבר"},
      "deveice_not_suppor"   :{ "en" : "Device can not send messages","he": "מכשיר זה אינו יכול לשלוח הודעות"},
      "should_check_one"     :{ "en" : "You should choose least one person" ,"he": "יש לבחור אדם אחד לפחות"},
-     "invint_sms_txt"       :{ "en" : "Hi, I use Shoprise app now, and loving it!","he": "היי, מה המצב ? רציתי להגיד לך שאנחנו משתמשים באפליקצית SHOPRIZE. אפליקציה שחוסכת לנו כסף בשופינג, חושפת אותנו לכל המבצעים ומפנקת בהטבות בלעדיות בכניסה לחנויות ! ממש כדאי לך להוריד ולנסות http://shoprize.co.il/"},
+     "invint_sms_txt"       :{ "en" : "Hi, I use Shoprise app now, and loving it!","he": "היי, מה המצב ? רציתי להגיד לך שאנחנו משתמשים באפליקצית SOTG. אפליקציה שחוסכת לנו כסף בשופינג, חושפת אותנו לכל המבצעים ומפנקת בהטבות בלעדיות בכניסה לחנויות ! ממש כדאי לך להוריד ולנסות http://shoprize.co.il/"},
      "send_sms_fail"        :{ "en": "sending SMS failed, please try again","he": "שליחת ההודעה נכשלה, אנא נסו שנית"},
      "send_sms_complete"    :{ "en": "Message was sent successfully","he": "ההודעה נשלחה בהצלחה!"},
      "why_should_i_add"     :{ "en": "why should i add stores ?","he": "מדוע כדאי לי להוסיף חנות?"},
@@ -137,11 +137,11 @@
      "share_ok"             :{ "en" : "OK" ,"he": "אישור"},
      "ck_all"               :{ "en" : "Check All","he": "סמנו הכל"},
      "ck_none"              :{ "en" : "Remove All","he": "הסירו הכל"},
-     "welcome_mall"         :{ "en" : "Hi %@, welcome to %@. open shoprize and see all awesome deals and surprises waiting for you now, save money and have fun !",
+     "welcome_mall"         :{ "en" : "Hi %@, welcome to %@. open SOTG and see all awesome deals and surprises waiting for you now, save money and have fun !",
         "he": "הי %@, ברוכים הבאים ל %@. היכנסו לאפליקציית שופרייז וקבלו מבצעים והפתעות המחכים לכם עכשיו!"},
      "weekend_come"         :{ "en" : "weekend coming up's","he": "סוף השבוע מגיע!"},
      "welcome_store"        :{ 
-            "en" : "Hi %@, welcome to %@. open shoprize and see all deals zara have to offer you now ! Enjoy...",
+            "en" : "Hi %@, welcome to %@. open SOTG and see all deals zara have to offer you now ! Enjoy...",
             "he": "הי %@, ברוכים הבאים %@ל. היכנסו לאפליקציית שופרייז וקבלו את כל ההנחות בזארה כעת" },
      "welcome_in"           :{
             "en" : "It's your lucky day %@, you just recieved a walk-in surprise from %@. opened the app and collect your prize",
@@ -164,7 +164,7 @@
         "en" : "We will be glad to know why. We can help!"
     },
     "delete_accout_ctnt" : {
-        "en" : "Shoprize aims to make your shopping experience more enjoyable and rewarding. If you encounter any problem or malfunction while using the app or while visiting the store, you have comments and things improve app or website will be happy to listen and help in any way possible. Easily contact us now!",
+        "en" : "SOTG aims to make your shopping experience more enjoyable and rewarding. If you encounter any problem or malfunction while using the app or while visiting the store, you have comments and things improve app or website will be happy to listen and help in any way possible. Easily contact us now!",
         "he" : "שופרייז שואפת להפוך עבורך את חווית הקניות למהנה ומתגמלת יותר. במידה ונתקלת בבעיה או תקלה כלשהיא בזמן השימוש באפליקציה או בעת הביקור בחנות, יש לך הערות ודברים לשיפור באפליקציה או באתר נשמח לשמוע ולעזור בכל דרך אפשרית. פנה אלינו עכשיו בקלות !"
     },
     "sigeup_html" : {
@@ -186,5 +186,9 @@
     "delete_account_button_text" : {
         "en" : "Delete Account",
         "he" : "מחק חשבון"
+    },
+    "menu_my_fav" : {
+        "en" : "My Favourite",
+        "he" : "My Favourite"
     }
 }

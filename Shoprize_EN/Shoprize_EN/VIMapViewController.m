@@ -7,6 +7,7 @@
 //
 
 #import "VIMapViewController.h"
+#import "VIMapDirectionsViewController.h"
 
 @interface VIMapViewController(Private)
 
@@ -209,14 +210,21 @@
     currentIndex = (sender.tag - 20000);    
     PlaceMark *mapint = [_mappoints objectAtIndex:currentIndex];
     
-    [self showActionSheets:@"What You Want To Do ?" btns:@[@"Show More",@"Get Route",@"Cancel"] callbk:^(NSInteger btnIndex, NSString *text) {
+    [self showActionSheets:@"What You Want To Do ?" btns:@[@"Show More",@"Cancel"] callbk:^(NSInteger btnIndex, NSString *text) {
         if (btnIndex == 0) {
             MobiPromoExt *pdata = mapint.extinfo;
             [self pushTo:@"VIDealsDetailViewController" data:[pdata toDictionary]];
         }
-        if(btnIndex == 1) {
-            
-        }
+//        if(btnIndex == 1) {
+//            id to = @{
+//                      @"title" : mapint.title,
+//                      @"subtitle" : mapint.subtitle,
+//                      @"lat" : Fmt(@"%.7f", mapint.coordinate.latitude),
+//                      @"lon" : Fmt(@"%.7f", mapint.coordinate.longitude)
+//                      };
+//            VIMapDirectionsViewController *dir = [[VIMapDirectionsViewController alloc] initRoadFrom:nil to:to];
+//            [self push:dir];
+//        }
     }];
 }
 

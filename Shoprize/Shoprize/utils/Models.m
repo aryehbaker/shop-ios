@@ -270,3 +270,11 @@
 @implementation MobiPromoExt
 
 @end
+
+@implementation MobiPromoAR
+
++(void)initialize{
+    [self removePropertyWithColumnNameArray:@[@"Beacons",@"Pictures"]];
+}
+
+@end

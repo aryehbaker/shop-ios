@@ -135,7 +135,7 @@ static NSString *logpath;
     //Location Manager start motion
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
-    self.locationManager.distanceFilter = 1; //精度1m
+    self.locationManager.distanceFilter = 5; //精度1m
     
     DEBUGS(@"DEBUG %d",[CLLocationManager locationServicesEnabled]);
     
@@ -171,7 +171,6 @@ static NSString *logpath;
 //  NSTimer *t = [NSTimer timerWithTimeInterval:10 target:self selector:@selector(repaint) userInfo:nil repeats:YES];
 //  NSRunLoop *runloop=[NSRunLoop currentRunLoop];
 //  [runloop addTimer:t forMode:NSDefaultRunLoopMode];
-    
     
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
         [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings

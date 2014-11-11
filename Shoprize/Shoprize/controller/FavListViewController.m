@@ -23,15 +23,15 @@
 {
     [super viewDidLoad];
     
-    UIImageView *top = [[UIImageView alloc] initWithFrame:Frm(0,self.nav.endY, 320, 40)];
+    UIImageView *top = [[UIImageView alloc] initWithFrame:Frm(0,self.nav.endY, self.view.w, 40)];
     top.backgroundColor = [@"#DBDBDB" hexColor];
     [self.view addSubview:top];
     
     [VINet get:@"/api/categories/mine" args:nil target:self succ:@selector(showItems:) error:@selector(showErr:) inv:self.view];
     
-    ctnt = [[UIScrollView alloc] initWithFrame:Frm(top.x, top.endY, 320,self.view.h - 70 - 40)];
+    ctnt = [[UIScrollView alloc] initWithFrame:Frm(top.x, top.endY, self.view.w,self.view.h - 70 - 40)];
 
-    UIView *btn = [[UIView alloc] initWithFrame:Frm(0, ctnt.endY, 320, 70)];
+    UIView *btn = [[UIView alloc] initWithFrame:Frm(0, ctnt.endY, self.view.w, 70)];
     
     UIButton *cycle = [UIButton buttonWithType:UIButtonTypeCustom];
     cycle.frame = Frm(30, 10, 50, 50);
@@ -113,18 +113,18 @@
         h = dk.endY;
         
         if (i == 0) {
-            UIView *lt = [[UIView alloc] initWithFrame:Frm(0, 0, 320, 1)];
+            UIView *lt = [[UIView alloc] initWithFrame:Frm(0, 0, self.view.w, 1)];
             lt.backgroundColor = [@"#c0c0c0" hexColor];
-            UIView *lt2 = [[UIView alloc] initWithFrame:Frm(0, 1, 320, 1)];
+            UIView *lt2 = [[UIView alloc] initWithFrame:Frm(0, 1, self.view.w, 1)];
             lt2.backgroundColor = [@"#ffffff" hexColor];
             [ctnt addSubview:lt];
             [ctnt addSubview:lt2];
         }
         
         if (i%3 == 0) {
-            UIView *lt = [[UIView alloc] initWithFrame:Frm(0, h, 320, 1)];
+            UIView *lt = [[UIView alloc] initWithFrame:Frm(0, h, self.view.w, 1)];
             lt.backgroundColor = [@"#c0c0c0" hexColor];
-            UIView *lt2 = [[UIView alloc] initWithFrame:Frm(0, h+1, 320, 1)];
+            UIView *lt2 = [[UIView alloc] initWithFrame:Frm(0, h+1, self.view.w, 1)];
             lt2.backgroundColor = [@"#ffffff" hexColor];
             [ctnt addSubview:lt];
             [ctnt addSubview:lt2];
@@ -132,7 +132,7 @@
         
     }
     [self.view addSubview:ctnt];
-    [ctnt setContentSize:CGSizeMake(320, h+2)];
+    [ctnt setContentSize:CGSizeMake(self.view.w, h+2)];
 }
 
 -(void)dochecked:(UIButton *)btn

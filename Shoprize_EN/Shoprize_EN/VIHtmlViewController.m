@@ -28,7 +28,7 @@
 	if ([target isEqualToString:Lang(@"sigeup_html")]) {
 		[self addNav:nil left:NONE right:NONE];
         
-        UIButton *logon = [[UIButton alloc] initWithFrame:Frm(0, self.view.h-40, 320, 40)];
+        UIButton *logon = [[UIButton alloc] initWithFrame:Frm(0, self.view.h-40, self.view.w, 40)];
         logon.backgroundColor = [@"#ff4747" hexColor];
         [logon setTitle:Lang(@"ready_member_to_logon") selected:Lang(@"ready_member_to_logon")];
         [logon setTitleColor:[@"#ffffff" hexColor] forState:UIControlStateNormal];
@@ -37,7 +37,7 @@
         [logon addTarget:self action:@selector(gotoLogin:)];
 	}
 
-	self.htmlview = [[VIHtmlLoadView alloc] initWithFrame:Frm(0, self.nav.endY, 320, Left_Space(self.nav.endY)) withHtmlName:target];
+	self.htmlview = [[VIHtmlLoadView alloc] initWithFrame:Frm(0, self.nav.endY, self.view.w, Left_Space(self.nav.endY)) withHtmlName:target];
 	self.htmlview.delegate = self;
 	[self.view addSubview:self.htmlview];
 }

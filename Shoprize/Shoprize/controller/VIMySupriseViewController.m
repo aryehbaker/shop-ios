@@ -38,14 +38,13 @@ typedef NS_ENUM(NSInteger, Tabs) { USED,ACT};
 {
     [super viewDidLoad];
 
-  
     currentTab = ACT;
     
     [self addNav:Lang(@"my_suprise") left:SEARCH right:MENU];
     
     UIButton *left = [[UIButton alloc] initWithFrame:Frm(0, self.nav.endY, self.view.w/2, 34)];
     [left setTitle:Lang(@"menu_exp_exp") selected:Lang(@"menu_exp_exp")];
-    left.titleLabel.font = Bold(16);
+    left.titleLabel.font = isEn ? Bold(13) : Bold(16);
     left.tag = 100;
     left.backgroundColor = [@"#ff4747" hexColor];
     [left setTitleColor:[@"#FFFFFF" hexColor] forState:UIControlStateNormal];
@@ -71,7 +70,7 @@ typedef NS_ENUM(NSInteger, Tabs) { USED,ACT};
     imgs.tag = 111;
     [right addSubview:imgs];
     
-    all = [[UITableView alloc] initWithFrame:Frm(0, right.endY, 320, self.view.h-right.endY)];
+    all = [[UITableView alloc] initWithFrame:Frm(0, right.endY, self.view.w, self.view.h-right.endY)];
     all.delegate = self;
     all.dataSource = self;
     all.separatorStyle = UITableViewCellSeparatorStyleNone;

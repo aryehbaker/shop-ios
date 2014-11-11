@@ -20,7 +20,7 @@
     [super viewDidLoad];
     [self addNav:_tbcfTitle left:BACK right:NONE];
     
-    VICfgTableView *cfg = [[VICfgTableView alloc] initWithFrame:Frm(0, self.nav.endY, 320, Space(self.nav.endY)) cfg:_tableCfg];
+    VICfgTableView *cfg = [[VICfgTableView alloc] initWithFrame:Frm(0, self.nav.endY, self.view.w, Space(self.nav.endY)) cfg:_tableCfg];
     cfg.delegate = self;
     [self.view addSubview:cfg];
     

@@ -34,7 +34,7 @@
     [self.leftOne addTarget:self action:@selector(showAroundMe:)];
     [self.nav_title addTapTarget:self action:@selector(showOpenHour:)];
     
-    _tableView = [[VITableView alloc] initWithFrame:Frm(0, self.nav.endY, 320, Space(self.nav.endY)) style:UITableViewStylePlain];
+    _tableView = [[VITableView alloc] initWithFrame:Frm(0, self.nav.endY, self.view.w, Space(self.nav.endY)) style:UITableViewStylePlain];
     _tableView.delegate = _tableView;
     _tableView.backgroundColor = [UIColor clearColor];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -51,7 +51,7 @@
         guid.userInteractionEnabled = NO;
         [al addSubview:guid];
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = Frm(50, w.h - 60, 320-100, 40);
+        btn.frame = Frm(50, w.h - 60, self.view.w-100, 40);
         btn.backgroundColor = [@"#ff4747" hexColor];
         [btn setTitle:Lang(@"i_see_close_it") selected:Lang(@"i_see_close_it")];
         btn.layer.cornerRadius = 20;

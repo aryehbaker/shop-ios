@@ -73,7 +73,7 @@ static SystemSoundID shake_sound_male_id = 0;
     [pushView addSubview:appIcon];
     
     UILabel *appname = [VILabel createLableWithFrame:Frm(appIcon.endX+10, appIcon.Y, 200, 13) color:@"#ffffff" font:FontS(13) align:LEFT];
-    appname.text = @"Shoprize";
+    appname.text = @"SOTG";
     [pushView addSubview:appname];
     
     //确定跳转

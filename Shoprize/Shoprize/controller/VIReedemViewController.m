@@ -117,7 +117,7 @@
     [self.view addSubview:ct];
     
     if ([usersuprise.ExpireTime timeIntervalSinceNow] < -24 * 60 * 60) {
-        UIView *buttomView = [[UIView alloc] initWithFrame:Frm(0, ct.endY, 320, 40)];
+        UIView *buttomView = [[UIView alloc] initWithFrame:Frm(0, ct.endY, self.view.w, 40)];
         delete = [[UIButton alloc] initWithFrame:Frm(270, 0, 35, 35)];
         [delete setImage:@"trash.png"  selectd:@"trash.png"];
         [delete addTarget:self action:@selector(removeMobiProms:)];

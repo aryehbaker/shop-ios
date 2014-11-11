@@ -17,6 +17,7 @@
 @protocol MobiPromo     @end
 @protocol Picture       @end
 @protocol UserSurprise  @end
+@protocol Address       @end
 
 @class Beacon;
 @class Store;
@@ -24,6 +25,7 @@
 @class Picture;
 @class UserSurprise;
 @class Mall;
+@class Address;
 
 @interface Models : NSObject
 
@@ -175,5 +177,42 @@
 @property(nonatomic,assign) double Lat;
 @property(nonatomic,assign) double Lon;
 @property(nonatomic,assign) double Distance;
+
+@end
+
+@interface MobiPromoAR : MobiPromo
+
+@property(nonatomic,copy) NSString *Offer;
+@property(nonatomic,copy) NSString *StoreUrl;
+@property(nonatomic,copy) NSString *CategoryName;
+@property(nonatomic,copy) NSString *Prerequisite;
+@property(nonatomic,strong) NSDate *StartDate;
+@property(nonatomic,strong) NSDate *CreateDate;
+@property(nonatomic,assign) BOOL IsMarked;
+@property(nonatomic,copy) NSString *CategoryId;
+@property(nonatomic,copy) NSString *StoreName;
+@property(nonatomic,copy) NSString *Description;
+@property(nonatomic,copy) NSString *Type;
+@property(nonatomic,strong) NSDate *ExpireDate;
+@property(nonatomic,assign) int MarkedCount;
+@property(nonatomic,copy) NSString *MobiPromoUrl;
+@property(nonatomic,copy) NSString *MobiPromoId;
+@property(nonatomic,copy) NSString *StoreImageUrl;
+@property(nonatomic,copy) NSString *AddressId;
+@property(nonatomic,assign) BOOL StoreHasSuprise;
+
+@property(nonatomic,copy) NSString *defPicture;
+@property(nonatomic,strong) NSString *StoreId;
+@property(nonatomic,assign) double Lat;
+@property(nonatomic,assign) double Lon;
+@property(nonatomic,strong) NSString *MallId;
+@property(nonatomic,strong) NSString *MallName;
+@property(nonatomic,strong) NSString *Phone;
+@property(nonatomic,strong) NSString *Address;
+@property(nonatomic,strong) NSString *Logo;
+@property(nonatomic,strong) NSString *OpenHours;
+
+@property(nonatomic,strong) NSArray<Picture,ConvertOnDemand> *Pictures;
+@property(nonatomic,strong) NSArray<Beacon,ConvertOnDemand> *Beacons;
 
 @end

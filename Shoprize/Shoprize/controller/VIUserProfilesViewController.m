@@ -34,7 +34,7 @@
     [self addCommentPage:.6];
     [self setLightContent];
     [self addNav:nil left:BACK right:MENU];
-    formView = [[UIScrollView alloc] initWithFrame:Frm(0, self.nav.endY, 320, Space(self.nav.endY))];
+    formView = [[UIScrollView alloc] initWithFrame:Frm(0, self.nav.endY, self.view.w, Space(self.nav.endY))];
     formView.showsVerticalScrollIndicator = NO;
     formView.showsHorizontalScrollIndicator = NO;
     
@@ -78,7 +78,7 @@
 
     
     [formView addSubview:view];
-    [formView setContentSize:CGSizeMake(320, view.h)];
+    [formView setContentSize:CGSizeMake(self.view.w, view.h)];
     [self renderView];
     [self.view addSubview:formView];
     [self addKeyboardNotify];

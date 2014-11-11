@@ -34,7 +34,7 @@
     
     self.datasource = [@"menu.json" jsonOfBundleFile];
     
-    UIImageView *image = [[UIImageView alloc] initWithFrame:Frm(0,0, 320, 568)];
+    UIImageView *image = [[UIImageView alloc] initWithFrame:Frm(0,0, self.view.w, self.view.h)];
     image.image = [@"tor_1.png" image];
     [self.view addSubview:image];
     
@@ -42,7 +42,7 @@
     v.backgroundColor = [@"#000000" hexColorAlpha:.6];
     [self.view addSubview:v];
     
-    self.tableView = [[UITableView alloc] initWithFrame:Frm(0, 0, 320, self.view.h) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:Frm(0, 0, self.view.w, self.view.h) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     

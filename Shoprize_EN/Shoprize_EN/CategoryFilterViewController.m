@@ -23,7 +23,7 @@
     if (self) {
         NSArray *v2 = [filtervalue componentsSeparatedByString:@","];
         [[iSQLiteHelper getDefaultHelper] executeDB:^(FMDatabase *db) {
-             NSString *where = Fmt(@"select distinct(CategoryName),CategoryId from MobiPromo");
+             NSString *where = Fmt(@"select distinct(CategoryName),CategoryId from MobiPromoAR");
             FMResultSet *set = [db executeQuery:where];
             self.datas = [NSMutableArray array];
             while (set.next) {
@@ -42,6 +42,7 @@
 }
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     [self addNav:@"Filter" left:NONE right:Done];
     [self.rightOne addTarget:self action:@selector(doComplete:)];

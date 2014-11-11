@@ -51,7 +51,7 @@
     
     [self addNav:Lang(@"nav_my_store") left:SEARCH right:MENU];
 
-    disp  = [[UIView alloc] initWithFrame:Frm(0, self.nav.endY, 320, 220)];
+    disp  = [[UIView alloc] initWithFrame:Frm(0, self.nav.endY, self.view.w, 220)];
     UIImageView *imageSto = [@"mystore_icon.png" imageViewForImgSizeAtX:0 Y:0];
     [disp addSubview:imageSto];
     UILabel *tjh = [VILabel createLableWithFrame:Frm(10, imageSto.endY+20, 300, 100) color:@"#8D8D8D" font:FontS(18) align:CENTER];
@@ -61,7 +61,7 @@
  
     [self.view addSubview:disp];
 
-    tabview = [[UITableView alloc] initWithFrame:Frm(0, self.nav.endY, 320,self.view.h -self.nav.endY-105) style:UITableViewStylePlain];
+    tabview = [[UITableView alloc] initWithFrame:Frm(0, self.nav.endY, self.view.w,self.view.h -self.nav.endY-105) style:UITableViewStylePlain];
     tabview.delegate = self;
     tabview.backgroundColor = [UIColor clearColor];
     tabview.dataSource = self;
@@ -76,7 +76,7 @@
         if (v.h == 65) { [v setHidden:YES];}
     }
     
-    UILabel *tipText = [VILabel createLableWithFrame:Frm(0, tabview.endY+10, 320, 20) color:@"#FC494D" font:Bold(16) align:CENTER];
+    UILabel *tipText = [VILabel createLableWithFrame:Frm(0, tabview.endY+10, self.view.w, 20) color:@"#FC494D" font:Bold(16) align:CENTER];
     tipText.text = Lang(@"why_should_i_add");
     tipText.userInteractionEnabled = YES;
     [tipText addTapTarget:self action:@selector(showTip:)];
@@ -193,11 +193,11 @@ static NSIndexPath *selected;
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        VIEGOImageView *imageview = [[VIEGOImageView alloc] initWithFrame:Frm(0, 5, 320, 80) placeImg:[@"no_pic.png" image] url:left.Logo];
+        VIEGOImageView *imageview = [[VIEGOImageView alloc] initWithFrame:Frm(0, 5, self.view.w, 80) placeImg:[@"no_pic.png" image] url:left.Logo];
         imageview.contentMode = UIViewContentModeScaleAspectFit;
         imageview.tag = 200;
         [cell.contentView addSubview:imageview];
-        UILabel *sname = [VILabel createLableWithFrame:Frm(0, imageview.endY+8, 320, 20) color:@"#FF4F4F" font:Bold(15) align:CENTER];
+        UILabel *sname = [VILabel createLableWithFrame:Frm(0, imageview.endY+8,self.view.w, 20) color:@"#FF4F4F" font:Bold(15) align:CENTER];
         sname.tag = 201;
         sname.text = left.StoreName;
         [cell.contentView addSubview:sname];

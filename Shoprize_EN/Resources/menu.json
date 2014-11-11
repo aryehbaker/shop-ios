@@ -47,6 +47,11 @@
   "index": 3
   },
   {
+  "title": "menu_my_fav",
+  "icon": "my_love_w.png",
+  "index": 8
+  },
+  {
   "title": "menu_mystore",
   "icon": "my_love_w.png",
   "index": 4

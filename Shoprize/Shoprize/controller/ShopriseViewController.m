@@ -41,15 +41,15 @@
 - (void)addNav:(NSString *)title left:(BarItem)left right:(BarItem)right
 {
     int y = [UIDevice isGe:7] ? 20 : 0;
-    self.nav = [[UIView alloc] initWithFrame:Frm(0, 0, 320, [UIDevice isGe:7] ? 64 : 44)];
+    self.nav = [[UIView alloc] initWithFrame:Frm(0, 0, self.view.w, [UIDevice isGe:7] ? 64 : 44)];
     self.nav.backgroundColor = [UIColor clearColor];
     self.nav.tag = -99;
-    UIView *tacks = [[UIView alloc] initWithFrame:Frm(0, y, 320, 44)];
+    UIView *tacks = [[UIView alloc] initWithFrame:Frm(0, y, self.view.w, 44)];
     if (title != nil) {
         if ([title hasPrefix:@"@"]) {
             UIImageView *imagev = [[title substringFromIndex:1] imageViewForImgSizeAtX:0 Y:0];
             [imagev setY:(44-imagev.h) /2];
-            [imagev setX:(320 - imagev.w)/2];
+            [imagev setX:(tacks.w - imagev.w)/2];
             [imagev setUserInteractionEnabled:YES];
             [tacks addSubview:imagev];
             [imagev addTapTarget:self action:@selector(doCenterIconClick:)];
@@ -103,12 +103,12 @@
         [tacks addSubview:menu];
     }
     
-    if (right == MapIt) {
+    if (left == MapIt) {
         UIButton *menu = [UIButton buttonWithType:UIButtonTypeCustom];
-        menu.frame = Frm(self.view.w-50, 2, 40, 40);
+        menu.frame = Frm(10, 2, 40, 40);
         [menu setImage:[@"mapit.png" image] forState:UIControlStateNormal];
         [tacks addSubview:menu];
-        self.rightOne = menu;
+        self.leftOne = menu;
     }
     
     if (right == Done) {
@@ -262,8 +262,13 @@
 
 - (void)addCommentPage:(float)alpha{
     
-    UIImageView *image = [[UIImageView alloc] initWithFrame:Frm(0,0, 320, 568)];
-    image.image = [@"tor_1.png" image];
+    UIImageView *image = [[UIImageView alloc] initWithFrame:Frm(0,0, self.view.w, self.view.h)];
+    if (isEn) {
+        image.image = [@"logobg.png" image];
+    }else{
+       image.image = [@"tor_1.png" image];
+    }
+    
     [self.view addSubview:image];
  
     UIView *v = [[UIView alloc] initWithFrame:image.frame];

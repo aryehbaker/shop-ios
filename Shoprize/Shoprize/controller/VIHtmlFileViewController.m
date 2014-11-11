@@ -22,7 +22,7 @@
     [self setLightContent];
     [self addNav:_headTitle left:BACK right:MENU];
     
-    VIHtmlLoadView *htmlview = [[VIHtmlLoadView alloc] initWithFrame:Frm(0, self.nav.endY,320,Left_Space(self.nav.endY)) withHtmlName:_htmlFile];
+    VIHtmlLoadView *htmlview = [[VIHtmlLoadView alloc] initWithFrame:Frm(0, self.nav.endY,self.view.w,Left_Space(self.nav.endY)) withHtmlName:_htmlFile];
     htmlview.delegate = self;
     [self.view addSubview:htmlview];
     

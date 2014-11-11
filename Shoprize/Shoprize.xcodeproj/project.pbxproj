@@ -36,7 +36,7 @@
 		1705D7F219F9F657005F322F /* CMPopTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7CC19F9F657005F322F /* CMPopTipView.m */; };
 		1705D7F319F9F657005F322F /* KUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7CE19F9F657005F322F /* KUtils.m */; };
 		1705D7F419F9F657005F322F /* MHFacebookImageViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7D019F9F657005F322F /* MHFacebookImageViewer.m */; };
-		1705D7F519F9F657005F322F /* Modles.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7D219F9F657005F322F /* Modles.m */; };
+		1705D7F519F9F657005F322F /* Models.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7D219F9F657005F322F /* Models.m */; };
 		1705D7F619F9F657005F322F /* VIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7D419F9F657005F322F /* VIButton.m */; };
 		1705D7F719F9F657005F322F /* VILineTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7D619F9F657005F322F /* VILineTextField.m */; };
 		1705D7F819F9F657005F322F /* VINet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D7D819F9F657005F322F /* VINet.m */; };
@@ -203,7 +203,7 @@
 		1705D7CF19F9F657005F322F /* MHFacebookImageViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHFacebookImageViewer.h; sourceTree = "<group>"; };
 		1705D7D019F9F657005F322F /* MHFacebookImageViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHFacebookImageViewer.m; sourceTree = "<group>"; };
 		1705D7D119F9F657005F322F /* Models.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Models.h; sourceTree = "<group>"; };
-		1705D7D219F9F657005F322F /* Modles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Modles.m; sourceTree = "<group>"; };
+		1705D7D219F9F657005F322F /* Models.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Models.m; sourceTree = "<group>"; };
 		1705D7D319F9F657005F322F /* VIButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIButton.h; sourceTree = "<group>"; };
 		1705D7D419F9F657005F322F /* VIButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIButton.m; sourceTree = "<group>"; };
 		1705D7D519F9F657005F322F /* VILineTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VILineTextField.h; sourceTree = "<group>"; };
@@ -396,7 +396,7 @@
 				1705D7CF19F9F657005F322F /* MHFacebookImageViewer.h */,
 				1705D7D019F9F657005F322F /* MHFacebookImageViewer.m */,
 				1705D7D119F9F657005F322F /* Models.h */,
-				1705D7D219F9F657005F322F /* Modles.m */,
+				1705D7D219F9F657005F322F /* Models.m */,
 				1705D7D319F9F657005F322F /* VIButton.h */,
 				1705D7D419F9F657005F322F /* VIButton.m */,
 				1705D7D519F9F657005F322F /* VILineTextField.h */,
@@ -504,7 +504,7 @@
 				1705D7E319F9F657005F322F /* VIHtmlFileViewController.m in Sources */,
 				1705D7E919F9F657005F322F /* VIMySupriseViewController.m in Sources */,
 				1705D7EF19F9F657005F322F /* VIUserProfilesViewController.m in Sources */,
-				1705D7F519F9F657005F322F /* Modles.m in Sources */,
+				1705D7F519F9F657005F322F /* Models.m in Sources */,
 				1705D7EA19F9F657005F322F /* VINavMapViewController.m in Sources */,
 				1705D7F019F9F657005F322F /* VIWelcomeViewController.m in Sources */,
 				1705D7EB19F9F657005F322F /* VIReedemViewController.m in Sources */,

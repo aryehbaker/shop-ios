@@ -42,7 +42,7 @@ static ListType currentType;
     
     [self.nav_title addTapTarget:self action:@selector(showOpenHour:)];
     
-    UIView *top1 = [[UIView alloc] initWithFrame:Frm(0, self.nav.endY, 320, 35)];
+    UIView *top1 = [[UIView alloc] initWithFrame:Frm(0, self.nav.endY, self.view.w, 35)];
     
     section1 = [[UIButton alloc] initWithFrame:Frm(0, 0, 106, 35)];
     [section1 setTitle:Lang(@"main_suprises") selected:Lang(@"main_suprises")];
@@ -82,7 +82,7 @@ static ListType currentType;
     [top1 addSubview:section3];
     [self.view addSubview:top1];
     
-    _tableView = [[VITableView alloc] initWithFrame:Frm(0, top1.endY, 320, Space(top1.endY)) style:UITableViewStylePlain];
+    _tableView = [[VITableView alloc] initWithFrame:Frm(0, top1.endY, self.view.w, Space(top1.endY)) style:UITableViewStylePlain];
     _tableView.delegate = _tableView;
     _tableView.backgroundColor = [UIColor clearColor];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -99,7 +99,7 @@ static ListType currentType;
         guid.userInteractionEnabled = NO;
         [al addSubview:guid];
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = Frm(50, w.h - 60, 320-100, 40);
+        btn.frame = Frm(50, w.h - 60, self.view.w-100, 40);
         btn.backgroundColor = [@"#ff4747" hexColor];
         [btn setTitle:Lang(@"i_see_close_it") selected:Lang(@"i_see_close_it")];
         btn.layer.cornerRadius = 20;
@@ -132,8 +132,9 @@ static ListType currentType;
 - (void)refreshToShowTheTable
 {
     LKDBHelper *helper  = [iSQLiteHelper getDefaultHelper];
-    deals    =  [helper searchModels:[MobiPromo class] where:@"Type = 'Deal'"];
-    suprises =  [helper searchModels:[MobiPromo class] where:@"Type = 'Surprise'"];
+    deals    =  [helper search:[MobiPromo class] where:@"Type = 'Deal'" orderBy:@"CreateDate desc" offset:0 count:100000];
+    
+    suprises = [helper search:[MobiPromo class] where:@"Type = 'Surprise'" orderBy:@"CreateDate desc" offset:0 count:100000];
     stores   =  [helper searchAllModel:[Store class]];
     allStore  = [stores copy];
     
@@ -330,7 +331,7 @@ static ListType currentType;
             for (UIView *v in [_tableView subviews]) { if (v.h == 65) { [v setHidden:YES]; break;}}
             _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
             _tableView.tableHeaderView = ({
-                UIView *headerView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 320, 70)];
+                UIView *headerView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, self.view.w, 70)];
                 NSString *t = @"shoprize מתגמלת אתכם בכניסה לחנויות. \nהפתעות בלעדיות ממתינות בחנויות אלו, היכנסו עכשיו ותרוויחו";
                 UILabel *titleLabel = [VILabel createManyLines:Frm(10, 10, 300, 0) color:@"#464646" ft:Regular(19)  text:t];
                 titleLabel.text = [t rtlTxt];

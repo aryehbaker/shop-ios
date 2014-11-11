@@ -52,47 +52,54 @@
     int statrX = 0;
     
     for (NSString *path in self.paths) {
-        UIImageView *image = [[UIImageView alloc] initWithFrame:Frm(statrX,0, 320, 568)];
+        UIImageView *image = [[UIImageView alloc] initWithFrame:Frm(statrX,0, self.view.w, self.view.h)];
         image.image = [path image];
         [contentView addSubview:image];
         UIView *top = [[UIView alloc] initWithFrame:image.frame];
         top.backgroundColor = [@"#000000" hexColorAlpha:.4];
         [contentView addSubview:top];
-        statrX+= 320;
+        statrX+= self.view.w;
     }
-    [contentView setContentSize:CGSizeMake(320*self.paths.count, self.view.h)];
+    [contentView setContentSize:CGSizeMake(self.view.w*self.paths.count, self.view.h)];
     [self.view addSubview:contentView];
-    
-    
-    UIButton *btn = [[UIButton alloc] initWithFrame:Frm((320-16*4-24)/2, self.view.h - 130, 16, 16)];
-    [btn setImage:[@"normal.png" image] forState:UIControlStateNormal];
-    [btn setImage:[@"hightlight.png" image] forState:UIControlStateSelected];
-    btn.tag = 100;
-    btn.userInteractionEnabled = NO;
-    btn.selected = YES;
-    [self.view addSubview:btn];
-    
-    btn = [[UIButton alloc] initWithFrame:Frm(btn.endX+8, btn.Y, 16, 16)];
-    [btn setImage:[@"normal.png" image] forState:UIControlStateNormal];
-    btn.tag = 101;
-    btn.userInteractionEnabled = NO;
-    [btn setImage:[@"hightlight.png" image] forState:UIControlStateSelected];
-    [self.view addSubview:btn];
-    
-    btn = [[UIButton alloc] initWithFrame:Frm(btn.endX+8, btn.Y, 16, 16)];
-    [btn setImage:[@"normal.png" image] forState:UIControlStateNormal];
-    btn.tag = 102;
-    btn.userInteractionEnabled = NO;
-    [btn setImage:[@"hightlight.png" image] forState:UIControlStateSelected];
-    [self.view addSubview:btn];
-    
-    btn = [[UIButton alloc] initWithFrame:Frm(btn.endX+8, btn.Y, 16, 16)];
-    [btn setImage:[@"normal.png" image] forState:UIControlStateNormal];
-    btn.tag = 103;
-    btn.userInteractionEnabled = NO;
-    [btn setImage:[@"hightlight.png" image] forState:UIControlStateSelected];
-    [self.view addSubview:btn];
 
+    UIButton *btn;
+    if (self.paths.count > 0) {
+        btn = [[UIButton alloc] initWithFrame:Frm((self.view.w-16*self.paths.count-24)/2, self.view.h - 130, 16, 16)];
+        [btn setImage:[@"normal.png" image] forState:UIControlStateNormal];
+        [btn setImage:[@"hightlight.png" image] forState:UIControlStateSelected];
+        btn.tag = 100;
+        btn.userInteractionEnabled = NO;
+        btn.selected = YES;
+        [self.view addSubview:btn];
+    }
+
+    if (self.paths.count > 1) {
+        btn = [[UIButton alloc] initWithFrame:Frm(btn.endX+8, btn.Y, 16, 16)];
+        [btn setImage:[@"normal.png" image] forState:UIControlStateNormal];
+        btn.tag = 101;
+        btn.userInteractionEnabled = NO;
+        [btn setImage:[@"hightlight.png" image] forState:UIControlStateSelected];
+        [self.view addSubview:btn];
+    }
+    
+   if (self.paths.count > 2) {
+         btn = [[UIButton alloc] initWithFrame:Frm(btn.endX+8, btn.Y, 16, 16)];
+         [btn setImage:[@"normal.png" image] forState:UIControlStateNormal];
+         btn.tag = 102;
+         btn.userInteractionEnabled = NO;
+         [btn setImage:[@"hightlight.png" image] forState:UIControlStateSelected];
+         [self.view addSubview:btn];
+    }
+    
+    if (self.paths.count > 3) {
+        btn = [[UIButton alloc] initWithFrame:Frm(btn.endX+8, btn.Y, 16, 16)];
+        [btn setImage:[@"normal.png" image] forState:UIControlStateNormal];
+        btn.tag = 103;
+        btn.userInteractionEnabled = NO;
+        [btn setImage:[@"hightlight.png" image] forState:UIControlStateSelected];
+        [self.view addSubview:btn];
+    }
     
     UIButton *skip = [[UIButton alloc] initWithFrame:Frm(110, self.view.h-110, 100, 40)];
     [skip setTitle:Lang(@"index_skip") selected:Lang(@"index_skip")];
@@ -101,7 +108,7 @@
     [self.view addSubview:skip];
     [skip addTarget:self action:@selector(skipNow:)];
     
-    UIButton *reg = [[UIButton alloc] initWithFrame:Frm(0, self.view.h-40, 320, 40)];
+    UIButton *reg = [[UIButton alloc] initWithFrame:Frm(0, self.view.h-40, self.view.w, 40)];
     [reg setBackgroundcolorByHex:@"#FD2D38"];
     reg.tag = 10086;
     reg.titleLabel.font = Bold(19);
