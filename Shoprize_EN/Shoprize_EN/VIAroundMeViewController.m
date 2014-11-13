@@ -13,6 +13,7 @@
 #import "VIMapViewController.h"
 #import "CategoryFilterViewController.h"
 #import <VICore/VICore.h>
+#import "VIMapIndexViewController.h"
 
 @interface VIAroundMeViewController ()
 {
@@ -101,11 +102,7 @@ static NSString *filervalue;
 
 -(void)mapMe:(id)sender
 {
-    if (deals.count == 0) {
-        return;
-    }
-    VIMapViewController *m = [[VIMapViewController alloc] init];
-    m.deals = deals;
+    VIMapIndexViewController *m = [[VIMapIndexViewController alloc] init];
     [self push:m];
 }
 

@@ -15,5 +15,7 @@
 @property(nonatomic,strong) NSMutableArray *imagelist;
 
 @property(nonatomic,strong) NSString *dealid;
+@property(nonatomic,assign) BOOL hideMore;
+@property(nonatomic,assign) BOOL showRedeem;
 
 @end

@@ -144,6 +144,9 @@
 		177FE1C019FDC8C200D42AAA /* trash.png in Resources */ = {isa = PBXBuildFile; fileRef = 177FE14F19FDC8C200D42AAA /* trash.png */; };
 		177FE1C119FDC8C200D42AAA /* UI.xib in Resources */ = {isa = PBXBuildFile; fileRef = 177FE15019FDC8C200D42AAA /* UI.xib */; };
 		177FE1C219FDC8C200D42AAA /* VICore.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 177FE15119FDC8C200D42AAA /* VICore.bundle */; };
+		7A20446F1A137AB700E5EC30 /* defaults.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A20446E1A137AB700E5EC30 /* defaults.png */; };
+		7A5844CB1A13077400D784BF /* EngExt.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A5844CA1A13077400D784BF /* EngExt.xib */; };
+		7A5844CE1A13415900D784BF /* OpenMobiView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A5844CD1A13415900D784BF /* OpenMobiView.m */; };
 		7A6A1C5C1A0363D0000305F1 /* about_en.html in Resources */ = {isa = PBXBuildFile; fileRef = 7A6A1C501A0363D0000305F1 /* about_en.html */; };
 		7A6A1C5D1A0363D0000305F1 /* about_he.html in Resources */ = {isa = PBXBuildFile; fileRef = 7A6A1C511A0363D0000305F1 /* about_he.html */; };
 		7A6A1C5E1A0363D0000305F1 /* contactus_en.html in Resources */ = {isa = PBXBuildFile; fileRef = 7A6A1C521A0363D0000305F1 /* contactus_en.html */; };
@@ -165,6 +168,7 @@
 		7A9F33D81A11B5F500443343 /* tor3.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A9F33D21A11B5F500443343 /* tor3.png */; };
 		7AA514631A107EE300B76696 /* VIMapDirectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA514621A107EE300B76696 /* VIMapDirectionsViewController.m */; };
 		7AA514671A11237100B76696 /* VIFavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA514661A11237100B76696 /* VIFavViewController.m */; };
+		7AE0E5E21A11F8110010835D /* VIMapIndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE0E5E11A11F8110010835D /* VIMapIndexViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -351,6 +355,10 @@
 		177FE14F19FDC8C200D42AAA /* trash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trash.png; sourceTree = "<group>"; };
 		177FE15019FDC8C200D42AAA /* UI.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UI.xib; sourceTree = "<group>"; };
 		177FE15119FDC8C200D42AAA /* VICore.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = VICore.bundle; sourceTree = "<group>"; };
+		7A20446E1A137AB700E5EC30 /* defaults.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaults.png; sourceTree = "<group>"; };
+		7A5844CA1A13077400D784BF /* EngExt.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EngExt.xib; sourceTree = "<group>"; };
+		7A5844CC1A13415900D784BF /* OpenMobiView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenMobiView.h; sourceTree = "<group>"; };
+		7A5844CD1A13415900D784BF /* OpenMobiView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenMobiView.m; sourceTree = "<group>"; };
 		7A6A1C501A0363D0000305F1 /* about_en.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about_en.html; sourceTree = "<group>"; };
 		7A6A1C511A0363D0000305F1 /* about_he.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about_he.html; sourceTree = "<group>"; };
 		7A6A1C521A0363D0000305F1 /* contactus_en.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = contactus_en.html; sourceTree = "<group>"; };
@@ -376,6 +384,8 @@
 		7AA514621A107EE300B76696 /* VIMapDirectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIMapDirectionsViewController.m; sourceTree = "<group>"; };
 		7AA514651A11237100B76696 /* VIFavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIFavViewController.h; sourceTree = "<group>"; };
 		7AA514661A11237100B76696 /* VIFavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIFavViewController.m; sourceTree = "<group>"; };
+		7AE0E5E01A11F8110010835D /* VIMapIndexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIMapIndexViewController.h; sourceTree = "<group>"; };
+		7AE0E5E11A11F8110010835D /* VIMapIndexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIMapIndexViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -470,6 +480,10 @@
 				7A6A1C811A075DC8000305F1 /* CategoryFilterViewController.m */,
 				7AA514611A107EE300B76696 /* VIMapDirectionsViewController.h */,
 				7AA514621A107EE300B76696 /* VIMapDirectionsViewController.m */,
+				7AE0E5E01A11F8110010835D /* VIMapIndexViewController.h */,
+				7AE0E5E11A11F8110010835D /* VIMapIndexViewController.m */,
+				7A5844CC1A13415900D784BF /* OpenMobiView.h */,
+				7A5844CD1A13415900D784BF /* OpenMobiView.m */,
 			);
 			path = Shoprize_EN;
 			sourceTree = "<group>";
@@ -695,9 +709,11 @@
 				7A9F33CD1A11B5F500443343 /* facebooklogin.png */,
 				7A9F33CE1A11B5F500443343 /* tor1.png */,
 				7A9F33CF1A11B5F500443343 /* maillogin.png */,
+				7A20446E1A137AB700E5EC30 /* defaults.png */,
 				7A9F33D01A11B5F500443343 /* suplogo.png */,
 				7A9F33D11A11B5F500443343 /* tor2.png */,
 				7A9F33D21A11B5F500443343 /* tor3.png */,
+				7A5844CA1A13077400D784BF /* EngExt.xib */,
 			);
 			path = "shp-en";
 			sourceTree = "<group>";
@@ -864,6 +880,7 @@
 				177FE1A019FDC8C200D42AAA /* my_love_w.png in Resources */,
 				177FE16119FDC8C200D42AAA /* default_header.png in Resources */,
 				177FE15D19FDC8C200D42AAA /* closeed.png in Resources */,
+				7A20446F1A137AB700E5EC30 /* defaults.png in Resources */,
 				177FE16E19FDC8C200D42AAA /* howtoshow.png in Resources */,
 				177FE1AF19FDC8C200D42AAA /* suprise_buge.png in Resources */,
 				177FE19319FDC8C200D42AAA /* about_us_icon.png in Resources */,
@@ -916,6 +933,7 @@
 				177FE1BA19FDC8C200D42AAA /* search.png in Resources */,
 				177FE19019FDC8C200D42AAA /* search_meun.png in Resources */,
 				177FE16D19FDC8C200D42AAA /* howmuch.png in Resources */,
+				7A5844CB1A13077400D784BF /* EngExt.xib in Resources */,
 				177FE18319FDC8C200D42AAA /* my_suprise_icon.png in Resources */,
 				177FE19B19FDC8C200D42AAA /* invite_f_w.png in Resources */,
 				177FE18819FDC8C200D42AAA /* open.png in Resources */,
@@ -957,9 +975,11 @@
 				175F0C4919FA586A00BCAD55 /* VIBigSuprise.m in Sources */,
 				7A99E4541A00D9FC00175E24 /* VIMapViewController.m in Sources */,
 				175F0C5019FA586A00BCAD55 /* VIUncaughtExceptionHandler.m in Sources */,
+				7AE0E5E21A11F8110010835D /* VIMapIndexViewController.m in Sources */,
 				1705D77419F9F554005F322F /* main.m in Sources */,
 				175F0C4C19FA586A00BCAD55 /* VIMenusViewController.m in Sources */,
 				175F0C4819FA586A00BCAD55 /* VIAppDelegate.m in Sources */,
+				7A5844CE1A13415900D784BF /* OpenMobiView.m in Sources */,
 				1745EF1519FE452800E701F2 /* VIAroundMeViewController.m in Sources */,
 				175F0C5119FA586A00BCAD55 /* VIViewController.m in Sources */,
 				7A6A1C821A075DC8000305F1 /* CategoryFilterViewController.m in Sources */,
@@ -1024,7 +1044,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1059,7 +1079,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1084,6 +1104,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "4a877d7d-70c1-4ec5-8c8b-191991ef44db";
 			};
 			name = Debug;
 		};
@@ -1105,6 +1126,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "4a877d7d-70c1-4ec5-8c8b-191991ef44db";
 			};
 			name = Release;
 		};

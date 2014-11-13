@@ -139,6 +139,9 @@ static KUtils *k;
     if (self==nil || self.length==0) {
         return nil;
     }
+    if ([self hasPrefix:@"9999-12-31"]) {
+        return nil;
+    }
     NSString *timeFmt = @"yyyy-MM-dd'T'HH:mm:ss";
     NSString *time = self;
     if (self.length==10) {

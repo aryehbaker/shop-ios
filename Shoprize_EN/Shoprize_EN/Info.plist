@@ -9,7 +9,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.mobiconsumers.sotg</string>
+	<string>com.mobiconsumers.sotg2</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -40,9 +40,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Please click &quot;OK&quot; to allow the app to get GPS information. Otherwise you can not get the surprise round</string>
+	<string>Please click "OK" to allow the app to get GPS information. Otherwise you can not get the surprise round</string>
 	<key>NSLocationWhenInUseDescription</key>
-	<string>Please click &quot;OK&quot; to allow the app to get GPS information. Otherwise you can not get the surprise round</string>
+	<string>Please click "OK" to allow the app to get GPS information. Otherwise you can not get the surprise round</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>

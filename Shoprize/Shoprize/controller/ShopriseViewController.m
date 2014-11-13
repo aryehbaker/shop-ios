@@ -264,7 +264,7 @@
     
     UIImageView *image = [[UIImageView alloc] initWithFrame:Frm(0,0, self.view.w, self.view.h)];
     if (isEn) {
-        image.image = [@"logobg.png" image];
+        image.image = [@"tor1.png" image];
     }else{
        image.image = [@"tor_1.png" image];
     }

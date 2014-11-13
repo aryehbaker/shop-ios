@@ -15,6 +15,7 @@
 #import "VINearByViewController.h"
 #import "VIAppDelegate.h"
 #import <VICore/VICore.h>
+#import "VIAroundMeViewController.h"
 #import "VIFavViewController.h"
 
 @interface VIMenusViewController ()
@@ -199,7 +200,7 @@
         NSArray *extra = [navigationController viewControllers];
         for (long i=extra.count; i>0; i--) {
             UIViewController *uv = [extra objectAtIndex:i-1];
-            if ([uv isKindOfClass:[VINearByViewController class]]) {
+            if ([uv isKindOfClass:[VIAroundMeViewController class]]) {
                 break;
             }else{
                 [navigationController popViewControllerAnimated:NO];

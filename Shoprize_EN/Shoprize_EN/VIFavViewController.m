@@ -13,6 +13,7 @@
 #import "VIMapViewController.h"
 #import "CategoryFilterViewController.h"
 #import <VICore/VICore.h>
+#import <Shoprize/VIDealsDetailViewController.h>
 
 @interface VIFavViewController ()
 {
@@ -32,7 +33,7 @@
     [self addNav:Lang(@"menu_my_fav") left:BACK right:NONE];
     
     deals = [NSMutableArray array];
-    pageindex = 1;
+    pageindex = 0;
     
     _tableView = [[VITableView alloc] initWithFrame:Frm(0, self.nav.endY, self.view.w, Space(self.nav.endY)) style:UITableViewStylePlain];
     _tableView.delegate = _tableView;
@@ -55,7 +56,7 @@
 - (void)pullDownRefrshStart:(VITableView *)t
 {
     [deals removeAllObjects];
-    pageindex = 1;
+    pageindex = 0;
     [self loadData];
 }
 
@@ -76,38 +77,34 @@
         [cellview egoimageView4Tag:1001].placeholderImage = [@"no_pic.png" image];
         [cellview egoimageView4Tag:1101].placeholderImage = [@"no_pic.png" image];
     }
+    cellview.contentView.tag = indexPath.row;
     
-    MobiPromoAR *left =   [deals objectAtIndex:2 * indexPath.row];
+    NSDictionary *left =   [deals objectAtIndex:2 * indexPath.row];
+    NSString *image = [left stringValueForKey:@"MobiPromoPictures/0/PictureUrl" defaultValue:@""];
+    [cellview egoimageView4Tag:1001].imageURL = [NSURL URLWithString:[left stringValueForKey:@"StoreLogo"]];
     
-    [cellview egoimageView4Tag:1001].imageURL = [NSURL URLWithString:left.defPicture];
-    
-    [cellview egoimageView4Tag:1002].imageURL = [NSURL URLWithString:left.StoreImageUrl];
-    [cellview label4Tag:1003].text = [left.Offer killQute];
+    [cellview egoimageView4Tag:1002].imageURL = [NSURL URLWithString:image];
+    [cellview label4Tag:1003].text = [[left stringValueForKey:@"Offer"] killQute];
     [[cellview label4Tag:1003] setRTL];
     [cellview label4Tag:1003].font = Bold(13);
     
-    BOOL isSup = left.StoreHasSuprise;
-    [[cellview viewWithTag:1004] setHidden:!isSup];
-    if (isSup) {
-        [[cellview button4Tag:1004] addTarget:self action:@selector(showInfoMessage:)];
-    }
+    [[cellview button4Tag:1004] setImage:@"close_btn.png" selectd:@"close_btn.png"];
+    [[cellview button4Tag:1004] addTarget:self action:@selector(deleme:)];
     
     [[cellview viewWithTag:1104] setHidden:YES];
-    
-    MobiPromoAR *right =  nil;
+    NSDictionary *right =  nil;
     if ((2 * indexPath.row + 1) < deals.count) {
         right = [deals objectAtIndex:(2 * indexPath.row + 1)];
-        [cellview egoimageView4Tag:1101].imageURL = [NSURL URLWithString:right.defPicture];
-        [cellview egoimageView4Tag:1102].imageURL = [NSURL URLWithString:right.StoreImageUrl];
-        [cellview label4Tag:1103].text = [right.Offer killQute];
+        NSString *rimg = [right stringValueForKey:@"MobiPromoPictures/0/PictureUrl" defaultValue:@""];
+        [cellview egoimageView4Tag:1101].imageURL = [NSURL URLWithString:rimg];
+        [cellview egoimageView4Tag:1102].imageURL = [NSURL URLWithString: [right stringValueForKey:@"StoreLogo"]];
+        [cellview label4Tag:1103].text = [[right stringValueForKey:@"Offer"] killQute];
         [[cellview label4Tag:1103] setRTL];
         [cellview label4Tag:1103].font = Bold(13);
         
-        isSup = right.StoreHasSuprise;
-        [[cellview viewWithTag:1104] setHidden:!isSup];
-        if (isSup) {
-            [[cellview button4Tag:1104] addTarget:self action:@selector(showInfoMessage:)];
-        }
+        [[cellview button4Tag:1104] setImage:@"close_btn.png" selectd:@"close_btn.png"];
+        [[cellview button4Tag:1104] addTarget:self action:@selector(deleme:)];
+        [[cellview viewWithTag:1104] setHidden:NO];
     }
     
     [[cellview viewWithTag:1105] setHidden:right == nil];
@@ -128,10 +125,40 @@
     return cellview;
 }
 
+static long last_selected_long;
+-(void)deleme:(UIButton *)btn
+{
+    UIView *root = btn;
+    while (root.superview.tag != 1000) {
+        root = root.superview;
+    }
+    root = root.superview.superview;
+    long newTag = root.tag;
+    if (btn.tag == 1104) {
+        newTag+=1;
+    }
+    last_selected_long = newTag;
+    NSDictionary *pdata = [deals objectAtIndex:newTag];
+    [self showConfirmWithTitle:@"" msg:@"Are you sure delete ?" callbk:^(BOOL isOk) {
+        if (isOk) {
+             [VINet post:Fmt(@"/api/mobipromos/%@/unmark",[pdata stringValueForKey:@"MobiPromoId"]) args:nil target:self succ:@selector(deleCom:) error:@selector(deleFail:) inv:self.view];
+        }
+    }];
+}
+
+-(void)deleCom:(id)sender
+{
+    [deals removeObjectAtIndex:last_selected_long];
+    [_tableView reloadAndHideLoadMore:YES];
+}
+
+-(void)deleFail:(id)sender
+{
+    [VIAlertView showInfoMsg:sender];
+}
 
 - (void)loadData {
-  NSString *now = [[NSDate date] formatDefalut];
-  [VINet get:Fmt(@"/api/mobipromos/marked?from=1970-01-01&to=%@&pageIndex=%d&pageSize=10",now,pageindex) args:nil target:self succ:@selector(loadComplete:) error:@selector(loadCompleteFail:) inv:self.view];
+  [VINet get:Fmt(@"/api/mobipromos/marked?pageIndex=%d&pageSize=10",pageindex) args:nil target:self succ:@selector(loadComplete:) error:@selector(loadCompleteFail:) inv:self.view];
 }
 
 -(void)loadComplete:(id)values{
@@ -171,9 +198,12 @@
     long index = 2 * (clickBtn.tag / 10) + clickBtn.tag % 2;
     if(index == deals.count)
         return;
-    MobiPromoAR *pdata = [deals objectAtIndex:index];
-    
-    [self pushTo:@"VIDealsDetailViewController" data:[pdata toDictionary]];
+     NSDictionary *pdata = [deals objectAtIndex:index];
+     NSMutableDictionary *respval = [pdata mutableCopy];
+     [respval setValue:@"RESPDEAL" forKey:@"resptype"];
+     [self pushTo:@"VIReedemViewController" data:respval];
+
 }
+
 
 @end

@@ -246,8 +246,9 @@
         needShown = [helper searchWithSQL:sql toClass:[MobiPromo class]];
     }
    
-    if (needShown.count == 0) {
+    if (_hideMore || needShown.count == 0) {
         [tip setHidden:YES];
+        needShown = [NSMutableArray array];
     }
     
     int height = tip.endY+10;

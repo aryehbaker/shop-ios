@@ -67,17 +67,17 @@
   "index": 6
   },
   {
-  "title": "@shoprise_extra.png",
+  "title": "SOTG",
   "icon": "extra_w.png",
   "index": 7,
   "children": [
                {
-               "title": "@shoprise_extra.png",
+               "title": "SOTG",
                "icon": "mins_icon.png",
                "index": 0
                },
                {
-               "title": "@about_us.png",
+               "title": "About us",
                "icon": "about_us_icon.png",
                "index": 71,
                "issub" : true

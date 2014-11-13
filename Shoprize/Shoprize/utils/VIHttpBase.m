@@ -33,8 +33,13 @@
 - (NSArray *)findHostAndPath:(NSString *)url
 {
     NSURL *uri = [NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-   
-    return @[ (uri.port == nil || [uri.port integerValue] == 80)? uri.host : [NSString stringWithFormat:@"%@:%@",uri.host,uri.port],uri.path];
+    NSMutableString *mt = [NSMutableString stringWithString:uri.path];
+    if ([uri query]!=nil) {
+        [mt appendFormat:@"?%@",uri.query];
+    }
+    
+    return @[ (uri.port == nil || [uri.port integerValue] == 80)? uri.host : [NSString stringWithFormat:@"%@:%@",uri.host,uri.port],mt];
+    
 }
 //http type string
 - (NSString *)httpTypeString:(HTTP_METHOD_TYPE)type

@@ -217,7 +217,7 @@ static NSMutableDictionary *stores;
     }
 }
 +(void)doNothing:(id)val{
-    NSLog(@"%@",val);
+    DEBUGS(@"%@",val);
 }
 + (double)distanceTo:(double)lat lon:(double)lon{
     return [VINet distancOfTwolat1:[VINet currentLat] lon1:[VINet currentLon] lat2:lat lon2:lon];
@@ -239,7 +239,7 @@ static NSMutableDictionary *stores;
 		                                     params:queryArgs
 		                                 httpMethod:[self httpTypeString:self.method]];
 		
-        NSLog(@"-----API------ %@",apiName);
+        DEBUGS(@"-----API------ %@",apiName);
         self.operation = op;
 		[op addHeaders:[VINet headers]];
        
@@ -259,7 +259,7 @@ static NSMutableDictionary *stores;
 		    NSError *jsonParseError = nil;
 		    id requestResult = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&jsonParseError];
 		    if (jsonParseError != nil) {
-		        NSLog(@"%@", jsonParseError);
+		        DEBUGS(@"%@", jsonParseError);
 			}
 
 		    [self submitAfterResponsed:completed.HTTPStatusCode responseData:requestResult error:jsonParseError api:apiName];
@@ -373,7 +373,7 @@ static NSMutableDictionary *stores;
         [head setValue:[NSUserDefaults getValue:@"_post_store_id_"] forKey:@"StoreAddressId"];
     }
     
-    //NSLog(@"--------------------------------------HEADER------------------------------------------\n%@",head);
+    DEBUGS(@"--------------------------------------HEADER------------------------------------------\n%@",head);
     
 	return head;
 }

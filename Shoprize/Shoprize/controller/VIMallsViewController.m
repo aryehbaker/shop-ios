@@ -83,8 +83,25 @@
 
 - (void)rowSelectedAt:(NSIndexPath *)index data:(id)data
 {
+    BOOL hasInited = NO;
+    
+    for (UIViewController *ctl in [self.navigationController viewControllers]) {
+        
+        if ([NSStringFromClass([ctl class]) isEqualToString:@"VINearByViewController"]) {
+            hasInited = YES;
+            break;
+        }
+    }
+    
+    if (hasInited) {
+         [self popTo:@"VINearByViewController"];
+    }else{
+        Class clzz = NSClassFromString(@"VINearByViewController");
+        UIViewController *ctrl = [[clzz alloc] init];
+        [self push:ctrl];
+    }
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:_NOTIFY_MALL_CHANGED object:[data toDictionary]];
-    [self popTo:@"VINearByViewController"];
 }
 
 - (void)repaintCell:(UITableViewCell *)cell atPath:(NSIndexPath *)path onTable:(VICfgTableView *)cfgTableview withValue:(id)value

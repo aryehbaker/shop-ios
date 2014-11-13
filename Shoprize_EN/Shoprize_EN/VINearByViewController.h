@@ -10,4 +10,6 @@
 
 @interface VINearByViewController : ShopriseViewController<UITableViewDataSource,VITableViewDelegate>
 
+@property(nonatomic,strong) NSDictionary *mallInfo;
+
 @end

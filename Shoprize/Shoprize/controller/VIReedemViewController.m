@@ -20,6 +20,8 @@
     NSMutableArray *imagelist;
     
     UserSurprise *usersuprise;
+    
+    BOOL is_en_deal;
 }
 
 @end
@@ -30,6 +32,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    is_en_deal = NO;
     
     extra = [self getContentValueWithPath:@"VIReedemViewController"];
     
@@ -50,14 +54,27 @@
     
     NSString *mobiid = [extra stringValueForKey:@"MobiPromoId"];
     
-    LKDBHelper *helper = [iSQLiteHelper getDefaultHelper];
-    NSMutableArray *pics = [helper searchModels:[Picture class] where:@{@"MobiPromoId":mobiid}];
+    is_en_deal = [[extra stringValueForKey:@"resptype" defaultValue:@""] isEqualToString:@"RESPDEAL"];
+    
     NSMutableArray *itms = [NSMutableArray array];
-    for (Picture *p in pics) {
-        VIAutoPlayItem *it = [[VIAutoPlayItem alloc] initWithURL:p.PictureUrl andValue:nil];
-        it.placeImage = [@"no_pic.png" image];
-        [itms addObject:it];
-        [imagelist addObject:[NSURL URLWithString:p.PictureUrl]];
+    
+    if (!is_en_deal) {
+        LKDBHelper *helper = [iSQLiteHelper getDefaultHelper];
+        NSMutableArray *pics = [helper searchModels:[Picture class] where:@{@"MobiPromoId":mobiid}];
+        for (Picture *p in pics) {
+            VIAutoPlayItem *it = [[VIAutoPlayItem alloc] initWithURL:p.PictureUrl andValue:nil];
+            it.placeImage = [@"no_pic.png" image];
+            [itms addObject:it];
+            [imagelist addObject:[NSURL URLWithString:p.PictureUrl]];
+        }
+    }else{
+        NSArray *pics = [extra arrayValueForKey:@"Pictures"];
+        for (NSDictionary *p in pics) {
+            VIAutoPlayItem *it = [[VIAutoPlayItem alloc] initWithURL:[p stringValueForKey:@"PictureUrl"] andValue:nil];
+            it.placeImage = [@"no_pic.png" image];
+            [itms addObject:it];
+            [imagelist addObject:[NSURL URLWithString:[p stringValueForKey:@"PictureUrl"]]];
+        }
     }
     
     UIView *container = [[UIView alloc] initWithFrame:Frm(10, title.endY+10, self.view.w-20, 200)];
@@ -73,12 +90,6 @@
     NSString *ctx2 = [extra stringValueForKey:@"Description" defaultValue:nil];
     if (ctx2!=nil) {
         UILabel *content = [UILabel initManyLineWithFrame:Frm(20, endY+10, 280, 20) color:@"#252525" font:Regular(16) text:ctx2];
-        
-//        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:ctx2];
-//        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-//        [paragraphStyle setLineSpacing:50];//调整行间距
-//        [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [ctx2 length])];
-//        content.attributedText = attributedString;
         
         content.text = ctx2;
         content.textAlignment = Align;
@@ -99,17 +110,6 @@
     [reedem addTarget:self action:@selector(reedemStart:)];
     [ct addSubview:reedem];
     
-    usersuprise =[[iSQLiteHelper getDefaultHelper] searchSingle:[UserSurprise class] where:@{@"MobiPromoId":mobiid} orderBy:@"MobiPromoId"];
-    
-    if(!([[NSDate now] laterThan:usersuprise.StartTime] && [[NSDate now] earlyThan:usersuprise.ExpireTime]))
-    {
-        reedem.enabled = NO;
-    }
-    if([[NSDate now] laterThan:usersuprise.ExpireTime])
-    {
-        [reedem setTitle:Lang(@"activity_end") forState:UIControlStateNormal];
-    }
-    
     [ct setContentSize:CGSizeMake(ct.w, reedem.endY+15)];
     ct.showsHorizontalScrollIndicator = NO;
     ct.showsVerticalScrollIndicator = NO;
@@ -129,6 +129,31 @@
     NSString *code = usersuprise.RedemptionCode;
     if (code !=nil ) {
         [self completeReedem:@{@"RedemptionCode": code}];
+    }
+    
+    if (!is_en_deal) {
+        usersuprise =[[iSQLiteHelper getDefaultHelper] searchSingle:[UserSurprise class] where:@{@"MobiPromoId":mobiid} orderBy:@"MobiPromoId"];
+        if(!([[NSDate now] laterThan:usersuprise.StartTime] && [[NSDate now] earlyThan:usersuprise.ExpireTime]))
+        {
+            reedem.enabled = NO;
+        }
+        if([[NSDate now] laterThan:usersuprise.ExpireTime])
+        {
+            [reedem setTitle:Lang(@"activity_end") forState:UIControlStateNormal];
+        }
+    }
+    
+    if (is_en_deal) {
+        
+        NSString *code = [extra stringValueForKey:@"RedemptionCode"];
+        if (code!=nil && code.length>0) {
+            [self completeReedem:@{@"RedemptionCode": code}];
+        }
+        if ([extra stringValueForKey:@"ExpireDate"]!=nil && ![[[extra stringValueForKey:@"ExpireDate"] toLocalDate] laterThan:[NSDate date]])
+        {
+            [reedem setTitle:@"Expire" forState:UIControlStateNormal];
+            [reedem setEnabled:NO];
+        }
     }
     
 }
@@ -175,7 +200,10 @@
 {
     [self showConfirmWithTitle:@"" msg:Lang(@"reedem_cfm") callbk:^(BOOL isOk) {
         if (isOk) {
-              [VINet post:Fmt(@"/api/mobipromos/%@/redeem",usersuprise.MobiPromoId) args:nil target:self succ:@selector(completeReedem:) error:@selector(showAlertError:) inv:self.view];
+            NSString *reemId = usersuprise == nil ?
+                            [extra stringValueForKey:@"MobiPromoId"] :
+                            usersuprise.MobiPromoId;
+              [VINet post:Fmt(@"/api/mobipromos/%@/redeem",reemId) args:nil target:self succ:@selector(completeReedem:) error:@selector(showAlertError:) inv:self.view];
         }
     }];
 }

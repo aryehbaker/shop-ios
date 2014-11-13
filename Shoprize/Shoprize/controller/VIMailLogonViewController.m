@@ -137,7 +137,12 @@ static int y ;
     [[NSUserDefaults standardUserDefaults] setValue:mail.text forKey:@"last_user"];
     [[NSUserDefaults standardUserDefaults] setValue:[value jsonString] forKey:@"USER_INFO_MATION"];
     [self saveUserInfo:value];
-    [self pushTo:@"VINearByViewController"];
+    if (isEn) {
+        //when is english go to around me 
+        [self pushTo:@"VIAroundMeViewController"];
+    }else{
+        [self pushTo:@"VINearByViewController"];
+    }
 }
 
 

@@ -6,18 +6,18 @@
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
 	<string>Shoprise</string>
-	<key>CFBundleName</key>
-	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.mobiconsumers.shoprize</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1.2</string>
+	<string>1.1.3</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -32,16 +32,16 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1022</string>
+	<string>1112</string>
 	<key>FacebookAppID</key>
 	<string>603267243120437</string>
 	<key>FacebookDisplayName</key>
 	<string>Login </string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSLocationWhenInUseDescription</key>
-	<string>אנא לחץ על &quot;אישור&quot; כדי לאפשר App כדי לקבל מידע GPS. אחרת אתה לא יכול לקבל את ההפתעה מסביב</string>
 	<key>NSLocationAlwaysUsageDescription</key>
+	<string>אנא לחץ על &quot;אישור&quot; כדי לאפשר App כדי לקבל מידע GPS. אחרת אתה לא יכול לקבל את ההפתעה מסביב</string>
+	<key>NSLocationWhenInUseDescription</key>
 	<string>אנא לחץ על &quot;אישור&quot; כדי לאפשר App כדי לקבל מידע GPS. אחרת אתה לא יכול לקבל את ההפתעה מסביב</string>
 	<key>UIAppFonts</key>
 	<array>
@@ -64,10 +64,10 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>baseURL</key>
-	<string>http://spapine-dev.azurewebsites.net</string>
 	<key>apptoken</key>
 	<string>7d535daae10548af80fdf9488e4691ec</string>
+	<key>baseURL</key>
+	<string>http://spapine.azurewebsites.net</string>
 	<key>lang</key>
 	<string>he</string>
 </dict>

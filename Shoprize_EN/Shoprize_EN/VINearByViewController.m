@@ -23,15 +23,24 @@
 
 @implementation VINearByViewController
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(reloadTheNearMallDetail:) name:_NOTIFY_MALL_CHANGED object:nil];
+        [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(reloadSurpiseShow:) name:@"reloadSurpiseShow" object:nil];
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     deals = [NSMutableArray array];
     
-    [self addNav:@"" left:Around right:MENU];
+    [self addNav:@"" left:BACK right:MENU];
     
-    [self.leftOne addTarget:self action:@selector(showAroundMe:)];
     [self.nav_title addTapTarget:self action:@selector(showOpenHour:)];
     
     _tableView = [[VITableView alloc] initWithFrame:Frm(0, self.nav.endY, self.view.w, Space(self.nav.endY)) style:UITableViewStylePlain];
@@ -42,6 +51,21 @@
     _tableView.dataSource = self;
 
     [self.view addSubview:_tableView];
+    
+    
+
+    
+    //this is form around me map
+    if (self.mallInfo != nil) {
+        
+        [Mall clearRelateData];//清除当前的数据
+        [_tableView reloadData];
+        MallInfo *mall = [[MallInfo alloc] initWithDictionary:self.mallInfo error:nil];
+        ((VIAppDelegate *)[UIApplication sharedApplication].delegate).currentMall = mall;
+        self.nav_title.text =  mall.Name;
+        [VINet get:Fmt(@"/api/malls/%@/detail",mall.MallAddressId) args:nil target:self succ:@selector(getMallProms:) error:@selector(getMallsFail:) inv:self.view];
+        return;
+    }
     
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"hadVisited"]) {
         UIWindow *w = ((VIAppDelegate *)[UIApplication sharedApplication].delegate).window;
@@ -61,9 +85,7 @@
         
         [w addSubview:al];
     }
-    
-    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(reloadTheNearMallDetail:) name:_NOTIFY_MALL_CHANGED object:nil];
-    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(reloadSurpiseShow:) name:@"reloadSurpiseShow" object:nil];
+
     
     NSDictionary *mallSaved = [[NSUserDefaults getValue:_USER_SELECTED_MALL_INFO] jsonVal];
     MallInfo *selectedOne = [[MallInfo alloc] initWithDictionary:mallSaved error:nil];
@@ -77,11 +99,9 @@
         self.nav_title.text = selectedOne.Name;
         [self refreshToShowTheTable];
     }
+    
 }
 
-- (void)showAroundMe:(id)sender{
-    [self pushTo:@"VIAroundMeViewController"];
-}
 
 - (void)refreshToShowTheTable
 {

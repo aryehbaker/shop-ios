@@ -85,18 +85,20 @@
 static NSString *logpath;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [VIUncaughtExceptionHandler setDefaultHandler];
-    [[VIUncaughtExceptionHandler instace] checkAndSendMail:^(NSString *path) {
-        logpath = path;
-        if ([MFMailComposeViewController canSendMail]) {
-            [[[UIAlertView alloc] initWithTitle:@"Report" message:@"a crash file found, can you send it to me for fix it ? Thx" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil] show ];
-        }else{
-            UIAlertView *alt = [[UIAlertView alloc] initWithTitle:@"Report" message:@"a crash log found, but your device can't send mail please set it first" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
-            [alt show];
-            [VIFile deleteFile:logpath];
-        }
-        
-    }];
+    [[VILogger getLogger] setLogLevelSetting:SLLS_NONE];
+    
+//    [VIUncaughtExceptionHandler setDefaultHandler];
+//    [[VIUncaughtExceptionHandler instace] checkAndSendMail:^(NSString *path) {
+//        logpath = path;
+//        if ([MFMailComposeViewController canSendMail]) {
+//            [[[UIAlertView alloc] initWithTitle:@"Report" message:@"a crash file found, can you send it to me for fix it ? Thx" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil] show ];
+//        }else{
+//            UIAlertView *alt = [[UIAlertView alloc] initWithTitle:@"Report" message:@"a crash log found, but your device can't send mail please set it first" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
+//            [alt show];
+//            [VIFile deleteFile:logpath];
+//        }
+//        
+//    }];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.beancons     = [NSMutableDictionary dictionary];
@@ -107,8 +109,6 @@ static NSString *logpath;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shareText:) name:@"_share_to_facebook_" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(openPopSuprise:) name:@"_get_a_bigsuprise_" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(add_current_track:) name:@"_add_current_track_" object:nil];
-
-    [[VILogger getLogger] setLogLevelSetting:SLLS_ALL];
     
     VIWelcomeViewController *welcome = [[VIWelcomeViewController alloc] init];
     [self checkToShowGuide:welcome]; //check first page loading
@@ -191,7 +191,6 @@ static NSString *logpath;
     if (userInfo!=nil) {
         [self checkWhereToGoFromPushMessage:userInfo];
     }
-    
     return YES;
 }
 
@@ -224,6 +223,9 @@ static NSString *logpath;
     NSString *token = [NSString stringWithFormat:@"%@", deviceToken];
     token = [[[token stringByReplacingOccurrencesOfString:@"<" withString:@""] stringByReplacingOccurrencesOfString:@">" withString:@""] stringByReplacingOccurrencesOfString:@" " withString:@""];
     [NSUserDefaults setValue:token forKey:@"pushToken"];
+    
+   
+
 }
 
 - (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
