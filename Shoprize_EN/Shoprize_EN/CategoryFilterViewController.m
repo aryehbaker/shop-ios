@@ -44,8 +44,8 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    [self addNav:@"Filter" left:NONE right:Done];
-    [self.rightOne addTarget:self action:@selector(doComplete:)];
+    [self addNav:@"Filter" left:BACK right:NONE];
+    [self.leftOne addTarget:self action:@selector(doComplete:)];
     
     int w = self.view.w ,h = self.view.h;
     

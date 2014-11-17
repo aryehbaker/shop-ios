@@ -89,8 +89,9 @@
 -(void)loadComplte:(NSDictionary *)value
 {
     datalist = [NSMutableArray array];
-    for (NSDictionary *d in [value arrayValueForKey:@"MobiPromos"]) {
-        if (TRUE || [[[d stringValueForKey:@"Type"] lowercaseString] isEqualToString:@"deal"]) {
+    Store *store = [[Store alloc] initWithDictionary:value error:nil];
+    for (MobiPromo *d in store.MobiPromos) {
+        if (YES || ![d isSuprise]) {
             [datalist addObject:d];
         }
     }

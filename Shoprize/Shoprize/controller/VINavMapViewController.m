@@ -10,6 +10,10 @@
 #import <VICore/VICore.h>
 
 @interface VINavMapViewController ()
+{
+    VIMapView *mapkit;
+    VIPinAnnotationView *target;
+}
 
 @end
 
@@ -25,16 +29,30 @@
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     }
 #endif
-    VIMapView *mapkit = [[VIMapView alloc] initWithFrame:Frm(0, 0, self.view.w, self.view.h) showLocation:YES];
-
+    
+    mapkit = [[VIMapView alloc] initWithFrame:Frm(0, 0, self.view.w, self.view.h) showLocation:YES];
+    [mapkit.mapKitView setShowsUserLocation:YES];
     [self.view addSubview:mapkit];
     
-    VIPinAnnotationView *an = [[VIPinAnnotationView alloc] initWithTitle:self.subtitle sub:self.title lat:self.destination.latVal lon:self.destination.lonVal];
-    [mapkit addAnnotation:an];
+    target = [[VIPinAnnotationView alloc] initWithTitle:self.subtitle sub:self.title lat:self.destination.latVal lon:self.destination.lonVal];
+    [mapkit addAnnotation:target];
     
-    [self addNav:nil left:BACK right:NONE];
     
+    [self addNav:nil left:BACK right:Route];
+    [self.rightOne addTarget:self action:@selector(showMapRouting:)];
     [mapkit zoomToFit];
+    
+}
+
+-(void)showMapRouting:(UIButton *)sender {
+    if(mapkit.mapKitView.userLocation != nil){
+        [self startLoading];
+        VIPinAnnotationView *anno =  [[VIPinAnnotationView alloc]initAnnotationWithCoordinate:mapkit.mapKitView.userLocation.coordinate andColor:MKPinAnnotationColorRed];
+        [mapkit showWayFrom:anno to:target lineColor:@"#FF0000"];
+        [self stopLoading];
+    }
+    else
+        [VIAlertView showErrorMsg:@"Can't get your location"];
 }
 
 - (void)didReceiveMemoryWarning

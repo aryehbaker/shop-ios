@@ -248,9 +248,9 @@ static NSString *logpath;
         [[self pushStack] pushViewController:deal animated:YES];
     }
     if ([type isEqualToString:@"surprise"]) {
-        VIDealsDetailViewController *deal = [[VIDealsDetailViewController alloc] init];
-        deal.dealid = [userInfo stringValueForKey:@"value"];
-        [[self pushStack] pushViewController:deal animated:YES];
+//        VIDealsDetailViewController *deal = [[VIDealsDetailViewController alloc] init];
+//        deal.dealid = [userInfo stringValueForKey:@"value"];
+//        [[self pushStack] pushViewController:deal animated:YES];
     }
     
 }

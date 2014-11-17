@@ -6,110 +6,35 @@
         <meta name="viewport" content="width=device-width,target-densitydpi=high-dpi,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
         <link href="VICore.bundle/webres/VICore.css" rel="stylesheet">
 		<style type="text/css">
-			body{padding-left:5%;padding-right:3%;padding-top:5px;font-size:110%;color:#fff;font-family:Pekan-Regular;}
-			td{min-height: 40px;}
-            .line{border-bottom:1px solid #C8C7C7;float:left;width:87%;vertical-align: middle;font-size:108%;min-height:30px;line-height:100%; padding-bottom: 5px;padding-top: 5px;}
-            .icon{float:right;width:12%;height:35px;line-height:35px;}
-            .icon img {margin:8px;}
-            .content{display:none;float:left;width:87%;padding-top:5px;font-size:88%;padding-top:8px;padding-bottom:8px;}
-		</style>
-		<script type="text/javascript">
-			function expand(target){
-				var show = $('#img_'+target).attr('src') == 'open.png';
-				$('#img_'+target).attr('src',show ? 'closeed.png' : 'open.png');
-				$('#ctn_'+target).attr('style',show ? 'display:none' : 'display:block;');
-			}
-		</script> 
+			body{padding-left:5%;padding-right:3%;padding-top:5px;font-size:110%;color:#fff;}
+            H3{font-size:18px;}
+            p{font-size:15px}
+        </style>
 	</head>
 	<body>
-        <div>
-	        <div class="head">
-		       <div class="line">מה זה הפתעה ?</div>
-		       <div class="icon" ontouchstart="expand('1')"><img id="img_1" width="23" height="23" src="closeed.png" /></div>
-		       <div style="clear:both;"></div>
-	        </div>
-	        <div class="content" id="ctn_1"></div>
-            <div class="head">
-                <div class="line">איך ממשים הפתעה ?</div>
-                <div class="icon" ontouchstart="expand('2')"><img id="img_2" width="23" height="23" src="closeed.png" /></div>
-                <div style="clear:both;"></div>
-	        </div>
-            <div class="content" id="ctn_2">לאחר שזכיתם בהתפעה בכניסה לחנות, תוכלו לצפות במבצעים הקיימים בחנות בה אתם נמצאים בזמן אמת. לאחר שסיימת את החיפוש, גשו ל"הפתעות שלי" באפליקציה, לחצו על "מימוש הפתעה" והציגו את קוד האימות שקיבלתם לקופאי והרווחתם !</div>
-            
-            <div class="head">
-                <div class="line">האם ניתן לממש הפתעה יותר מפעם אחת ?</div>
-                <div class="icon" ontouchstart="expand('3')"><img id="img_3" width="23" height="23" src="closeed.png" /></div>
-                <div style="clear:both;"></div>
-	        </div>
-            <div class="content" id="ctn_3">הפתעה היא הטבה ייחודית המוענקת למשתמש שופרייז אשר נכנס לחנות מפנקת. ההפתעה היא ייחודית וחד פעמית ולא ניתן לעשות בה שימוש חוזר. הקוד שתקבלו יתאים פעם אחת בלבד.</div>
-            
-            <div class="head">
-                <div class="line">מה זה כל המבצעים האפליקציה ?</div>
-                <div class="icon" ontouchstart="expand('4')"><img id="img_4" width="23" height="23" src="closeed.png" /></div>
-                <div style="clear:both;"></div>
-	        </div>
-            <div class="content" id="ctn_4">שופרייז שואפת להעניק לכם חוויה שופינג מהנה ונוחה יותר. בשביל מה לרוץ, לחפש ולבזבז הרבה זמן על מציאת מבצעים בבית או בקניון. שופרייז מציגה לכם את כל המבצעים מכל החנויות בקניון שבו אתם נמצאים עכשיו ומה שנשאר לכם לעשות זה לראות מה מתאים לכם ובאיזה חנות הכי כדאי לקנות. אתם נהנים וחוסכים זמן וכסף ואנחנו מאושרים!</div>
-            
-            <div class="head">
-                <div class="line">האם צריך לממש גם מבצעים כדי לנצל אותם ?</div>
-                <div class="icon" ontouchstart="expand('5')"><img id="img_5" width="23" height="23" src="closeed.png" /></div>
-                <div style="clear:both;"></div>
-	        </div>
-            <div class="content" id="ctn_5">המבצעים באפליקציה הם מבצעים קיימים בחנויות באותו הרגע. כך שכל מה שעשינו זה סדר. שמנו לך את כל המבצעים במקום אחד. אין צורך לממש מבצעים רגילים. כל מה שצריך זה לדעת איזה מבצעים יש כדי שתוכל לקנות חכם יותר.</div>
-         
-         <div class="head">
-             <div class="line">האם צריך לממש גם מבצעים כדי לנצל אותם ?</div>
-             <div class="icon" ontouchstart="expand('6')"><img id="img_6" width="23" height="23" src="closeed.png" /></div>
-             <div style="clear:both;"></div>
-         </div>
-         <div class="content" id="ctn_6">למה כדאי להוסיף חנות למועדפים ?
-             שופרייז חושפת בפניך עשרות מבצעים והנחות בחנויות האהובות עליך ומעדכנת את המידע על בסיס יומי.
-             מעקב שוטף אחרי החנות מעניק לך את היכולת לדעת מתי עולה הטבה או מבצע שווה בתחומים שמעניינים אותך, גם בבית וגם בזמן אמת בקניון.
-             ללא מיילים, הודעות ומבלי לשלם או להתחייב למועדון לקוחות!
-             משתלם להיות שופרייזר :-)</div>
-         
-         <div class="head">
-             <div class="line">איך מוסיפים חנות למועדפים ?</div>
-             <div class="icon" ontouchstart="expand('7')"><img id="img_7" width="23" height="23" src="closeed.png" /></div>
-             <div style="clear:both;"></div>
-         </div>
-         <div class="content" id="ctn_7">על מנת להוסיף חנות שאתם אוהבים למועדפים עליכם לגשת ל"החנויות שלי" שבתפריט ובעמוד זה ללחוץ על "הוסף חנות". לאחר מכן כל מה שנשאר לכם לעשות זה לבחור את החנויות האהובות עליכם מהרשימה או לחפש בצורה חופשית.
-             לאחר הוספת חנות אתם תהיו חלק ממועדון החברים של שופרייז ותזכו לקבל הטבות והפתעות בלעדיות ותהיו הראשונים לדעת  על המבצעים החמים
-</div>
-         
-         <div class="head">
-             <div class="line">איך מסירים חנות מרשימת המועדפים ?</div>
-             <div class="icon" ontouchstart="expand('8')"><img id="img_8" width="23" height="23" src="closeed.png" /></div>
-             <div style="clear:both;"></div>
-         </div>
-         <div class="content" id="ctn_8">על מנת להסיר חנות מרשימת המועדפים כל שעליכם לעשות הוא להחליק עם האצבע לכיוון צד ימין או שמאל בקוביה שבה נמצא לוגו החנות אותה תרצו להסיר. לאחר מכן לחצו על "הסר" והחנות תוסר מרשימת המועדפים.</div>
-         
-         <div class="head">
-             <div class="line"> איך הפליקציה מזהה אותי בכניסה לקניות ולחנויות ?</div>
-             <div class="icon" ontouchstart="expand('9')"><img id="img_9" width="23" height="23" src="closeed.png" /></div>
-             <div style="clear:both;"></div>
-         </div>
-         <div class="content" id="ctn_9">(beacons)שופרייז משתמשת בטכנולוגית מיקום מתקדמת.
-             בכניסה לכל קניון ולכל חנות ממוקמים חיישנים שמזהים שיש לך את האפליקציה ומזכירים לך לראות אילו מבצעים והפתעות מחכים לך בקניון בו אתה נמצא ואילו מבצעים יש בחנות שבה אתה נמצא עכשיו.
-             ככה שגם אם שכחת לפתוח את האפליקציה, אנחנו נדאג שלא תפספס אף מבצע !
-         </div>
-         
-         <div class="head">
-             <div class="line">איך ניתן לצפות במבצעים של קניונים אחרים ?</div>
-             <div class="icon" ontouchstart="expand('10')"><img id="img_10" width="23" height="23" src="closeed.png" /></div>
-             <div style="clear:both;"></div>
-         </div>
-         <div class="content" id="ctn_10">ניתן לצפות בכל עת בכל המבצעים של כל החנויות בקניונים  גם מהבית.
-             על מנת לעשות זאת - גשו לתפריט, לאחר מכן לחצו על "רשימת הקניונים, בחרו את הקניון הרצוי ומיד תועברו לעמוד המבצעים וההפתעות של הקניון.
-</div>
-         
-         <div class="head">
-             <div class="line">האם אני צריך לפתוח את האפליקציה כדי ליהנות מההטבות?</div>
-             <div class="icon" ontouchstart="expand('11')"><img id="img_11" width="23" height="23" src="closeed.png" /></div>
-             <div style="clear:both;"></div>
-         </div>
-         <div class="content" id="ctn_11">זה בסדר. לא תמיד זוכרים שיש אפליקציה כזו או אחרת. הרי יש כל כך הרבה אפליקציות על המכשיר היום. בדיוק בשביל להקל עליכם, בנינו את המערכת שלנו כדי שתדע לזהות ולהזכיר לכם כל פעם שאתם עושים שופינג בקניון. אפשר, אבל לא חייב לפתוח את האפליקציה מראש. כל מה שעליכם לעשות זה לוודא שאו הוויפיי או הבלות'ות' שלכם עובד כדי שהמערכת תוכל לזהות אתכם בכניסה לקניון ולחנויות.
-</div>
-        </div>
+       <h3>What is Shopper on the Go?</h3>
+       <p>Shopper on the Go is an application designed to enhance your shopping experience by offering MobiPromos on mobile devices that can be redeemed right at the participating restaurants, retail stores and shops.</p>
+       <br/>
+       <h3>How can I sign up as a shopper?</h3>
+       <p>If you don&#39;t have an account already, click &ldquo;Login&rdquo; at the top righthand corner. It will take you to the registration page. Complete the form as requested and you will be on your way to saving money!</p>
+       <br/>
+       <h3>What&#39;s the difference between &ldquo;MobiPromos&rdquo; and &ldquo;My MobiPromos?&rdquo;</h3>
+       <p>&ldquo;MobiPromos&rdquo; are all the available&nbsp;promotions out there. &ldquo;My MobiPromos&rdquo; are the&nbsp;promotions from your subscribed categories and special&nbsp;promotions you saved by clicking &ldquo;save&rdquo; on any&nbsp;MobiPromo from the &ldquo;MobiPromos&rdquo; page.</p>
+    
+        <br/>
+       <h3>How can I subscribe to the MobiPromos that I am interested in?</h3>
+       <p>Login to your account and click &ldquo;Preference&rdquo; then select &ldquo;Subscribe&rdquo;- this will bring up a list of categories. Check off the categories whose MobiPromos you are interested in receiving. You should see a list of the MobiPromos showing up in &ldquo;My MobiPromos&rdquo; once you refresh the page.</p>
+         <br/>
+        <h3>How can I find the MobiPromos near me?</h3>
+       <p>If you are near a shopping center, &quot;Around me&quot; will list all the available&nbsp;MobiPromos within a specified mile radius. &quot;Map it&quot; will show you the pin drops of the stores. Click on one of the pins to see the location of the store and it will map out the path for you should you choose to go there.</p>
+       <br/>
+       <h3>How can I redeem a MobiPromo?</h3>
+       <p>Redeeming a MobiPromo is very easy. Find the store and the MobiPromo you like, show the cashier the MobiPromo image on your mobile device, and then press the button on the MobiPromo with &ldquo;<strong>Redeem it</strong>&rdquo;. Voila! You&rsquo;ve saved money!</p>
+       <br/>
+       <h3>What if store cashier does not accept the MobiPromo?</h3>
+       <p>All MobiPromos listed on Shopper on the Go are redeemable. We work with shops/stores to ensure that all MobiPromos from Shopper on the Go are honored and accepted at the store. You should ask for the store manager if you run into problems with the cashier, but if you still have problems, please contact us so we may resolve the issue for you quickly.</p>
+       <br/>
+       <h3>What is &ldquo;Save MobiPromo&rdquo;?</h3>
+       <p>&ldquo;Save MobiPromo&rdquo; allows you to save paper&nbsp;promotions sent via snail mail by taking a picture of the&nbsp;promotion with your iPhone and thus converting it into a MobiPromo.&nbsp; This MobiPromo will be placed in &ldquo;My MobiPromos&rdquo; and roam with you automatically.</p>
 	</body>
 </html>

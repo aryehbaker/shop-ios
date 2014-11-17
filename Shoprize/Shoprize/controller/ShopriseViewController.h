@@ -21,6 +21,7 @@ typedef NS_ENUM(NSInteger, BarItem) {
     SEARCH,
     Around,
     MapIt,
+    Route,
     Done
 };
 
@@ -62,6 +63,8 @@ typedef NS_ENUM(NSInteger, BarItem) {
 - (void)showInfoMessage:(UITapGestureRecognizer *)tap;
 
 - (BOOL)isEmpty:(id)value;
+
+- (void)redeemDeail:(NSString *)dealId complete:(SEL)complete;
 
 @end
 

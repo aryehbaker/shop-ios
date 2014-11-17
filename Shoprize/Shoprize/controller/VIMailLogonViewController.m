@@ -96,7 +96,11 @@ static int y ;
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     if (textField.tag == 1501) {
-        [VINet post:Fmt(@"/api/account/%@/forgetpassword",textField.text) args:nil target:self succ:@selector(popOK:) error:@selector(shoMstMsg:) inv:self.view];
+        if([textField isEmptyValue]) {
+            [VIAlertView showErrorMsg:Lang(@"mail_required")];
+            return YES;
+        }
+        [VINet post:Fmt(@"/api/account/%@/forgetpassword",[textField.text uriEncode]) args:nil target:self succ:@selector(popOK:) error:@selector(shoMstMsg:) inv:self.view];
         //[textField resignFirstResponder];
         return NO;
     }

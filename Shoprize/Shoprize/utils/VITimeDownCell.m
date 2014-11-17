@@ -16,8 +16,8 @@
     NSTimer *leftTimer;
     NSTimer *rightTimer;
 }
-@property(nonatomic,strong) NSDictionary *leftInfo;
-@property(nonatomic,strong) NSDictionary *rightInfo;
+@property(nonatomic,strong) MobiPromo *leftInfo;
+@property(nonatomic,strong) MobiPromo *rightInfo;
 
 @end
 
@@ -37,7 +37,7 @@
     return self;
 }
 
-- (void)repaintInfo:(NSDictionary *)li rightinfo:(NSDictionary *)rl path:(NSIndexPath *)path {
+- (void)repaintInfo:(MobiPromo *)li rightinfo:(MobiPromo *)rl path:(NSIndexPath *)path {
 
     [leftTimer invalidate];
     [rightTimer invalidate];
@@ -48,14 +48,13 @@
     self.leftInfo = li;
     self.rightInfo = rl;
     
-    
     if (leftinfo != nil) {
         
-        [self egoimageView4Tag:14001].imageURL = [NSURL URLWithString:[self.leftInfo stringValueForKey:@"StoreImageUrl"]];
+        [self egoimageView4Tag:14001].imageURL = [NSURL URLWithString:[self.leftInfo StoreImageUrl]];
         [self label4Tag:14002].hidden = YES;
-        [self label4Tag:14003].text = [leftinfo stringValueForKey:@"StoreName" defaultValue:@""];
+        [self label4Tag:14003].text = [leftinfo StoreName];
         
-        id jsonValue = [[leftinfo stringValueForKey:@"Prerequisite" defaultValue:@"{}"] jsonVal];
+        id jsonValue = [[leftinfo Prerequisite] jsonVal];
         NSString *StartTime = [jsonValue stringValueForKey:@"StartTime"];
         NSString *nowTime   = [[NSDate now] format:@"HH:mm"];
         if ([self time2Sec:StartTime] > [self time2Sec:nowTime]) {
@@ -76,11 +75,11 @@
 
     if (rightinfo!=nil) {
         
-        [self egoimageView4Tag:14101].imageURL = [NSURL URLWithString:[self.rightInfo stringValueForKey:@"StoreImageUrl"]];
+        [self egoimageView4Tag:14101].imageURL = [NSURL URLWithString:[self.rightInfo StoreImageUrl]];
         [self label4Tag:14102].hidden = YES;
-        [self label4Tag:14103].text = [self.rightInfo stringValueForKey:@"StoreName" defaultValue:@""];
+        [self label4Tag:14103].text = [self.rightInfo StoreName];
         
-        id jsonValue = [[self.rightInfo stringValueForKey:@"Prerequisite" defaultValue:@"{}"] jsonVal];
+        id jsonValue = [[self.rightInfo Prerequisite] jsonVal];
         NSString *StartTime = [jsonValue stringValueForKey:@"StartTime"];
         NSString *nowTime   = [[NSDate now] format:@"HH:mm"];
         if ([self time2Sec:StartTime] > [self time2Sec:nowTime]) {
@@ -112,7 +111,7 @@
 
 - (void)repaintLeftInfo
 {
-    id jsonValue = [[self.leftInfo stringValueForKey:@"Prerequisite" defaultValue:@"{}"] jsonVal];
+    id jsonValue = [[self.leftInfo Prerequisite] jsonVal];
     if ([jsonValue allKeys].count >0 && [[jsonValue stringValueForKey:@"Type"] isEqualToString:@"InStore"]) {
         NSString *StartTime = [jsonValue stringValueForKey:@"StartTime"];
         NSString *nowTime   = [[NSDate date] format:@"HH:mm:ss"];
@@ -129,7 +128,7 @@
 
 - (void)repaintRightInfo
 {
-    id jsonValue = [[self.rightInfo stringValueForKey:@"Prerequisite" defaultValue:@"{}"] jsonVal];
+    id jsonValue = [[self.rightInfo Prerequisite] jsonVal];
     if ([jsonValue allKeys].count >0 && [[jsonValue stringValueForKey:@"Type"] isEqualToString:@"InStore"])
     {
         NSString *StartTime = [jsonValue stringValueForKey:@"StartTime"];
@@ -158,57 +157,6 @@
         + [[ts objectAtIndex:2] intValue]  ;
     }
     return 0;
-}
-
-@end
-
-@implementation NSDictionary (TimeDown)
-
-- (NSDate *)getDateValue:(NSString *)timeStr
-{
-    return [timeStr toLocalDate];
-}
-
-- (BOOL) isExpirt
-{
-    NSDate *lStart = [self getDateValue:[self stringValueForKey:@"StartDate"]];
-    NSDate *lExp   = [self getDateValue:[self stringValueForKey:@"ExpireDate"]];
-    if ([[NSDate now] laterThan:lStart] && [[NSDate now] earlyThan:lExp])
-    {
-        NSString *prev = [self stringValueForKey:@"Prerequisite" defaultValue:@"{}"];
-        id jsonValue = [prev jsonVal];
-        if ([jsonValue allKeys].count >0 && [[jsonValue stringValueForKey:@"Type"] isEqualToString:@"InStore"])
-        {
-            NSString *StartTime = [jsonValue stringValueForKey:@"StartTime"];
-            NSArray *time = [StartTime componentsSeparatedByString:@":"];
-            int mins = [[time objectAtIndex:0] intValue] * 60 + [[time objectAtIndex:1] intValue];
-            int exps = [jsonValue intValueForKey:@"ExpireMinutes" defaultValue:0];
-            NSDate *now = [NSDate now];
-            int nowval = [[now format:@"HH"] intValue] * 60 + [[now format:@"mm"] intValue];
-            if (nowval>=mins && nowval<(mins+exps)) {
-                return NO;
-            }
-            return YES;
-        }
-    }
-    return YES;
-}
-
-- (BOOL) notStart
-{
-    NSDate *lStart = [self getDateValue:[self stringValueForKey:@"StartDate"]];
-    NSDate *lExp   = [self getDateValue:[self stringValueForKey:@"ExpireDate"]];
-    if ([[NSDate now] laterThan:lStart] && [[NSDate now] earlyThan:lExp])
-    {
-        NSString *prev = [self stringValueForKey:@"Prerequisite" defaultValue:@"{}"];
-        id jsonValue = [prev jsonVal];
-        if ([jsonValue allKeys].count >0 && [[jsonValue stringValueForKey:@"Type"] isEqualToString:@"InStore"]) {
-            NSString *StartTime = [[jsonValue stringValueForKey:@"StartTime"] stringByReplacingOccurrencesOfString:@":" withString:@""];
-            NSString *date = [[NSDate now] format:@"HHmm"];
-            return [StartTime intValue] > [date intValue];
-        }
-    }
-    return NO;
 }
 
 @end

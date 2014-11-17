@@ -10,18 +10,20 @@
 #import <Shoprize/KUtils.h>
 #import <iSQLite/iSQLite.h>
 #import <Shoprize/CMPopTipView.h>
-#import "VIMapViewController.h"
 #import "CategoryFilterViewController.h"
 #import <VICore/VICore.h>
 #import <Shoprize/VIDealsDetailViewController.h>
 
-@interface VIFavViewController ()
-{
+
+@interface VIFavViewController () {
+
     VITableView *_tableView;
     NSMutableArray *deals;
     UILabel *distance;
     
     int pageindex;
+    
+    long currentTag;
 }
 
 @end
@@ -30,12 +32,31 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self addNav:Lang(@"menu_my_fav") left:BACK right:NONE];
+    [self addNav:Lang(@"menu_my_deal") left:BACK right:MENU];
+    
+    UIButton *left = [[UIButton alloc] initWithFrame:Frm(0, self.nav.endY, self.view.w/2, 34)];
+    [left setTitle:Lang(@"deal_wanted") selected:Lang(@"deal_wanted")];
+    left.titleLabel.font = Bold(16);
+    left.tag = 100;
+    [left setTitleColor:[@"#FFFFFF" hexColor] forState:UIControlStateNormal];
+    [left setTitleColor:[@"#ff4747" hexColor] forState:UIControlStateSelected];
+    [left addTarget:self action:@selector(changeTab:)];
+   
+    [self.view addSubview:left];
+    
+    UIButton *right = [[UIButton alloc] initWithFrame:Frm(left.endX, self.nav.endY, self.view.w-left.endX, left.h)];
+    [right setTitle:Lang(@"deal_redeem") selected:Lang(@"deal_redeem")];
+    right.titleLabel.font =  Bold(16);
+    right.tag = 101;
+    [right setTitleColor:[@"#FFFFFF" hexColor] forState:UIControlStateNormal];
+    [right setTitleColor:[@"#ff4747" hexColor] forState:UIControlStateSelected];
+    [right addTarget:self action:@selector(changeTab:)];
+    [self.view addSubview:right];
     
     deals = [NSMutableArray array];
     pageindex = 0;
     
-    _tableView = [[VITableView alloc] initWithFrame:Frm(0, self.nav.endY, self.view.w, Space(self.nav.endY)) style:UITableViewStylePlain];
+    _tableView = [[VITableView alloc] initWithFrame:Frm(0, right.endY, self.view.w, Space(right.endY)) style:UITableViewStylePlain];
     _tableView.delegate = _tableView;
     _tableView.backgroundColor = [UIColor clearColor];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -44,8 +65,22 @@
     
     [self.view addSubview:_tableView];
     
-    [self loadData];
+    [self changeTab:left];
+}
 
+-(void)changeTab:(UIButton *)sender
+{
+    [self.view button4Tag:100].selected = NO;
+    [self.view button4Tag:100].backgroundColor = [@"#ff4747" hexColor];
+    [self.view button4Tag:101].selected = NO;
+    [self.view button4Tag:101].backgroundColor = [@"#ff4747" hexColor];
+    
+    sender.selected = YES;
+    sender.backgroundColor = [@"#ffffff" hexColor];
+   
+    
+    currentTag = sender.tag;
+    [self pullDownRefrshStart:_tableView];
 }
 
 - (void)loadMoreStarted:(VITableView *)t
@@ -158,7 +193,11 @@ static long last_selected_long;
 }
 
 - (void)loadData {
-  [VINet get:Fmt(@"/api/mobipromos/marked?pageIndex=%d&pageSize=10",pageindex) args:nil target:self succ:@selector(loadComplete:) error:@selector(loadCompleteFail:) inv:self.view];
+    if (currentTag == 101) {
+        [VINet get:@"/api/mobipromos/redeemed" args:nil target:self succ:@selector(loadComplete:) error:@selector(loadCompleteFail:) inv:self.view];
+    }else{
+        [VINet get:Fmt(@"/api/mobipromos/marked?pageIndex=%d&pageSize=10",pageindex) args:nil target:self succ:@selector(loadComplete:) error:@selector(loadCompleteFail:) inv:self.view];
+    }
 }
 
 -(void)loadComplete:(id)values{

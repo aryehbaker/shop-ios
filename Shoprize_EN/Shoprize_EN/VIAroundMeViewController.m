@@ -10,16 +10,19 @@
 #import <Shoprize/KUtils.h>
 #import <iSQLite/iSQLite.h>
 #import <Shoprize/CMPopTipView.h>
-#import "VIMapViewController.h"
+#import <Shoprize/VIDealsDetailViewController.h>
 #import "CategoryFilterViewController.h"
 #import <VICore/VICore.h>
 #import "VIMapIndexViewController.h"
+#import "ASValuePopUpView.h"
+#import "ASValueTrackingSlider.h"
 
-@interface VIAroundMeViewController ()
+@interface VIAroundMeViewController ()<ASValueTrackingSliderDataSource,ASValueTrackingSliderDelegate>
 {
     VITableView *_tableView;
     NSMutableArray *deals;
-    UILabel *distance;
+    
+    ASValueTrackingSlider *slider;
 }
 
 @end
@@ -34,7 +37,7 @@
     
     deals = [NSMutableArray array];
     
-    _tableView = [[VITableView alloc] initWithFrame:Frm(0, self.nav.endY, self.view.w, Space(self.nav.endY) - 35) style:UITableViewStylePlain];
+    _tableView = [[VITableView alloc] initWithFrame:Frm(0, self.nav.endY, self.view.w, Space(self.nav.endY) - 40) style:UITableViewStylePlain];
     _tableView.delegate = _tableView;
     _tableView.backgroundColor = [UIColor clearColor];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -43,41 +46,30 @@
     
     [self.view addSubview:_tableView];
     
-    UIView *filter = [[UIView alloc] initWithFrame:Frm(0, self.view.h-35, self.view.w, 35)];
+    UIView *filter = [[UIView alloc] initWithFrame:Frm(0, self.view.h-40, self.view.w, 40)];
     filter.backgroundColor = [@"#9B9B9B" hexColorAlpha:1];
     UIView *l = [[UIView alloc] initWithFrame:Frm(0, 0, filter.w, 1)];
     l.backgroundColor = [@"#727272" hexColorAlpha:1];
     [filter addSubview:l];
     
-    UIButton *lter = [[UIButton alloc] initWithFrame:Frm(0, 2, 80, 31)];
-    [lter setTitle:@"Filter" selected:@"Filter"];
+    UIButton *lter = [[UIButton alloc] initWithFrame:Frm(5,2, 60, 36)];
+    [lter setImage:@"filter.png" selectd:@"filter.png"];
+    [lter setImageEdgeInsets:UIEdgeInsetsMake(6,20, 6, 20)];
     [lter addTarget:self action:@selector(showFiler:)];
     lter.titleLabel.font = FontB(15);
     [filter addSubview:lter];
     
-    UIButton *search = [[UIButton alloc] initWithFrame:Frm(filter.w-72, 3, 60, 28) font:FontS(14) title:@"Search" color:@"#ffffff"];
-    [search addTarget:self action:@selector(loadDataNew:)];
-    [filter addSubview:search];
+    slider = [[ASValueTrackingSlider alloc] initWithFrame:Frm(lter.endX+5, 0, filter.w-lter.endX-20, filter.h)];
+    slider.popUpViewColor = [@"#FF1500" hexColor];
+    slider.textColor = [@"#ffffff" hexColor];
+    slider.font = FontB(15);
+    slider.minimumValue = 1;
+    slider.maximumValue = 30;
+    slider.dataSource = self;
+    slider.delegate = self;
+    [slider setValue:2 animated:YES];
     
-    
-    UIButton *mins = [[UIButton alloc] initWithFrame:Frm((self.view.w - 140)/2, 3, 28, 28)];
-    [mins setTitle:@"-" selected:@"-"];
-    [filter addSubview:mins];
-    mins.tag = -1;
-    [mins addTarget:self action:@selector(doPlus:)];
-
-    distance = [[UILabel alloc] initWithFrame:Frm(mins.endX+15, 2, 50, 30)];
-    [distance setFont:FontS(14)];
-    [distance setTextAlignment:NSTextAlignmentCenter];
-    [distance setText:@"2mile"];
-    [distance setTextColor:[UIColor whiteColor]];
-    [filter addSubview:distance];
-    
-    UIButton *plus = [[UIButton alloc] initWithFrame:Frm(distance.endX+15, 3, 28, 28)];
-    plus.tag = 1;
-    [plus addTarget:self action:@selector(doPlus:)];
-    [plus setTitle:@"+" selected:@"+"];
-    [filter addSubview:plus];
+    [filter addSubview:slider];
     
     [self.view addSubview:filter];
     
@@ -85,6 +77,29 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(filter_ed:) name:@"_filtered_" object:nil];
 }
+- (void)sliderWillDisplayPopUpView:(ASValueTrackingSlider *)slider
+{
+    
+}
+- (void)sliderDidHidePopUpView:(ASValueTrackingSlider *)slider
+{
+    if (isLoading) return;
+    isLoading = YES;
+    [deals removeAllObjects];
+    [_tableView reloadAndHideLoadMore:YES];
+    [self performSelector:@selector(preLoading) withObject:nil afterDelay:.5];
+}
+
+bool isLoading;
+- (void)preLoading {
+    [self loadData];
+}
+
+- (NSString *)slider:(ASValueTrackingSlider *)slider stringForValue:(float)value
+{
+    return Fmt(@"%d mile",(int)ceil(value)) ;
+}
+
 static NSString *filervalue;
 -(void)filter_ed:(NSNotification *)noti {
     filervalue = noti.object;
@@ -106,20 +121,6 @@ static NSString *filervalue;
     [self push:m];
 }
 
--(void)doPlus:(UIButton *)sender
-{
-    long value = [distance.text integerValue];
-    long mile = value+sender.tag;
-    if (mile <= 0) {
-        mile = 1;
-    }
-    [distance setText:Fmt(@"%ldmile",mile)];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
 - (void)loadMoreStarted:(VITableView *)t
 {
     
@@ -127,7 +128,6 @@ static NSString *filervalue;
 - (void)pullDownRefrshStart:(VITableView *)t
 {
     [self loadData];
-    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -212,15 +212,15 @@ static NSString *filervalue;
         [_tableView reloadAndHideLoadMore:YES];
         
     }else{
-        int distance2 = [[distance text] intValue];
-        [VINet get:Fmt(@"/api/mobipromos/nearby?radius=%d",distance2) args:nil target:self succ:@selector(loadComplete:) error:@selector(loadCompleteFail:) inv:self.view];
+        int distance2 =  (int)ceil(slider.value);
+        [VINet get:Fmt(@"/api/mobipromos/nearby?radius=%d",distance2) args:nil target:self succ:@selector(loadComplete:) error:@selector(loadCompleteFail:) inv:_tableView];
     }
 }
 
 -(void)loadComplete:(id)values{
     
     LKDBHelper *helper = [iSQLiteHelper getDefaultHelper];
-    [helper clearTableData:[MobiPromoAR class]];
+    [helper deleteWithClass:[MobiPromoAR class] where:@"1 = 1"];
     
     for (NSDictionary *dct in values) {
         NSMutableDictionary *mtdct = [dct mutableCopy];
@@ -246,9 +246,11 @@ static NSString *filervalue;
     
     deals = [helper search:[MobiPromoAR class] where:@"" orderBy:@"CreateDate desc" offset:0 count:100000];
     [_tableView reloadAndHideLoadMore:YES];
+    isLoading = NO;
 }
 
 -(void)loadCompleteFail:(id)values{
+    isLoading = NO;
     [VIAlertView showErrorMsg:@"Load Error"];
 }
 
@@ -281,7 +283,9 @@ static NSString *filervalue;
         return;
     MobiPromoAR *pdata = [deals objectAtIndex:index];
     
-    [self pushTo:@"VIDealsDetailViewController" data:[pdata toDictionary]];
+    VIDealsDetailViewController *deal = [[VIDealsDetailViewController alloc] init];
+    deal.mobipromoar = pdata;
+    [self push:deal];
     
 }
 

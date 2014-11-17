@@ -234,8 +234,7 @@
 @implementation JSONValueTransformer (CustomTransformer)
 
 - (NSDate *)NSDateFromNSString:(NSString*)string {
-    NSDate *time =  [string toLocalDate];
-    return time;
+    return [string toLocalDate];
 }
 
 - (NSString *)JSONObjectFromNSDate:(NSDate *)date {

@@ -10,6 +10,7 @@
 #import "CMPopTipView.h"
 #import "KUtils.h"
 #import "VINavMapViewController.h"
+#import "VIDealsDetailViewController.h"
 
 @interface VIStoreDetailViewController ()
 {
@@ -135,7 +136,10 @@
 {
     long index = tap.view.tag;
     MobiPromo *mob = [extraProms objectAtIndex:index];
-    [self pushTo:@"VIDealsDetailViewController" data:[mob toDictionary]];
+    VIDealsDetailViewController *deal = [[VIDealsDetailViewController alloc] init];
+    deal.mobipromo = mob;
+    [self push:deal];
+
 }
 
 - (void)showTime:(id)sender

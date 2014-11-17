@@ -14,4 +14,7 @@
 @property(nonatomic,strong) NSString *title;
 @property(nonatomic,strong) NSString *subtitle;
 
+@property(nonatomic,retain) NSArray *points;
+@property(nonatomic,retain) UIImageView *routeView;
+
 @end

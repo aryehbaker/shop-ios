@@ -22,6 +22,7 @@
 @interface VIMapView : UIView <MKMapViewDelegate>{}
 
 @property(nonatomic, readonly) MKMapView *mapKitView;
+@property(nonatomic, retain) UIImageView *routeView;
 
 - (id)initWithFrame:(CGRect)frame showLocation:(BOOL)showYourlocation;
 

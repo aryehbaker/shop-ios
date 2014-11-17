@@ -39,7 +39,7 @@
     
     deals = [NSMutableArray array];
     
-    [self addNav:@"" left:BACK right:MENU];
+    [self addNav:@"" left:NONE right:MENU];
     
     [self.nav_title addTapTarget:self action:@selector(showOpenHour:)];
     
@@ -66,26 +66,6 @@
         [VINet get:Fmt(@"/api/malls/%@/detail",mall.MallAddressId) args:nil target:self succ:@selector(getMallProms:) error:@selector(getMallsFail:) inv:self.view];
         return;
     }
-    
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"hadVisited"]) {
-        UIWindow *w = ((VIAppDelegate *)[UIApplication sharedApplication].delegate).window;
-        UIView *al = [[UIView alloc] initWithFrame:w.bounds];
-        al.tag = -10002;
-        UIImageView *guid = [@"howtoshow.png" imageViewForImgSizeAtX:0 Y:0];
-        guid.userInteractionEnabled = NO;
-        [al addSubview:guid];
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = Frm(50, w.h - 60, self.view.w-100, 40);
-        btn.backgroundColor = [@"#ff4747" hexColor];
-        [btn setTitle:Lang(@"i_see_close_it") selected:Lang(@"i_see_close_it")];
-        btn.layer.cornerRadius = 20;
-        btn.titleLabel.font = Bold(18);
-        [btn addTarget:self action:@selector(closeThem:)];
-        [al addSubview:btn];
-        
-        [w addSubview:al];
-    }
-
     
     NSDictionary *mallSaved = [[NSUserDefaults getValue:_USER_SELECTED_MALL_INFO] jsonVal];
     MallInfo *selectedOne = [[MallInfo alloc] initWithDictionary:mallSaved error:nil];
@@ -384,7 +364,10 @@
     if(index == deals.count)
         return;
     MobiPromo *pdata = [deals objectAtIndex:index];
-    [self pushTo:@"VIDealsDetailViewController" data:[pdata toDictionary]];
+    
+    VIDealsDetailViewController *deal = [[VIDealsDetailViewController alloc] init];
+    deal.mobipromo = pdata;
+    [self push:deal];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

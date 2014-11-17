@@ -78,5 +78,9 @@
 - (BOOL)isYES;      /** 判断某个字符串是否为YES */
 - (BOOL)isHttp;
 
+#pragma mark  用于获取网络请求的
+- (NSString *)host;
+- (NSString *)path;
+
 @end
 

@@ -24,13 +24,24 @@
         [self addCommentPage:.4];
         UIImageView *t1 = [@"logo.png" imageViewForImgSizeAtX:0 Y:40];
         [self.view addSubview:t1];
-        
+    }
+    if (isEn) {
+        [self addCommentPage:0];
+        UIImageView *t1 = [@"suplogo.png" imageViewForImgSizeAtX:(self.view.w-279)/2 Y:self.view.h-270];
+        [self.view addSubview:t1];
+    }
+    
         UIButton *faceBk = [[UIButton alloc] initWithFrame:Frm(35, self.view.h - 170, 250, 50)];
         [faceBk setBackgroundImage:[@"facebook_btn.png" image] forState:UIControlStateNormal];
         [faceBk setTitle:Lang(@"facebook_logon") forState:UIControlStateNormal];
         faceBk.titleLabel.font = Bold(20);
         [faceBk setTitleColor:[@"#0A76BE" hexColor] forState:UIControlStateNormal];
-        
+    
+        if(isEn){
+           [faceBk setTitleEdgeInsets:UIEdgeInsetsMake(0, 30, 0, 0)];
+           [faceBk setTitleColor:[@"#FFFFFF" hexColor] forState:UIControlStateNormal];
+        }
+    
         [faceBk addTarget:self action:@selector(facebookLogon:)];
         [self.view addSubview:faceBk];
         
@@ -42,31 +53,10 @@
         [email setTitle:Lang(@"mail_logon") forState:UIControlStateNormal];
         [email setTitleColor:[@"#626262" hexColor] forState:UIControlStateNormal];
         [self.view addSubview:email];
-    }
     
-    if (isEn) {
-        [self addCommentPage:0];
-        UIImageView *t1 = [@"suplogo.png" imageViewForImgSizeAtX:(self.view.w-279)/2 Y:self.view.h-250];
-        [self.view addSubview:t1];
-        
-        UIButton *faceBk = [[UIButton alloc] initWithFrame:Frm((self.view.w-132)/2, t1.endY+10, 132, 26)];
-        [faceBk setBackgroundImage:[@"facebooklogin.png" image] forState:UIControlStateNormal];
-        [faceBk setTitle:Lang(@"facebook_logon") forState:UIControlStateNormal];
-        faceBk.titleLabel.font = Bold(12);
-        faceBk.titleEdgeInsets = UIEdgeInsetsMake(0, 20, 0, 0);
-        [faceBk setTitleColor:[@"#FFFFFF" hexColor] forState:UIControlStateNormal];
-        
-        [faceBk addTarget:self action:@selector(facebookLogon:)];
-        [self.view addSubview:faceBk];
-        
-        UIButton *email = [[UIButton alloc] initWithFrame:Frm(faceBk.x, faceBk.endY+10, 132, 26)];
-        [email addTarget:self action:@selector(pushToLogin:)];
-        email.titleLabel.font = Bold(12);
-        email.titleEdgeInsets = UIEdgeInsetsMake(0, 20, 0, 0);
-        [email setBackgroundImage:[@"maillogin.png" image] forState:UIControlStateNormal];
-        [email setTitle:Lang(@"mail_logon") forState:UIControlStateNormal];
+    if(isEn){
+        [email setTitleEdgeInsets:UIEdgeInsetsMake(0, 30, 0, 0)];
         [email setTitleColor:[@"#FFFFFF" hexColor] forState:UIControlStateNormal];
-        [self.view addSubview:email];
     }
     
     UIButton *signUp = [[UIButton alloc] initWithFrame:Frm(0, self.view.h-40, self.view.w, 40)];

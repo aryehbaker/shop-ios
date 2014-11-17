@@ -75,7 +75,6 @@
     [view textfiled4Tag:10010].placeholder = Lang(@"fm_gender");
     [[view textfiled4Tag:10010] setValue:[@"#FBFDFB" hexColor] forKeyPath:@"_placeholderLabel.textColor"];//修改颜色
     [[view textfiled4Tag:10010] setText:[VINet info:Sex]];
-
     
     [formView addSubview:view];
     [formView setContentSize:CGSizeMake(self.view.w, view.h)];
@@ -148,6 +147,9 @@
     
     UIButton *delet = [formView button4Tag:10009];
     [delet setTitle:Lang(@"del_user_accoutn") selected:Lang(@"del_user_accoutn")];
+    if (isEn) {
+        delet.titleLabel.font = FontS(14);
+    }
     [delet addTarget:self action:@selector(showDeleteView:)];
 }
 
@@ -283,7 +285,7 @@
     UIButton *dele = [UIButton buttonWithType:UIButtonTypeCustom];
     [dele setBackgroundcolorByHex:@"#FC494D"];
     [dele setTitle:Lang(@"delete_account_button_text") selected:Lang(@"delete_account_button_text")];
-    dele.frame = Frm(45, ctx.endY+5, 80,30);
+    dele.frame = Frm(25, ctx.endY+5, 100,30);
     dele.layer.cornerRadius = 15;
     dele.titleLabel.font = Bold(15);
     [dele addTarget:self action:@selector(deleteMe:)];
@@ -291,7 +293,7 @@
     [cts addSubview:dele];
     
     UIButton *ctsus = [UIButton buttonWithType:UIButtonTypeCustom];
-    ctsus.frame = Frm(dele.endX+5,dele.y,80, 30);
+    ctsus.frame = Frm(dele.endX+5,dele.y,100, 30);
     ctsus.layer.cornerRadius = 15;
     ctsus.titleLabel.font = Bold(15);
     [ctsus addTarget:self action:@selector(contaactUs:)];
@@ -370,7 +372,8 @@
         [pick setDatePickerMode:UIDatePickerModeDate];
         [pick setY:self.view.h - (pick.h+40)];
         [full addSubview:pick];
-        [pick setDate:cd];
+        if(cd)
+            [pick setDate:cd];
         UIView *buttom = [[UIView alloc] initWithFrame:Frm(0, pick.endY, pick.w, 40)];
         buttom.backgroundColor = [UIColor whiteColor];
         UIButton *l1 = [[UIButton alloc] initWithFrame:Frm(0, 0, self.view.w/3, 40) font:FontS(14) title:@"Cancel" color:@"#000000"];

@@ -11,6 +11,10 @@
 
 @interface VIDealsDetailViewController : ShopriseViewController<MHFacebookImageViewerDatasource>
 
+//这个值是JSON转化过后的内容
+@property(nonatomic,strong) MobiPromo *mobipromo;
+@property(nonatomic,strong) MobiPromo *mobipromoar;
+
 @property(nonatomic,strong) NSMutableSet *exculedId;
 @property(nonatomic,strong) NSMutableArray *imagelist;
 

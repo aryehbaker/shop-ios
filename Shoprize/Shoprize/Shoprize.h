@@ -25,8 +25,6 @@
 #define _Show_Nav_Menu  @"__Show_Nav_Menu"
 #define def_isHe   YES
 
-#import <Shoprize/VITimeDownCell.h>
-
 #import <Shoprize/ShopriseViewController.h>
 #import <Shoprize/VIStoreDetailViewController.h>
 #import <Shoprize/VIDealsDetailViewController.h>

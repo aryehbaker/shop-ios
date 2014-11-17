@@ -149,11 +149,7 @@
         if (code!=nil && code.length>0) {
             [self completeReedem:@{@"RedemptionCode": code}];
         }
-        if ([extra stringValueForKey:@"ExpireDate"]!=nil && ![[[extra stringValueForKey:@"ExpireDate"] toLocalDate] laterThan:[NSDate date]])
-        {
-            [reedem setTitle:@"Expire" forState:UIControlStateNormal];
-            [reedem setEnabled:NO];
-        }
+        
     }
     
 }
@@ -200,9 +196,7 @@
 {
     [self showConfirmWithTitle:@"" msg:Lang(@"reedem_cfm") callbk:^(BOOL isOk) {
         if (isOk) {
-            NSString *reemId = usersuprise == nil ?
-                            [extra stringValueForKey:@"MobiPromoId"] :
-                            usersuprise.MobiPromoId;
+            NSString *reemId = usersuprise.MobiPromoId;
               [VINet post:Fmt(@"/api/mobipromos/%@/redeem",reemId) args:nil target:self succ:@selector(completeReedem:) error:@selector(showAlertError:) inv:self.view];
         }
     }];

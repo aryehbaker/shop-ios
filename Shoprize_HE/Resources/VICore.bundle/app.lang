@@ -51,9 +51,9 @@
      "about_us"             :{ "en" : "About us","he": "אודות"},
      "about_us_file"        :{ "en" : "about_en.html", "he" : "about_he.html"},
      "qa_title"             :{ "en" : "questions & answers","he": "שאלות נפוצות"},
-     "qa_file"              :{ "en" : "question_he.html","he": "question_he.html"},
+     "qa_file"              :{ "en" : "question_en.html","he": "question_he.html"},
      "ctct_us_title"        :{ "en" : "Contact us","he": "צור קשר"},
-     "ctct_us_file"         :{ "en" : "contactus_he.html","he": "contactus_he.html"},
+     "ctct_us_file"         :{ "en" : "contactus_en.html","he": "contactus_he.html"},
      "list_of_malls"        :{ "en" : "Malls","he": "רשימת קניונים"},
      "menu_setting"         :{ "en" : "Preferences", "he": "הגדרות"},
      "menu_interests"       :{ "en" : "Interests", "he": "תחומי עניין"},
@@ -186,5 +186,9 @@
     "delete_account_button_text" : {
         "en" : "Delete Account",
         "he" : "מחק חשבון"
+    },
+    "mail_required" :{
+        "en" : "email required",
+        "he" : "דואר אלקטרוני הנדרש"
     }
 }

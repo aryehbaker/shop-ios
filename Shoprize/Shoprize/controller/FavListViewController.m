@@ -66,7 +66,12 @@
 }
 
 - (void)skipThis:(UIButton *)btn {
-    [self popTo:@"VINearByViewController"];
+    if (isEn) {
+        [self popTo:@"VIAroundMeViewController"];
+    }
+    if (isHe) {
+         [self popTo:@"VINearByViewController"];
+    }
 }
 
 - (void) showItems:(NSArray *)values{

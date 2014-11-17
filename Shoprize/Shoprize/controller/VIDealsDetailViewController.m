@@ -23,10 +23,10 @@
     int totalHeight;
     
     NSMutableArray *needShown;
-    
-    MobiPromo *mobipromo;
-    
-    NSDictionary *mobiInfo;
+
+    NSDictionary *mobi_promo;
+
+    UIButton *redeem;
 }
 
 @end
@@ -44,22 +44,26 @@
     }
     else{
         //otherwish from another way
-        mobiInfo = [self getContentValueWithPath:@"VIDealsDetailViewController"];
-        mobipromo = [[MobiPromo alloc] initWithDictionary:mobiInfo error:nil];
+        if (_mobipromo!=nil)
+            mobi_promo  = [_mobipromo toDictionary];
+        if (_mobipromoar != nil)
+            mobi_promo  = [_mobipromoar toDictionary];
+        
         
         if (self.exculedId == nil) {
             self.exculedId = [NSMutableSet set];
         }
-        [self.exculedId addObject:[mobiInfo stringValueForKey:@"MobiPromoId"]];
+        [self.exculedId addObject:[mobi_promo stringValueForKey:@"MobiPromoId"]];
         
-        NSString *title = [mobiInfo stringValueForKey:@"StoreName"];
+        NSString *title = [mobi_promo stringValueForKey:@"StoreName"];
+        
         [self addNav:title left:BACK right:NONE];
         self.nav_title.font = Black(22);
         
         self.nav.backgroundColor = [@"#DADADA" hexColor];
         self.view.backgroundColor = self.nav.backgroundColor;
         
-        [self loadComplete:mobiInfo];
+        [self loadComplete:mobi_promo];
     }
 }
 
@@ -70,10 +74,9 @@
         [resp addEntriesFromDictionary:[addr objectAtIndex:0]];
     }
     
+    mobi_promo = value;
     [self loadComplete:resp];
-    mobipromo = [[MobiPromo alloc] initWithDictionary:resp error:nil];
-
-    NSLog(@"%@",value);
+    
 }
 
 -(void)loadFail:(id)value {
@@ -188,17 +191,34 @@
          }
     }
 
+    //下面一块的子视图
     UIView *subItme = [[UIView alloc] initWithFrame:Frm(0,offset+20, self.view.w, 0)];
     subItme.tag = 10001;
     
     NSString *addid = [info stringValueForKey:@"AddressId" defaultValue:@"0"];
     
+    //默认没有redeem按钮
+    int y = 5;
+    if (isEn) {
+        redeem = [[UIButton alloc] initWithFrame:Frm(.2 * subItme.w, 5, .6*subItme.w, 40) font:FontB(16) title:@"Redeem" color:@"#FA2D38"];
+        [subItme addSubview:redeem];
+        redeem.backgroundColor =[@"#ffffff" hexColor];
+        redeem.layer.cornerRadius = 10;
+        [redeem addTarget:self action:@selector(redeemProm:)];
+        y = redeem.endY+40;
+        
+        if ([mobi_promo stringValueForKey:@"ExpireDate"]!=nil && ![[[mobi_promo stringValueForKey:@"ExpireDate"] parse:@"yyyy-MM-dd HH:mm:ss"] laterThan:[NSDate date]])
+        {
+            [redeem setTitle:@"Expire" forState:UIControlStateNormal];
+            [redeem setEnabled:NO];
+        }
+    }
+
     int x = (subItme.w - 140)/2;
-    
     
     if (isEn && [info doubleValueForKey:@"Lat"] > 0) {
         x = (subItme.w - 70 * 3)/2;
-        UIButton *share = [[UIButton alloc] initWithFrame:Frm(x,5, 60, 60)];
+        UIButton *share = [[UIButton alloc] initWithFrame:Frm(x,y, 60, 60)];
         share.backgroundColor = [@"#FA2D38" hexColor];
         share.layer.cornerRadius = 30;
         [share setImage:[@"locfff.png" image] forState:UIControlStateNormal];
@@ -208,7 +228,7 @@
         x= x + 80;
     }
     
-    UIButton *like = [[UIButton alloc] initWithFrame:Frm(x,5, 60, 60)];
+    UIButton *like = [[UIButton alloc] initWithFrame:Frm(x,y, 60, 60)];
     like.backgroundColor = [@"#FA2D38" hexColor];
     like.layer.cornerRadius = 30;
     like.tag = 200;
@@ -303,9 +323,23 @@
     }
 }
 
-- (void)markIt:(id)sender
+//激活redeem
+-(void)redeemProm:(UIButton *)sender
 {
-    [VINet post:Fmt(@"/api/mobipromos/%@/mark",mobipromo.MobiPromoId) args:nil target:self succ:@selector(markedComplte:) error:@selector(showAlertError:) inv:self.view];
+    NSString *dealid = [mobi_promo stringValueForKey:@"MobiPromoId"];
+    [self redeemDeail:dealid complete:@selector(whenRedeemComplete:)];
+}
+
+-(void)whenRedeemComplete:(id)resp
+{
+    NSString *code = [resp stringValueForKey:@"RedemptionCode"];
+    [redeem setTitle:code selected:code];
+    [redeem setEnabled:NO];
+}
+
+- (void)markIt:(id)sender {
+    NSString *dealid = [mobi_promo stringValueForKey:@"MobiPromoId"];
+    [VINet post:Fmt(@"/api/mobipromos/%@/mark",dealid) args:nil target:self succ:@selector(markedComplte:) error:@selector(showAlertError:) inv:self.view];
 }
 
 - (void)markedComplte:(id)info
@@ -313,19 +347,21 @@
     UIButton *t = ((UIButton *)[self.view viewWithTag:200]);
     [t setTitle:Fmt(@"%d",[t.titleLabel.text intValue]+1) selected:Fmt(@"%d",[t.titleLabel.text intValue]+1)];
     [t setEnabled:NO];
-    
-    [mobipromo setIsMarked:YES];
-    [mobipromo setMarkedCount:mobipromo.MarkedCount+1];
-    [[iSQLiteHelper getDefaultHelper] insertOrUpdateUsingObj:mobipromo];
-    
+    NSMutableDictionary *rspVal = [mobi_promo mutableCopy];
+    [rspVal setValue:[NSNumber numberWithBool:YES] forKey:@"IsMarked"];
+    [rspVal setValue:[NSNumber numberWithInt:[mobi_promo intValueForKey:@"MarkedCount"] +1] forKey:@"MarkedCount"];
+    if(_mobipromoar!=nil)
+        [[iSQLiteHelper getDefaultHelper] insertOrUpdateDB:[MobiPromoAR class] value:rspVal];
+    else
+        [[iSQLiteHelper getDefaultHelper] insertOrUpdateDB:[MobiPromo class] value:rspVal];
 }
 - (void)whereIam:(UIButton*)sneder {
     VINavMapViewController *nav = [[VINavMapViewController alloc] init];
-    double lat = [mobiInfo doubleValueForKey:@"Lat"];
-    double lon = [mobiInfo doubleValueForKey:@"Lon"];
+    double lat = [mobi_promo doubleValueForKey:@"Lat"];
+    double lon = [mobi_promo doubleValueForKey:@"Lon"];
     nav.destination = [[CLLocation alloc] initWithLatitude:lat longitude:lon];
-    nav.title = [mobiInfo stringValueForKey:@"StoreName"];
-    nav.subtitle = [mobiInfo stringValueForKey:@"Address"];
+    nav.title = [mobi_promo stringValueForKey:@"StoreName"];
+    nav.subtitle = [mobi_promo stringValueForKey:@"Address"];
     [self push:nav];
 }
 
@@ -334,10 +370,10 @@
     sneder.enabled = NO;
 
     NSMutableDictionary *pot = [NSMutableDictionary dictionary];
-    [pot setValue:mobipromo.StoreImageUrl forKey:@"picture"];
-    [pot setValue:mobipromo.Offer forKey:@"description"];
-    [pot setValue:mobipromo.StoreName forKey:@"name"];
-    [pot setValue:mobipromo.StoreUrl forKey:@"link"];
+    [pot setValue:[mobi_promo stringValueForKey:@"StoreImageUrl"] forKey:@"picture"];
+    [pot setValue:[mobi_promo stringValueForKey:@"Offer"] forKey:@"description"];
+    [pot setValue:[mobi_promo stringValueForKey:@"StoreName"] forKey:@"name"];
+    [pot setValue:[mobi_promo stringValueForKey:@"StoreUrl"] forKey:@"link"];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"_share_to_facebook_" object:pot];
     
@@ -346,43 +382,20 @@
     dispatch_after(delayInNanoSeconds, dispatch_get_main_queue(), ^(void){
          sneder.enabled = YES;
     });
-    
-//    "UserSurpriseId": "a788521e-8368-4b1d-a173-a16e37c6f64c",
-//    "MobiPromoId": "d06a6e1c-6783-4040-a6e2-29d21168e0c0",
-//    "RewardTime": "2014-06-10T14:41:31.9829757+08:00",
-//    "StartTime": "2014-06-10T14:41:31.9829757+08:00",
-//    "ExpireTime": "2014-06-10T14:41:31.9829757+08:00",
-//    "RedemptionCode": "sample string 6",
-//    "Redeemed": false
-    
-//    [pot setValue:@"d06a6e1c-6783-4040-a6e2-29d21168e0c0" forKey:@"MobiPromoId"];
-//    
-//    NSArray *proms2 = [Fmt(@"%@/proms",_Cache_dir) jsonOfFilePath];
-//    NSDictionary *pp = nil;
-//    for (NSDictionary *dict in proms2) {
-//        if ([[dict stringValueForKey:@"MobiPromoId"] isEqualToString:@"91e363ec-324c-42ba-b2c4-c078bf38d3b6"]){
-//            pp = dict;
-//            break;
-//        }
-//    }
-//    
-//    if (pp == nil) {
-//        return;
-//    }
-//    
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"_get_a_bigsuprise_" object:pp];
-    
 }
 
 - (void)seeDetail:(UITapGestureRecognizer *)tap
 {
     long index = tap.view.tag;
-    VIDealsDetailViewController *d = [[VIDealsDetailViewController alloc] init];
     MobiPromo *mobi = [needShown objectAtIndex:index];
-    [d setValueToContent:[mobi toDictionary] forKey:@"VIDealsDetailViewController"];
+    
+    VIDealsDetailViewController *deal = [[VIDealsDetailViewController alloc] init];
+    deal.mobipromo = mobi;
+    
     [self.exculedId addObject:mobi.MobiPromoId];
-    d.exculedId = self.exculedId;
-    [self push:d];
+    deal.exculedId = self.exculedId;
+    
+    [self push:deal];
 }
 
 

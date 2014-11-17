@@ -134,6 +134,7 @@ static KUtils *k;
     return [[self stringByReplacingOccurrencesOfString:@"[" withString:@""] stringByReplacingOccurrencesOfString:@"]" withString:@""];
 }
 
+
 - (NSDate *)toLocalDate
 {
     if (self==nil || self.length==0) {
@@ -142,7 +143,8 @@ static KUtils *k;
     if ([self hasPrefix:@"9999-12-31"]) {
         return nil;
     }
-    NSString *timeFmt = @"yyyy-MM-dd'T'HH:mm:ss";
+    NSString *timeFmt = [self hasString:@"T"] ? @"yyyy-MM-dd'T'HH:mm:ss" :
+                                                @"yyyy-MM-dd HH:mm:ss";
     NSString *time = self;
     if (self.length==10) {
         timeFmt = @"yyyy-MM-dd";

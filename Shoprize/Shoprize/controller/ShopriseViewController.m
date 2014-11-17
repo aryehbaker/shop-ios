@@ -120,6 +120,16 @@
         self.rightOne = menu;
     }
     
+    if (right == Route) {
+        UIButton *menu = [UIButton buttonWithType:UIButtonTypeCustom];
+        menu.frame = Frm(self.view.w-50, 2, 40, 40);
+        [menu setImageEdgeInsets:UIEdgeInsetsMake(3, 3, 3, 3)];
+        [menu setImage:[@"showrote.png" image] forState:UIControlStateNormal];
+        [tacks addSubview:menu];
+        self.rightOne = menu;
+    }
+    
+    
     [self.view addSubview:self.nav];
 }
 
@@ -300,6 +310,15 @@
         return YES;
     }
     return NO;
+}
+
+- (void)redeemDeail:(NSString *)dealId complete:(SEL)complete
+{
+    [self showConfirmWithTitle:@"" msg:@"Are you sure redeem it ?" callbk:^(BOOL isOk) {
+        if (isOk) {
+            [VINet post:Fmt(@"/api/mobipromos/%@/redeem",dealId) args:nil target:self succ:complete error:@selector(showAlertError:) inv:self.view];
+        }
+    }];
 }
 
 @end

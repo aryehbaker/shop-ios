@@ -166,8 +166,7 @@
        long phos = ABMultiValueGetCount(tmpPhones);
        if (phos==0) { continue;}
        NSString *phoneNum = nil;
-      for(long j2 = 0; j2 < phos; j2++)
-       {
+       for(long j2 = 0; j2 < phos; j2++) {
            phoneNum = (__bridge NSString*)ABMultiValueCopyValueAtIndex(tmpPhones, j2);
            break;
        }
@@ -224,17 +223,24 @@
     line.backgroundColor = [@"#AEB1B4" hexColor];
     [cell.contentView addSubview:line];
     UILabel *rtlable = [UILabel initWithFrame:Frm(51, 0, 194, 44) color:@"#ffffff" font:FontS(20) align:RIGHT];
+    if (isEn)
+        rtlable.textAlignment = NSTextAlignmentLeft;
     rtlable.text = [data stringValueForKey:@"name"];
     [cell.contentView addSubview:rtlable];
+   
     UIButton *checked = [UIButton buttonWithType:UIButtonTypeCustom];
     checked.tag = indexPath.row;
     checked.selected = [[data stringValueForKey:@"checked"] isEqualToString:@"YES"];
     [checked addTarget:self action:@selector(doCheck:)];
-    checked.frame = Frm(rtlable.endX+7, 2, 40, 40);
+    checked.frame = Frm(isEn ? 51 : rtlable.endX+7, 2, 40, 40);
     checked.imageEdgeInsets = UIEdgeInsetsMake(10,10,10,10);
     [checked setImage:[@"inv_add.png" image] forState:UIControlStateNormal];
     [checked setImage:[@"iv_del.png" image] forState:UIControlStateSelected];
     [cell.contentView addSubview:checked];
+    if (isEn) {
+        [rtlable setX:checked.endX];
+        [line setX:checked.endX];
+    }
     
     return cell;
 }

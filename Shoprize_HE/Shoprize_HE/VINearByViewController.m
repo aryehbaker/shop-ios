@@ -562,7 +562,10 @@ static ListType currentType;
         return;
     MobiPromo *pdata = [deals objectAtIndex:index];
     
-    [self pushTo:@"VIDealsDetailViewController" data:[pdata toDictionary]];
+    VIDealsDetailViewController *deal = [[VIDealsDetailViewController alloc] init];
+    deal.mobipromo = pdata;
+    [self push:deal];
+    
 }
 
 - (void)doShowStore:(VICfgCellBtn *)clickBtn

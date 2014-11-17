@@ -206,6 +206,8 @@ static NSString *logpath;
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
+    CLLocation *l = [[CLLocation alloc] initWithLatitude:29.5545799 longitude:106.4672569];
+    locations = @[l];
     
     if (locations!=nil && locations.count > 0) {
         //save user Info
@@ -509,7 +511,7 @@ static NSString *logpath;
     [[NSUserDefaults standardUserDefaults] setValue:[values jsonString] forKey:@"USER_INFO_MATION"];
     VINavigationController *nav = (VINavigationController*)[((REFrostedViewController *) self.window.rootViewController) contentViewController];
     [((VIBaseViewController *) [nav topViewController]) saveUserInfo:values];
-    [((VIBaseViewController *) [nav topViewController]) pushTo:@"VINearByViewController"];
+    [((VIBaseViewController *) [nav topViewController]) pushTo:@"VIAroundMeViewController"];
 }
 
 - (void)doFailReq:(id)values

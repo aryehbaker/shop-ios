@@ -7,19 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Models.h"
 
 @interface VITimeDownCell : UITableViewCell
 
 - (id)initWithInfo:(NSString *)infoId;
 
-- (void)repaintInfo:(NSDictionary *)leftInfo rightinfo:(NSDictionary *)rightinfo path:(NSIndexPath *)path;
-
-@end
-
-@interface NSDictionary (TimeDown)
-
-- (BOOL) isExpirt;
-
-- (BOOL) notStart;
+- (void)repaintInfo:(MobiPromo *)leftInfo rightinfo:(MobiPromo *)rightinfo path:(NSIndexPath *)path;
 
 @end

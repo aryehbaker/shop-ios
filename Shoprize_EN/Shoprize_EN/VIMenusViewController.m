@@ -36,7 +36,7 @@
     self.datasource = [@"menu.json" jsonOfBundleFile];
     
     UIImageView *image = [[UIImageView alloc] initWithFrame:Frm(0,0, self.view.w, self.view.h)];
-    image.image = [@"tor_1.png" image];
+    image.image = [@"tor1.png" image];
     [self.view addSubview:image];
     
     UIView *v = [[UIView alloc] initWithFrame:image.frame];
