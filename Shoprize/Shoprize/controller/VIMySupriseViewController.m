@@ -226,7 +226,7 @@ typedef NS_ENUM(NSInteger, Tabs) { USED,ACT};
         right = [[right1 toDictionary] mutableCopy];
     }
     
-    [cellview repaintInfo:left rightinfo:right path:indexPath];
+    [cellview repaintInfo:left rightinfo:right path:indexPath redeem:currentTab==USED];
     
     int i = 0;
     for (UIView *view in [cellview.contentView subviews]) {

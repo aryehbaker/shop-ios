@@ -12,6 +12,9 @@
 #import <Shoprize/Fonts.h>
 #import <Shoprize/ShopriseViewController.h>
 
+#define SUPRISE_DISPLAY_TIME 30
+
+
 @interface VIBigSuprise()
 {
     BOOL _isSliding;
@@ -209,10 +212,12 @@ static float dampingCoefficient = 5;
     } completion:^(BOOL finished) {
         boom.transform = CGAffineTransformMakeScale(1, 1);
         boom.frame = initFrame;
+
+// 禁用掉,让用户手动进行操作
+// dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(SUPRISE_DISPLAY_TIME * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//  [self hideMe:nil];
+// });
         
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-             [self hideMe:nil];
-        });
     }];
 }
 

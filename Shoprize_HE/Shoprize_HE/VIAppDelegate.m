@@ -85,7 +85,8 @@
 static NSString *logpath;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[VILogger getLogger] setLogLevelSetting:SLLS_NONE];
+   
+    [[VILogger getLogger] setLogLevelSetting:SLLS_ALL];
     
 //    [VIUncaughtExceptionHandler setDefaultHandler];
 //    [[VIUncaughtExceptionHandler instace] checkAndSendMail:^(NSString *path) {
@@ -223,8 +224,6 @@ static NSString *logpath;
     NSString *token = [NSString stringWithFormat:@"%@", deviceToken];
     token = [[[token stringByReplacingOccurrencesOfString:@"<" withString:@""] stringByReplacingOccurrencesOfString:@">" withString:@""] stringByReplacingOccurrencesOfString:@" " withString:@""];
     [NSUserDefaults setValue:token forKey:@"pushToken"];
-    
-   
 
 }
 

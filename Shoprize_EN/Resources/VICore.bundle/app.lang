@@ -116,7 +116,7 @@
      "fm_FirstName"         :{ "en" : "FirstName","he": "שם פרטי"},
      "fm_LastName"          :{ "en" : "LastName","he": "שם משפחה"},
      "fm_Phone"             :{ "en" : "Phone","he": "מספר טלפון"},
-     "fm_Brith"             :{ "en" : "Birthday","he": "הולדת"},
+     "fm_Brith"             :{ "en" : "Birthday","he": "תאריך לידה"},
      "fm_gender"            :{ "en" : "Sex","he": "מין"},
      "fm_boy"               :{ "en" : "Male","he" : "זכר"},
      "fm_girl"              :{ "en" : "Female","he" :"נקבה"},
@@ -177,7 +177,7 @@
     },
     "pliaylice_title" : {
         "en" : "Privacy Plicy",
-        "he" : "Privacy Plicy",
+        "he" : "מדיניות פרטיות",
     },
     "reedem_button_text" : {
         "en" : "Reedem",

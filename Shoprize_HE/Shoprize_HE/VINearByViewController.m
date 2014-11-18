@@ -11,6 +11,7 @@
 #import "VIAppDelegate.h"
 #import <Shoprize/KUtils.h>
 #import <iSQLite/iSQLite.h>
+#import <Shoprize/VITimeDownCell.h>
 
 typedef enum {Deals = 1,Suprises = 2,Stores = 3} ListType ;
 
@@ -520,7 +521,7 @@ static ListType currentType;
             right = [suprises objectAtIndex:(2 * indexPath.row + 1)];
         }
         
-        [cellview repaintInfo:[left toDictionary] rightinfo:[right toDictionary] path:indexPath];
+        [cellview repaintInfo:left rightinfo:right path:indexPath];
         
         [[cellview viewWithTag:200] removeFromSuperview];
         [[cellview viewWithTag:201] removeFromSuperview];

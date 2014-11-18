@@ -8,6 +8,7 @@
 
 #import "VINet.h"
 #import <VICore/VICore.h>
+#import "Fonts.h"
 
 @implementation VINet
 
@@ -144,9 +145,19 @@ static NSMutableDictionary *stores;
 
 	if (req.waitInView != nil) {
 		VIMBProgressHUD *hd = [VIMBProgressHUD showHUDAddedTo:req.waitInView animated:YES];
+        if (isHe) {
+            hd.customView = [@"supriset_loading.png" imageView];
+            hd.color = [UIColor clearColor];
+            hd.mode = MBProgressHUDModeCustomView;
+        }
+
 		hd.animationType = MBProgressHUDAnimationZoom;
 		hd.removeFromSuperViewOnHide = YES;
 		hd.labelFont = [UIFont systemFontOfSize:12];
+        UIActivityIndicatorView *acti = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        [acti setFrame:Frm((hd.w-30)/2, (hd.h-30)/2+35, 30, 30)];
+        [acti startAnimating];
+        [hd addSubview:acti];
 	}
     
 	[req performSelectorInBackground:@selector(submitForm:) withObject:baseArgs];
@@ -229,13 +240,8 @@ static NSMutableDictionary *stores;
 		NSString *apiName = [baseArg objectForKey:@"_Api_Keys"];
 		NSMutableDictionary *queryArgs = [baseArg objectForKey:@"_Api_Vals"];
 
-		NSArray *hostAndPath = [self findHostAndPath:apiName];
-		NSString *host = [hostAndPath objectAtIndex:0];
-		NSString *path = [hostAndPath objectAtIndex:1];
-        
-		MKNetworkEngine *engine = [[MKNetworkEngine alloc] initWithHostName:host];
-		MKNetworkOperation *op = [engine
-		                          operationWithPath:path
+		MKNetworkEngine *engine = [[MKNetworkEngine alloc] initWithHostName:[apiName host]];
+		MKNetworkOperation *op = [engine operationWithPath:[apiName path]
 		                                     params:queryArgs
 		                                 httpMethod:[self httpTypeString:self.method]];
 		
@@ -244,7 +250,9 @@ static NSMutableDictionary *stores;
 		[op addHeaders:[VINet headers]];
        
 		//添加多媒体信息
-		[self setMediaToRequest:op params:queryArgs];
+        if (queryArgs!=nil) {
+            [self setMediaToRequest:op params:queryArgs];
+        }
 
 		[op addCompletionHandler: ^(MKNetworkOperation *completed) {
 		    NSString *respontStr = completed.responseString;

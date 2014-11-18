@@ -36,9 +36,6 @@ typedef NS_ENUM(NSInteger, HTTP_METHOD_TYPE)
 //add media to file
 - (void)setMediaToRequest:(MKNetworkOperation *)operation params:(NSMutableDictionary *)params;
 
-//Find the host and the path
-- (NSArray *)findHostAndPath:(NSString *)url;
-
 //http type string
 - (NSString *)httpTypeString:(HTTP_METHOD_TYPE)type;
 

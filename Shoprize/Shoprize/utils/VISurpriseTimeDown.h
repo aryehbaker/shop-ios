@@ -12,7 +12,9 @@
 
 - (id)initWithInfo:(NSString *)infoId;
 
-- (void)repaintInfo:(NSDictionary *)leftInfo rightinfo:(NSDictionary *)rightinfo path:(NSIndexPath *)path;
+- (void)repaintInfo:(NSDictionary *)leftInfo rightinfo:(NSDictionary *)rightinfo path:(NSIndexPath *)path
+
+             redeem:(BOOL)redeem;
 
 
 @end

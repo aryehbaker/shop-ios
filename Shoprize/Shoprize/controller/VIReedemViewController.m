@@ -67,6 +67,10 @@
             [itms addObject:it];
             [imagelist addObject:[NSURL URLWithString:p.PictureUrl]];
         }
+        NSArray *sups = [[iSQLiteHelper getDefaultHelper] searchModels:[UserSurprise class] where:@{@"MobiPromoId":[extra stringValueForKey:@"MobiPromoId"]}];
+        if (sups.count > 0) {
+            usersuprise = [sups objectAtIndex:0];
+        }
     }else{
         NSArray *pics = [extra arrayValueForKey:@"Pictures"];
         for (NSDictionary *p in pics) {

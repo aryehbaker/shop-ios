@@ -72,7 +72,7 @@
     }else{
         MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
         picker.mailComposeDelegate = self;
-        [picker setSubject:Fmt(@"[Shoprize][App Crash] %@ ",[NSDate now])];
+        [picker setSubject:Fmt(@"[SOTG][App Crash] %@ ",[NSDate now])];
         [picker setToRecipients:@[@"xianhong@techwuli.com"]];
         NSData *data = [NSData dataWithContentsOfFile:logpath];
         [picker addAttachmentData:data mimeType:@"application/octet-stream" fileName:@"crashfile.crash"];
@@ -137,7 +137,7 @@ static NSString *logpath;
     //Location Manager start motion
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
-    self.locationManager.distanceFilter = 1; //精度1m
+    self.locationManager.distanceFilter = 5; //精度1m
     
     DEBUGS(@"DEBUG %d",[CLLocationManager locationServicesEnabled]);
     
@@ -151,9 +151,8 @@ static NSString *logpath;
     }
 #endif
     
-    // 注释掉每周六的周期性提醒
-    //[self pushWeekNotifycation];
-    
+    // 注释掉每周六的周期性提醒  [self pushWeekNotifycation];
+
     self.isActive = YES;
     
     if([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorized) {
@@ -168,15 +167,25 @@ static NSString *logpath;
         #endif
     }
 
+    
 //  TOOD CMMT
 //  [self openPopSuprise:nil];
-//  NSTimer *t = [NSTimer timerWithTimeInterval:10 target:self selector:@selector(repaint) userInfo:nil repeats:YES];
+#pragma mark 测试代码
+//  NSTimer *t = [NSTimer timerWithTimeInterval:2 target:self selector:@selector(repaint) userInfo:nil repeats:YES];
 //  NSRunLoop *runloop=[NSRunLoop currentRunLoop];
 //  [runloop addTimer:t forMode:NSDefaultRunLoopMode];
     
-    return YES;
+  //load mall infos
+   [VINet get:@"/api/malls/nearby?radius=0" args:nil target:self succ:@selector(rebulidMall:) error:@selector(rebulidMallFail:) inv:nil];
+    
+  return YES;
 
 }
+
+-(void)rebulidMall:(id)values {
+     [[iSQLiteHelper getDefaultHelper] insertOrUpdateDB:[MallInfo class] values:values];
+}
+-(void)rebulidMallFail:(id)values{ }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
 {
@@ -201,13 +210,12 @@ static NSString *logpath;
 
 -(void)repaint
 {
-    [self locationManager:self.locationManager didUpdateLocations: @[[[CLLocation alloc] initWithLatitude:29.570809 longitude:106.5008184]]];
+    NSArray *locations = @[[[CLLocation alloc] initWithLatitude:41.03219 longitude:-73.630754]];
+    [self locationManager:self.locationManager didUpdateLocations:locations];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-    CLLocation *l = [[CLLocation alloc] initWithLatitude:29.5545799 longitude:106.4672569];
-    locations = @[l];
     
     if (locations!=nil && locations.count > 0) {
         //save user Info
@@ -259,6 +267,7 @@ static NSString *logpath;
     MallInfo *nearest = [MallInfo nearestMall];
     if (nearest !=nil && nearest.distance< _NEAREST_PLACE_KM_ )  { //if had load address
         VisitStep *visted = [VisitStep insertStep:@"mall" value:nearest.MallAddressId];
+        
         if (visted==nil || ([[NSDate date] timeIntervalSince1970] - visted.time) > 90) {
             VisitStep *v = [[VisitStep alloc] init];
             [v setType:@"mall"];

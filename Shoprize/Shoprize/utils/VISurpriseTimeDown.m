@@ -38,32 +38,22 @@
         return self;
 }
 
-static NSMutableDictionary *dictionaray;
 
--(void)repaintInfo:(NSDictionary *)li rightinfo:(NSDictionary *)ri path:(NSIndexPath *)path
+-(void)repaintInfo:(NSDictionary *)li rightinfo:(NSDictionary *)ri path:(NSIndexPath *)path redeem:(BOOL)redeem
 {
     self.leftInfo = li;
     self.rightInfo = ri;
     [leftTimer invalidate];[rightTimer invalidate];
     
-    if (dictionaray == nil) {
-        dictionaray = [NSMutableDictionary dictionary];
-    }
-    
-    leftTimer  = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(repaintLeftInfo) userInfo:nil repeats:YES];
+     leftTimer  = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(repaintLeftInfo) userInfo:nil repeats:YES];
     rightTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(repaintRightInfo) userInfo:nil repeats:YES];
     
-    [self egoimageView4Tag:14001].imageURL = [NSURL URLWithString:[self.leftInfo stringValueForKey:@"StoreImageUrl"]];
+    [self egoimageView4Tag:14001].imageURL = [NSURL URLWithString:[self.leftInfo stringValueForKey:@"defPicture"]];
     [self label4Tag:14002].hidden = YES;
-    [self label4Tag:14003].text = [self.leftInfo stringValueForKey:@"StoreName" defaultValue:@""];
-    
+    [self label4Tag:14003].text = [self.leftInfo stringValueForKey:@"Offer" defaultValue:@""];
     
     NSString *leftMId = [self.leftInfo stringValueForKey:@"MobiPromoId"];
-    UserSurprise *leftUsr = [dictionaray objectForKey:leftMId];
-    if (leftUsr == nil) {
-        leftUsr = [[iSQLiteHelper getDefaultHelper] searchSingle:[UserSurprise class] where:@{@"MobiPromoId":leftMId} orderBy:@"MobiPromoId"];
-        [dictionaray setValue:leftUsr forKey:leftMId];
-    }
+    UserSurprise *leftUsr = [[iSQLiteHelper getDefaultHelper] searchSingle:[UserSurprise class] where:@{@"MobiPromoId":leftMId} orderBy:@"MobiPromoId"];
     
     NSDate *lExp   = leftUsr.ExpireTime;
     if(leftUsr.Redeemed) {
@@ -100,16 +90,12 @@ static NSMutableDictionary *dictionaray;
     
    if (self.rightInfo !=nil) {
     
-        [self egoimageView4Tag:14101].imageURL = [NSURL URLWithString:[self.rightInfo stringValueForKey:@"StoreImageUrl"]];
+        [self egoimageView4Tag:14101].imageURL = [NSURL URLWithString:[self.rightInfo stringValueForKey:@"defPicture"]];
         [self label4Tag:14102].hidden = YES;
-        [self label4Tag:14103].text = [self.rightInfo stringValueForKey:@"StoreName" defaultValue:@""];
+        [self label4Tag:14103].text = [self.rightInfo stringValueForKey:@"Offer" defaultValue:@""];
        
        NSString *rightMId = [self.rightInfo stringValueForKey:@"MobiPromoId"];
-       UserSurprise *RightUsr = [dictionaray objectForKey:rightMId];
-       if (RightUsr == nil) {
-           RightUsr = [[iSQLiteHelper getDefaultHelper] searchSingle:[UserSurprise class] where:@{@"MobiPromoId":rightMId} orderBy:@"MobiPromoId"];
-           [dictionaray setValue:RightUsr forKey:rightMId];
-       }
+       UserSurprise *RightUsr = [[iSQLiteHelper getDefaultHelper] searchSingle:[UserSurprise class] where:@{@"MobiPromoId":rightMId} orderBy:@"MobiPromoId"];
        
         NSDate *lExp   = RightUsr.ExpireTime;
         if(RightUsr.Redeemed)
@@ -152,7 +138,13 @@ static NSMutableDictionary *dictionaray;
 
 - (void)repaintLeftInfo
 {
-    UserSurprise *leftid = [dictionaray objectForKey:[self.leftInfo stringValueForKey:@"MobiPromoId"]];
+    NSString *leftID = [self.leftInfo stringValueForKey:@"MobiPromoId"];
+    if (leftID==nil) {
+        return;
+    }
+    
+    UserSurprise *leftid = [[iSQLiteHelper getDefaultHelper] searchSingle:[UserSurprise class] where:@{@"MobiPromoId":leftID} orderBy:@"MobiPromoId"];
+    
     if ([leftid.ExpireTime laterThan:[NSDate now]]) {
         long  sec = [leftid.ExpireTime timeIntervalSinceNow];
         [self label4Tag:14006].text = Fmt(@"%.2ld:%.2ld:%.2ld",sec/3600, (sec-(sec/3600*3600))/60, sec-(sec/3600*3600)-(sec-(sec/3600*3600))/60*60);
@@ -164,7 +156,12 @@ static NSMutableDictionary *dictionaray;
 
 - (void)repaintRightInfo
 {
-    UserSurprise *rightid = [dictionaray objectForKey:[self.rightInfo stringValueForKey:@"MobiPromoId"]];
+    NSString *rightId = [self.rightInfo stringValueForKey:@"MobiPromoId"];
+    if (rightId==nil) {
+        return;
+    }
+    UserSurprise *rightid = [[iSQLiteHelper getDefaultHelper] searchSingle:[UserSurprise class] where:@{@"MobiPromoId":rightId} orderBy:@"MobiPromoId"];
+    
     if ([rightid.ExpireTime laterThan:[NSDate now]]) {
         long  sec = [rightid.ExpireTime timeIntervalSinceNow];
         [self label4Tag:14106].text = Fmt(@"%.2ld:%.2ld:%.2ld",sec/3600, (sec-(sec/3600*3600))/60, sec-(sec/3600*3600)-(sec-(sec/3600*3600))/60*60);
