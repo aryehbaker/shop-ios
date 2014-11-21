@@ -41,6 +41,8 @@
 //扩展的Beacon
 @property(nonatomic,strong) NSMutableDictionary *rangedRegions;
 
+- (void)loadNearestMallInBackGround:(NSString *)mallId;
+
 @end
 
 

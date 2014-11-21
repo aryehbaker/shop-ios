@@ -85,31 +85,20 @@
 static NSString *logpath;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-   
-    [[VILogger getLogger] setLogLevelSetting:SLLS_ALL];
-    
-//    [VIUncaughtExceptionHandler setDefaultHandler];
-//    [[VIUncaughtExceptionHandler instace] checkAndSendMail:^(NSString *path) {
-//        logpath = path;
-//        if ([MFMailComposeViewController canSendMail]) {
-//            [[[UIAlertView alloc] initWithTitle:@"Report" message:@"a crash file found, can you send it to me for fix it ? Thx" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil] show ];
-//        }else{
-//            UIAlertView *alt = [[UIAlertView alloc] initWithTitle:@"Report" message:@"a crash log found, but your device can't send mail please set it first" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
-//            [alt show];
-//            [VIFile deleteFile:logpath];
-//        }
-//        
-//    }];
-    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.beancons     = [NSMutableDictionary dictionary];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(faceBookLogon:) name:@"_facebook_logon_" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showNavBarMenu:) name:_NS_NOTIFY_SHOW_MENU object:nil];
+    //Ibeacon的数据刷新
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetIbeancon:) name:@"_ibeancon_reset_" object:nil];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shareText:) name:@"_share_to_facebook_" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(openPopSuprise:) name:@"_get_a_bigsuprise_" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(add_current_track:) name:@"_add_current_track_" object:nil];
+    
+    //用户获得Mall的通知内容
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadNearestMallInBackGround:) name:CURRENT_MALL_USER_IN object:nil];
     
     VIWelcomeViewController *welcome = [[VIWelcomeViewController alloc] init];
     [self checkToShowGuide:welcome]; //check first page loading
@@ -138,6 +127,7 @@ static NSString *logpath;
     self.locationManager.delegate = self;
     self.locationManager.distanceFilter = 5; //精度1m
     
+    
     DEBUGS(@"DEBUG %d",[CLLocationManager locationServicesEnabled]);
     
     // ios 8的情况
@@ -146,7 +136,7 @@ static NSString *logpath;
         [self.locationManager requestAlwaysAuthorization];
     }
     if ([self.locationManager respondsToSelector:@selector(activityType)]) {
-        self.locationManager.activityType = CLActivityTypeFitness;
+        self.locationManager.activityType = CLActivityTypeAutomotiveNavigation;
     }
 #endif
     
@@ -169,11 +159,11 @@ static NSString *logpath;
 
 //  TOOD CMMT
 //  [self openPopSuprise:nil];
-//  NSTimer *t = [NSTimer timerWithTimeInterval:10 target:self selector:@selector(repaint) userInfo:nil repeats:YES];
-//  NSRunLoop *runloop=[NSRunLoop currentRunLoop];
+//  NSTimer *t = [NSTimer timerWithTimeInterval:2 target:self selector:@selector(repaint) userInfo:nil repeats:YES];
+// NSRunLoop *runloop=[NSRunLoop currentRunLoop];
 //  [runloop addTimer:t forMode:NSDefaultRunLoopMode];
     
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
+  if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
         [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings
                                                                              settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge)
                                                                              categories:nil]];
@@ -195,36 +185,12 @@ static NSString *logpath;
     return YES;
 }
 
-/**
- 原本在IOS7当中 判断PUSH是否打开的方法是：
- UIRemoteNotificationType types = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
- return (types & UIRemoteNotificationTypeAlert);
- 
- 如果将这段代码使用在 IOS当中，虽然不会出现crash的现象，但是基本没什么作用。
- 在IOS8中，我们使用如下的新代码来取代以上的代码
- 
- {
- UIRemoteNotificationType types;
- if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
- {
- types = [[UIApplication sharedApplication] currentUserNotificationSettings].types;
- }
- else
- {
- types = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
- }
- 
- return (types & UIRemoteNotificationTypeAlert);
- }
- 
- */
 
 #pragma mark 远程推送路径
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     NSString *token = [NSString stringWithFormat:@"%@", deviceToken];
     token = [[[token stringByReplacingOccurrencesOfString:@"<" withString:@""] stringByReplacingOccurrencesOfString:@">" withString:@""] stringByReplacingOccurrencesOfString:@" " withString:@""];
     [NSUserDefaults setValue:token forKey:@"pushToken"];
-
 }
 
 - (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
@@ -232,10 +198,8 @@ static NSString *logpath;
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    
     NSLog(@"Recevie Message:%@",userInfo);
     [self checkWhereToGoFromPushMessage:userInfo];
-
 }
 
 - (void) checkWhereToGoFromPushMessage:(NSDictionary *)userInfo
@@ -251,7 +215,6 @@ static NSString *logpath;
 //        deal.dealid = [userInfo stringValueForKey:@"value"];
 //        [[self pushStack] pushViewController:deal animated:YES];
     }
-    
 }
 
 #pragma  mark 推送结束
@@ -274,26 +237,59 @@ static NSString *logpath;
         }
     }
 #endif
-
 }
 
 -(void)repaint
 {
     [self locationManager:self.locationManager didUpdateLocations: @[[[CLLocation alloc] initWithLatitude:29.570809 longitude:106.5008184]]];
+    //[self calcUserIsInMall:nil];
 }
 
+//在后台加载最新的后台数据内容
+- (void)loadNearestMallInBackGround:(NSNotification *)notify{
+    NSDictionary *mall_info = notify.object;
+    NSString *mallId = [mall_info stringValueForKey:@"MallAddressId"];
+    [VINet get:Fmt(@"/api/malls/%@/detail",mallId) args:nil target:self succ:@selector(getMallProms:) error:@selector(getMallsFail:) inv:nil];
+
+}
+
+-(void)getMallProms:(NSDictionary *)mallresp{
+    
+    //保存对应Mall的信息
+    JSONModelError *jsonerr;
+    Mall *mall = [[Mall alloc] initWithDictionary:mallresp error:&jsonerr];
+    [mall saveMallToDatabase];
+
+    //刷新Ibeacon的内容
+    [[NSNotificationCenter defaultCenter]
+                                postNotificationName:@"_ibeancon_reset_" object:mall.MallAddressId];
+}
+
+-(void)getMallsFail:(NSDictionary *)mallresp{
+    
+}
+
+static NSDate *latestLoc;
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-    
     if (locations!=nil && locations.count > 0) {
         //save user Info
         CLLocation *location = [locations objectAtIndex:0];
-        [[NSUserDefaults standardUserDefaults] setValue:Fmt(@"%.7f,%.7f",location.coordinate.latitude,location.coordinate.longitude) forKey:@"location"];
-        
-        [self calcUserIsInMall:location];
-        
-        //[self calcUserNearStore:[locations objectAtIndex:0]];
-        [self calcIfOpenNewMall:[locations objectAtIndex:0]];
+        if (latestLoc!=nil && [location.timestamp timeIntervalSinceDate:latestLoc] < 30) {
+            //小于30s直接返回,不做任何操作
+            return;
+        }
+        latestLoc = location.timestamp;
+        //GPS正确的位置才工作
+        if(location!=nil&&location.horizontalAccuracy >0 && location.horizontalAccuracy<2000
+           &&(!(location.coordinate.latitude==0.0&&location.coordinate.longitude==0.0)))
+        {
+            [[NSUserDefaults standardUserDefaults] setValue:Fmt(@"%.7f,%.7f",location.coordinate.latitude,location.coordinate.longitude) forKey:@"location"];
+            
+            [self calcUserIsInMall:location];
+            //[self calcUserNearStore:[locations objectAtIndex:0]];
+            [self calcIfOpenNewMall:[locations objectAtIndex:0]];
+        }
     }
 }
 
@@ -305,68 +301,30 @@ static NSString *logpath;
     MallInfo *nearest = [MallInfo nearestMall];
     if (nearest!=nil) {
         if(nearest.distance < _NEAREST_PLACE_KM_){
-            NSString *mid = [nearest MallAddressId];
-            NSString *cid = [self.currentMall MallAddressId];
-            if ([mid isEqualToString:cid]) {
-                Timestamps *ts = [[iSQLiteHelper getDefaultHelper] searchSingle:[Timestamps class] where:Fmt(@" stampId = '%@'",cid) orderBy:@"time"];
-                if (ts == nil || abs(ts.time - [[NSDate date] timeIntervalSince1970]) > 10 * 60) {
-                    [Timestamps setMallRefrshTime:cid];
-                }else{
-                    return;
-                }
+           NSString *mid = [nearest MallAddressId];
+           Timestamps *ts2 = [[iSQLiteHelper getDefaultHelper] searchSingle:[Timestamps class] where:Fmt(@" stampId = '%@'",mid) orderBy:@"time"];
+           if(ts2 == nil || abs(ts2.time - [[NSDate date] timeIntervalSince1970]) > 10 * 60){
+                [Timestamps setMallRefrshTime:mid];
+                [NSUserDefaults setValue:[nearest MallAddressId] forKey:@"_post_mall_id_"];
+                [NSUserDefaults setValue:[nearest MallAddressId] forKey:CURRENT_MALL_USER_IN];
+                [[NSNotificationCenter defaultCenter] postNotificationName:CURRENT_MALL_USER_IN object:[nearest toDictionary]];
+           }
+            //如果启动的时候没有进行iBeacon的扫描则启动
+           else if (![self isScaning]) {
+                [[NSNotificationCenter defaultCenter]
+                 postNotificationName:@"_ibeancon_reset_" object:mid];
             }
-            [NSUserDefaults setValue:[nearest MallAddressId] forKey:@"_post_mall_id_"];
-            [[NSNotificationCenter defaultCenter] postNotificationName:_NOTIFY_MALL_CHANGED object:[nearest toDictionary] userInfo:nil];
         }
     }else{
         [NSUserDefaults setValue:@"" forKey:@"_post_mall_id_"];
         [NSUserDefaults setValue:@"" forKey:@"_post_store_id_"];
     }
-    
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     DEBUGS(@"%@",error.description);
 }
 
-//remove gps welcome
-// 已经在上面注释掉了
-//- (void)calcUserNearStore:(CLLocation *)location
-//{
-//    NSArray *stroes = [@"stores" cacheValue];
-//    if (stroes.count !=0 )  { //if had load address
-//        //这个值会在切换Mall之后清空掉
-//        NSString *lastPlace = [[NSUserDefaults standardUserDefaults] stringForKey:@"storeview"];
-//        NSMutableArray *vistedIds = [NSMutableArray array];
-//        if (lastPlace != nil) {
-//            vistedIds = [[lastPlace jsonVal] mutableCopy];
-//        }
-//        for (NSDictionary *dct in stroes) {
-//            double lat = [dct doubleValueForKey:@"Lat"];
-//            double lon = [dct doubleValueForKey:@"Lon"];
-//            CLLocation *target = [[CLLocation alloc] initWithLatitude:lat longitude:lon];
-//            CLLocationDistance dis = [location distanceFromLocation:target];
-//            
-//            NSString *addressId = [dct stringValueForKey:@"AddressId"];
-//            if (dis <= 10 && ![vistedIds containsObject:addressId]) {
-//                NSString *mallName = [dct stringValueForKey:@"StoreName"];
-//                NSString *uname    = [VINet info:KFull];
-//                NSString *msg = Fmt(Lang(@"welcome_store"),uname,mallName);
-//                
-//                NSMutableDictionary *mt = [NSMutableDictionary dictionary];
-//                [mt setValue:@"Store" forKey:@"NotifyType"];
-//                [mt setValue:addressId forKey:@"Udid"];
-//                
-//                [self pushNotification:msg withObj:mt];
-//                [vistedIds addObject:addressId];
-//
-//                [[NSUserDefaults standardUserDefaults]  setValue:[vistedIds jsonString] forKey:@"storeview"];
-//
-//                break;
-//            }
-//        }
-//    }
-//}
 
 //已经在上面注释掉了调研
 -(void)calcUserIsInMall:(CLLocation*)location
@@ -374,12 +332,12 @@ static NSString *logpath;
     MallInfo *nearest = [MallInfo nearestMall];
     if (nearest !=nil && nearest.distance< _NEAREST_PLACE_KM_ )  { //if had load address
         VisitStep *visted = [VisitStep insertStep:@"mall" value:nearest.MallAddressId];
-        if (visted==nil || ([[NSDate date] timeIntervalSince1970] - visted.time) > 5 * 60) {
-            VisitStep *v = [[VisitStep alloc] init];
-            [v setType:@"mall"];
-            [v setID:nearest.MallAddressId];
-            [visted setTime:[[NSDate date] timeIntervalSince1970]];
-            [[iSQLiteHelper getDefaultHelper] insertOrUpdateUsingObj:visted];
+        if (visted==nil || ([[NSDate date] timeIntervalSince1970] - visted.time) > 60 * 60) {
+
+            if (visted!=nil) {
+                [visted setTime:[[NSDate date] timeIntervalSince1970]];
+                [[iSQLiteHelper getDefaultHelper] insertOrUpdateUsingObj:visted];
+            }
             
             NSString *mallName = nearest.Name;
             NSString *uname    = [VINet info:KFull];
@@ -390,17 +348,19 @@ static NSString *logpath;
             [mt setValue:nearest.MallAddressId forKey:@"Udid"];
             // 禁止掉通知信息
             [self pushNotification:msg withObj:mt];
+            
         }else if(visted!=nil){
             [visted setTime:[[NSDate date] timeIntervalSince1970]];
             [[iSQLiteHelper getDefaultHelper] insertOrUpdateUsingObj:visted];
-            //NSLog(@"Update: %@",visted);
         }
     }
 }
 
 - (void)resetIbeancon:(NSNotification *)notify {
+    NSString *mallId = notify.object;
+    LKDBHelper *helper = [iSQLiteHelper getDefaultHelper];
+    NSMutableArray *mtb = [helper searchWithSQL:Fmt(@"select * from Beacon where AddressId in (select s.AddressId from Store s where s.MallId='%@')",mallId) toClass:[Beacon class]];
     
-    NSMutableArray *mtb = [[iSQLiteHelper getDefaultHelper] searchAllModel:[Beacon class]];
     self.beancons = [NSMutableDictionary dictionary];
     for (Beacon *bc in mtb) {
         if ([bc isIbeacon])
@@ -522,7 +482,7 @@ static NSString *logpath;
     if ([CLLocationManager locationServicesEnabled] &&
         [CLLocationManager significantLocationChangeMonitoringAvailable])
     {
-        [self.locationManager startUpdatingLocation];
+        [self.locationManager startMonitoringSignificantLocationChanges];
     }
 }
 
@@ -534,6 +494,9 @@ static NSString *logpath;
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     self.isActive = YES;
+    if ([CLLocationManager locationServicesEnabled]){
+        [self.locationManager startUpdatingLocation];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -633,19 +596,60 @@ static NSString *logpath;
 
 - (void)shareText:(NSNotification *)notify
 {
+    //TODO
     NSDictionary *shareInfo = notify.object;
-    if([FBSession activeSession].isOpen){
-        [self doPostMessage2FaceBook:shareInfo];
-    }else {
-        NSArray *ps = [NSArray arrayWithObjects:@"publish_actions", nil];
-        [FBSession openActiveSessionWithPublishPermissions:ps defaultAudience:FBSessionDefaultAudienceEveryone allowLoginUI:YES completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
-            if (error) {
-                [VIAlertView showMessageWithTitle:@"" msg:error.localizedDescription];
-            } else if (FB_ISSESSIONOPENWITHSTATE(status)) {
-                [self doPostMessage2FaceBook:shareInfo];
+    NSString *text = [shareInfo objectForKey:@"description"];
+    id pic = [shareInfo objectForKey:@"picture"];
+    UIImage *shareImg = [@"Icon-60@2x.png" image];
+    if ([pic isKindOfClass:[NSString class]]) {
+        EGOImageView *ego = [[EGOImageView alloc] init];
+        ego.imageURL = [NSURL URLWithString:pic];
+        shareImg = ego.image;
+    }
+    
+    NSString *stringUrl = [shareInfo objectForKey:@"link"];
+    NSString *name      = [shareInfo stringValueForKey:@"name"];
+    
+    NSArray *activityItems = [NSArray arrayWithObjects:Fmt(@"%@ %@",name,text),
+        [NSURL URLWithString:stringUrl],shareImg,nil];
+    
+    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
+    activityController.excludedActivityTypes = @[UIActivityTypePrint,UIActivityTypeCopyToPasteboard,
+                                                 UIActivityTypeAssignToContact,UIActivityTypeAddToReadingList,UIActivityTypeSaveToCameraRoll];
+    if ([UIDevice isGe:8]) {
+        [activityController setCompletionWithItemsHandler:^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError){
+            if (completed) {
+                [VIAlertView showInfoMsg:[@"share2facebook_ok" lang]];
+            }else{
+                [VIAlertView showErrorMsg:[@"share2facebook_no" lang]];
+            }
+        }];
+    }else{
+        [activityController setCompletionHandler:^(NSString *activityType, BOOL completed){
+            if (completed) {
+                [VIAlertView showInfoMsg:[@"share2facebook_ok" lang]];
+            }else{
+                [VIAlertView showErrorMsg:[@"share2facebook_no" lang]];
             }
         }];
     }
+    
+    [[self pushStack] presentViewController:activityController animated:YES completion:nil];
+    
+
+//    NSDictionary *shareInfo = notify.object;
+//    if([FBSession activeSession].isOpen){
+//        [self doPostMessage2FaceBook:shareInfo];
+//    }else {
+//        NSArray *ps = [NSArray arrayWithObjects:@"publish_actions", nil];
+//        [FBSession openActiveSessionWithPublishPermissions:ps defaultAudience:FBSessionDefaultAudienceEveryone allowLoginUI:YES completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+//            if (error) {
+//                [VIAlertView showMessageWithTitle:@"" msg:error.localizedDescription];
+//            } else if (FB_ISSESSIONOPENWITHSTATE(status)) {
+//                [self doPostMessage2FaceBook:shareInfo];
+//            }
+//        }];
+//    }
 }
 
 - (void)pushWeekNotifycation
@@ -871,6 +875,10 @@ static bool scaning = NO;
     if ([self localNotifyisOff]) {
         return;
     }
+    if (self.rangedRegions.count == 0) {
+        return;
+    }
+    
     for (CLBeaconRegion *region in self.rangedRegions) {
         [self.locationManager startRangingBeaconsInRegion:region];
     }

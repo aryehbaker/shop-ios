@@ -31,7 +31,7 @@ static int show = 260;
             [self.icon setFrame:Frm(show-30, 2, 40, 40)];
         }
         [self.contentView addSubview:self.icon];
-        self.text = [UILabel initWithFrame:Frm(50, 0, show-80, 44) color:@"#FFFFFF" font:FontS(16)  align:LEFT];
+        self.text = [UILabel initWithFrame:Frm(50, 0, show-80, 44) color:@"#FFFFFF" font:[Fonts PekanLight:16]  align:LEFT];
                      
         self.text.textAlignment = Align;
         [self.contentView addSubview:self.text];

@@ -42,7 +42,9 @@ typedef NS_ENUM(NSInteger, Tabs) { USED,ACT};
     
     [self addNav:Lang(@"my_suprise") left:SEARCH right:MENU];
     
-    UIButton *left = [[UIButton alloc] initWithFrame:Frm(0, self.nav.endY, self.view.w/2, 34)];
+    UIButton *right = [[UIButton alloc] initWithFrame:Frm(0, self.nav.endY, self.view.w/2, 34)];
+    
+    UIButton *left = [[UIButton alloc] initWithFrame:Frm(right.endX, self.nav.endY, self.view.w-right.endX, right.h)];
     [left setTitle:Lang(@"menu_exp_exp") selected:Lang(@"menu_exp_exp")];
     left.titleLabel.font = isEn ? Bold(13) : Bold(16);
     left.tag = 100;
@@ -50,13 +52,12 @@ typedef NS_ENUM(NSInteger, Tabs) { USED,ACT};
     [left setTitleColor:[@"#FFFFFF" hexColor] forState:UIControlStateNormal];
     [left setTitleColor:[@"#ff4747" hexColor] forState:UIControlStateSelected];
     [left addTarget:self action:@selector(changeTab:)];
-    
+    [left setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 30)];
     UIImageView *imgs = [@"checked_right.png" imageViewForImgSizeAtX:left.w-30 Y:4];
     imgs.tag = 110;
     [left addSubview:imgs];
     [self.view addSubview:left];
     
-    UIButton *right = [[UIButton alloc] initWithFrame:Frm(left.endX, self.nav.endY, self.view.w-left.endX, left.h)];
     [right setTitle:Lang(@"menu_sprise_active") selected:Lang(@"menu_sprise_active")];
     right.titleLabel.font = Bold(16);
     right.tag = 101;

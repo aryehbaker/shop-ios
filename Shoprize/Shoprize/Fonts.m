@@ -16,7 +16,7 @@
     if([Fonts isHebrew]){
         return [UIFont fontWithName:@"Pekan-Black" size:size];
     }
-    return [UIFont boldSystemFontOfSize:size-2];
+    return [UIFont fontWithName:@"HelveticaNeue-Medium" size:size];
 }
 
 + (UIFont *)PekanBold:(int)size
@@ -24,7 +24,7 @@
     if([Fonts isHebrew]){
         return [UIFont fontWithName:@"Pekan-Bold" size:size];
     }
-    return [UIFont boldSystemFontOfSize:size-2];
+    return  [UIFont fontWithName:@"HelveticaNeue-Medium" size:size];
 }
 
 + (UIFont *)PekanLight:(int)size
@@ -32,7 +32,7 @@
     if([Fonts isHebrew]){
         return [UIFont fontWithName:@"Pekan-Light" size:size];
     }
-    return [UIFont systemFontOfSize:size-2];
+    return [UIFont fontWithName:@"HelveticaNeue-Light" size:size];
 }
 
 + (UIFont *)PekanRegular:(int)size
@@ -40,7 +40,7 @@
     if([Fonts isHebrew]){
         return [UIFont fontWithName:@"Pekan-Regular" size:size];
     }
-    return [UIFont systemFontOfSize:size-2];
+    return [UIFont fontWithName:@"HelveticaNeue-Light" size:size];
 }
 
 + (BOOL)isEnglish {

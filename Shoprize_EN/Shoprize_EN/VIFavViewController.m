@@ -13,7 +13,7 @@
 #import "CategoryFilterViewController.h"
 #import <VICore/VICore.h>
 #import <Shoprize/VIDealsDetailViewController.h>
-
+#import "Ext.h"
 
 @interface VIFavViewController () {
 
@@ -41,7 +41,10 @@
     [left setTitleColor:[@"#FFFFFF" hexColor] forState:UIControlStateNormal];
     [left setTitleColor:[@"#ff4747" hexColor] forState:UIControlStateSelected];
     [left addTarget:self action:@selector(changeTab:)];
-   
+    UIImageView *imgs = [@"suprise_check.png" imageViewForImgSizeAtX:left.w-30 Y:4];
+    imgs.tag = 110;
+    [left addSubview:imgs];
+    
     [self.view addSubview:left];
     
     UIButton *right = [[UIButton alloc] initWithFrame:Frm(left.endX, self.nav.endY, self.view.w-left.endX, left.h)];
@@ -52,6 +55,9 @@
     [right setTitleColor:[@"#ff4747" hexColor] forState:UIControlStateSelected];
     [right addTarget:self action:@selector(changeTab:)];
     [self.view addSubview:right];
+    imgs = [@"checked_right.png" imageViewForImgSizeAtX:left.w-35 Y:4];
+    imgs.tag = 111;
+    [right addSubview:imgs];
     
     deals = [NSMutableArray array];
     pageindex = 0;
@@ -75,9 +81,16 @@
     [self.view button4Tag:101].selected = NO;
     [self.view button4Tag:101].backgroundColor = [@"#ff4747" hexColor];
     
+    [[self.view button4Tag:100] imageView4Tag:110].image = [@"checked_right.png" image];
+    [[self.view button4Tag:101] imageView4Tag:111].image = [@"suprise_check.png" image];
+    
     sender.selected = YES;
     sender.backgroundColor = [@"#ffffff" hexColor];
-   
+    
+    [sender imageView4Tag:sender.tag+10].image = sender.tag == 100 ? [@"checked_right_check.png" image] :
+    [@"suprise_check_chekc.png" image];
+    [deals removeAllObjects];
+    [_tableView reloadAndHideLoadMore:YES];
     
     currentTag = sender.tag;
     [self pullDownRefrshStart:_tableView];
@@ -126,6 +139,8 @@
     [[cellview button4Tag:1004] setImage:@"close_btn.png" selectd:@"close_btn.png"];
     [[cellview button4Tag:1004] addTarget:self action:@selector(deleme:)];
     
+    [[cellview button4Tag:1004] setHidden:currentTag == 101];
+    
     [[cellview viewWithTag:1104] setHidden:YES];
     NSDictionary *right =  nil;
     if ((2 * indexPath.row + 1) < deals.count) {
@@ -140,6 +155,7 @@
         [[cellview button4Tag:1104] setImage:@"close_btn.png" selectd:@"close_btn.png"];
         [[cellview button4Tag:1104] addTarget:self action:@selector(deleme:)];
         [[cellview viewWithTag:1104] setHidden:NO];
+        [[cellview button4Tag:1104] setHidden:currentTag == 101];
     }
     
     [[cellview viewWithTag:1105] setHidden:right == nil];
@@ -201,8 +217,12 @@ static long last_selected_long;
 }
 
 -(void)loadComplete:(id)values{
-    [deals addObjectsFromArray:values];
-    [_tableView reloadAndHideLoadMore:YES];
+    deals =  [Ext doEach:values with:^id(id itm) {
+        if ([[itm stringValueForKey:@"Type"] isEqualToString:@"Deal"])
+            return itm;
+        return nil;
+    }];
+   [_tableView reloadAndHideLoadMore:YES];
 }
 
 -(void)loadCompleteFail:(id)values{

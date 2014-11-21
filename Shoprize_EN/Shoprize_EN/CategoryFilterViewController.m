@@ -17,11 +17,11 @@
 
 @implementation CategoryFilterViewController
 
--(id)initWith:(NSString *)filtervalue
+-(id)initWith:(NSString *)filterValue
 {
     self = [super init];
     if (self) {
-        NSArray *v2 = [filtervalue componentsSeparatedByString:@","];
+        NSArray *v2 = [filterValue componentsSeparatedByString:@","];
         [[iSQLiteHelper getDefaultHelper] executeDB:^(FMDatabase *db) {
              NSString *where = Fmt(@"select distinct(CategoryName),CategoryId from MobiPromoAR");
             FMResultSet *set = [db executeQuery:where];

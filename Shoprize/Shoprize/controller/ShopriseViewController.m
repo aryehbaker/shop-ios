@@ -55,6 +55,7 @@
             [imagev addTapTarget:self action:@selector(doCenterIconClick:)];
         }else{
             self.nav_title = [UILabel initWithFrame:Frm(50, 0, 220, 44) color:self.lightContent ? @"#ffffff" :  @"#000000" font:Bold(20) align:CENTER | MIDDLE];
+            self.nav_title.font = isHe ? FontB(20) : [Fonts PekanLight:20];
             self.nav_title.textAlignment = NSTextAlignmentCenter;
             [tacks addSubview:_nav_title];
             [_nav_title setUserInteractionEnabled:YES];

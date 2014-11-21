@@ -114,16 +114,18 @@ static ListType currentType;
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(reloadTheNearMallDetail:) name:_NOTIFY_MALL_CHANGED object:nil];
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(reloadSurpiseShow:) name:@"reloadSurpiseShow" object:nil];
     
-    NSDictionary *mallSaved = [[NSUserDefaults getValue:_USER_SELECTED_MALL_INFO] jsonVal];
-    MallInfo *selectedOne = [[MallInfo alloc] initWithDictionary:mallSaved error:nil];
-    if (selectedOne == nil) {
+    NSString *mall_select = [NSUserDefaults getValue:CURRENT_MALL_USER_SELECTED];
+    if (mall_select == nil) {
         [VINet get:@"/api/malls/nearby?radius=0" args:nil target:self succ:@selector(getMalls:) error:@selector(getMallsFail:) inv: deals.count> 0 ? nil : self.view];
     }else{
         //恢复回原来的值
+       MallInfo *selectedOne = [[iSQLiteHelper getDefaultHelper] searchSingle:[MallInfo class] where:@{@"MallAddressId" : mall_select} orderBy:@"Name"];
+
         ((VIAppDelegate *)[UIApplication sharedApplication].delegate).currentMall = selectedOne;
         [VINet get:@"/api/malls/nearby?radius=0" args:nil target:self succ:@selector(rebulidMall:) error:@selector(getMallsFail:) inv:nil];
     
         self.nav_title.text = selectedOne.Name;
+        
         [self refreshToShowTheTable];
     }
     
@@ -133,13 +135,19 @@ static ListType currentType;
 - (void)refreshToShowTheTable
 {
     LKDBHelper *helper  = [iSQLiteHelper getDefaultHelper];
-    deals    =  [helper search:[MobiPromo class] where:@"Type = 'Deal'" orderBy:@"CreateDate desc" offset:0 count:100000];
+    NSString *mallid    = [NSUserDefaults getValue:CURRENT_MALL_USER_SELECTED];
     
-    suprises = [helper search:[MobiPromo class] where:@"Type = 'Surprise'" orderBy:@"CreateDate desc" offset:0 count:100000];
-    stores   =  [helper searchAllModel:[Store class]];
+    NSString *sql = Fmt(@"select * from MobiPromo where Type = 'Deal' and StoreId in (select s.StoreId from Store s where s.MallId='%@') order by CreateDate desc",mallid);
+    deals = [helper searchWithSQL:sql toClass:[MobiPromo class]];
+    
+    sql = Fmt(@"select * from MobiPromo where Type = 'Surprise' and  StoreId in(select StoreId from Store s where s.MallId='%@') order by CreateDate desc",mallid);
+    suprises = [helper searchWithSQL:sql toClass:[MobiPromo class]];
+    
+    sql = Fmt(@"select * from Store where MallId='%@' ",mallid);
+    stores   =  [helper searchWithSQL:sql toClass:[Store class]];
+    
     allStore  = [stores copy];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"_ibeancon_reset_" object:nil];
     [self changeType:section2];
 }
 
@@ -161,7 +169,7 @@ static ListType currentType;
     NSDictionary *notifyObj = notify.object;
     MallInfo *mall = [[MallInfo alloc] initWithDictionary:notifyObj error:nil];
     ((VIAppDelegate *)[UIApplication sharedApplication].delegate).currentMall = mall;
-    [[NSUserDefaults standardUserDefaults] setValue:[notifyObj jsonString] forKey:_USER_SELECTED_MALL_INFO];
+    
     [self notifyChange:self.view];
 }
 
@@ -186,10 +194,15 @@ static ListType currentType;
 
 - (void)notifyChange:(UIView *)loadView{
     
-    [Mall clearRelateData];//清除当前的数据
+    MallInfo *currentMall = ((VIAppDelegate *)[UIApplication sharedApplication].delegate).currentMall;
+    [Mall clearMallWithId:currentMall.MallAddressId];//清除当前的数据
+    
+    //用户选择的MallId
+    [NSUserDefaults setValue:currentMall.MallAddressId forKey:CURRENT_MALL_USER_SELECTED];
+    
+    [deals removeAllObjects],[suprises removeAllObjects],[stores removeAllObjects];
     [_tableView reloadData];
     
-    MallInfo *currentMall = ((VIAppDelegate *)[UIApplication sharedApplication].delegate).currentMall;
     self.nav_title.text =  currentMall.Name;
     [VINet get:Fmt(@"/api/malls/%@/detail",currentMall.MallAddressId) args:nil target:self succ:@selector(getMallProms:) error:@selector(getMallsFail:) inv:loadView];
 }
@@ -224,7 +237,7 @@ static ListType currentType;
     MallInfo *nearest =  [MallInfo nearestMall];
     if (nearest!=nil ) {
         ((VIAppDelegate *)[UIApplication sharedApplication].delegate).currentMall = nearest;
-        [NSUserDefaults setValue:[nearest toJSONString] forKey:_USER_SELECTED_MALL_INFO];
+        [NSUserDefaults setValue:nearest.MallAddressId forKey:CURRENT_MALL_USER_SELECTED];
     }
     [self notifyChange:nil];
 }
@@ -554,7 +567,6 @@ static ListType currentType;
 //    [mtc setValue:pdata forKey:@"_extra_"];
 //    [self pushTo:@"VIReedemViewController" data:mtc];
 }
-
 
 - (void)doClickEvent:(VICfgCellBtn *)clickBtn
 {

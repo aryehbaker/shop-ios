@@ -44,7 +44,6 @@
     
     NSString *ctx = [[extra stringValueForKey:@"Offer"] killQute];
     UILabel *title = [UILabel initManyLineWithFrame:Frm(10, 20, self.view.w-20, 20) color:@"#252525" font:Bold(18) text:ctx];
-    
     title.text = ctx;
     title.textAlignment = Align;
     
@@ -147,15 +146,14 @@
         }
     }
     
+    //英文的Deal
     if (is_en_deal) {
         
         NSString *code = [extra stringValueForKey:@"RedemptionCode"];
         if (code!=nil && code.length>0) {
             [self completeReedem:@{@"RedemptionCode": code}];
         }
-        
     }
-    
 }
 - (void)foucusImageFrame:(VIAutoPlayPageView *)imageFrame didSelectItem:(VIAutoPlayItem *)item
 {
@@ -201,7 +199,9 @@
     [self showConfirmWithTitle:@"" msg:Lang(@"reedem_cfm") callbk:^(BOOL isOk) {
         if (isOk) {
             NSString *reemId = usersuprise.MobiPromoId;
-              [VINet post:Fmt(@"/api/mobipromos/%@/redeem",reemId) args:nil target:self succ:@selector(completeReedem:) error:@selector(showAlertError:) inv:self.view];
+            if (reemId == nil)
+                reemId = [extra stringValueForKey:@"MobiPromoId"];
+            [VINet post:Fmt(@"/api/mobipromos/%@/redeem",reemId) args:nil target:self succ:@selector(completeReedem:) error:@selector(showAlertError:) inv:self.view];
         }
     }];
 }

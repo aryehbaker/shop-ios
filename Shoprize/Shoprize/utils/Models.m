@@ -26,9 +26,12 @@
 - (BOOL)saveMallToDatabase
 {
     LKDBHelper *helper = [iSQLiteHelper getDefaultHelper];
-    [Mall clearRelateData];
+    
+    [Mall clearMallWithId:_MallAddressId];
+
     //创建用户需要的表。后面会用到起
     [helper makeTable:[UserSurprise class]];
+    
     [helper insertOrUpdateUsingObj:self];
     [helper insertOrUpdateUsingAry:[self getAllStores]];
     [helper insertOrUpdateUsingAry:[self getAllMobis]];
@@ -38,13 +41,41 @@
     return YES;
 }
 
-+(void)clearRelateData {
++(void)clearMallWithId:(NSString *)mallid {
     LKDBHelper *helper = [iSQLiteHelper getDefaultHelper];
-    [helper clearTableData:[Mall class]];
-    [helper clearTableData:[Store class]];
-    [helper clearTableData:[MobiPromo class]];
-    [helper clearTableData:[Beacon class]];
-    [helper clearTableData:[UserSurprise class]];
+    NSString *_MallAddressId = mallid;
+    [helper executeDB:^(FMDatabase *db) {
+        
+        NSString *sql = Fmt(@"delete from Picture where MobiPromoId in (select t.MobiPromoId from MobiPromo t where exists(select * from Store s where s.StoreId=t.StoreId and s.MallId='%@'))",_MallAddressId);
+        BOOL ok =  [db executeUpdate:sql];
+        
+        NSLog(@"Delete Picture:%d",ok);
+        
+        sql = Fmt(@"delete from UserSurprise where MobiPromoId in (select t.MobiPromoId from MobiPromo t where exists(select * from Store s where s.StoreId=t.StoreId and s.MallId='%@'))" ,_MallAddressId);
+        
+        ok = [db executeUpdate:sql];
+        NSLog(@"Delete UserSurprise:%d",ok);
+        
+        sql =  Fmt(@"delete from Beacon where AddressId in (select s.AddressId from Store s where s.MallId='%@')",_MallAddressId);
+        ok = [db executeUpdate:sql];
+        
+        NSLog(@"Delete Beacon:%d",ok);
+        
+        sql = Fmt(@"delete from MobiPromo where exists(select * from Store s where s.StoreId=StoreId and s.MallId='%@')",_MallAddressId);
+        ok = [db executeUpdate:sql];
+        
+        NSLog(@"Delete MobiPromo:%d",ok);
+        
+        sql = Fmt(@"delete from Store where MallId ='%@'",_MallAddressId);
+        ok = [db executeUpdate:sql];
+        NSLog(@"Delete Store:%d",ok);
+        
+        sql = Fmt(@"delete from Mall where MallAddressId='%@'",_MallAddressId);
+        ok = [db executeUpdate:sql];
+        NSLog(@"Delete Mall:%d",ok);
+        
+    }];
+    
 }
 
 +(BOOL)propertyIsOptional:(NSString*)propertyName{
@@ -60,14 +91,19 @@
 
 -(NSArray*)getAllStores{
     JSONModelArray *array = (JSONModelArray*)[self Stores];
-    NSMutableArray *mta = [array toObjectArray];
-    return mta;
+    NSMutableArray *mtb = [NSMutableArray array];
+    for (Store *s in [array toObjectArray]) {
+        [s setMallId:_MallAddressId];
+        [mtb addObject:s];
+    }
+    return mtb;
 }
 -(NSMutableArray*)getAllMobis{
     NSMutableArray *data = [NSMutableArray array];
     LKDBHelper *helper = [iSQLiteHelper getDefaultHelper];
     
     for (Store *s in [self getAllStores]) {
+        
         NSMutableArray *mobis = [((JSONModelArray *)[s MobiPromos] ) toObjectArray];
 
         NSMutableArray *sups = [NSMutableArray array];
@@ -80,7 +116,7 @@
                 [p2 setMobiPromoId:d.MobiPromoId];
                 [helper insertOrUpdateUsingObj:p2];
             }
-            
+            [d setStoreId:s.StoreId];
             if (pics.count > 0 )
                 [d setDefPicture:((Picture*)pics[0]).PictureUrl];
             

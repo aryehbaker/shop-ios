@@ -28,7 +28,7 @@
     tabview.delegate = self;
     tabview.dataSource = self;
     
-    storeData= [[iSQLiteHelper getDefaultHelper] searchAllModel:[Store class]];
+    storeData = [self getStore];
     
     tabview.backgroundColor = [UIColor whiteColor];
     if ([tabview respondsToSelector:@selector(setSeparatorInset:)]) {
@@ -88,9 +88,14 @@
     return cell;
 }
 
+-(NSMutableArray *)getStore{
+    NSString *mallId = [NSUserDefaults getValue:CURRENT_MALL_USER_SELECTED];
+     return   [[iSQLiteHelper getDefaultHelper] searchWithSQL:Fmt(@"select * from Store where MallId = '%@' and IsMarked=0",mallId) toClass:[Store class]];
+}
+
 -(void)whenSearchKey:(NSString *)search
 {
-    NSMutableArray *displayData = [[iSQLiteHelper getDefaultHelper] searchAllModel:[Store class]];
+    NSMutableArray *displayData = [self getStore];
     [storeData removeAllObjects];
     if (search != nil) {
         for (Store *d in displayData) {

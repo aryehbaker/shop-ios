@@ -41,7 +41,9 @@
 }
 
 - (NSMutableArray *)alltea {
-    return [[iSQLiteHelper getDefaultHelper] searchModels:[Store class] where:@"IsMarked=1"];
+    
+    NSString *mallId = [NSUserDefaults getValue:CURRENT_MALL_USER_SELECTED];
+    return [[iSQLiteHelper getDefaultHelper] searchWithSQL:Fmt(@"select * from Store where MallId = '%@' and IsMarked=1",mallId) toClass:[Store class]];
 }
 
 - (void)viewDidLoad
@@ -54,7 +56,7 @@
     disp  = [[UIView alloc] initWithFrame:Frm(0, self.nav.endY, self.view.w, 220)];
     UIImageView *imageSto = [@"mystore_icon.png" imageViewForImgSizeAtX:0 Y:0];
     [disp addSubview:imageSto];
-    UILabel *tjh = [VILabel createLableWithFrame:Frm(10, imageSto.endY+20, 300, 100) color:@"#8D8D8D" font:FontS(18) align:CENTER];
+    UILabel *tjh = [VILabel createLableWithFrame:Frm(10, imageSto.endY+20, 300, 100) color:@"#8D8D8D" font:[Fonts PekanBold:18] align:CENTER];
     tjh.numberOfLines = 10;
     tjh.text = Lang(@"empty_store_list");
     [disp addSubview:tjh];

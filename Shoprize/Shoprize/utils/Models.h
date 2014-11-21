@@ -46,7 +46,7 @@
     @property(nonatomic,strong) NSArray<Store,ConvertOnDemand> *Stores;
 
 - (BOOL)saveMallToDatabase;
-+ (void)clearRelateData;
++ (void)clearMallWithId:(NSString *)mallid;
 
 -(NSArray *)getAllStores;
 -(NSMutableArray *)getAllMobis;
@@ -55,8 +55,8 @@
 
 @end
 
-
 @interface Store : JSONModel
+    @property(nonatomic,copy) NSString *MallId;
     @property(nonatomic,copy) NSString *StoreUrl;
     @property(nonatomic,assign) double Lat;
     @property(nonatomic,assign) double Lon;
@@ -89,6 +89,7 @@
 
 
 @interface MobiPromo : JSONModel
+    @property(nonatomic,copy) NSString *StoreId;
     @property(nonatomic,copy) NSString *Offer;
     @property(nonatomic,copy) NSString *StoreUrl;
     @property(nonatomic,copy) NSString *CategoryName;
@@ -202,7 +203,6 @@
 @property(nonatomic,assign) BOOL StoreHasSuprise;
 
 @property(nonatomic,copy) NSString *defPicture;
-@property(nonatomic,strong) NSString *StoreId;
 @property(nonatomic,assign) double Lat;
 @property(nonatomic,assign) double Lon;
 @property(nonatomic,strong) NSString *MallId;

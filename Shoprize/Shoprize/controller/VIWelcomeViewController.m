@@ -34,7 +34,7 @@
         UIButton *faceBk = [[UIButton alloc] initWithFrame:Frm(35, self.view.h - 170, 250, 50)];
         [faceBk setBackgroundImage:[@"facebook_btn.png" image] forState:UIControlStateNormal];
         [faceBk setTitle:Lang(@"facebook_logon") forState:UIControlStateNormal];
-        faceBk.titleLabel.font = Bold(20);
+        faceBk.titleLabel.font = Bold(19);
         [faceBk setTitleColor:[@"#0A76BE" hexColor] forState:UIControlStateNormal];
     
         if(isEn){
@@ -48,7 +48,7 @@
         
         UIButton *email = [[UIButton alloc] initWithFrame:Frm(35, faceBk.endY+5, 250, 50)];
         [email addTarget:self action:@selector(pushToLogin:)];
-        email.titleLabel.font = Bold(20);
+        email.titleLabel.font = Bold(19);
         [email setBackgroundImage:[@"mail_logon_btn.png" image] forState:UIControlStateNormal];
         [email setTitle:Lang(@"mail_logon") forState:UIControlStateNormal];
         [email setTitleColor:[@"#626262" hexColor] forState:UIControlStateNormal];
