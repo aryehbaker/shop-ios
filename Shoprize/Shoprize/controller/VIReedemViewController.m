@@ -72,6 +72,9 @@
         }
     }else{
         NSArray *pics = [extra arrayValueForKey:@"Pictures"];
+        if (pics== nil){
+            pics = [extra arrayValueForKey:@"MobiPromoPictures"];
+        }
         for (NSDictionary *p in pics) {
             VIAutoPlayItem *it = [[VIAutoPlayItem alloc] initWithURL:[p stringValueForKey:@"PictureUrl"] andValue:nil];
             it.placeImage = [@"no_pic.png" image];

@@ -59,36 +59,46 @@ static ListType currentType;
     [section1 setBackgroundcolorByHex:@"#ff4747"];
     section1.tag = Suprises;
     [section1 setTitleColor:[@"#ffffff" hexColor] forState:UIControlStateNormal];
-    section1.titleLabel.font = Bold(18);
+    section1.titleLabel.font = [Fonts PekanRegular:18];
     [section1 addTarget:self action:@selector(changeType:)];
     [top1 addSubview:section1];
     UIImageView *icon = [@"supriset_w.png" imageViewForImgSizeAtX:section1.w-27 Y:6];
     icon.tag = 100;
     [section1 addSubview:icon];
+    if(isEn){
+        [icon setX:3];
+        section1.titleEdgeInsets = UIEdgeInsetsMake(0, 20, 0, 0);
+    }
     
     section2 = [[UIButton alloc] initWithFrame:Frm(section1.endX, section1.y, 106, 35)];
     [section2 setTitle:Lang(@"main_deals") selected:Lang(@"main_deals")];
     [section2 setTitleColor:[@"#ffffff" hexColor] forState:UIControlStateNormal];
     [section2 setBackgroundcolorByHex:@"#ff4747"];
-    section2.titleLabel.font = Bold(18);
+    section2.titleLabel.font = [Fonts PekanRegular:18];
     section2.tag = Deals;
     [section2 addTarget:self action:@selector(changeType:)];
     [top1 addSubview:section2];
     icon = [@"deal_w.png" imageViewForImgSizeAtX:section1.w-28 Y:6];
     icon.tag = 100;
     [section2 addSubview:icon];
-    
+    if(isEn){
+        [icon setX:3];
+        section2.titleEdgeInsets = UIEdgeInsetsMake(0, 20, 0, 0);
+    }
     section3 = [[UIButton alloc] initWithFrame:Frm(section2.endX, section1.y, 108, 35)];
     [section3 setTitle:Lang(@"main_stores") selected:Lang(@"main_stores") ];
     [section3 setTitleColor:[@"#ffffff" hexColor] forState:UIControlStateNormal];
     [section3 addTarget:self action:@selector(changeType:)];
     [section3 setBackgroundcolorByHex:@"#ff4747"];
-    section3.titleLabel.font = Bold(18);
+    section3.titleLabel.font = [Fonts PekanRegular:18];
     section3.tag = Stores;
     icon = [@"store_w.png" imageViewForImgSizeAtX:section1.w-27 Y:7];
     icon.tag = 100;
     [section3 addSubview:icon];
-    
+    if(isEn){
+        [icon setX:3];
+        section3.titleEdgeInsets = UIEdgeInsetsMake(0, 20, 0, 0);
+    }
     [top1 addSubview:section3];
     [self.view addSubview:top1];
     

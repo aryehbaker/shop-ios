@@ -102,7 +102,10 @@ static KUtils *k;
     telnum = call;
     
     k = [[KUtils alloc] init];
-    UIAlertView *alt = [[UIAlertView alloc] initWithTitle:@"" message:Fmt(Lang(@"make_a_call"),call) delegate:k cancelButtonTitle:@"בטל" otherButtonTitles:@"התקשר", nil];
+    
+
+    
+    UIAlertView *alt = [[UIAlertView alloc] initWithTitle:@"" message:Fmt(Lang(@"make_a_call"),call) delegate:k cancelButtonTitle:Lang(@"call_cancel") otherButtonTitles:Lang(@"call_now"), nil];
     [alt show];
 }
 

@@ -145,7 +145,6 @@
 		7A6810741A15E25700A9F143 /* ASValuePopUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A6810711A15E25700A9F143 /* ASValuePopUpView.m */; };
 		7A6810751A15E25700A9F143 /* ASValueTrackingSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A6810731A15E25700A9F143 /* ASValueTrackingSlider.m */; };
 		7A6810781A15E88300A9F143 /* filter.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A6810771A15E88300A9F143 /* filter.png */; };
-		7A6950361A1DE49A0080F523 /* Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A6950351A1DE49A0080F523 /* Ext.m */; };
 		7A6A1C5C1A0363D0000305F1 /* about_en.html in Resources */ = {isa = PBXBuildFile; fileRef = 7A6A1C501A0363D0000305F1 /* about_en.html */; };
 		7A6A1C5D1A0363D0000305F1 /* about_he.html in Resources */ = {isa = PBXBuildFile; fileRef = 7A6A1C511A0363D0000305F1 /* about_he.html */; };
 		7A6A1C5E1A0363D0000305F1 /* contactus_en.html in Resources */ = {isa = PBXBuildFile; fileRef = 7A6A1C521A0363D0000305F1 /* contactus_en.html */; };
@@ -354,8 +353,6 @@
 		7A6810721A15E25700A9F143 /* ASValueTrackingSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASValueTrackingSlider.h; sourceTree = "<group>"; };
 		7A6810731A15E25700A9F143 /* ASValueTrackingSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASValueTrackingSlider.m; sourceTree = "<group>"; };
 		7A6810771A15E88300A9F143 /* filter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = filter.png; sourceTree = "<group>"; };
-		7A6950341A1DE49A0080F523 /* Ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ext.h; sourceTree = "<group>"; };
-		7A6950351A1DE49A0080F523 /* Ext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ext.m; sourceTree = "<group>"; };
 		7A6A1C501A0363D0000305F1 /* about_en.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about_en.html; sourceTree = "<group>"; };
 		7A6A1C511A0363D0000305F1 /* about_he.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about_he.html; sourceTree = "<group>"; };
 		7A6A1C521A0363D0000305F1 /* contactus_en.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = contactus_en.html; sourceTree = "<group>"; };
@@ -472,8 +469,6 @@
 				7AE0E5E11A11F8110010835D /* VIMapIndexViewController.m */,
 				7A5844CC1A13415900D784BF /* OpenMobiView.h */,
 				7A5844CD1A13415900D784BF /* OpenMobiView.m */,
-				7A6950341A1DE49A0080F523 /* Ext.h */,
-				7A6950351A1DE49A0080F523 /* Ext.m */,
 			);
 			path = Shoprize_EN;
 			sourceTree = "<group>";
@@ -942,7 +937,6 @@
 				175F0C4D19FA586A00BCAD55 /* VINavigationController.m in Sources */,
 				175F0C4B19FA586A00BCAD55 /* VILocalNotify.m in Sources */,
 				175F0C4E19FA586A00BCAD55 /* VINearByViewController.m in Sources */,
-				7A6950361A1DE49A0080F523 /* Ext.m in Sources */,
 				7AA514671A11237100B76696 /* VIFavViewController.m in Sources */,
 				175F0C4A19FA586A00BCAD55 /* VIHtmlViewController.m in Sources */,
 				175F0C4919FA586A00BCAD55 /* VIBigSuprise.m in Sources */,
@@ -1078,7 +1072,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "bdcdf92f-50a7-4beb-9786-b78be6427d5c";
+				PROVISIONING_PROFILE = "51ca742a-6269-4186-a1f4-072021ed0770";
 			};
 			name = Debug;
 		};
@@ -1100,7 +1094,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "bdcdf92f-50a7-4beb-9786-b78be6427d5c";
+				PROVISIONING_PROFILE = "51ca742a-6269-4186-a1f4-072021ed0770";
 			};
 			name = Release;
 		};

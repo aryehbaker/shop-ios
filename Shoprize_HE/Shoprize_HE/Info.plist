@@ -40,9 +40,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>אנא לחץ על "אישור" כדי לאפשר App כדי לקבל מידע GPS. אחרת אתה לא יכול לקבל את ההפתעה מסביב</string>
+	<string>אנא לחץ על &quot;אישור&quot; כדי לאפשר App כדי לקבל מידע GPS. אחרת אתה לא יכול לקבל את ההפתעה מסביב</string>
 	<key>NSLocationWhenInUseDescription</key>
-	<string>אנא לחץ על "אישור" כדי לאפשר App כדי לקבל מידע GPS. אחרת אתה לא יכול לקבל את ההפתעה מסביב</string>
+	<string>אנא לחץ על &quot;אישור&quot; כדי לאפשר App כדי לקבל מידע GPS. אחרת אתה לא יכול לקבל את ההפתעה מסביב</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>PekanLight.ttf</string>
@@ -70,7 +70,7 @@
 	<key>apptoken</key>
 	<string>7d535daae10548af80fdf9488e4691ec</string>
 	<key>baseURL</key>
-	<string>http://spapine.azurewebsites.net</string>
+	<string>http://spapine-dev.azurewebsites.net</string>
 	<key>lang</key>
 	<string>he</string>
 </dict>

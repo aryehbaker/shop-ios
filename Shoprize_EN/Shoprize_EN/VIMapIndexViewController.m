@@ -10,6 +10,7 @@
 #import "VINearByViewController.h"
 #import <Shoprize/CMPopTipView.h>
 #import "OpenMobiView.h"
+#import <Shoprize/VINavMapViewController.h>
 
 @interface VIMapIndexViewController ()
 {
@@ -110,8 +111,17 @@ static id lastselectd;
        
         UIView *fullview = [self loadXib:@"EngExt.xib" withTag:100];
         fullview.backgroundColor = [@"#F7F7F7" hexColor];
-        [fullview egoimageView4Tag:101].imageURL = [[lastselectd stringValueForKey:@"Logo"] netImageURL];
         VIRTLabel *rtlabel = [[VIRTLabel alloc] initWithFrame:Frm(100,8,175, 0)];
+        NSString *logo = [lastselectd stringValueForKey:@"Logo"];
+        if(logo!= nil){
+            [fullview egoimageView4Tag:101].imageURL = [logo netImageURL];
+        }else{
+            UIView *logoImg = [fullview egoimageView4Tag:101];
+            [rtlabel setX:logoImg.x];
+            [rtlabel addW:logoImg.w];
+            [logoImg setHidden:YES];
+        }
+
         [rtlabel setText:Fmt(@"<b>Name</b>:%@\n<b>OpenHour</b>:%@\n<b>Phone</b>:%@\n<b>Address</b>:%@",
                         [lastselectd stringValueForKey:@"Name" defaultValue:@""],
                         [lastselectd stringValueForKey:@"OpenHours" defaultValue:@""],
@@ -123,6 +133,9 @@ static id lastselectd;
         [fullview button4Tag:104].layer.cornerRadius = 4;
         [[fullview button4Tag:104] addTarget:self action:@selector(goToDetail:)];
         
+        [fullview button4Tag:105].layer.cornerRadius = 4;
+        [[fullview button4Tag:105] addTarget:self action:@selector(showRoute:)];
+        
         CMPopTipView *pop = [[CMPopTipView alloc] initWithCustomView:fullview];
         [pop presentPointingAtView:button inView:self.view animated:YES];
         
@@ -130,6 +143,17 @@ static id lastselectd;
     if ([[[lastselectd stringValueForKey:@"Type"] lowercaseString] isEqualToString:@"store"]) {
         [OpenMobiView showMobisIn:self.view info:lastselectd];
     }
+}
+
+-(void)showRoute:(UIButton *)sender
+{
+    VINavMapViewController *near = [[VINavMapViewController alloc] init];
+    near.onlyShowRoute = YES;
+    NSMutableDictionary *pm = [lastselectd mutableCopy];
+    near.title = [pm stringValueForKey:@"Name"];
+    near.destination = [[CLLocation alloc] initWithLatitude:[pm doubleValueForKey:@"Lat"] longitude:[pm doubleValueForKey:@"Lon"] ];
+    
+    [self push:near];
 }
 
 -(void)goToDetail:(UIButton *)sender

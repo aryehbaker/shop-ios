@@ -58,5 +58,8 @@
  */
 - (void)showWayFrom:(id <MKAnnotation>)start to:(id <MKAnnotation>)end lineColor:(NSString *)color;
 
+//加载数据内容
+- (void)loadGoogleLocationOk:(NSString *)locs;
+
 @end
 

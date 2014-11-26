@@ -115,7 +115,7 @@ static int y ;
 
 -(void)shoMstMsg:(id)shoMstMsg
 {
-    [VIAlertView showErrorMsg:[shoMstMsg stringValueForKey:@"Message"]];
+    [self showAlertError:shoMstMsg];
 }
 
 

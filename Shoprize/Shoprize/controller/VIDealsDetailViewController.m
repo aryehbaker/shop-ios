@@ -58,8 +58,7 @@
         NSString *title = [mobi_promo stringValueForKey:@"StoreName"];
         
         [self addNav:title left:BACK right:NONE];
-        self.nav_title.font = Black(22);
-        
+
         self.nav.backgroundColor = [@"#DADADA" hexColor];
         self.view.backgroundColor = self.nav.backgroundColor;
         
@@ -80,7 +79,7 @@
 }
 
 -(void)loadFail:(id)value {
-    [VIAlertView showErrorObj:value];
+    [self showAlertError:value];
 }
 - (void)foucusImageFrame:(VIAutoPlayPageView *)imageFrame didSelectItem:(VIAutoPlayItem *)item
 {

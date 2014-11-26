@@ -88,6 +88,8 @@
 		1745EF0F19FDF51300E701F2 /* Fonts.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1745EF0C19FDF33900E701F2 /* Fonts.h */; };
 		7A6A1C861A0797FD000305F1 /* VIHttpBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A6A1C851A0797FD000305F1 /* VIHttpBase.m */; };
 		7A6A1C871A079808000305F1 /* VIHttpBase.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 7A6A1C841A0797FD000305F1 /* VIHttpBase.h */; };
+		7A868AD71A24637C0006A875 /* Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A868AD61A24637C0006A875 /* Ext.m */; };
+		7A868AD91A2463A00006A875 /* Ext.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 7A868AD51A24637C0006A875 /* Ext.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +109,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				7A868AD91A2463A00006A875 /* Ext.h in Copy Files */,
 				7A6A1C871A079808000305F1 /* VIHttpBase.h in Copy Files */,
 				1745EF0F19FDF51300E701F2 /* Fonts.h in Copy Files */,
 				1705D7FB19F9FB45005F322F /* FavListViewController.h in Copy Files */,
@@ -231,6 +234,8 @@
 		1745EF0D19FDF33900E701F2 /* Fonts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fonts.m; sourceTree = "<group>"; };
 		7A6A1C841A0797FD000305F1 /* VIHttpBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIHttpBase.h; sourceTree = "<group>"; };
 		7A6A1C851A0797FD000305F1 /* VIHttpBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIHttpBase.m; sourceTree = "<group>"; };
+		7A868AD51A24637C0006A875 /* Ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ext.h; sourceTree = "<group>"; };
+		7A868AD61A24637C0006A875 /* Ext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ext.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -293,6 +298,8 @@
 				1705D7C819F9F657005F322F /* utils */,
 				1705D71C19F9F4F4005F322F /* Shoprize.h */,
 				1745EF0C19FDF33900E701F2 /* Fonts.h */,
+				7A868AD51A24637C0006A875 /* Ext.h */,
+				7A868AD61A24637C0006A875 /* Ext.m */,
 				1745EF0D19FDF33900E701F2 /* Fonts.m */,
 			);
 			path = Shoprize;
@@ -501,6 +508,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A868AD71A24637C0006A875 /* Ext.m in Sources */,
 				1705D7E319F9F657005F322F /* VIHtmlFileViewController.m in Sources */,
 				1705D7E919F9F657005F322F /* VIMySupriseViewController.m in Sources */,
 				1705D7EF19F9F657005F322F /* VIUserProfilesViewController.m in Sources */,

@@ -57,7 +57,7 @@ static NSString *_args;
 
 - (void)showErr:(id)value
 {
-    [VIAlertView showErrorMsg:[value stringValueForKey:@"Message"]];
+    [self showAlertError:value];
 }
 
 - (void)regOk:(id)value {

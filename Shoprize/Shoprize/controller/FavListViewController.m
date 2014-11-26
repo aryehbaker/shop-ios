@@ -62,7 +62,7 @@
 
 - (void)showErr:(id)value
 {
-    [VIAlertView showErrorMsg:[value stringValueForKey:@"Message"]];
+    [self showAlertError:value];
 }
 
 - (void)skipThis:(UIButton *)btn {

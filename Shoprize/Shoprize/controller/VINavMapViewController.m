@@ -37,17 +37,26 @@
     target = [[VIPinAnnotationView alloc] initWithTitle:self.subtitle sub:self.title lat:self.destination.latVal lon:self.destination.lonVal];
     [mapkit addAnnotation:target];
     
-    
     [self addNav:nil left:BACK right:Route];
     [self.rightOne addTarget:self action:@selector(showMapRouting:)];
-    [mapkit zoomToFit];
     
+    @try {
+        [mapkit zoomToFit];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"%@",[exception description]);
+    }
+    
+    if ([self onlyShowRoute]) {
+        [self.rightOne setHidden:YES];
+        [self performSelector:@selector(showMapRouting:) withObject:nil afterDelay:1];
+    }
 }
 
 -(void)showMapRouting:(UIButton *)sender {
     if(mapkit.mapKitView.userLocation != nil){
         [self startLoading];
-        VIPinAnnotationView *anno =  [[VIPinAnnotationView alloc]initAnnotationWithCoordinate:mapkit.mapKitView.userLocation.coordinate andColor:MKPinAnnotationColorRed];
+        VIPinAnnotationView *anno =  [[VIPinAnnotationView alloc]initAnnotationWithCoordinate:CLLocationCoordinate2DMake([VINet currentLat], [VINet currentLon]) andColor:MKPinAnnotationColorRed];
         [mapkit showWayFrom:anno to:target lineColor:@"#FF0000"];
         [self stopLoading];
     }

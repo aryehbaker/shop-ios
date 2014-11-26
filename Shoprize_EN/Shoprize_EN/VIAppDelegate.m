@@ -168,8 +168,50 @@ static NSString *logpath;
     //load mall infos
     [VINet get:@"/api/malls/nearby?radius=0" args:nil target:self succ:@selector(rebulidMall:) error:@selector(rebulidMallFail:) inv:nil];
 
+
+    //添加推送通知
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
+        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings
+                settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge)
+                      categories:nil]];
+
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }
+    else
+    {
+        //这里还是原来的代码
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+                (UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert)];
+    }
+
+    //延迟加载的内容
+    NSDictionary* userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    if (userInfo!=nil) {
+        [self checkWhereToGoFromPushMessage:userInfo];
+    }
+
     return YES;
 
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    NSLog(@"Recevie Message:%@",userInfo);
+    [self checkWhereToGoFromPushMessage:userInfo];
+}
+
+- (void) checkWhereToGoFromPushMessage:(NSDictionary *)userInfo
+{
+    NSString *type = [[userInfo stringValueForKey:@"type"] lowercaseString];
+    if ([type isEqualToString:@"deal"]) {
+        VIDealsDetailViewController *deal = [[VIDealsDetailViewController alloc] init];
+        deal.dealid = [userInfo stringValueForKey:@"value"];
+        [[self pushStack] pushViewController:deal animated:YES];
+    }
+    if ([type isEqualToString:@"surprise"]) {
+//        VIDealsDetailViewController *deal = [[VIDealsDetailViewController alloc] init];
+//        deal.dealid = [userInfo stringValueForKey:@"value"];
+//        [[self pushStack] pushViewController:deal animated:YES];
+    }
 }
 
 - (void)rebulidMall:(id)values {
@@ -377,9 +419,9 @@ static NSString *logpath;
 
         //[torle addView:t2 page:1];
 
-        txt = [VILabel createLableWithFrame:Frm(36, t2.endY, fuw - 72, 40) color:@"#ffffff" font:Regular(18) align:CENTER];
+        txt = [VILabel createLableWithFrame:Frm(36, t2.endY, fuw - 72, 60) color:@"#ffffff" font:Regular(18) align:CENTER];
         txt.textAlignment = NSTextAlignmentCenter;
-        txt.numberOfLines = 2;
+        txt.numberOfLines = 3;
         txt.text = Lang(@"index_welcome_02");
         [torle addView:txt page:1];
 
@@ -509,6 +551,47 @@ static NSString *logpath;
 }
 
 - (void)shareText:(NSNotification *)notify {
+
+    NSDictionary *shareInfo = notify.object;
+    NSString *text = [shareInfo objectForKey:@"description"];
+    id pic = [shareInfo objectForKey:@"picture"];
+    UIImage *shareImg = [@"Icon-60@2x.png" image];
+    if ([pic isKindOfClass:[NSString class]]) {
+        EGOImageView *ego = [[EGOImageView alloc] init];
+        ego.imageURL = [NSURL URLWithString:pic];
+        shareImg = ego.image;
+    }
+
+    NSString *stringUrl = [shareInfo objectForKey:@"link"];
+    NSString *name      = [shareInfo stringValueForKey:@"name"];
+
+    NSArray *activityItems = [NSArray arrayWithObjects:Fmt(@"%@ %@",name,text),
+                                                       [NSURL URLWithString:stringUrl],shareImg,nil];
+
+    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
+    activityController.excludedActivityTypes = @[UIActivityTypePrint,UIActivityTypeCopyToPasteboard,
+            UIActivityTypeAssignToContact,UIActivityTypeAddToReadingList,UIActivityTypeSaveToCameraRoll];
+    if ([UIDevice isGe:8]) {
+        [activityController setCompletionWithItemsHandler:^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError){
+            if (completed) {
+                [VIAlertView showInfoMsg:[@"share2facebook_ok" lang]];
+            }else{
+                [VIAlertView showErrorMsg:[@"share2facebook_no" lang]];
+            }
+        }];
+    }else{
+        [activityController setCompletionHandler:^(NSString *activityType, BOOL completed){
+            if (completed) {
+                [VIAlertView showInfoMsg:[@"share2facebook_ok" lang]];
+            }else{
+                [VIAlertView showErrorMsg:[@"share2facebook_no" lang]];
+            }
+        }];
+    }
+
+    [[self pushStack] presentViewController:activityController animated:YES completion:nil];
+
+    /* only for facebook
     NSDictionary *shareInfo = notify.object;
     if ([FBSession activeSession].isOpen) {
         [self doPostMessage2FaceBook:shareInfo];
@@ -522,6 +605,7 @@ static NSString *logpath;
             }
         }];
     }
+   */
 }
 
 - (void)pushWeekNotifycation {

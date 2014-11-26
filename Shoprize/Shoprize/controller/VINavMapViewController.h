@@ -17,4 +17,6 @@
 @property(nonatomic,retain) NSArray *points;
 @property(nonatomic,retain) UIImageView *routeView;
 
+@property(nonatomic,assign) BOOL onlyShowRoute;
+
 @end

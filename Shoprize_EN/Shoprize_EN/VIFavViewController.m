@@ -13,7 +13,7 @@
 #import "CategoryFilterViewController.h"
 #import <VICore/VICore.h>
 #import <Shoprize/VIDealsDetailViewController.h>
-#import "Ext.h"
+#import <Shoprize/Ext.h>
 
 @interface VIFavViewController () {
 
@@ -24,6 +24,9 @@
     int pageindex;
     
     long currentTag;
+    
+    NSMutableArray *wanted;
+    NSMutableArray *redeemed;
 }
 
 @end
@@ -41,7 +44,7 @@
     [left setTitleColor:[@"#FFFFFF" hexColor] forState:UIControlStateNormal];
     [left setTitleColor:[@"#ff4747" hexColor] forState:UIControlStateSelected];
     [left addTarget:self action:@selector(changeTab:)];
-    UIImageView *imgs = [@"suprise_check.png" imageViewForImgSizeAtX:left.w-30 Y:4];
+    UIImageView *imgs = [@"suprise_check.png" imageViewForImgSizeAtX:10 Y:4];
     imgs.tag = 110;
     [left addSubview:imgs];
     
@@ -55,7 +58,7 @@
     [right setTitleColor:[@"#ff4747" hexColor] forState:UIControlStateSelected];
     [right addTarget:self action:@selector(changeTab:)];
     [self.view addSubview:right];
-    imgs = [@"checked_right.png" imageViewForImgSizeAtX:left.w-35 Y:4];
+    imgs = [@"checked_right.png" imageViewForImgSizeAtX:10 Y:4];
     imgs.tag = 111;
     [right addSubview:imgs];
     
@@ -70,6 +73,9 @@
     _tableView.dataSource = self;
     
     [self.view addSubview:_tableView];
+    
+    wanted = [NSMutableArray array];
+    redeemed = [NSMutableArray array];
     
     [self changeTab:left];
 }
@@ -93,6 +99,17 @@
     [_tableView reloadAndHideLoadMore:YES];
     
     currentTag = sender.tag;
+    
+    if (currentTag == 100 && wanted.count>0) {
+        [deals addObjectsFromArray:wanted];
+        [_tableView reloadAndHideLoadMore:YES];
+        return;
+    }
+    if (currentTag == 101 && redeemed.count>0) {
+        [deals addObjectsFromArray:redeemed];
+        [_tableView reloadAndHideLoadMore:YES];
+        return;
+    }
     [self pullDownRefrshStart:_tableView];
 }
 
@@ -104,6 +121,10 @@
 - (void)pullDownRefrshStart:(VITableView *)t
 {
     [deals removeAllObjects];
+    if(currentTag == 100)
+       [wanted removeAllObjects];
+    if (currentTag == 101)
+        [redeemed removeAllObjects];
     pageindex = 0;
     [self loadData];
 }
@@ -217,11 +238,22 @@ static long last_selected_long;
 }
 
 -(void)loadComplete:(id)values{
-    deals =  [Ext doEach:values with:^id(id itm) {
+    NSMutableArray *filter =  [Ext doEach:values with:^id(id itm) {
         if ([[itm stringValueForKey:@"Type"] isEqualToString:@"Deal"])
             return itm;
         return nil;
     }];
+   [deals addObjectsFromArray:filter];
+   
+    if (currentTag == 100) {
+        [wanted removeAllObjects];
+        [wanted addObjectsFromArray:deals];
+    }
+    if (currentTag == 101) {
+        [redeemed removeAllObjects];
+        [redeemed addObjectsFromArray:deals];
+    }
+    
    [_tableView reloadAndHideLoadMore:YES];
 }
 
@@ -260,7 +292,16 @@ static long last_selected_long;
      NSDictionary *pdata = [deals objectAtIndex:index];
      NSMutableDictionary *respval = [pdata mutableCopy];
      [respval setValue:@"RESPDEAL" forKey:@"resptype"];
-     [self pushTo:@"VIReedemViewController" data:respval];
+
+    if(currentTag == 100){
+        VIDealsDetailViewController *deal = [[VIDealsDetailViewController alloc] init];
+        deal.dealid = [pdata stringValueForKey:@"MobiPromoId"];
+        deal.showRedeem = YES;
+        [self push:deal];
+    }else{
+        [self pushTo:@"VIReedemViewController" data:respval];
+    }
+
 
 }
 

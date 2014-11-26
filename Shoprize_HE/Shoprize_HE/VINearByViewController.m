@@ -12,6 +12,7 @@
 #import <Shoprize/KUtils.h>
 #import <iSQLite/iSQLite.h>
 #import <Shoprize/VITimeDownCell.h>
+#import <Shoprize/Ext.h>
 
 typedef enum {Deals = 1,Suprises = 2,Stores = 3} ListType ;
 
@@ -132,15 +133,28 @@ static ListType currentType;
     [VINet regPushToken];
 }
 
+//获得所有的deal
+- (NSMutableArray *)findDeals:(NSString *)key{
+    
+    LKDBHelper *helper  = [iSQLiteHelper getDefaultHelper];
+    NSString *mallid    = [NSUserDefaults getValue:CURRENT_MALL_USER_SELECTED];
+    NSString *like = @"";
+    if (key!=nil)
+        like = Fmt(@" and (Offer like '%%%@%%' or StoreName like '%%%@%%')",key,key);
+    
+    NSString *sql = Fmt(@"select * from MobiPromo where Type = 'Deal' and StoreId in (select s.StoreId from Store s where s.MallId='%@') %@ order by CreateDate desc",mallid, like);
+    
+    return [helper searchWithSQL:sql toClass:[MobiPromo class]];
+}
+
 - (void)refreshToShowTheTable
 {
     LKDBHelper *helper  = [iSQLiteHelper getDefaultHelper];
     NSString *mallid    = [NSUserDefaults getValue:CURRENT_MALL_USER_SELECTED];
     
-    NSString *sql = Fmt(@"select * from MobiPromo where Type = 'Deal' and StoreId in (select s.StoreId from Store s where s.MallId='%@') order by CreateDate desc",mallid);
-    deals = [helper searchWithSQL:sql toClass:[MobiPromo class]];
+    deals = [self findDeals:nil];
     
-    sql = Fmt(@"select * from MobiPromo where Type = 'Surprise' and  StoreId in(select StoreId from Store s where s.MallId='%@') order by CreateDate desc",mallid);
+    NSString *sql = Fmt(@"select * from MobiPromo where Type = 'Surprise' and  StoreId in(select StoreId from Store s where s.MallId='%@') order by CreateDate desc",mallid);
     suprises = [helper searchWithSQL:sql toClass:[MobiPromo class]];
     
     sql = Fmt(@"select * from Store where MallId='%@' ",mallid);
@@ -327,8 +341,8 @@ static ListType currentType;
     
     [btn imageView4Tag:100].image = [[@[@"",@"deal_r.png",@"supriset_r.png",@"store_r.png"] objectAtIndex:btn.tag] image];
     
-    [self.leftOne setHidden:btn.tag!=3];
-    if (btn.tag!=3 && [self isSearchFiledShow]) {
+    [self.leftOne setHidden:btn.tag==2];
+    if (btn.tag!=2 && [self isSearchFiledShow]) {
         [self hideSearchFiled:self.leftOne];
     }
     
@@ -408,6 +422,14 @@ static ListType currentType;
             stores = [allStore mutableCopy];
         }
         [_tableView reloadData]  ;
+    }
+    if (currentType == Deals) {
+        if (search != nil) {
+            deals = [self findDeals:search];
+        }else{
+            deals = [self findDeals:nil];
+        }
+        [_tableView reloadData];
     }
 }
 

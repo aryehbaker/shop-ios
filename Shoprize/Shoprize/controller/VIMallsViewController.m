@@ -16,6 +16,8 @@
     NSMutableArray *allCity;
     NSMutableArray *curentCity;
     VICfgTableView *cfg;
+    
+    VIMapView *mapview;
 }
 
 @end
@@ -32,6 +34,12 @@
     [self addNav:Lang(@"list_of_malls") left:SEARCH right:MENU];
     
     cfg = [[VICfgTableView alloc] initWithFrame:Frm(0, self.nav.endY, self.view.w, Space(self.nav.endY)) cfg:@"tbcfg.json#list_of_malls"];
+    
+    if (isHe) {
+        mapview = [[VIMapView alloc] initWithFrame:Frm(0, 0, self.view.w, 180) showLocation:YES];
+        mapview.mapKitView.showsUserLocation = YES;
+        cfg.cfgTable.tableHeaderView = mapview;
+    }
     
     NSMutableArray *citys = [[iSQLiteHelper getDefaultHelper] searchAllModel:[MallInfo class]];
     
@@ -59,6 +67,48 @@
     [cfg setData:curentCity];
     cfg.delegate = self;
     [self.view addSubview:cfg];
+    
+    if (isHe) {
+        for (MallInfo *mall in allCity) {
+            VIPinAnnotationView *pin = [[VIPinAnnotationView alloc] initWithTitle:mall.Name sub:mall.Address lat:mall.Lat lon:mall.Lon];
+            [mapview addAnnotation:pin];
+        }
+        [self displayNear];
+    }
+}
+
+- (void)displayNear{
+        
+    CLLocationCoordinate2D topLeftCoord;
+    topLeftCoord.latitude	= -90;
+    topLeftCoord.longitude	= 180;
+        
+    CLLocationCoordinate2D bottomRightCoord;
+    bottomRightCoord.latitude	= 90;
+    bottomRightCoord.longitude	= -180;
+        
+    for (MallInfo *mif in allCity) {
+        double lat = mif.Lat,lon = mif.Lon;
+        if (mif.distance > 20) {
+            lat = [VINet currentLat];
+            lon = [VINet currentLon];
+        }
+        topLeftCoord.longitude		= fmin(topLeftCoord.longitude, lon);
+        topLeftCoord.latitude		= fmax(topLeftCoord.latitude, lat);
+        bottomRightCoord.longitude	= fmax(bottomRightCoord.longitude, lon);
+        bottomRightCoord.latitude	= fmin(bottomRightCoord.latitude, lat);
+    }
+    MKCoordinateRegion region;
+    region.center.latitude		= topLeftCoord.latitude - (topLeftCoord.latitude - bottomRightCoord.latitude) * 0.5;
+    region.center.longitude		= topLeftCoord.longitude + (bottomRightCoord.longitude - topLeftCoord.longitude) * 0.5;
+    region.span.latitudeDelta	= fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * 1.1;
+        
+        // Add a little extra space on the sides
+    region.span.longitudeDelta = fabs(bottomRightCoord.longitude - topLeftCoord.longitude) * 1.1;
+        
+    region = [mapview.mapKitView regionThatFits:region];
+    [mapview.mapKitView setRegion:region animated:YES];
+    
 }
 
 - (int)totalPage:(NSDictionary *)returnInfo {

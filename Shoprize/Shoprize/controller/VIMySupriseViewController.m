@@ -57,6 +57,10 @@ typedef NS_ENUM(NSInteger, Tabs) { USED,ACT};
     imgs.tag = 110;
     [left addSubview:imgs];
     [self.view addSubview:left];
+    if (isEn) {
+        [imgs setX:5];
+        [left setTitleEdgeInsets:UIEdgeInsetsMake(0, 30, 0, 0)];
+    }
     
     [right setTitle:Lang(@"menu_sprise_active") selected:Lang(@"menu_sprise_active")];
     right.titleLabel.font = Bold(16);
@@ -70,7 +74,9 @@ typedef NS_ENUM(NSInteger, Tabs) { USED,ACT};
     imgs = [@"suprise_check.png" imageViewForImgSizeAtX:left.w-35 Y:4];
     imgs.tag = 111;
     [right addSubview:imgs];
-    
+    if (isEn) {
+        [imgs setX:5];
+    }
     all = [[UITableView alloc] initWithFrame:Frm(0, right.endY, self.view.w, self.view.h-right.endY)];
     all.delegate = self;
     all.dataSource = self;

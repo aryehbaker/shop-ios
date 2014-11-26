@@ -12,6 +12,7 @@
 #import "CMPopTipView.h"
 #import "KUtils.h"
 
+
 @interface VIInviteViewController ()<MFMessageComposeViewControllerDelegate>
 {
     UITableView *listTable;

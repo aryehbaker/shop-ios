@@ -5,7 +5,7 @@
     },
      "index_welcome_01" : 
      {
-          "en" : "Welcome",
+          "en" : "WELCOME",
            "he":"להרוויח וליהנות יותר מהביקורים בקניון ! \nמבצעים והפתעות בכניסה לחנויות"
      },
      "index_welcome_02" : 
@@ -135,7 +135,7 @@
      "del_btn"              :{ "en" : "Delete","he" : "למחוק"},
      "share_cancel"         :{ "en" : "Cancel","he" : "ביטול" },
      "share_ok"             :{ "en" : "OK" ,"he": "אישור"},
-     "ck_all"               :{ "en" : "Check All","he": "סמנו הכל"},
+     "ck_all"               :{ "en" : "All","he": "סמנו הכל"},
      "ck_none"              :{ "en" : "Remove","he": "הסירו הכל"},
      "welcome_mall"         :{ "en" : "Hi %@, welcome to %@. open SOTG and see all awesome deals and surprises waiting for you now, save money and have fun !",
         "he": "הי %@, ברוכים הבאים ל %@. היכנסו לאפליקציית שופרייז וקבלו מבצעים והפתעות המחכים לכם עכשיו!"},
@@ -151,7 +151,15 @@
             "en" : "Did you want to call %@",
             "he" : "האם ברצונך להתקשר למספר %@"
      },
-     "check_mail": {
+    "call_cancel" : {
+            "he" : "בטל",
+            "en" : "No Thanks"
+    },
+    "call_now" : {
+         "he" : "התקשר",
+         "en" : "Call"
+    },
+    "check_mail": {
         "en": "Please check your e-mail",
         "he" : "אנא בדוק את הדואר האלקטרוני"
      },

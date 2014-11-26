@@ -145,7 +145,7 @@ static NSString *filterValue;
 
     [cellView egoimageView4Tag:1001].imageURL = [NSURL URLWithString:left.defPicture];
 
-    [cellView egoimageView4Tag:1002].imageURL = [NSURL URLWithString:left.StoreImageUrl];
+    [cellView egoimageView4Tag:1002].imageURL = [NSURL URLWithString:left.Logo];
     [cellView label4Tag:1003].text = [left.Offer killQute];
     [[cellView label4Tag:1003] setRTL];
     [cellView label4Tag:1003].font = [Fonts PekanLight:13];
@@ -162,7 +162,7 @@ static NSString *filterValue;
     if ((2 * indexPath.row + 1) < deals.count) {
         right = [deals objectAtIndex:(2 * indexPath.row + 1)];
         [cellView egoimageView4Tag:1101].imageURL = [NSURL URLWithString:right.defPicture];
-        [cellView egoimageView4Tag:1102].imageURL = [NSURL URLWithString:right.StoreImageUrl];
+        [cellView egoimageView4Tag:1102].imageURL = [NSURL URLWithString:right.Logo];
         [cellView label4Tag:1103].text = [right.Offer killQute];
         [[cellView label4Tag:1103] setRTL];
         [cellView label4Tag:1103].font = [Fonts PekanLight:13];
