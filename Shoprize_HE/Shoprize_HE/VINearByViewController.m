@@ -128,6 +128,7 @@ static ListType currentType;
         self.nav_title.text = selectedOne.Name;
         
         [self refreshToShowTheTable];
+        
     }
     
     [VINet regPushToken];
@@ -238,6 +239,7 @@ static ListType currentType;
 
 //存储到数据库中
 - (void)saveMall2DB:(NSArray *)values {
+    [[iSQLiteHelper getDefaultHelper] deleteWithClass:[MallInfo class] where:@"1=1"];
     [[iSQLiteHelper getDefaultHelper] insertOrUpdateDB:[MallInfo class] values:values];
 }
 

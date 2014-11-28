@@ -127,7 +127,6 @@ static NSString *logpath;
     self.locationManager.delegate = self;
     self.locationManager.distanceFilter = 5; //精度1m
     
-    
     DEBUGS(@"DEBUG %d",[CLLocationManager locationServicesEnabled]);
     
     // ios 8的情况
@@ -146,7 +145,7 @@ static NSString *logpath;
     self.isActive = YES;
     
     if([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorized) {
-        if (![self localNotifyisOff]) {
+        if (![self localNotifyisOff] && [CLLocationManager locationServicesEnabled]) {
             [self.locationManager startUpdatingLocation];
             [self startScan];
         }
@@ -182,6 +181,15 @@ static NSString *logpath;
     if (userInfo!=nil) {
         [self checkWhereToGoFromPushMessage:userInfo];
     }
+
+#if TARGET_IPHONE_SIMULATOR
+    [[VILogger getLogger] setLogLevelSetting:SLLS_ALL];
+#elif TARGET_OS_IPHONE
+    [[VILogger getLogger] setLogLevelSetting:SLLS_NONE];
+#endif
+    
+    //[self buildGenWall];
+    
     return YES;
 }
 
@@ -274,8 +282,8 @@ static NSDate *latestLoc;
 {
     if (locations!=nil && locations.count > 0) {
         //save user Info
-        CLLocation *location = [locations objectAtIndex:0];
-        if (latestLoc!=nil && [location.timestamp timeIntervalSinceDate:latestLoc] < 30) {
+        CLLocation *location = [locations lastObject];
+        if (latestLoc!=nil && abs([location.timestamp timeIntervalSinceDate:latestLoc])< 30) {
             //小于30s直接返回,不做任何操作
             return;
         }
@@ -478,12 +486,43 @@ static NSDate *latestLoc;
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     self.isActive = NO;
-    
+
     if ([CLLocationManager locationServicesEnabled] &&
         [CLLocationManager significantLocationChangeMonitoringAvailable])
     {
-        [self.locationManager startMonitoringSignificantLocationChanges];
+        [self.locationManager stopUpdatingLocation];
+        //[self buildGenWall];
+        //[self.locationManager startMonitoringSignificantLocationChanges];
     }
+}
+
+-(void)buildGenWall {
+    
+    if (![CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
+        return;
+    }
+    NSArray *malls  = [MallInfo allmall];
+    for(MallInfo *mall in malls){
+        CLLocationCoordinate2D center = CLLocationCoordinate2DMake(mall.Lat, mall.Lon);
+        CLRegion *region = [[CLCircularRegion alloc] initWithCenter:center radius:500 identifier:mall.MallAddressId];
+        NSLog(@"%@",region);
+        [self.locationManager stopMonitoringForRegion:region];
+        [self.locationManager startMonitoringForRegion:region];
+    }
+}
+- (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region
+              withError:(NSError *)error
+{
+    NSLog(@"%@",error);
+}
+-(void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
+{
+    NSLog(@"%@",region.identifier);
+}
+
+-(void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
+{
+    NSLog(@"%@",region);
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -601,13 +640,16 @@ static NSDate *latestLoc;
     NSString *text = [shareInfo objectForKey:@"description"];
     id pic = [shareInfo objectForKey:@"picture"];
     UIImage *shareImg = [@"Icon-60@2x.png" image];
+    if ([pic isKindOfClass:[UIImage class]]) {
+        shareImg = pic;
+    }
     if ([pic isKindOfClass:[NSString class]]) {
         EGOImageView *ego = [[EGOImageView alloc] init];
         ego.imageURL = [NSURL URLWithString:pic];
         shareImg = ego.image;
     }
     
-    NSString *stringUrl = [shareInfo objectForKey:@"link"];
+    NSString *stringUrl = @"https://itunes.apple.com/us/app/shoprize/id916054683?mt=8";
     NSString *name      = [shareInfo stringValueForKey:@"name"];
     
     NSArray *activityItems = [NSArray arrayWithObjects:Fmt(@"%@ %@",name,text),
@@ -746,110 +788,6 @@ static NSDate *latestLoc;
     }else{
         [[UIApplication sharedApplication] cancelAllLocalNotifications];
     }
-}
-
-- (void)cancelShare:(UITapGestureRecognizer *)tap
-{
-    [self cancelShareAct:nil];
-}
-
-- (void)cancelShareAct:(UIButton *)btn
-{
-    UIView *tap = [self.window viewWithTag:-2000];
-    UIView *target = [tap viewWithTag:18000];
-    [UIView animateWithDuration:.2 animations:^{
-        [target setY:- target.h];
-    } completion:^(BOOL finished) {
-        [tap removeFromSuperview];
-    }];
-}
-
-
-
-static NSMutableDictionary *shareInfo;
-
--(void)doPostMessage2FaceBook:(NSDictionary *)msgs{
-    
-    shareInfo = [msgs mutableCopy];
-    
-    UIView *bd = [[UIView alloc] initWithFrame:self.window.bounds];
-    bd.tag = -2000;
-    bd.backgroundColor = [@"#000000" hexColorAlpha:.6];
-    
-    [bd addTapTarget:self action:@selector(cancelShare:)];
-    UIView *v = [VIBaseViewController loadXibView:@"UI.xib" withTag:18000];
-    [v setX:(self.window.w - v.w)/2];
-    [v setY:-v.h];
-    
-    v.layer.borderWidth = 1.2;
-    v.layer.shadowOffset = CGSizeMake(-1, 1);
-    v.layer.shadowColor = [@"#FFFFFF" hexColor].CGColor;
-    v.layer.borderColor = [@"#D1D1D1" hexColor].CGColor;
-    v.layer.cornerRadius = 8;
-    
-    UITextView *t = ((UITextView *)[v viewWithTag:18003]);
-    t.font = Regular(14);
-    t.text = [msgs objectForKey:@"description"];
-    t.textAlignment = Align;
-    [t becomeFirstResponder];
-    
-    [(UIButton *)[v viewWithTag:18001] setTitle:Lang(@"share_cancel") selected:Lang(@"share_cancel")];
-    ((UIButton *)[v viewWithTag:18001]).titleLabel.font = Bold(16);
-    [((UIButton *)[v viewWithTag:18001]) addTapTarget:self action:@selector(cancelShareAct:)];
-    [((UIButton *)[v viewWithTag:18002]) addTapTarget:self action:@selector(shareNow:)];
-    [((UIButton *)[v viewWithTag:18002]) setTitle:Lang(@"share_ok") selected:Lang(@"share_ok")];
-    ((UIButton *)[v viewWithTag:18002]).titleLabel.font = Bold(16);
-    id pic = [msgs objectForKey:@"picture"];
-    if ([pic isKindOfClass:[NSString class]]) {
-        pic = [NSURL URLWithString:pic];
-    }
-    
-    [v egoimageView4Tag:18004].imageURL = pic;
-    
-    [bd addSubview:v];
-    
-    [self.window addSubview:bd];
-    
-    [UIView animateWithDuration:.3 animations:^{
-        [v setY:20];
-    }];
-   
-}
-
-- (void)shareNow:(UIButton *)share
-{
-     NSString *viewt = ((UITextView *)[self.window viewWithTag:18003]).text;
-    
-     [shareInfo setValue:viewt forKey:@"description"];
-    
-     NSMutableDictionary *postInfo = [NSMutableDictionary dictionary];
-     id pic = [shareInfo objectForKey:@"picture"];
-     if ([pic isKindOfClass:[NSURL class]]) {
-         pic = [pic absoluteString];
-     }
-     [postInfo setValue:pic forKey:@"picture"];
-     [postInfo setValue:[shareInfo objectForKey:@"description"] forKey:@"description"];
-     [postInfo setValue:[shareInfo objectForKey:@"name"] forKey:@"name"];
-     
-     NSString *stringUrl = [shareInfo objectForKey:@"link"];
-     if (![[stringUrl stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""]) {
-     [postInfo setValue:stringUrl forKey:@"link"];
-     }
-     
-     [FBRequestConnection
-     startWithGraphPath:@"me/feed" parameters:postInfo HTTPMethod:@"POST"
-     completionHandler:^(FBRequestConnection *connection,
-     id result, NSError *error) {
-     NSString *alertText;
-     if (error) {
-         ERROR(@"Facebook Share:%@",error.description);
-         alertText  = [@"share2facebook_no" lang];
-     } else {
-         alertText  = [@"share2facebook_ok" lang];
-         [self cancelShareAct:nil];
-     }
-         [VIAlertView showMessageWithTitle:@"" msg:alertText];
-     }];
 }
 
 @end

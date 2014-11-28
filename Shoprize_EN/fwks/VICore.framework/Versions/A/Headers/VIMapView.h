@@ -19,10 +19,19 @@
 #import <VICore/VICore.h>
 #import <MapKit/MapKit.h>
 
+@protocol VIMapViewDelegate <NSObject>
+
+@optional
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation;
+
+@end
+
 @interface VIMapView : UIView <MKMapViewDelegate>{}
 
 @property(nonatomic, readonly) MKMapView *mapKitView;
 @property(nonatomic, retain) UIImageView *routeView;
+@property(nonatomic,assign) id<VIMapViewDelegate> delegate;
 
 - (id)initWithFrame:(CGRect)frame showLocation:(BOOL)showYourlocation;
 

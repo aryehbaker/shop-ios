@@ -8,6 +8,6 @@
 
 #import "ShopriseViewController.h"
 
-@interface VIMallsViewController : ShopriseViewController<VICfgTableProto>
+@interface VIMallsViewController : ShopriseViewController<VICfgTableProto,VIMapViewDelegate>
 
 @end

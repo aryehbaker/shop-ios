@@ -149,6 +149,7 @@
     @property(nonatomic,assign) double distance;
 
     + (MallInfo *)nearestMall;
+    + (NSArray *)allmall;
 
 @end
 

@@ -109,7 +109,7 @@
      "search_by_key"        :{ "en" : "Search by Keyword","he": "חיפוש"},
      "store_info"           :{ "en" : "Info" , "he" : "פרטי עסק"},
      "no_promos"            :{ "en" : "No promotional activities" ,"he": "אין כרגע פעילויות קידום מכירות"},
-     "store_has_sup"        :{ "en" : "The Store is giving away a surprise . walk in and collect","he": "חנות הזו מחלקת הטבה בלעדית בכניסה. היכנסו עכשיו וזכו!"},
+"store_has_sup"        :{ "en" : "The Store is giving away a surprise . walk in and collect","he": "חנות הזו מחלקת הטבה בלעדית בכניסה. היכנסו עכשיו וזכו!"},
      "head_change"          :{ "en" : "Change", "he": "החלפת תמונה"},
      "head_delete"          :{ "en" : "Delete", "he": "מחיקת תמונה"},
      "fm_email"             :{ "en" : "Email","he": "דוא\"ל'"},

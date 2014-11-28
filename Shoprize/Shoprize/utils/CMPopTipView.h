@@ -153,6 +153,7 @@ typedef enum {
 - (void)autoDismissAnimated:(BOOL)animated atTimeInterval:(NSTimeInterval)timeInvertal;
 - (PointDirection) getPointDirection;
 - (void)setPointerDirection:(PointDirection)p;
+- (void)hideCloseIcon;
 @end
 
 

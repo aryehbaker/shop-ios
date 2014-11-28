@@ -18,6 +18,10 @@
 #import <VICore/VICore.h>
 
 @interface VIMenusViewController ()
+{
+    CMPopTipView *poptip;
+    UIButton     *checbtn;
+}
 @property (nonatomic,strong) NSArray *datasource;
 @property (nonatomic,strong) NSArray *curentData;
 @property (nonatomic,assign) NSInteger lastSelected;
@@ -218,23 +222,25 @@
     }
     else if (index == 23 ) {
         UITableViewCell *tcell = [tableView cellForRowAtIndexPath:indexPath];
-        UIButton *checbtn = (UIButton*)[tcell viewWithTag:400];
-        checbtn.selected = !checbtn.selected;
-        [[NSUserDefaults standardUserDefaults] setBool:checbtn.selected  forKey:@"_close_notification_"];
-        
+        checbtn = (UIButton*)[tcell viewWithTag:400];
         VIAppDelegate *app = ((VIAppDelegate *)[UIApplication sharedApplication].delegate);
-        
-        if (checbtn.selected){ //选中为关
-            NSArray *nocations = [[UIApplication sharedApplication] scheduledLocalNotifications];
-            for (UILocalNotification *l in nocations) {
-                NSString *type = [l.userInfo stringValueForKey:@"NotifyType"];
-                if (type !=nil && ![type isEqualToString:@"Week"]) {
-                    [[UIApplication sharedApplication] cancelLocalNotification:l];
-                }
-            }
-            [app.locationManager stopUpdatingLocation];
-            [app stopScan];
+        if (!checbtn.selected){ //选中为关
+            
+            UIView *tip = [self loadXib:@"UIExt_HE.xib" withTag:100];
+            tip.backgroundColor = [UIColor clearColor];
+            poptip = [[CMPopTipView alloc] initWithCustomView:tip];
+            poptip.sidePadding = 10;
+            [poptip hideCloseIcon];
+            [poptip presentPointingAtView:checbtn inView:self.view animated:YES];
+            [[tip button4Tag:101] addTarget:self action:@selector(doClose:)];
+            [[tip button4Tag:102] addTarget:self action:@selector(hideTip:)];
+            
+            [tip button4Tag:102].layer.cornerRadius = 6;
+            [tip button4Tag:101].layer.cornerRadius = 6;
+            
         }else{
+            checbtn.selected = !checbtn.selected;
+            [[NSUserDefaults standardUserDefaults] setBool:checbtn.selected  forKey:@"_close_notification_"];
             [app startScan];
             [app.locationManager startUpdatingLocation];
         }
@@ -305,8 +311,23 @@
         [navigationController pushViewController:us animated:YES];
     }
     
-     [self.frostedViewController hideMenuViewController];
+    [self.frostedViewController hideMenuViewController];
     
+}
+
+-(void)hideTip:(UIButton *)button
+{
+    [poptip dismissAnimated:YES];
+}
+-(void)doClose:(UIButton *)button
+{
+    checbtn.selected = !checbtn.selected;
+    [[NSUserDefaults standardUserDefaults] setBool:checbtn.selected  forKey:@"_close_notification_"];
+    
+    VIAppDelegate *app = ((VIAppDelegate *)[UIApplication sharedApplication].delegate);
+    [app.locationManager stopUpdatingLocation];
+    [app stopScan];
+    [self hideTip:nil];
 }
 
 -(BOOL)checkHtmlName:(UIViewController *)ctrl htmlName:(NSString *)html

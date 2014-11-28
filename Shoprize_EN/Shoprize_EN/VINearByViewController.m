@@ -131,6 +131,9 @@ static ListType currentType;
         [VINet get:@"/api/malls/nearby?radius=0" args:nil target:self succ:@selector(rebulidMall:) error:@selector(getMallsFail:) inv:nil];
         self.nav_title.text = selectedOne.Name;
         [self refreshToShowTheTable];
+        
+        //构件围墙
+        [self buildMallGeoWall];
     }
     
     [VINet regPushToken];
@@ -162,7 +165,9 @@ static ListType currentType;
 
 -(void)rebulidMall:(NSArray *)values {
     [self saveMall2DB:values];
+    [self buildMallGeoWall];
 }
+
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:_NOTIFY_MALL_CHANGED object:nil];
@@ -227,6 +232,7 @@ static ListType currentType;
 
 //存储到数据库中
 - (void)saveMall2DB:(NSArray *)values {
+    [[iSQLiteHelper getDefaultHelper] deleteWithClass:[MallInfo class] where:@"1=1"];
     [[iSQLiteHelper getDefaultHelper] insertOrUpdateDB:[MallInfo class] values:values];
 }
 
@@ -310,7 +316,7 @@ static ListType currentType;
         [_tableView reloadAndHideLoadMore:YES];
     }
 }
-
+static bool clear_by_hand;
 - (void)changeType:(UIButton *)btn
 {
     [section1 setBackgroundcolorByHex:@"#ff4747"];
@@ -331,7 +337,10 @@ static ListType currentType;
     [btn imageView4Tag:100].image = [[@[@"",@"deal_r.png",@"supriset_r.png",@"store_r.png"] objectAtIndex:btn.tag] image];
     
     [self.leftOne setHidden:btn.tag!=3];
+    
+    clear_by_hand = true;
     if (btn.tag!=3 && [self isSearchFiledShow]) {
+        clear_by_hand = false;
         [self hideSearchFiled:self.leftOne];
     }
     
@@ -407,10 +416,13 @@ static ListType currentType;
                     [stores addObject:d];
                 }
             }
+            
         }else{
             stores = [allStore mutableCopy];
         }
-        [_tableView reloadData]  ;
+        if (clear_by_hand) {
+             [_tableView reloadData];
+        }
     }
 }
 

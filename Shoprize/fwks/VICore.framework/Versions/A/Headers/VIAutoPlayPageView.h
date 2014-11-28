@@ -43,6 +43,7 @@
  */
 - (UIImageView*)getImageAtIndex:(NSInteger)index;
 
+- (UIImage *)imageAt:(NSInteger)index;
 /**
  * 设置Page的位置
  */

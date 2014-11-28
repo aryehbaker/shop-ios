@@ -54,14 +54,15 @@
 }
 
 -(void)showMapRouting:(UIButton *)sender {
-    if(mapkit.mapKitView.userLocation != nil){
         [self startLoading];
         VIPinAnnotationView *anno =  [[VIPinAnnotationView alloc]initAnnotationWithCoordinate:CLLocationCoordinate2DMake([VINet currentLat], [VINet currentLon]) andColor:MKPinAnnotationColorRed];
+    
+        if(mapkit.mapKitView.userLocation != nil){
+            anno.coordinate = mapkit.mapKitView.userLocation.coordinate;
+        }
+        
         [mapkit showWayFrom:anno to:target lineColor:@"#FF0000"];
         [self stopLoading];
-    }
-    else
-        [VIAlertView showErrorMsg:@"Can't get your location"];
 }
 
 - (void)didReceiveMemoryWarning

@@ -740,6 +740,11 @@
     [self layoutSubviews];
 }
 
+- (void)hideCloseIcon
+{
+    [[self viewWithTag:NSIntegerMax] removeFromSuperview];
+}
+
 - (id)initWithTitle:(NSString *)titleToShow message:(NSString *)messageToShow
 {
 	CGRect frame = CGRectZero;
@@ -783,6 +788,7 @@
         UIButton *close = [[UIButton alloc] initWithFrame:CGRectMake(-10,0, 27, 27)];
         [close setImage:[UIImage imageNamed:@"close_btn.png"] forState:UIControlStateNormal];
         [self addSubview:close];
+        close.tag = NSIntegerMax;
         [close addTarget:self action:@selector(hideTip:) forControlEvents:UIControlEventTouchUpInside];
 	}
 	return self;

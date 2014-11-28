@@ -10,8 +10,9 @@
 #import "KUtils.h"
 #import "Models.h"
 #import <iSQLite/iSQLite.h>
+#import "VINavMapViewController.h"
 
-@interface VIMallsViewController ()
+@interface VIMallsViewController ()<VIMapViewDelegate>
 {
     NSMutableArray *allCity;
     NSMutableArray *curentCity;
@@ -38,7 +39,9 @@
     if (isHe) {
         mapview = [[VIMapView alloc] initWithFrame:Frm(0, 0, self.view.w, 180) showLocation:YES];
         mapview.mapKitView.showsUserLocation = YES;
+        mapview.delegate = self;
         cfg.cfgTable.tableHeaderView = mapview;
+        cfg.cfgTable.tableHeaderView.userInteractionEnabled = YES;
     }
     
     NSMutableArray *citys = [[iSQLiteHelper getDefaultHelper] searchAllModel:[MallInfo class]];
@@ -69,12 +72,65 @@
     [self.view addSubview:cfg];
     
     if (isHe) {
+        int i = 0;
         for (MallInfo *mall in allCity) {
             VIPinAnnotationView *pin = [[VIPinAnnotationView alloc] initWithTitle:mall.Name sub:mall.Address lat:mall.Lat lon:mall.Lon];
+            pin.tag = i;
             [mapview addAnnotation:pin];
+            i++;
         }
         [self displayNear];
     }
+}
+
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    VIPinAnnotationView *annotion = nil;
+    
+    if (annotation != mapView.userLocation) {
+        VIPinAnnotationView *anno			= (VIPinAnnotationView *)annotation;
+        VIPinAnnotationView *pinAnnotation	= (VIPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:anno.identiy];
+        
+        if (pinAnnotation == nil) {
+            pinAnnotation					= [[VIPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:anno.identiy];
+            pinAnnotation.enabled			= YES;
+            pinAnnotation.animatesDrop		= YES;
+            pinAnnotation.canShowCallout	= YES;
+            pinAnnotation.calloutOffset		= CGPointMake(-5, 5);
+        } else {
+            pinAnnotation.annotation = annotation;
+        }
+        
+        pinAnnotation.tag = anno.tag;
+        
+        long tagindex = anno.tag;
+        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button setImage:@"showrote.png" selectd:@"showrote.png"];
+        [button setFrame:Frm(0, 0, 40, 40)];
+        [button setImageEdgeInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
+        [button addTarget:self action:@selector(showMore:) forControlEvents:UIControlEventTouchUpInside];
+        button.tag = 0 - tagindex;
+        pinAnnotation.rightCalloutAccessoryView = button;
+        
+        return pinAnnotation;
+    }
+    return annotion;
+}
+
+-(void)showMore:(UIButton*)sender
+{
+    MallInfo *mall = allCity[0-sender.tag];
+    
+    VINavMapViewController *map = [[VINavMapViewController alloc] init];
+    map.destination = [[CLLocation alloc] initWithLatitude:mall.Lat longitude:mall.Lon];
+    map.title = mall.Name;
+    map.subtitle = mall.Address;
+    map.onlyShowRoute =  YES;
+
+    [self push:map];
+    
 }
 
 - (void)displayNear{
@@ -89,7 +145,7 @@
         
     for (MallInfo *mif in allCity) {
         double lat = mif.Lat,lon = mif.Lon;
-        if (mif.distance > 20) {
+        if (mif.distance > 50) {
             lat = [VINet currentLat];
             lon = [VINet currentLon];
         }
@@ -107,7 +163,7 @@
     region.span.longitudeDelta = fabs(bottomRightCoord.longitude - topLeftCoord.longitude) * 1.1;
         
     region = [mapview.mapKitView regionThatFits:region];
-    [mapview.mapKitView setRegion:region animated:YES];
+    [mapview.mapKitView setRegion:region];
     
 }
 

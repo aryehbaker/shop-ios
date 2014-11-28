@@ -252,6 +252,10 @@
     }
     return nearest;
 }
+
+ + (NSArray *)allmall {
+    return  [[iSQLiteHelper getDefaultHelper] searchAllModel:[MallInfo class]];
+}
 @end
 
 @implementation Timestamps

@@ -154,6 +154,8 @@
 		7A6A1C7D1A03640E000305F1 /* question_he.html in Resources */ = {isa = PBXBuildFile; fileRef = 7A6A1C711A03640E000305F1 /* question_he.html */; };
 		7A6A1C7E1A03640E000305F1 /* sigeup_en.html in Resources */ = {isa = PBXBuildFile; fileRef = 7A6A1C721A03640E000305F1 /* sigeup_en.html */; };
 		7A6A1C7F1A03640E000305F1 /* sigeup_he.html in Resources */ = {isa = PBXBuildFile; fileRef = 7A6A1C731A03640E000305F1 /* sigeup_he.html */; };
+		7A7BCF461A25B0CF00575B09 /* showrote.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A7BCF451A25B0CF00575B09 /* showrote.png */; };
+		7A80D6C91A26B312008FD687 /* UIExt_HE.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A80D6C81A26B312008FD687 /* UIExt_HE.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -349,6 +351,8 @@
 		7A6A1C711A03640E000305F1 /* question_he.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = question_he.html; sourceTree = "<group>"; };
 		7A6A1C721A03640E000305F1 /* sigeup_en.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = sigeup_en.html; sourceTree = "<group>"; };
 		7A6A1C731A03640E000305F1 /* sigeup_he.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = sigeup_he.html; sourceTree = "<group>"; };
+		7A7BCF451A25B0CF00575B09 /* showrote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = showrote.png; sourceTree = "<group>"; };
+		7A80D6C81A26B312008FD687 /* UIExt_HE.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UIExt_HE.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -470,6 +474,7 @@
 				1705D88219F9FD65005F322F /* tbcfg.json */,
 				1705D81B19F9FD65005F322F /* add_store_btn.png */,
 				1705D81E19F9FD65005F322F /* back_w_small.png */,
+				7A7BCF451A25B0CF00575B09 /* showrote.png */,
 				1705D81D19F9FD65005F322F /* back_w.png */,
 				1705D81C19F9FD65005F322F /* back.png */,
 				7A36739C1A1AE41D003296C4 /* supriset_loading.png */,
@@ -550,6 +555,7 @@
 				1705D83019F9FD65005F322F /* fonts */,
 				1705D85E19F9FD65005F322F /* setting */,
 				1705D88319F9FD65005F322F /* tor */,
+				7A80D6C81A26B312008FD687 /* UIExt_HE.xib */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -693,6 +699,11 @@
 				TargetAttributes = {
 					1705D73B19F9F539005F322F = {
 						CreatedOnToolsVersion = 6.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+						};
 					};
 					1705D75419F9F539005F322F = {
 						CreatedOnToolsVersion = 6.1;
@@ -787,7 +798,9 @@
 				1705D8FD19F9FD65005F322F /* tor_1.png in Resources */,
 				1705D8B719F9FD65005F322F /* inv_add.png in Resources */,
 				1705D8A919F9FD65005F322F /* PekanRegular.ttf in Resources */,
+				7A80D6C91A26B312008FD687 /* UIExt_HE.xib in Resources */,
 				1705D89919F9FD65005F322F /* checked_right.png in Resources */,
+				7A7BCF461A25B0CF00575B09 /* showrote.png in Resources */,
 				1705D8AB19F9FD65005F322F /* hear_share_1.png in Resources */,
 				1705D8B819F9FD65005F322F /* inv_all.png in Resources */,
 				1705D89319F9FD65005F322F /* back.png in Resources */,
@@ -1014,7 +1027,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0cbfe64e-03aa-49ec-8dd4-bff0f7acbd49";
+				PROVISIONING_PROFILE = "d1f529c0-6f57-4b77-939f-adca714b3570";
 			};
 			name = Debug;
 		};
@@ -1037,7 +1050,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0cbfe64e-03aa-49ec-8dd4-bff0f7acbd49";
+				PROVISIONING_PROFILE = "d1f529c0-6f57-4b77-939f-adca714b3570";
 			};
 			name = Release;
 		};

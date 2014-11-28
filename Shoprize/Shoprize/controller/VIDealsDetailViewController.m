@@ -27,6 +27,8 @@
     NSDictionary *mobi_promo;
 
     UIButton *redeem;
+ 
+    NSMutableArray *load_itms;
 }
 
 @end
@@ -129,18 +131,18 @@
         pics = [helper searchModels:[Picture class] where:@{@"MobiPromoId":mobiid}];
     }
     
-    NSMutableArray *itms = [NSMutableArray array];
+    load_itms = [NSMutableArray array];
     for (Picture *p in pics) {
         VIAutoPlayItem *it = [[VIAutoPlayItem alloc] initWithURL:p.PictureUrl andValue:nil];
         it.placeImage = [@"no_pic.png" image];
-        [itms addObject:it];
+        [load_itms addObject:it];
         [self.imagelist addObject:[NSURL URLWithString:p.PictureUrl]];
     }
     
     UIView *bg = [[UIView alloc] initWithFrame:Frm(10, 0, 300, 220)];
     bg.backgroundColor = [@"#ffffff" hexColor];
     
-    VIAutoPlayPageView *autoPlay = [[VIAutoPlayPageView alloc] initWithFrame:Frm(8, 8, 284, 204) delegate:self focusImageItems:itms alphaBackFrame:CGRectZero];
+    VIAutoPlayPageView *autoPlay = [[VIAutoPlayPageView alloc] initWithFrame:Frm(8, 8, 284, 204) delegate:self focusImageItems:load_itms alphaBackFrame:CGRectZero];
     [autoPlay setBackgroundcolorByHex:@"#ffffff"];
     for (UIView *v in [autoPlay subviews]) {
         for (UIView *v2 in [v subviews]){
@@ -152,10 +154,10 @@
     [bg addSubview:autoPlay];
     [contentView addSubview:bg];
     
-    if (itms.count != 0) {
+    if (load_itms.count != 0) {
         UIImageView *imgs = [@"howmuch.png" imageViewForImgSizeAtX:autoPlay.w - 44 -10 Y:autoPlay.h-21-10];
         UILabel *l = [VILabel createLableWithFrame:Frm(28, 2, 44-28, 25) color:@"#9A9A9A" font:Light(20) align:CENTER];
-        l.text = Fmt(@"%ld",(unsigned long)itms.count);
+        l.text = Fmt(@"%ld",(unsigned long)load_itms.count);
         [imgs addSubview:l];
         [autoPlay addSubview:imgs];
     }
@@ -367,12 +369,16 @@
 - (void)reward:(UIButton*)sneder
 {
     sneder.enabled = NO;
-
+    NSString *imageURL = nil;
+    if (load_itms.count> 0) {
+        VIAutoPlayItem *item = [load_itms objectAtIndex:0];
+        imageURL = item.imageURL;
+    }
+    
     NSMutableDictionary *pot = [NSMutableDictionary dictionary];
-    [pot setValue:[mobi_promo stringValueForKey:@"StoreImageUrl"] forKey:@"picture"];
-    [pot setValue:[mobi_promo stringValueForKey:@"Offer"] forKey:@"description"];
+    [pot setValue:imageURL forKey:@"picture"];
+    [pot setValue:[mobi_promo stringValueForKey:@"Description"] forKey:@"description"];
     [pot setValue:[mobi_promo stringValueForKey:@"StoreName"] forKey:@"name"];
-    [pot setValue:[mobi_promo stringValueForKey:@"StoreUrl"] forKey:@"link"];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"_share_to_facebook_" object:pot];
     
