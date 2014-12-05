@@ -27,9 +27,12 @@
     UIFont *reg = Regular(16);
     UIFont *blk = Bold(16);
     
-    UILabel *h =  [UILabel initManyLineWithFrame:Frm(10, 20, 160, 0) color:@"#252525" font:reg text:hour];
+    VIRTLabel *h = [[VIRTLabel alloc] initWithFrame:Frm(10, 20, 160, 0)];
+    [h setTextColor:[@"#252525" hexColor]];
     [h setText:hour];
-    [h setRTL];
+    [h setFont:reg];
+    [h setTextAlignment:RTTextAlignmentRight];
+    [h setH:h.optimumSize.height];
     [continer addSubview:h];
     
     UILabel *ht = [[UILabel alloc] initWithFrame:Frm(h.endX+3, h.y, continer.w-20-h.w, 15)];
@@ -43,9 +46,12 @@
         [h setX:ht.endX+5];
     }
     
-    h = [UILabel initManyLineWithFrame:Frm(10, h.endY+5, h.w, 0) color:@"#252525" font:reg text:addr];
+    h = [[VIRTLabel alloc] initWithFrame:Frm(10, h.endY+5, h.w, 0)];
+    [h setTextColor:[@"#252525" hexColor]];
+    [h setFont:reg];
+    [h setTextAlignment:RTTextAlignmentRight];
     [h setText:addr];
-    [h setRTL];
+    [h setH:h.optimumSize.height];
     [continer addSubview:h];
     ht = [[UILabel alloc] initWithFrame:Frm(ht.x, h.y, continer.w-20-h.w, 15)];
     ht.text = [@"addr_txt" lang];
@@ -57,16 +63,19 @@
         [ht setX:10];
         [h setX:ht.endX+5];
     }
-    
-    h = [UILabel initManyLineWithFrame:Frm(10, h.endY+5, h.w, 0) color:@"#0066ff" font:reg text:tel];
-    [h setText:tel];
-    [h setRTL];
+
+    h = [[VIRTLabel alloc] initWithFrame:Frm(10, h.endY+5, h.w, 0)];
+    [h setTextColor:[@"#0066ff" hexColor]];
+    [h setFont:reg];
+    [h setTextAlignment:RTTextAlignmentRight];
+    [h setText:Fmt(@"<u>%@</u>",tel)];
+    [h setH:h.optimumSize.height];
     [h setUserInteractionEnabled:YES];
     
-    NSMutableAttributedString *content = [[NSMutableAttributedString alloc]initWithString:tel];
-    NSRange contentRange = {0,[content length]};
-    [content addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:contentRange];
-    h.attributedText = content;
+//    NSMutableAttributedString *content = [[NSMutableAttributedString alloc]initWithString:tel];
+//    NSRange contentRange = {0,[content length]};
+//    [content addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:contentRange];
+//    h.attributedText = content;
     
     [h addTapTarget:self action:@selector(callMe:)];
     [continer addSubview:h];

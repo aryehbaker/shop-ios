@@ -46,16 +46,24 @@
     }
     else{
         //otherwish from another way
-        if (_mobipromo!=nil)
+        if (_mobipromo!=nil){
+            _mobipromo = [[iSQLiteHelper getDefaultHelper] searchSingle:[MobiPromo class] where:@{@"MobiPromoId":_mobipromo.MobiPromoId} orderBy:@"MobiPromoId"];
+            
             mobi_promo  = [_mobipromo toDictionary];
+        }
         if (_mobipromoar != nil)
-            mobi_promo  = [_mobipromoar toDictionary];
-        
+        {
+             MobiPromoAR *mobi_ar = [[iSQLiteHelper getDefaultHelper] searchSingle:[MobiPromoAR class] where:@{@"MobiPromoId":_mobipromoar.MobiPromoId} orderBy:@"MobiPromoId"];
+            mobi_promo  = [mobi_ar toDictionary];
+        }
         
         if (self.exculedId == nil) {
             self.exculedId = [NSMutableSet set];
         }
-        [self.exculedId addObject:[mobi_promo stringValueForKey:@"MobiPromoId"]];
+        NSString *mbid = [mobi_promo stringValueForKey:@"MobiPromoId"];
+        if (mbid!=nil) {
+            [self.exculedId addObject:mbid];
+        }
         
         NSString *title = [mobi_promo stringValueForKey:@"StoreName"];
         
@@ -352,8 +360,19 @@
     [rspVal setValue:[NSNumber numberWithBool:YES] forKey:@"IsMarked"];
     [rspVal setValue:[NSNumber numberWithInt:[mobi_promo intValueForKey:@"MarkedCount"] +1] forKey:@"MarkedCount"];
     if(_mobipromoar!=nil)
-        [[iSQLiteHelper getDefaultHelper] insertOrUpdateDB:[MobiPromoAR class] value:rspVal];
+    {
+        [[iSQLiteHelper getDefaultHelper] executeDB:^(FMDatabase *db) {
+            BOOL up = [db executeUpdate:@"update MobiPromoAR set MarkedCount=?,IsMarked=1  where MobiPromoId=?" withArgumentsInArray:@[[NSNumber numberWithInt:[rspVal intValueForKey:@"MarkedCount"]],[rspVal stringValueForKey:@"MobiPromoId"]]];
+            NSLog(@"%d",up);
+        }];
+    }
     else
+    {
+        [[iSQLiteHelper getDefaultHelper] executeDB:^(FMDatabase *db) {
+            BOOL up = [db executeUpdate:@"update MobiPromo set MarkedCount=? ,IsMarked=1 where MobiPromoId=?" withArgumentsInArray:@[[NSNumber numberWithInt:[rspVal intValueForKey:@"MarkedCount"]],[rspVal stringValueForKey:@"MobiPromoId"]]];
+            NSLog(@"%d",up);
+        }];
+    }
         [[iSQLiteHelper getDefaultHelper] insertOrUpdateDB:[MobiPromo class] value:rspVal];
 }
 - (void)whereIam:(UIButton*)sneder {
@@ -377,7 +396,7 @@
     
     NSMutableDictionary *pot = [NSMutableDictionary dictionary];
     [pot setValue:imageURL forKey:@"picture"];
-    [pot setValue:[mobi_promo stringValueForKey:@"Description"] forKey:@"description"];
+    [pot setValue:[mobi_promo stringValueForKey:@"Offer"] forKey:@"description"];
     [pot setValue:[mobi_promo stringValueForKey:@"StoreName"] forKey:@"name"];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"_share_to_facebook_" object:pot];

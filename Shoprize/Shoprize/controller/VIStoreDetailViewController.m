@@ -11,11 +11,14 @@
 #import "KUtils.h"
 #import "VINavMapViewController.h"
 #import "VIDealsDetailViewController.h"
+#import "Ext.h"
 
 @interface VIStoreDetailViewController ()
 {
     NSDictionary *storeInfo;
     NSMutableArray *extraProms;
+    
+    UIButton *btn_showTime;
 }
 
 @end
@@ -38,49 +41,101 @@
 
     [self addNav:[storeInfo stringValueForKey:@"StoreName"] left:BACK right:NONE];
     
-    UIButton *small = [[UIButton alloc] initWithFrame:Frm(130, self.nav.endY-8, 60, 20)];
-    small.layer.cornerRadius = 10;
-    small.backgroundColor = [@"#5E5E5E" hexColor];
-    [small setTitle:Lang(@"store_info") forState:UIControlStateNormal];
-    small.titleLabel.font = Bold(14);
-    [small addTarget:self action:@selector(showTime:)];
-    [self.view addSubview:small];
+    btn_showTime = [[UIButton alloc] initWithFrame:Frm(130, self.nav.endY-8, 60, 20)];
+    btn_showTime.layer.cornerRadius = 10;
+    btn_showTime.backgroundColor = [@"#5E5E5E" hexColor];
+    [btn_showTime setTitle:Lang(@"store_info") forState:UIControlStateNormal];
+    btn_showTime.titleLabel.font = Bold(14);
+    [btn_showTime addTarget:self action:@selector(showTime:)];
+    [self.view addSubview:btn_showTime];
 
-    UIScrollView *scrll = [[UIScrollView alloc] initWithFrame:Frm(0,small.endY+10, self.view.w, self.view.h - small.endY-10)];
+    //check if the store is from favorite
+    if([self isFromFavorite]){
+        [VINet get:Fmt(@"/api/stores/%@/detail",[storeInfo stringValueForKey:@"AddressId"]) args:nil target:self
+              succ:@selector(showMobiFromNet:) error:@selector(showMobiFail:) inv:self.view];
+    }else{
+        NSString *addId = [storeInfo objectForKey:@"AddressId"];
+        NSMutableArray *respPromos = [[iSQLiteHelper getDefaultHelper] searchModels:[MobiPromo class] where:@{@"Type": @"Deal",@"AddressId": addId}];
+        [self repaintMobis:respPromos];
+        //notifycation
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"_add_current_track_" object:
+                @{@"Type": @"Store",@"ReferenceId": addId ,@"StoreAddressId":addId}];
+
+        [[iSQLiteHelper getDefaultHelper] rowCount:[MobiPromo class] where:@{@"StoreHasSuprise": @"1",@"AddressId":addId} callback:^(int rowCount) {
+            if (rowCount>0) {
+                UIImageView *view = [@"suprise_buge.png" imageViewForImgSizeAtX:self.view.w-31-16 Y:6];
+                [[[self.nav subviews] objectAtIndex:0] addSubview:view];
+                view.userInteractionEnabled = YES;
+                [view addTapTarget:self action:@selector(showInfoMessage:)];
+            }
+        }];
+    }
     
-    NSString *addid = [storeInfo objectForKey:@"AddressId"];
-    extraProms = [[iSQLiteHelper getDefaultHelper] searchModels:[MobiPromo class] where:@{@"Type": @"Deal",@"AddressId":addid}];
-    
+}
+
+- (BOOL)isFromFavorite {
+    return [storeInfo stringValueForKey:@"MallAddress"] != nil;
+}
+
+-(void)showMobiFromNet:(id)resp
+{
+    NSArray *Promos = [resp arrayValueForKey:@"MobiPromos"];
+    NSMutableArray *filter = [Ext doEach:Promos with:^id(id itm) {
+        MobiPromo *mob = [MobiPromo initWithDictionary:itm];
+        if(![mob isSuprise])
+            return mob;
+        return nil;
+    }];
+
+    [self repaintMobis:filter];
+    if (Promos.count!= filter.count) {
+        UIImageView *view = [@"suprise_buge.png" imageViewForImgSizeAtX:self.view.w-31-16 Y:6];
+        [[[self.nav subviews] objectAtIndex:0] addSubview:view];
+        view.userInteractionEnabled = YES;
+        [view addTapTarget:self action:@selector(showInfoMessage:)];
+    }
+}
+
+-(void)showMobiFail:(id)resp
+{
+    [self repaintMobis:@[]];
+}
+
+-(void)repaintMobis:(NSArray *)resp
+{
+    extraProms = [resp mutableCopy];
+
+    UIScrollView *scroll = [[UIScrollView alloc] initWithFrame:Frm(0,btn_showTime.endY+10, self.view.w, self.view.h - btn_showTime.endY-10)];
+
     if (extraProms.count == 0) {
         UIImageView *img = [@"no_promos.png" imageViewForImgSizeAtX:0 Y:80];
-        [scrll addSubview:img];
+        [scroll addSubview:img];
         UILabel *nop  = [UILabel initWithFrame:Frm(0, img.endY+5, self.view.w, 40) color:@"#8F8F8F" font:Bold(16) align:CENTER];
         nop.text = Lang(@"no_promos");
-        [scrll addSubview:nop];
+        [scroll addSubview:nop];
     }
     
     int height = 0;
     if (extraProms.count > 0) {
         MobiPromo *prom = [extraProms objectAtIndex:0];
-        UIView *bigone  = [self loadXib:@"UI.xib" withTag:15000];
-        bigone.tag = 0;
+        UIView *topOne = [self loadXib:@"UI.xib" withTag:15000];
+        topOne.tag = 0;
         
-        [bigone egoimageView4Tag:15001].placeholderImage = [@"no_pic.png" image];
-        [bigone egoimageView4Tag:15001].imageURL = [NSURL URLWithString:[prom defPicture]];
-        [bigone label4Tag:15002].text = [prom.Offer killQute];
-        [bigone label4Tag:15003].text = Fmt(@"%d",prom.MarkedCount) ;
-        bigone.tag = 0;
-        [bigone addTapTarget:self action:@selector(seeDetail:)];
-        [scrll addSubview:bigone];
-        height = bigone.endY;
+        [topOne egoimageView4Tag:15001].placeholderImage = [@"no_pic.png" image];
+        [topOne egoimageView4Tag:15001].imageURL = [NSURL URLWithString:[prom defPicture]];
+        [topOne label4Tag:15002].text = [prom.Offer killQute];
+        [topOne label4Tag:15003].text = Fmt(@"%d",prom.MarkedCount) ;
+        topOne.tag = 0;
+        [topOne addTapTarget:self action:@selector(seeDetail:)];
+        [scroll addSubview:topOne];
+        height = topOne.endY;
     }
     
     if (extraProms.count > 1 ) {
         int rows = (int)ceilf((extraProms.count-1)/2.0);
         for(int i=0;i<rows;i++)  {
-            int index = 1+ i * 2;
+            int index = 1 + i * 2;
             int next = index+1;
-            
             MobiPromo *left = [extraProms objectAtIndex:index];
             UIView *bigone  = [self loadXib:@"UI.xib" withTag:16000];
             
@@ -89,21 +144,21 @@
             [bigone egoimageView4Tag:16001].imageURL = [NSURL URLWithString:left.defPicture];
             [bigone label4Tag:16002].text = left.Offer;
             [bigone label4Tag:16003].text = Fmt(@"%d",left.MarkedCount) ;
-
+            
             [bigone addTapTarget:self action:@selector(seeDetail:)];
             bigone.tag = index;
             [bigone setX:13.3 andY:height+5];
             
-            [scrll addSubview:bigone];
+            [scroll addSubview:bigone];
             
-            if (next+1 < extraProms.count) {
+            if (next < extraProms.count) {
                 MobiPromo *right = [extraProms objectAtIndex:next];
                 UIView *bigone2  = [self loadXib:@"UI.xib" withTag:16000];
                 [bigone2 egoimageView4Tag:16001].placeholderImage = [@"no_pic.png" image];
                 [bigone2 egoimageView4Tag:16001].imageURL = [NSURL URLWithString:right.defPicture];
                 [bigone2 label4Tag:16002].text = right.Offer;
                 [bigone2 label4Tag:16003].text = Fmt(@"%d",[right MarkedCount]) ;
-                [scrll addSubview:bigone2];
+                [scroll addSubview:bigone2];
                 [bigone2 addTapTarget:self action:@selector(seeDetail:)];
                 bigone2.tag = next;
                 [bigone2 setX:bigone.endX+13.3 andY:height+5];
@@ -113,23 +168,11 @@
         }
     }
     
-    [[iSQLiteHelper getDefaultHelper] rowCount:[MobiPromo class] where:@{@"StoreHasSuprise": @"1",@"AddressId":addid} callback:^(int rowCount) {
-        if (rowCount>0) {
-            UIImageView *view = [@"suprise_buge.png" imageViewForImgSizeAtX:self.view.w-31-16 Y:6];
-            [[[self.nav subviews] objectAtIndex:0] addSubview:view];
-            view.userInteractionEnabled = YES;
-            [view addTapTarget:self action:@selector(showInfoMessage:)];
-        }
-    }];
-    
-    scrll.showsHorizontalScrollIndicator = NO;
-    scrll.showsVerticalScrollIndicator = NO;
-    [scrll setContentSize:CGSizeMake(self.view.w,height<scrll.h ? scrll.h : height+10)];
-    [self.view addSubview:scrll];
-    
-    //notifycation
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"_add_current_track_" object:
-     @{@"Type": @"Store",@"ReferenceId": addid ,@"StoreAddressId":addid}];
+    scroll.showsHorizontalScrollIndicator = NO;
+    scroll.showsVerticalScrollIndicator = NO;
+    [scroll setContentSize:CGSizeMake(self.view.w, height < scroll.h ? scroll.h : height + 10)];
+    [self.view addSubview:scroll];
+
 }
 
 - (void)seeDetail:(UITapGestureRecognizer*)tap
@@ -137,7 +180,13 @@
     long index = tap.view.tag;
     MobiPromo *mob = [extraProms objectAtIndex:index];
     VIDealsDetailViewController *deal = [[VIDealsDetailViewController alloc] init];
-    deal.mobipromo = mob;
+    if([self isFromFavorite]){
+        //load the data redirect
+        deal.dealid = mob.MobiPromoId;
+    }else{
+        deal.mobipromo = mob;
+    }
+
     [self push:deal];
 
 }

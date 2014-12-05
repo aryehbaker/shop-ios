@@ -182,11 +182,11 @@ static NSString *logpath;
         [self checkWhereToGoFromPushMessage:userInfo];
     }
 
-#if TARGET_IPHONE_SIMULATOR
-    [[VILogger getLogger] setLogLevelSetting:SLLS_ALL];
-#elif TARGET_OS_IPHONE
-    [[VILogger getLogger] setLogLevelSetting:SLLS_NONE];
-#endif
+//#if TARGET_IPHONE_SIMULATOR
+//    [[VILogger getLogger] setLogLevelSetting:SLLS_ALL];
+//#elif TARGET_OS_IPHONE
+//    [[VILogger getLogger] setLogLevelSetting:SLLS_NONE];
+//#endif
     
     //[self buildGenWall];
     
@@ -648,11 +648,11 @@ static NSDate *latestLoc;
         ego.imageURL = [NSURL URLWithString:pic];
         shareImg = ego.image;
     }
-    
+    NSString *prefix = @"מצאתי מבצע שווה באפליקציית המבצעים שופרייז";
     NSString *stringUrl = @"https://itunes.apple.com/us/app/shoprize/id916054683?mt=8";
     NSString *name      = [shareInfo stringValueForKey:@"name"];
     
-    NSArray *activityItems = [NSArray arrayWithObjects:Fmt(@"%@ %@",name,text),
+    NSArray *activityItems = [NSArray arrayWithObjects:Fmt(@"%@\n %@ %@",prefix,name,text),
         [NSURL URLWithString:stringUrl],shareImg,nil];
     
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
@@ -907,22 +907,27 @@ BOOL reading = NO;
             
             if([[jsonValue stringValueForKey:@"Type" defaultValue:@""] isEqualToString:@"InStore"])
             {
-                NSString *starT = [jsonValue stringValueForKey:@"StartTime"];
-                int mins = 0;
-                if ([starT hasString:@":"]) {
-                    NSArray *time = [[jsonValue stringValueForKey:@"StartTime"] componentsSeparatedByString:@":"];
-                    mins = [[time objectAtIndex:0] intValue] * 60 + [[time objectAtIndex:1] intValue];
-                }else{
-                    mins = [starT intValue];
-                }
-                
-                NSDate *now = [NSDate now];
-                int nowval = [[now format:@"HH"] intValue] * 60 + [[now format:@"mm"] intValue];
-                
-                if (nowval>=mins && [self isScaning]) {
-                    [self stopScan];
-                    [VINet post:Fmt(@"/api/mobipromos/%@/at/%@/reward",curtMobi.MobiPromoId,curtMobi.AddressId) args:nil target:self succ:@selector(rewardComplete:) error:@selector(rewardFail:) inv:nil];
-                }
+                // when user enter the store the ibeacon will work imedity
+                // ignore the old Start Time property
+
+//                NSString *starT = [jsonValue stringValueForKey:@"StartTime"];
+//                int mins = 0;
+//                if ([starT hasString:@":"]) {
+//                    NSArray *time = [[jsonValue stringValueForKey:@"StartTime"] componentsSeparatedByString:@":"];
+//                    mins = [[time objectAtIndex:0] intValue] * 60 + [[time objectAtIndex:1] intValue];
+//                }else{
+//                    mins = [starT intValue];
+//                }
+//
+//                NSDate *now = [NSDate now];
+//                int nowval = [[now format:@"HH"] intValue] * 60 + [[now format:@"mm"] intValue];
+//
+//                if (nowval>=mins && [self isScaning]) {
+//                }
+
+                [self stopScan];
+                [VINet post:Fmt(@"/api/mobipromos/%@/at/%@/reward",curtMobi.MobiPromoId,curtMobi.AddressId) args:nil target:self succ:@selector(rewardComplete:) error:@selector(rewardFail:) inv:nil];
+
             }
         }
         

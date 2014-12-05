@@ -131,9 +131,7 @@ static ListType currentType;
         [VINet get:@"/api/malls/nearby?radius=0" args:nil target:self succ:@selector(rebulidMall:) error:@selector(getMallsFail:) inv:nil];
         self.nav_title.text = selectedOne.Name;
         [self refreshToShowTheTable];
-        
-        //构件围墙
-        [self buildMallGeoWall];
+
     }
     
     [VINet regPushToken];
@@ -165,7 +163,6 @@ static ListType currentType;
 
 -(void)rebulidMall:(NSArray *)values {
     [self saveMall2DB:values];
-    [self buildMallGeoWall];
 }
 
 

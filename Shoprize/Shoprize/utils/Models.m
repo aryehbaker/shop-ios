@@ -174,6 +174,18 @@
 }
 @end
 
+@implementation AllStore
++(void)initialize{
+    [self removePropertyWithColumnNameArray:@[@"Beacons",@"MobiPromos",@"UserSurprises"]];
+}
++(NSString*)getPrimaryKey{
+    return @"StoreId";
+}
++(BOOL)propertyIsOptional:(NSString*)propertyName{
+    return YES;
+}
+@end
+
 @implementation Beacon
 - (BOOL)isIbeacon {
     return [[[self Type] lowercaseString] isEqualToString:@"ibeacon"];
@@ -202,6 +214,12 @@
 }
 +(NSString*)getPrimaryKey{
     return @"MobiPromoId";
+}
++ (id)initWithDictionary:(id)dict
+{
+    MobiPromo *promo = [[MobiPromo alloc] initWithDictionary:dict error:nil];
+    promo.defPicture = [dict stringValueForKey:@"Pictures/0/PictureUrl"];
+    return promo;
 }
 @end
 

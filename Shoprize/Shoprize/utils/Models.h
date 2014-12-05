@@ -73,6 +73,33 @@
     @property(nonatomic,strong) NSArray<UserSurprise,ConvertOnDemand> *UserSurprises;
 @end
 
+@interface AllStore : JSONModel
+    @property(nonatomic,copy) NSString *Address;
+    @property(nonatomic,copy) NSString *AddressId;
+    @property(nonatomic,strong) NSArray<Beacon,ConvertOnDemand> *Beacons;
+    @property(nonatomic,strong)  NSString *Distance;
+    @property(nonatomic,assign) BOOL IsMarked;
+    @property(nonatomic,assign) double Lat;
+    @property(nonatomic,assign) double Lon;
+    @property(nonatomic,copy) NSString *Logo;
+    @property(nonatomic,copy) NSString *MallAddress;
+    @property(nonatomic,copy) NSString *MallAddressId;
+    @property(nonatomic,copy) NSString *MallDescription;
+    @property(nonatomic,copy) NSString *MallLat;
+    @property(nonatomic,copy) NSString *MallLogo;
+    @property(nonatomic,copy) NSString *MallLon;
+    @property(nonatomic,copy) NSString *MallName;
+    @property(nonatomic,copy) NSString *MallOpenHours;
+    @property(nonatomic,copy) NSString *MallPhone;
+    @property(nonatomic,copy) NSString *OpenHours;
+    @property(nonatomic,copy) NSString *Phone;
+    @property(nonatomic,copy) NSString *StoreId;
+    @property(nonatomic,copy) NSString *StoreName;
+    @property(nonatomic,copy) NSString *StoreUrl;
+    @property(nonatomic,strong) NSArray<MobiPromo,ConvertOnDemand> *MobiPromos;
+    @property(nonatomic,strong) NSArray<UserSurprise,ConvertOnDemand> *UserSurprises;
+@end
+
 
 @interface Beacon : JSONModel
 
@@ -111,6 +138,7 @@
     @property(nonatomic,assign) BOOL StoreHasSuprise;
     @property(nonatomic,copy) NSString *defPicture;
 
+    + (id)initWithDictionary:(id)dict;
     - (BOOL)isSuprise;
 
 @end

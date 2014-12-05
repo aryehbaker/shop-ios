@@ -220,6 +220,11 @@ static long last_selected_long;
 
 -(void)deleCom:(id)sender
 {
+    if (currentTag == 100 && wanted.count>0) {
+        [wanted removeObjectAtIndex:last_selected_long];
+    }else{
+        [redeemed removeObjectAtIndex:last_selected_long];
+    }
     [deals removeObjectAtIndex:last_selected_long];
     [_tableView reloadAndHideLoadMore:YES];
 }

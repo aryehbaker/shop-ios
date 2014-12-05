@@ -39,11 +39,11 @@
 
 - (void)repaintInfo:(MobiPromo *)li rightinfo:(MobiPromo *)rl path:(NSIndexPath *)path {
 
-    [leftTimer invalidate];
-    [rightTimer invalidate];
+    //[leftTimer invalidate];
+    //[rightTimer invalidate];
     
-    leftTimer  = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(repaintLeftInfo) userInfo:nil repeats:YES];
-    rightTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(repaintRightInfo) userInfo:nil repeats:YES];
+    //leftTimer  = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(repaintLeftInfo) userInfo:nil repeats:YES];
+    //rightTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(repaintRightInfo) userInfo:nil repeats:YES];
     
     self.leftInfo = li;
     self.rightInfo = rl;
@@ -54,23 +54,28 @@
         [self label4Tag:14002].hidden = YES;
         [self label4Tag:14003].text = [leftinfo StoreName];
         
-        id jsonValue = [[leftinfo Prerequisite] jsonVal];
-        NSString *StartTime = [jsonValue stringValueForKey:@"StartTime"];
-        NSString *nowTime   = [[NSDate now] format:@"HH:mm"];
-        if ([self time2Sec:StartTime] > [self time2Sec:nowTime]) {
-            [leftTimer setFireDate:[NSDate now]];
-            [self label4Tag:14004].hidden = YES;
-            [self imageView4Tag:14005].hidden = NO;
-            [self label4Tag:14006].hidden = NO;
-            [self label4Tag:14007].hidden = NO;
-        } else{
-            [leftTimer invalidate];
-            [self label4Tag:14004].hidden = NO;
-            [self imageView4Tag:14005].hidden = YES;
-            [self label4Tag:14006].hidden = YES;
-            [self label4Tag:14007].hidden = YES;
-            [self label4Tag:14004].text = @"זמין";
-        }
+//        id jsonValue = [[leftinfo Prerequisite] jsonVal];
+//        NSString *StartTime = [jsonValue stringValueForKey:@"StartTime"];
+//        NSString *nowTime   = [[NSDate now] format:@"HH:mm"];
+//        if ([self time2Sec:StartTime] > [self time2Sec:nowTime]) {
+//            [leftTimer setFireDate:[NSDate now]];
+//            [self label4Tag:14004].hidden = YES;
+//            [self imageView4Tag:14005].hidden = NO;
+//            [self label4Tag:14006].hidden = NO;
+//            [self label4Tag:14007].hidden = NO;
+//        } else{
+//            [leftTimer invalidate];
+//            [self label4Tag:14004].hidden = NO;
+//            [self imageView4Tag:14005].hidden = YES;
+//            [self label4Tag:14006].hidden = YES;
+//            [self label4Tag:14007].hidden = YES;
+//            [self label4Tag:14004].text = @"זמין";
+//        }
+        [self label4Tag:14004].hidden = NO;
+        [self imageView4Tag:14005].hidden = YES;
+        [self label4Tag:14006].hidden = YES;
+        [self label4Tag:14007].hidden = YES;
+        [self label4Tag:14004].text = @"זמין";
     }
 
     if (rightinfo!=nil) {
@@ -79,23 +84,29 @@
         [self label4Tag:14102].hidden = YES;
         [self label4Tag:14103].text = [self.rightInfo StoreName];
         
-        id jsonValue = [[self.rightInfo Prerequisite] jsonVal];
-        NSString *StartTime = [jsonValue stringValueForKey:@"StartTime"];
-        NSString *nowTime   = [[NSDate now] format:@"HH:mm"];
-        if ([self time2Sec:StartTime] > [self time2Sec:nowTime]) {
-            [rightTimer setFireDate:[NSDate now]];
-            [self label4Tag:14104].hidden = YES;
-            [self imageView4Tag:14105].hidden = NO;
-            [self label4Tag:14106].hidden = NO;
-            [self label4Tag:14107].hidden = NO;
-        } else{
-            [rightTimer invalidate];
-            [self label4Tag:14104].hidden = NO;
-            [self imageView4Tag:14105].hidden = YES;
-            [self label4Tag:14106].hidden = YES;
-            [self label4Tag:14107].hidden = YES;
-            [self label4Tag:14104].text = @"זמין";
-        }
+//        id jsonValue = [[self.rightInfo Prerequisite] jsonVal];
+//        NSString *StartTime = [jsonValue stringValueForKey:@"StartTime"];
+//        NSString *nowTime   = [[NSDate now] format:@"HH:mm"];
+//        if ([self time2Sec:StartTime] > [self time2Sec:nowTime]) {
+//            [rightTimer setFireDate:[NSDate now]];
+//            [self label4Tag:14104].hidden = YES;
+//            [self imageView4Tag:14105].hidden = NO;
+//            [self label4Tag:14106].hidden = NO;
+//            [self label4Tag:14107].hidden = NO;
+//        } else{
+//            [rightTimer invalidate];
+//            [self label4Tag:14104].hidden = NO;
+//            [self imageView4Tag:14105].hidden = YES;
+//            [self label4Tag:14106].hidden = YES;
+//            [self label4Tag:14107].hidden = YES;
+//            [self label4Tag:14104].text = @"זמין";
+//        }
+
+        [self label4Tag:14104].hidden = NO;
+        [self imageView4Tag:14105].hidden = YES;
+        [self label4Tag:14106].hidden = YES;
+        [self label4Tag:14107].hidden = YES;
+        [self label4Tag:14104].text = @"זמין";
      }
     
     [[self viewWithTag:-2000] setHidden:rightinfo==nil];

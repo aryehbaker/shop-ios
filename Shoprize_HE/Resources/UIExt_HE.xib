@@ -29,7 +29,7 @@
                     <rect key="frame" x="10" y="30" width="232" height="118"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <mutableString key="text">ההתראות נועדו על מנת שניתן יהיה ליהנות מהמבצעים וההפתעות במרכזי הקניות ובנוסף לכך שנוכל לעדכן אותך בהטבות סודיות (הפתעות) של הרשתות האהובות עליך. המטרה שלנו להעניק לך חווית קניות מהנה ומתגמלת ומבטיחים לא לעשות שימוש לרעה בהתראות. ניתן להסיר את קבלת ההתראות בכל רגע.
-לבטל את ההתראות בכל זאת?</mutableString>
+להסיר את ההתראות בכל זאת?</mutableString>
                     <fontDescription key="fontDescription" name="Pekan-Regular" family="Pekan" pointSize="14"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -49,7 +49,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.98431372549999996" green="0.1764705882" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                    <state key="normal" title="אישור">
+                    <state key="normal" title="הסר">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>

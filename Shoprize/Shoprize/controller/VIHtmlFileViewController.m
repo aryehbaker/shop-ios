@@ -18,15 +18,27 @@
 {
     [super viewDidLoad];
     [self addCommentPage:.6];
-    
-    [self setLightContent];
+        [self setLightContent];
+
     [self addNav:_headTitle left:BACK right:MENU];
     
-    VIHtmlLoadView *htmlview = [[VIHtmlLoadView alloc] initWithFrame:Frm(0, self.nav.endY,self.view.w,Left_Space(self.nav.endY)) withHtmlName:_htmlFile];
-    htmlview.delegate = self;
-    [self.view addSubview:htmlview];
-    
+    if([_htmlFile hasPrefix:@"http"]){
+        UIWebView *htmlview = [[UIWebView alloc] initWithFrame:Frm(0, self.nav.endY,self.view.w,self.view.h - self.nav.endY)];
+        htmlview.scalesPageToFit = YES;
+        htmlview.delegate = self;
+        [htmlview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_htmlFile]]];
+        [self.view addSubview:htmlview];
+    }else{
+        VIHtmlLoadView *htmlview = [[VIHtmlLoadView alloc] initWithFrame:Frm(0, self.nav.endY,self.view.w,self.view.h - self.nav.endY) withHtmlName:_htmlFile];
+        htmlview.delegate = self;
+        [self.view addSubview:htmlview];
+    }
 //    delete
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    NSLog(@"%@",error);
 }
 
 - (void)callObjcInWebview:(VIHtmlLoadView*)webview func:(NSString *)funName args:(id)args

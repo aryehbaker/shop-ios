@@ -210,5 +210,13 @@
     "mail_required" :{
         "en" : "email required",
         "he" : "דואר אלקטרוני הנדרש"
+    },
+    "empty_suprise_redeem" : {
+        "he": "כאן תוכלו לראות את ההפתעות שכבר מימשתם ואת אלו שהסתיימו",
+        "en" :"Here you can see the surprises already used"
+    },
+    "empty_suprise_active" : {
+        "he": "אין לכם הפתעות כרגע שופרייז מתגמלת אתכם בכניסה לחנויות. זה הזמן להיכנס לחנויות המפנקות ולזכות בהטבות בלעדיות למשתמשי שופרייז!",
+        "en" :"Here you can see the surprises already getted"
     }
 }

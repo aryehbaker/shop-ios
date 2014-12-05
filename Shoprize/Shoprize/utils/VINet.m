@@ -418,7 +418,7 @@ static NSMutableDictionary *stores;
     else {
         [self hideHUDView];
         if (self.succ != nil && self.target!= nil) {
-            [self.target performSelectorOnMainThread:self.succ withObject:backInfo waitUntilDone:YES];
+                [self.target performSelectorOnMainThread:self.succ withObject:backInfo waitUntilDone:YES];
         }
     }
 }

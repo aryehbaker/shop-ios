@@ -8,7 +8,7 @@
 
 #import "ShopriseViewController.h"
 
-@interface VIHtmlFileViewController : ShopriseViewController<VIHtmlLoadViewDelegate>
+@interface VIHtmlFileViewController : ShopriseViewController<VIHtmlLoadViewDelegate,UIWebViewDelegate>
 
 @property(nonatomic,strong) NSString *htmlFile;
 @property(nonatomic,strong) NSString *headTitle;

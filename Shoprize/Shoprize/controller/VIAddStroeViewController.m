@@ -53,6 +53,23 @@
     [self.view addSubview: v];
     
     [tabview reloadData];
+    
+    [self loadNetworkdata];
+}
+
+- (void)loadNetworkdata {
+    [VINet get:@"/api/stores/nearby?radius=0" args:nil target:self succ:@selector(dataArrive:) error:@selector(dataArrive:) inv:
+     storeData.count==0 ? self.view : nil ];
+}
+
+-(void)dataArrive:(id)resp
+{
+    if ([resp isKindOfClass:[NSArray class]]) {
+        [[iSQLiteHelper getDefaultHelper] executeSQL:@"delete from AllStore" arguments:nil];
+        [[iSQLiteHelper getDefaultHelper] insertOrUpdateDB:[AllStore class] values:resp];
+        storeData = [self getStore];
+        [tabview reloadData];
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -76,7 +93,7 @@
         [cell egoimageView4Tag:12002].placeholderImage = [@"no_pic.png" image];
     }
     
-    Store *value = [storeData objectAtIndex:indexPath.row];
+    AllStore *value = [storeData objectAtIndex:indexPath.row];
     BOOL check = value.IsMarked;
     [cell viewWithTag:12001].backgroundColor = check ? [@"#ebebeb" hexColor] : [@"#ffffff" hexColor];
     [cell imageView4Tag:12003].image = check ? [@"heart_red.png" image] : [@"heart_gray.png" image];
@@ -89,8 +106,7 @@
 }
 
 -(NSMutableArray *)getStore{
-    NSString *mallId = [NSUserDefaults getValue:CURRENT_MALL_USER_SELECTED];
-     return   [[iSQLiteHelper getDefaultHelper] searchWithSQL:Fmt(@"select * from Store where MallId = '%@' and IsMarked=0",mallId) toClass:[Store class]];
+     return   [[iSQLiteHelper getDefaultHelper] searchWithSQL:@"select * from AllStore where IsMarked=0" toClass:[AllStore class]];
 }
 
 -(void)whenSearchKey:(NSString *)search
@@ -116,7 +132,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)index
 {
-    Store *mt = [storeData objectAtIndex:index.row];
+    AllStore *mt = [storeData objectAtIndex:index.row];
     [mt setIsMarked:!mt.IsMarked];
     [storeData replaceObjectAtIndex:index.row withObject:mt];
     [tabview reloadData];

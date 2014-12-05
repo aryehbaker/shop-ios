@@ -34,15 +34,16 @@
     
     [self addNav:Lang(@"list_of_malls") left:SEARCH right:MENU];
     
-    cfg = [[VICfgTableView alloc] initWithFrame:Frm(0, self.nav.endY, self.view.w, Space(self.nav.endY)) cfg:@"tbcfg.json#list_of_malls"];
-    
+    int endY = self.nav.endY;
     if (isHe) {
-        mapview = [[VIMapView alloc] initWithFrame:Frm(0, 0, self.view.w, 180) showLocation:YES];
+        mapview = [[VIMapView alloc] initWithFrame:Frm(0, endY, self.view.w, 180) showLocation:YES];
         mapview.mapKitView.showsUserLocation = YES;
         mapview.delegate = self;
-        cfg.cfgTable.tableHeaderView = mapview;
-        cfg.cfgTable.tableHeaderView.userInteractionEnabled = YES;
+        [self.view addSubview:mapview];
+        endY += 180;
     }
+    
+    cfg = [[VICfgTableView alloc] initWithFrame:Frm(0, endY, self.view.w, Space(endY)) cfg:@"tbcfg.json#list_of_malls"];
     
     NSMutableArray *citys = [[iSQLiteHelper getDefaultHelper] searchAllModel:[MallInfo class]];
     
@@ -145,15 +146,18 @@
         
     for (MallInfo *mif in allCity) {
         double lat = mif.Lat,lon = mif.Lon;
-        if (mif.distance > 50) {
-            lat = [VINet currentLat];
-            lon = [VINet currentLon];
-        }
         topLeftCoord.longitude		= fmin(topLeftCoord.longitude, lon);
         topLeftCoord.latitude		= fmax(topLeftCoord.latitude, lat);
         bottomRightCoord.longitude	= fmax(bottomRightCoord.longitude, lon);
         bottomRightCoord.latitude	= fmin(bottomRightCoord.latitude, lat);
     }
+    double lat = [VINet currentLat];
+    double  lon = [VINet currentLon];
+    topLeftCoord.longitude		= fmin(topLeftCoord.longitude, lon);
+    topLeftCoord.latitude		= fmax(topLeftCoord.latitude, lat);
+    bottomRightCoord.longitude	= fmax(bottomRightCoord.longitude, lon);
+    bottomRightCoord.latitude	= fmin(bottomRightCoord.latitude, lat);
+    
     MKCoordinateRegion region;
     region.center.latitude		= topLeftCoord.latitude - (topLeftCoord.latitude - bottomRightCoord.latitude) * 0.5;
     region.center.longitude		= topLeftCoord.longitude + (bottomRightCoord.longitude - topLeftCoord.longitude) * 0.5;

@@ -121,10 +121,12 @@
         return;
     }
     
+    NSString *cotent = [@"sms_text" contentOfBunlde];
+    
     MFMessageComposeViewController *picker = [[MFMessageComposeViewController alloc] init];
     picker.messageComposeDelegate = self;
     picker.navigationBar.tintColor = [UIColor blackColor];
-    picker.body = Lang(@"invint_sms_txt");
+    picker.body = cotent;
     picker.recipients = cts;
     
     [self presentModalViewController:picker];

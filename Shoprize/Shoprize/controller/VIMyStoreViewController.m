@@ -41,9 +41,7 @@
 }
 
 - (NSMutableArray *)alltea {
-    
-    NSString *mallId = [NSUserDefaults getValue:CURRENT_MALL_USER_SELECTED];
-    return [[iSQLiteHelper getDefaultHelper] searchWithSQL:Fmt(@"select * from Store where MallId = '%@' and IsMarked=1",mallId) toClass:[Store class]];
+    return [[iSQLiteHelper getDefaultHelper] searchWithSQL:@"select * from AllStore where IsMarked=1" toClass:[AllStore class]];
 }
 
 - (void)viewDidLoad
@@ -105,7 +103,7 @@ static NSIndexPath *selected;
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         selected = indexPath;
-        Store *mt = [displayData objectAtIndex:indexPath.row];
+        AllStore *mt = [displayData objectAtIndex:indexPath.row];
         NSString *api = Fmt(@"/api/stores/%@/unmark",[mt StoreId]);
         [VINet post:api args:nil target:self succ:@selector(deleteComlt:) error:@selector(showAlertError:) inv:self.view];
     }
@@ -116,7 +114,7 @@ static NSIndexPath *selected;
 
 - (void)deleteComlt:(id)value
 {
-    Store *mt = [displayData objectAtIndex:selected.row];
+    AllStore *mt = [displayData objectAtIndex:selected.row];
     [mt setIsMarked:NO];
     //更新数据
     [[iSQLiteHelper getDefaultHelper] insertOrUpdateUsingObj:mt];
@@ -174,7 +172,7 @@ static NSIndexPath *selected;
     NSMutableArray *alldata = [self alltea];
     [displayData removeAllObjects];
     if (search!=nil && ![search isEqualToString:@""]) {
-        for (Store *d in alldata) {
+        for (AllStore *d in alldata) {
             if ([d.StoreName like:search]) {
                 [displayData addObject:d];
             }
@@ -190,7 +188,7 @@ static NSIndexPath *selected;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellID = @"mycell_id_id";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    Store *left = [displayData objectAtIndex:indexPath.row];
+    AllStore *left = [displayData objectAtIndex:indexPath.row];
     
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
@@ -211,7 +209,7 @@ static NSIndexPath *selected;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    Store *pdata = [displayData objectAtIndex:indexPath.row];
+    AllStore *pdata = [displayData objectAtIndex:indexPath.row];
     [self pushTo:@"VIStoreDetailViewController" data:[pdata toDictionary]];
 }
 

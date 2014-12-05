@@ -42,9 +42,11 @@ typedef NS_ENUM(NSInteger, Tabs) { USED,ACT};
     
     [self addNav:Lang(@"my_suprise") left:SEARCH right:MENU];
     
-    UIButton *right = [[UIButton alloc] initWithFrame:Frm(0, self.nav.endY, self.view.w/2, 34)];
+    CGRect leftFm  = Frm(0, self.nav.endY, self.view.w/2, 34);
+    CGRect rightFm = Frm(leftFm.origin.x+leftFm.size.width, self.nav.endY, leftFm.size.width, leftFm.size.height);
     
-    UIButton *left = [[UIButton alloc] initWithFrame:Frm(right.endX, self.nav.endY, self.view.w-right.endX, right.h)];
+    UIButton *left = [[UIButton alloc] init];
+    [left setFrame:leftFm];
     [left setTitle:Lang(@"menu_exp_exp") selected:Lang(@"menu_exp_exp")];
     left.titleLabel.font = isEn ? Bold(13) : Bold(16);
     left.tag = 100;
@@ -60,8 +62,11 @@ typedef NS_ENUM(NSInteger, Tabs) { USED,ACT};
     if (isEn) {
         [imgs setX:5];
         [left setTitleEdgeInsets:UIEdgeInsetsMake(0, 30, 0, 0)];
+        [left setFrame:rightFm];
     }
     
+    UIButton *right = [[UIButton alloc] init];
+    [right setFrame:rightFm];
     [right setTitle:Lang(@"menu_sprise_active") selected:Lang(@"menu_sprise_active")];
     right.titleLabel.font = Bold(16);
     right.tag = 101;
@@ -76,6 +81,7 @@ typedef NS_ENUM(NSInteger, Tabs) { USED,ACT};
     [right addSubview:imgs];
     if (isEn) {
         [imgs setX:5];
+        [right setFrame:leftFm];
     }
     all = [[UITableView alloc] initWithFrame:Frm(0, right.endY, self.view.w, self.view.h-right.endY)];
     all.delegate = self;
@@ -86,7 +92,11 @@ typedef NS_ENUM(NSInteger, Tabs) { USED,ACT};
     
     [self refreshData];
     
-    [self changeTab:right];
+    if (isEn) {
+         [self changeTab:left];
+    }else{
+        [self changeTab:right];
+    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -143,8 +153,40 @@ typedef NS_ENUM(NSInteger, Tabs) { USED,ACT};
     btn.backgroundColor = [@"#FFFFFF" hexColor];
     [[self.view button4Tag:100+value] imageView4Tag:100+value+10].image =
             [[[def objectAtIndex:value] objectAtIndex:1] image];
+    [[self.view viewWithTag:10000] removeFromSuperview];
+    
+    if (currentTab == USED && usedSuprise.count == 0){
+        [all setHidden:YES];
+        [self addEmpty:Lang(@"empty_suprise_redeem")];
+    }else{
+        [all setHidden:NO];
+    }
+
+    if(currentTab == ACT && validSuprise.count == 0) {
+        [all setHidden:NO];
+        [self addEmpty:Lang(@"empty_suprise_active")];
+    }else{
+        [all setHidden:NO];
+    }
     
     [all reloadData];
+}
+
+-(void)addEmpty:(NSString *)text
+{
+    UIView *view = [[UIView alloc]  initWithFrame:all.frame];
+    view.tag = 10000;
+    VIRTLabel *lable = [[VIRTLabel alloc] initWithFrame:Frm(10, 10, view.w-20, 0)];
+    [lable setText:text];
+    [lable setTextAlignment:RTTextAlignmentCenter];
+    [lable setTextColor:[@"#898989" hexColor]];
+    [lable setH:lable.optimumSize.height];
+    [view addSubview:lable];
+    UIImageView *icon = [@"ic_surprises_large_gray.png" imageView];
+    [icon setX:(view.w-icon.w)/2];
+    [icon setY:lable.endY+10];
+    [view addSubview:icon];
+    [self.view addSubview:view];
 }
 
 - (void)whenSearchKey:(NSString *)search

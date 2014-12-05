@@ -215,6 +215,7 @@ static NSString *logpath;
 }
 
 - (void)rebulidMall:(id)values {
+    
     [[iSQLiteHelper getDefaultHelper] insertOrUpdateDB:[MallInfo class] values:values];
 }
 

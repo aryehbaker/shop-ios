@@ -162,6 +162,8 @@
 		7A9F33D71A11B5F500443343 /* tor2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A9F33D11A11B5F500443343 /* tor2.png */; };
 		7A9F33D81A11B5F500443343 /* tor3.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A9F33D21A11B5F500443343 /* tor3.png */; };
 		7AA514671A11237100B76696 /* VIFavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA514661A11237100B76696 /* VIFavViewController.m */; };
+		7ABC2B981A30091F00266B84 /* ic_surprises_large_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ABC2B971A30091F00266B84 /* ic_surprises_large_gray.png */; };
+		7AC510141A28D80A00B9D6D4 /* sms_text in Resources */ = {isa = PBXBuildFile; fileRef = 7AC510131A28D80A00B9D6D4 /* sms_text */; };
 		7AE0E5E21A11F8110010835D /* VIMapIndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE0E5E11A11F8110010835D /* VIMapIndexViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -372,6 +374,8 @@
 		7A9F33D21A11B5F500443343 /* tor3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tor3.png; sourceTree = "<group>"; };
 		7AA514651A11237100B76696 /* VIFavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIFavViewController.h; sourceTree = "<group>"; };
 		7AA514661A11237100B76696 /* VIFavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIFavViewController.m; sourceTree = "<group>"; };
+		7ABC2B971A30091F00266B84 /* ic_surprises_large_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_surprises_large_gray.png; sourceTree = "<group>"; };
+		7AC510131A28D80A00B9D6D4 /* sms_text */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sms_text; sourceTree = "<group>"; };
 		7AE0E5E01A11F8110010835D /* VIMapIndexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIMapIndexViewController.h; sourceTree = "<group>"; };
 		7AE0E5E11A11F8110010835D /* VIMapIndexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIMapIndexViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -540,8 +544,10 @@
 				177FE0DE19FDC8C100D42AAA /* add_store_btn.png */,
 				1745EF1019FE3D3800E701F2 /* aroundme.png */,
 				177FE0E119FDC8C100D42AAA /* back_w_small.png */,
+				7ABC2B971A30091F00266B84 /* ic_surprises_large_gray.png */,
 				7A36739A1A197C02003296C4 /* my_suprise_r.png */,
 				177FE0E019FDC8C100D42AAA /* back_w.png */,
+				7AC510131A28D80A00B9D6D4 /* sms_text */,
 				177FE0DF19FDC8C100D42AAA /* back.png */,
 				177FE0E219FDC8C100D42AAA /* big_suprise.png */,
 				177FE0E319FDC8C100D42AAA /* boom_bg.png */,
@@ -804,6 +810,7 @@
 				177FE17D19FDC8C200D42AAA /* menu.png in Resources */,
 				177FE16319FDC8C200D42AAA /* facebook_btn.png in Resources */,
 				177FE16919FDC8C200D42AAA /* hear_share_1.png in Resources */,
+				7AC510141A28D80A00B9D6D4 /* sms_text in Resources */,
 				177FE18C19FDC8C200D42AAA /* red_heart.png in Resources */,
 				177FE15919FDC8C200D42AAA /* carmer_icon.png in Resources */,
 				177FE17019FDC8C200D42AAA /* ic_action_timer_white.png in Resources */,
@@ -853,6 +860,7 @@
 				177FE1A019FDC8C200D42AAA /* my_love_w.png in Resources */,
 				177FE16119FDC8C200D42AAA /* default_header.png in Resources */,
 				177FE15D19FDC8C200D42AAA /* closeed.png in Resources */,
+				7ABC2B981A30091F00266B84 /* ic_surprises_large_gray.png in Resources */,
 				7A20446F1A137AB700E5EC30 /* defaults.png in Resources */,
 				177FE1AF19FDC8C200D42AAA /* suprise_buge.png in Resources */,
 				177FE19319FDC8C200D42AAA /* about_us_icon.png in Resources */,
@@ -1072,7 +1080,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "51ca742a-6269-4186-a1f4-072021ed0770";
+				PROVISIONING_PROFILE = "00e55ec9-f8be-458e-949f-ee8348dc9fb9";
 			};
 			name = Debug;
 		};
@@ -1094,7 +1102,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "51ca742a-6269-4186-a1f4-072021ed0770";
+				PROVISIONING_PROFILE = "00e55ec9-f8be-458e-949f-ee8348dc9fb9";
 			};
 			name = Release;
 		};
