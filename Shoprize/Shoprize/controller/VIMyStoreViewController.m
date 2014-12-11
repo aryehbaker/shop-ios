@@ -197,7 +197,7 @@ static NSIndexPath *selected;
         imageview.contentMode = UIViewContentModeScaleAspectFit;
         imageview.tag = 200;
         [cell.contentView addSubview:imageview];
-        UILabel *sname = [VILabel createLableWithFrame:Frm(0, imageview.endY+8,self.view.w, 20) color:@"#FF4F4F" font:Bold(15) align:CENTER];
+        UILabel *sname = [VILabel createLableWithFrame:Frm(0, imageview.endY+8,self.view.w, 20) color:@"#FF4F4F" font:FontS(15) align:CENTER];
         sname.tag = 201;
         sname.text = left.StoreName;
         [cell.contentView addSubview:sname];

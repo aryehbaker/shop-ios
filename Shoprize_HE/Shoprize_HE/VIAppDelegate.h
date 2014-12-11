@@ -26,6 +26,7 @@
 @property (strong, nonatomic) NSMutableDictionary *beancons;
 @property (strong, nonatomic) MallInfo *currentMall;
 
+@property (nonatomic,assign) NSInteger backTaskId;
 
 /* get navigation view controllsers */
 - (UINavigationController *)pushStack;

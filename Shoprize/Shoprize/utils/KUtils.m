@@ -25,13 +25,13 @@
     UIView *continer = [[UIView alloc] initWithFrame:Frm(0, 0, 260, 0)];
     
     UIFont *reg = Regular(16);
-    UIFont *blk = Bold(16);
+    UIFont *blk = Bold(13);
     
     VIRTLabel *h = [[VIRTLabel alloc] initWithFrame:Frm(10, 20, 160, 0)];
     [h setTextColor:[@"#252525" hexColor]];
     [h setText:hour];
     [h setFont:reg];
-    [h setTextAlignment:RTTextAlignmentRight];
+    [h setTextAlignment:isEn ? RTTextAlignmentLeft : RTTextAlignmentRight];
     [h setH:h.optimumSize.height];
     [continer addSubview:h];
     
@@ -49,7 +49,7 @@
     h = [[VIRTLabel alloc] initWithFrame:Frm(10, h.endY+5, h.w, 0)];
     [h setTextColor:[@"#252525" hexColor]];
     [h setFont:reg];
-    [h setTextAlignment:RTTextAlignmentRight];
+    [h setTextAlignment:isEn ? RTTextAlignmentLeft : RTTextAlignmentRight];
     [h setText:addr];
     [h setH:h.optimumSize.height];
     [continer addSubview:h];
@@ -67,7 +67,7 @@
     h = [[VIRTLabel alloc] initWithFrame:Frm(10, h.endY+5, h.w, 0)];
     [h setTextColor:[@"#0066ff" hexColor]];
     [h setFont:reg];
-    [h setTextAlignment:RTTextAlignmentRight];
+    [h setTextAlignment:isEn ? RTTextAlignmentLeft : RTTextAlignmentRight];
     [h setText:Fmt(@"<u>%@</u>",tel)];
     [h setH:h.optimumSize.height];
     [h setUserInteractionEnabled:YES];
@@ -110,11 +110,11 @@ static KUtils *k;
     }
     telnum = call;
     
+    telnum = [[telnum stringByReplacingOccurrencesOfString:@"<u>" withString:@""] stringByReplacingOccurrencesOfString:@"</u>" withString:@""];
+    
     k = [[KUtils alloc] init];
     
-
-    
-    UIAlertView *alt = [[UIAlertView alloc] initWithTitle:@"" message:Fmt(Lang(@"make_a_call"),call) delegate:k cancelButtonTitle:Lang(@"call_cancel") otherButtonTitles:Lang(@"call_now"), nil];
+    UIAlertView *alt = [[UIAlertView alloc] initWithTitle:@"" message:Fmt(Lang(@"make_a_call"),telnum) delegate:k cancelButtonTitle:Lang(@"call_cancel") otherButtonTitles:Lang(@"call_now"), nil];
     [alt show];
 }
 

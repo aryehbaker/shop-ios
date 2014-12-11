@@ -90,6 +90,11 @@
 		7A6A1C871A079808000305F1 /* VIHttpBase.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 7A6A1C841A0797FD000305F1 /* VIHttpBase.h */; };
 		7A868AD71A24637C0006A875 /* Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A868AD61A24637C0006A875 /* Ext.m */; };
 		7A868AD91A2463A00006A875 /* Ext.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 7A868AD51A24637C0006A875 /* Ext.h */; };
+		7ABC2BA41A31809100266B84 /* Sm广场.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 7ABC2B9F1A31809100266B84 /* Sm广场.gpx */; };
+		7ABC2BA51A31809100266B84 /* 三峡广场.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 7ABC2BA01A31809100266B84 /* 三峡广场.gpx */; };
+		7ABC2BA61A31809100266B84 /* 大石坝.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 7ABC2BA11A31809100266B84 /* 大石坝.gpx */; };
+		7ABC2BA71A31809100266B84 /* 大龙山地铁站.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 7ABC2BA21A31809100266B84 /* 大龙山地铁站.gpx */; };
+		7ABC2BA81A31809100266B84 /* 蓝溪谷地.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 7ABC2BA31A31809100266B84 /* 蓝溪谷地.gpx */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -236,6 +241,13 @@
 		7A6A1C851A0797FD000305F1 /* VIHttpBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIHttpBase.m; sourceTree = "<group>"; };
 		7A868AD51A24637C0006A875 /* Ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ext.h; sourceTree = "<group>"; };
 		7A868AD61A24637C0006A875 /* Ext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ext.m; sourceTree = "<group>"; };
+		7ABC2B9F1A31809100266B84 /* Sm广场.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Sm广场.gpx"; sourceTree = "<group>"; };
+		7ABC2BA01A31809100266B84 /* 三峡广场.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "三峡广场.gpx"; sourceTree = "<group>"; };
+		7ABC2BA11A31809100266B84 /* 大石坝.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "大石坝.gpx"; sourceTree = "<group>"; };
+		7ABC2BA21A31809100266B84 /* 大龙山地铁站.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "大龙山地铁站.gpx"; sourceTree = "<group>"; };
+		7ABC2BA31A31809100266B84 /* 蓝溪谷地.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "蓝溪谷地.gpx"; sourceTree = "<group>"; };
+		7ABC2BA91A349B2900266B84 /* קניון ארנה.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "קניון ארנה.gpx"; sourceTree = "<group>"; };
+		7ADE31751A38222600AD7228 /* 北城天街.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "北城天街.gpx"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -294,6 +306,7 @@
 		1705D71B19F9F4F4005F322F /* Shoprize */ = {
 			isa = PBXGroup;
 			children = (
+				7ABC2B9E1A31809100266B84 /* locations */,
 				1705D79F19F9F657005F322F /* controller */,
 				1705D7C819F9F657005F322F /* utils */,
 				1705D71C19F9F4F4005F322F /* Shoprize.h */,
@@ -420,6 +433,20 @@
 			path = utils;
 			sourceTree = "<group>";
 		};
+		7ABC2B9E1A31809100266B84 /* locations */ = {
+			isa = PBXGroup;
+			children = (
+				7ABC2B9F1A31809100266B84 /* Sm广场.gpx */,
+				7ABC2BA01A31809100266B84 /* 三峡广场.gpx */,
+				7ABC2BA11A31809100266B84 /* 大石坝.gpx */,
+				7ABC2BA21A31809100266B84 /* 大龙山地铁站.gpx */,
+				7ABC2BA31A31809100266B84 /* 蓝溪谷地.gpx */,
+				7ABC2BA91A349B2900266B84 /* קניון ארנה.gpx */,
+				7ADE31751A38222600AD7228 /* 北城天街.gpx */,
+			);
+			path = locations;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -498,6 +525,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7ABC2BA81A31809100266B84 /* 蓝溪谷地.gpx in Resources */,
+				7ABC2BA61A31809100266B84 /* 大石坝.gpx in Resources */,
+				7ABC2BA51A31809100266B84 /* 三峡广场.gpx in Resources */,
+				7ABC2BA71A31809100266B84 /* 大龙山地铁站.gpx in Resources */,
+				7ABC2BA41A31809100266B84 /* Sm广场.gpx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

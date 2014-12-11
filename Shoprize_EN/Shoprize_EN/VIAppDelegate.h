@@ -25,7 +25,7 @@
 
 @property (strong, nonatomic) NSMutableDictionary *beancons;
 @property (strong, nonatomic) MallInfo *currentMall;
-
+@property (nonatomic,assign) NSInteger backTaskId;
 
 /* get navigation view controllsers */
 - (UINavigationController *)pushStack;
@@ -37,6 +37,7 @@
 /** Push a local notifycation */
 - (void)pushNotification:(NSString *)text withObj:(id)obj;
 - (void)cancelNotifyCation:(UILocalNotification *)notify;
+- (void)loadNearestMallInBackGround:(NSString *)mallId;
 
 //扩展的Beacon
 @property(nonatomic,strong) NSMutableDictionary *rangedRegions;

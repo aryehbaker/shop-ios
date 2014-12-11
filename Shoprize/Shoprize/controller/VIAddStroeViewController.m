@@ -99,7 +99,7 @@
     [cell imageView4Tag:12003].image = check ? [@"heart_red.png" image] : [@"heart_gray.png" image];
     [cell egoimageView4Tag:12002].imageURL = [NSURL URLWithString:value.Logo];
     [cell label4Tag:12004].text = value.StoreName;
-    [cell label4Tag:12004].font = Bold(15);
+    [cell label4Tag:12004].font = FontS(15);
     [cell label4Tag:12004].textColor = check ? [@"#FF2B32" hexColor] : [@"#767676" hexColor];
     
     return cell;

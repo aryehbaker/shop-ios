@@ -47,35 +47,35 @@
     [helper executeDB:^(FMDatabase *db) {
         
         NSString *sql = Fmt(@"delete from Picture where MobiPromoId in (select t.MobiPromoId from MobiPromo t where exists(select * from Store s where s.StoreId=t.StoreId and s.MallId='%@'))",_MallAddressId);
+    
         BOOL ok =  [db executeUpdate:sql];
         
-        NSLog(@"Delete Picture:%d",ok);
+        NSLog(@"Delete Mall[%@] Picture :%d",_MallAddressId,ok);
         
         sql = Fmt(@"delete from UserSurprise where MobiPromoId in (select t.MobiPromoId from MobiPromo t where exists(select * from Store s where s.StoreId=t.StoreId and s.MallId='%@'))" ,_MallAddressId);
         
         ok = [db executeUpdate:sql];
-        NSLog(@"Delete UserSurprise:%d",ok);
+        NSLog(@"Delete Mall[%@] UserSurprise:%d",_MallAddressId,ok);
         
         sql =  Fmt(@"delete from Beacon where AddressId in (select s.AddressId from Store s where s.MallId='%@')",_MallAddressId);
         ok = [db executeUpdate:sql];
         
-        NSLog(@"Delete Beacon:%d",ok);
+        NSLog(@"Delete Mall[%@] Beacon:%d",_MallAddressId,ok);
         
-        sql = Fmt(@"delete from MobiPromo where exists(select * from Store s where s.StoreId=StoreId and s.MallId='%@')",_MallAddressId);
+        sql = Fmt(@"delete from MobiPromo where StoreId in (select s.StoreId from Store s where s.MallId='%@')",_MallAddressId);
         ok = [db executeUpdate:sql];
         
-        NSLog(@"Delete MobiPromo:%d",ok);
+        NSLog(@"Delete Mall[%@] MobiPromo:%d",_MallAddressId,ok);
         
         sql = Fmt(@"delete from Store where MallId ='%@'",_MallAddressId);
         ok = [db executeUpdate:sql];
-        NSLog(@"Delete Store:%d",ok);
+        NSLog(@"Delete Mall[%@] Store:%d",_MallAddressId,ok);
         
         sql = Fmt(@"delete from Mall where MallAddressId='%@'",_MallAddressId);
         ok = [db executeUpdate:sql];
-        NSLog(@"Delete Mall:%d",ok);
+        NSLog(@"Delete Mall[%@] Mall:%d",_MallAddressId,ok);
         
     }];
-    
 }
 
 +(BOOL)propertyIsOptional:(NSString*)propertyName{
@@ -274,6 +274,10 @@
  + (NSArray *)allmall {
     return  [[iSQLiteHelper getDefaultHelper] searchAllModel:[MallInfo class]];
 }
++ (MallInfo *)getMallById:(NSString *)mid
+{
+   return [[iSQLiteHelper getDefaultHelper]  searchSingle:[MallInfo class] where:@{@"MallAddressId":mid} orderBy:@"MallAddressId"];
+}
 @end
 
 @implementation Timestamps
@@ -332,6 +336,32 @@
 
 +(void)initialize{
     [self removePropertyWithColumnNameArray:@[@"Beacons",@"Pictures"]];
+}
+
+@end
+
+@implementation MallWelcome
++(NSString*)getPrimaryKey{
+    return @"MallId";
+}
+
++(BOOL)isNewMall:(NSString *)mallid {
+    MallWelcome *welcome = [[iSQLiteHelper getDefaultHelper] searchSingle:[MallWelcome class] where:@{@"MallId":mallid} orderBy:@"MallId"];
+    NSTimeInterval v = [[NSDate date] timeIntervalSince1970];
+    BOOL isNew = NO;
+    if (welcome == nil) {
+        isNew = YES;
+        welcome = [[MallWelcome alloc] init];
+        welcome.MallId = mallid;
+    }else{
+        double miss = abs(welcome.visitTime - v);
+        if (miss > 30 * 60) {
+            isNew = YES;
+        }
+    }
+    welcome.visitTime = v;
+    [[iSQLiteHelper getDefaultHelper] insertOrUpdateUsingObj:welcome];
+    return isNew;
 }
 
 @end

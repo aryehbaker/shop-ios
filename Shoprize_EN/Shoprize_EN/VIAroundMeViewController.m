@@ -63,7 +63,7 @@
     slider.maximumValue = 30;
     slider.dataSource = self;
     slider.delegate = self;
-    [slider setValue:2 animated:YES];
+    [slider setValue:5 animated:YES];
 
     [filter addSubview:slider];
 

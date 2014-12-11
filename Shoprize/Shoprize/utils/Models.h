@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 #import <iSQlite/iSQlite.h>
 
-#define _NEAREST_PLACE_KM_   0.6
+#define _NEAREST_PLACE_KM_   3
 
 @protocol Store         @end
 @protocol Beacon        @end
@@ -178,7 +178,7 @@
 
     + (MallInfo *)nearestMall;
     + (NSArray *)allmall;
-
+    + (MallInfo *)getMallById:(NSString *)mid;
 @end
 
 //时间戳
@@ -243,5 +243,14 @@
 
 @property(nonatomic,strong) NSArray<Picture,ConvertOnDemand> *Pictures;
 @property(nonatomic,strong) NSArray<Beacon,ConvertOnDemand> *Beacons;
+
+@end
+
+@interface MallWelcome : JSONModel
+
+@property(nonatomic,strong) NSString *MallId;
+@property(nonatomic,assign) double visitTime;
+
++(BOOL)isNewMall:(NSString *)mallid;
 
 @end

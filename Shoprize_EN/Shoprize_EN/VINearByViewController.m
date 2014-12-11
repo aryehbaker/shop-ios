@@ -117,6 +117,7 @@ static ListType currentType;
         MallInfo *mall = [[MallInfo alloc] initWithDictionary:self.mallInfo error:nil];
         ((VIAppDelegate *)[UIApplication sharedApplication].delegate).currentMall = mall;
         self.nav_title.text =  mall.Name;
+        [NSUserDefaults setValue:mall.MallAddressId forKey:CURRENT_MALL_USER_SELECTED];
         [VINet get:Fmt(@"/api/malls/%@/detail",mall.MallAddressId) args:nil target:self succ:@selector(getMallProms:) error:@selector(getMallsFail:) inv:self.view];
         return;
     }
@@ -137,7 +138,7 @@ static ListType currentType;
     [VINet regPushToken];
 }
 
-    - (void)refreshToShowTheTable
+- (void)refreshToShowTheTable
     {
         LKDBHelper *helper  = [iSQLiteHelper getDefaultHelper];
         NSString *mallid    = [NSUserDefaults getValue:CURRENT_MALL_USER_SELECTED];

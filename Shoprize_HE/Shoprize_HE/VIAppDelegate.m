@@ -88,6 +88,12 @@ static NSString *logpath;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.beancons     = [NSMutableDictionary dictionary];
     
+//#if TARGET_IPHONE_SIMULATOR
+//    [[VILogger getLogger] setLogLevelSetting:SLLS_ALL];
+//#elif TARGET_OS_IPHONE
+//    [[VILogger getLogger] setLogLevelSetting:SLLS_NONE];
+//#endif
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(faceBookLogon:) name:@"_facebook_logon_" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showNavBarMenu:) name:_NS_NOTIFY_SHOW_MENU object:nil];
     //Ibeacon的数据刷新
@@ -96,6 +102,9 @@ static NSString *logpath;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shareText:) name:@"_share_to_facebook_" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(openPopSuprise:) name:@"_get_a_bigsuprise_" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(add_current_track:) name:@"_add_current_track_" object:nil];
+    
+    // 设置地理位置墙
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(buildGenWall) name:@"_rebuild_geo_wall" object:nil];
     
     //用户获得Mall的通知内容
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadNearestMallInBackGround:) name:CURRENT_MALL_USER_IN object:nil];
@@ -125,7 +134,7 @@ static NSString *logpath;
     //Location Manager start motion
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
-    self.locationManager.distanceFilter = 5; //精度1m
+    self.locationManager.distanceFilter = 10; //精度10m
     
     DEBUGS(@"DEBUG %d",[CLLocationManager locationServicesEnabled]);
     
@@ -181,14 +190,6 @@ static NSString *logpath;
     if (userInfo!=nil) {
         [self checkWhereToGoFromPushMessage:userInfo];
     }
-
-//#if TARGET_IPHONE_SIMULATOR
-//    [[VILogger getLogger] setLogLevelSetting:SLLS_ALL];
-//#elif TARGET_OS_IPHONE
-//    [[VILogger getLogger] setLogLevelSetting:SLLS_NONE];
-//#endif
-    
-    //[self buildGenWall];
     
     return YES;
 }
@@ -262,7 +263,6 @@ static NSString *logpath;
 }
 
 -(void)getMallProms:(NSDictionary *)mallresp{
-    
     //保存对应Mall的信息
     JSONModelError *jsonerr;
     Mall *mall = [[Mall alloc] initWithDictionary:mallresp error:&jsonerr];
@@ -274,7 +274,7 @@ static NSString *logpath;
 }
 
 -(void)getMallsFail:(NSDictionary *)mallresp{
-    
+    DEBUGS(@"%@",mallresp);
 }
 
 static NSDate *latestLoc;
@@ -288,24 +288,14 @@ static NSDate *latestLoc;
             return;
         }
         latestLoc = location.timestamp;
-        //GPS正确的位置才工作
-        if(location!=nil&&location.horizontalAccuracy >0 && location.horizontalAccuracy<2000
-           &&(!(location.coordinate.latitude==0.0&&location.coordinate.longitude==0.0)))
-        {
-            [[NSUserDefaults standardUserDefaults] setValue:Fmt(@"%.7f,%.7f",location.coordinate.latitude,location.coordinate.longitude) forKey:@"location"];
-            
-            [self calcUserIsInMall:location];
-            //[self calcUserNearStore:[locations objectAtIndex:0]];
-            [self calcIfOpenNewMall:[locations objectAtIndex:0]];
-        }
+        
+        [[NSUserDefaults standardUserDefaults] setValue:Fmt(@"%.7f,%.7f",location.coordinate.latitude,location.coordinate.longitude) forKey:@"location"];
+        DEBUGS(@"Location complete:%@",location);
+        [self calcIfOpenNewMall];
     }
 }
 
-- (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
-    [self locationManagerFindRangeBeacons:beacons inRegion:region];
-}
-
-- (void)calcIfOpenNewMall:(CLLocation *)location {
+- (void)calcIfOpenNewMall {
     MallInfo *nearest = [MallInfo nearestMall];
     if (nearest!=nil) {
         if(nearest.distance < _NEAREST_PLACE_KM_){
@@ -333,37 +323,6 @@ static NSDate *latestLoc;
     DEBUGS(@"%@",error.description);
 }
 
-
-//已经在上面注释掉了调研
--(void)calcUserIsInMall:(CLLocation*)location
-{
-    MallInfo *nearest = [MallInfo nearestMall];
-    if (nearest !=nil && nearest.distance< _NEAREST_PLACE_KM_ )  { //if had load address
-        VisitStep *visted = [VisitStep insertStep:@"mall" value:nearest.MallAddressId];
-        if (visted==nil || ([[NSDate date] timeIntervalSince1970] - visted.time) > 60 * 60) {
-
-            if (visted!=nil) {
-                [visted setTime:[[NSDate date] timeIntervalSince1970]];
-                [[iSQLiteHelper getDefaultHelper] insertOrUpdateUsingObj:visted];
-            }
-            
-            NSString *mallName = nearest.Name;
-            NSString *uname    = [VINet info:KFull];
-            NSString *msg = Fmt(Lang(@"welcome_mall"),uname,mallName);
-            
-            NSMutableDictionary *mt = [NSMutableDictionary dictionary];
-            [mt setValue:@"Mall" forKey:@"NotifyType"];
-            [mt setValue:nearest.MallAddressId forKey:@"Udid"];
-            // 禁止掉通知信息
-            [self pushNotification:msg withObj:mt];
-            
-        }else if(visted!=nil){
-            [visted setTime:[[NSDate date] timeIntervalSince1970]];
-            [[iSQLiteHelper getDefaultHelper] insertOrUpdateUsingObj:visted];
-        }
-    }
-}
-
 - (void)resetIbeancon:(NSNotification *)notify {
     NSString *mallId = notify.object;
     LKDBHelper *helper = [iSQLiteHelper getDefaultHelper];
@@ -376,7 +335,6 @@ static NSDate *latestLoc;
      }
     [self resetIbeaonScan];
 }
-
 
 // If get a suprize from
 - (void)rewardComplete:(id)values{
@@ -470,7 +428,6 @@ static NSDate *latestLoc;
         txt.text = Lang(@"index_welcome_03");
         [torle addView:txt page:2];
         
-        
         t2 = [@"heart.png" imageViewForImgSizeAtX:111.5 Y:y];
         [torle addView:t2 page:3];
         txt = [VILabel createLableWithFrame:Frm(30, t2.endY,t1.w - 60  , 60) color:@"#ffffff" font:Regular(16) align:CENTER];
@@ -490,43 +447,24 @@ static NSDate *latestLoc;
     if ([CLLocationManager locationServicesEnabled] &&
         [CLLocationManager significantLocationChangeMonitoringAvailable])
     {
-        [self.locationManager stopUpdatingLocation];
-        //[self buildGenWall];
-        //[self.locationManager startMonitoringSignificantLocationChanges];
+        self.backTaskId = [application beginBackgroundTaskWithExpirationHandler:^{
+            
+            [self.locationManager stopUpdatingLocation];
+            [self buildGenWall];
+            [self.locationManager startMonitoringSignificantLocationChanges];
+            
+            [application endBackgroundTask:self.backTaskId];
+            self.backTaskId = UIBackgroundTaskInvalid;
+            
+        }];
     }
-}
-
--(void)buildGenWall {
-    
-    if (![CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
-        return;
-    }
-    NSArray *malls  = [MallInfo allmall];
-    for(MallInfo *mall in malls){
-        CLLocationCoordinate2D center = CLLocationCoordinate2DMake(mall.Lat, mall.Lon);
-        CLRegion *region = [[CLCircularRegion alloc] initWithCenter:center radius:500 identifier:mall.MallAddressId];
-        NSLog(@"%@",region);
-        [self.locationManager stopMonitoringForRegion:region];
-        [self.locationManager startMonitoringForRegion:region];
-    }
-}
-- (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region
-              withError:(NSError *)error
-{
-    NSLog(@"%@",error);
-}
--(void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
-{
-    NSLog(@"%@",region.identifier);
-}
-
--(void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
-{
-    NSLog(@"%@",region);
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
+    if (self.backTaskId != UIBackgroundTaskInvalid){
+        [application endBackgroundTask:self.backTaskId];
+    }
     self.isActive = NO;
 }
 
@@ -535,6 +473,7 @@ static NSDate *latestLoc;
     self.isActive = YES;
     if ([CLLocationManager locationServicesEnabled]){
         [self.locationManager startUpdatingLocation];
+        [self.locationManager stopMonitoringSignificantLocationChanges];
     }
 }
 
@@ -547,6 +486,59 @@ static NSDate *latestLoc;
     
     [self.session close];
     self.session = nil;
+}
+
+#pragma mark 设置地理围墙
+
+-(void)buildGenWall {
+    if (![CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
+        return;
+    }
+    NSSet *regins = [self.locationManager monitoredRegions];
+    for (CLRegion *regin in regins) {
+        [self.locationManager stopMonitoringForRegion:regin];
+    }
+    
+    NSArray *malls  = [MallInfo allmall];
+    for(MallInfo *mall in malls){
+        CLLocationCoordinate2D center = CLLocationCoordinate2DMake(mall.Lat, mall.Lon);
+        CLRegion *region = [[CLCircularRegion alloc] initWithCenter:center radius:500 identifier:mall.MallAddressId];
+        NSLog(@"%@",region);
+        [self.locationManager startMonitoringForRegion:region];
+    }
+}
+- (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region
+              withError:(NSError *)error
+{
+    NSLog(@"%@",error);
+}
+
+-(void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region{
+    
+    NSString *mallId = region.identifier;
+    BOOL isNew = [MallWelcome isNewMall:mallId];
+    if (isNew) {
+        MallInfo *nearest = [MallInfo getMallById:mallId];
+        NSString *mallName = nearest.Name;
+        NSString *uname = [VINet info:KFull];
+        NSString *msg = Fmt(Lang(@"welcome_mall"), uname, mallName);
+        
+        NSMutableDictionary *mt = [NSMutableDictionary dictionary];
+        [mt setValue:@"Mall" forKey:@"NotifyType"];
+        [mt setValue:nearest.MallAddressId forKey:@"Udid"];
+        // 禁止掉通知信息
+        [self pushNotification:msg withObj:mt];
+    }
+    
+    NSLog(@"Enter: %@",region.identifier);
+    [self calcIfOpenNewMall];
+}
+
+-(void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
+{
+    NSString *mallId = region.identifier;
+    [MallWelcome isNewMall:mallId];
+    NSLog(@"Exit Regin:%@",region);
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
@@ -567,7 +559,7 @@ static NSDate *latestLoc;
 - (void)sendOpenSupriseNotify:(NSDictionary*)pp
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"_get_a_bigsuprise_" object:pp];
- }
+}
 
 - (UINavigationController *)pushStack
 {
@@ -795,9 +787,28 @@ static NSDate *latestLoc;
 
 @implementation VIAppDelegate(iBeacon)
 
+-(void)locationManager:(CLLocationManager *)manager didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region{
+    
+    if(state == CLRegionStateInside) {
+        [manager startRangingBeaconsInRegion:(CLBeaconRegion*)region];
+    }
+    else if(state == CLRegionStateOutside) {
+         [manager stopRangingBeaconsInRegion:(CLBeaconRegion*)region];
+        //notification.alertBody = [NSString stringWithFormat:@"You are outside region %@", region.identifier];
+    }else
+    {
+        return;
+    }
+    
+    //[[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+}
+
 - (void)addUUID:(NSString *)uuid{
     NSUUID *uid = [[NSUUID alloc] initWithUUIDString:uuid];
     CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:uid identifier:[uid UUIDString]];
+    region.notifyEntryStateOnDisplay = YES;
+    region.notifyOnEntry = YES;
+    region.notifyOnExit = YES;
     if (region!=nil) {
          self.rangedRegions[region] = [NSArray array];
     }
@@ -818,14 +829,17 @@ static bool scaning = NO;
     }
     
     for (CLBeaconRegion *region in self.rangedRegions) {
-        [self.locationManager startRangingBeaconsInRegion:region];
+        [self.locationManager requestStateForRegion:region];
+        [self.locationManager startMonitoringForRegion:region];
+        //[self.locationManager startRangingBeaconsInRegion:region];
     }
     scaning = YES;
 }
 
 - (void)stopScan{
     for (CLBeaconRegion *region in self.rangedRegions) {
-        [self.locationManager stopRangingBeaconsInRegion:region];
+        [self.locationManager stopMonitoringForRegion:region];
+        //[self.locationManager stopRangingBeaconsInRegion:region];
     }
     scaning = NO;
 }
@@ -833,6 +847,11 @@ static bool scaning = NO;
 - (BOOL)isScaning {
     return scaning;
 }
+
+- (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
+    [self locationManagerFindRangeBeacons:beacons inRegion:region];
+}
+
 - (void)locationManagerFindRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region
 {
     NSMutableDictionary *allNearBeacons = [NSMutableDictionary dictionary];
@@ -852,24 +871,20 @@ static bool scaning = NO;
     NSArray *near = [allNearBeacons objectForKey:@(2)];
     have_stroe_around_me = NO;
     for (CLBeacon *bean in near) {
-        [self cheackAndRedeem:bean];
+        [self cheackAndRedeem:[bean.proximityUUID UUIDString]];
     }
     if (!have_stroe_around_me)
         [NSUserDefaults setValue:@"" forKey:@"_post_store_id_"];
 }
+
 static BOOL have_stroe_around_me;
 BOOL reading = NO;
 
-- (void)cheackAndRedeem:(CLBeacon *)bean{
-    
-    NSString *uuid = [[bean proximityUUID] UUIDString];
-    Beacon *infos = [[self beancons] objectForKey:uuid];
-    if (bean.accuracy < 10 /*[infos.SignalRadius doubleValue]*/) {
-        
-        if (!scaning) {
+- (void)cheackAndRedeem:(NSString *)beanid{
+    Beacon *infos = [[self beancons] objectForKey:beanid];
+    if (!scaning) {
             return;
         }
-        
         [NSUserDefaults setValue:infos.AddressId forKey:@"_post_store_id_"];
         have_stroe_around_me = YES;
         
@@ -895,10 +910,10 @@ BOOL reading = NO;
 //            [self pushNotification:msg withObj:mt];
 //            reading = NO;
 //        }
-        
+    
         //if not hvae return
         if (proms.count == 0) { return; }
-        
+    
         for(MobiPromo *curtMobi in proms)
         {
             id jsonValue = [[curtMobi Prerequisite] jsonVal];
@@ -930,8 +945,6 @@ BOOL reading = NO;
 
             }
         }
-        
-    }
 }
 
 - (void)resetIbeaonScan

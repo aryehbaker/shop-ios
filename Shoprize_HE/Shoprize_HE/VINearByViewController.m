@@ -210,7 +210,6 @@ static ListType currentType;
 - (void)notifyChange:(UIView *)loadView{
     
     MallInfo *currentMall = ((VIAppDelegate *)[UIApplication sharedApplication].delegate).currentMall;
-    [Mall clearMallWithId:currentMall.MallAddressId];//清除当前的数据
     
     //用户选择的MallId
     [NSUserDefaults setValue:currentMall.MallAddressId forKey:CURRENT_MALL_USER_SELECTED];
@@ -224,6 +223,7 @@ static ListType currentType;
 
 - (void)getMallProms:(id)value
 {
+    
     JSONModelError *jsonerr;
     Mall *mall = [[Mall alloc] initWithDictionary:value error:&jsonerr];
     [mall saveMallToDatabase];
@@ -241,6 +241,8 @@ static ListType currentType;
 - (void)saveMall2DB:(NSArray *)values {
     [[iSQLiteHelper getDefaultHelper] deleteWithClass:[MallInfo class] where:@"1=1"];
     [[iSQLiteHelper getDefaultHelper] insertOrUpdateDB:[MallInfo class] values:values];
+    //通知重新建立地理围墙
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"_rebuild_geo_wall" object:nil];
 }
 
 -(void)getMalls:(NSArray *)values
@@ -362,8 +364,8 @@ static ListType currentType;
             _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
             _tableView.tableHeaderView = ({
                 UIView *headerView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, self.view.w, 70)];
-                NSString *t = @"shoprize מתגמלת אתכם בכניסה לחנויות. \nהפתעות בלעדיות ממתינות בחנויות אלו, היכנסו עכשיו ותרוויחו";
-                UILabel *titleLabel = [VILabel createManyLines:Frm(10, 10, 300, 0) color:@"#464646" ft:Regular(19)  text:t];
+                NSString *t = @"הפתעות בלעדיות ל שופרייז ממתינות לכם בכניסה לחנויות אלה. כנסו עכשיו והרוויחו";
+                UILabel *titleLabel = [VILabel createManyLines:Frm(10, 10, 300, 50) color:@"#464646" ft:Regular(19)  text:t];
                 titleLabel.text = [t rtlTxt];
                 titleLabel.textAlignment = NSTextAlignmentCenter;
                 [headerView setH:titleLabel.endY+10];
@@ -437,7 +439,6 @@ static ListType currentType;
 
 - (void)rowSelectedAtIndexPath:(NSIndexPath *)indexPath{
 //    if (typeview == Stores) {
-//       
 //    }
 //    [self doClickEvent:nil];
 }
