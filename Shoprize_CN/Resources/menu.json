@@ -1,0 +1,106 @@
+ [
+  {
+  "title": "menu_home",
+  "icon": "home_w.png",
+  "index": 1
+  },
+  {
+  "title": "menu_profile",
+  "icon": "profile_w.png",
+  "index": 2,
+  "children": [
+               {
+               "title" : "menu_back",
+               "icon"  : "back_w_small.png",
+               "index" : 0
+               },
+               {
+               "title": "menu_setting",
+               "icon": "icn_setting.png",
+               "index": 21
+               },
+               {
+               "title": "menu_interests",
+               "icon": "icn_loc.png",
+               "index": 22
+               },
+               {
+               "title": "menu_notify",
+               "icon": "icon_mail.png",
+               "index": 23
+               },
+               {
+               "title": "menu_team",
+               "icon": "ico_pri.png",
+               "index": 24
+               },
+               {
+               "title" : "logout",
+               "icon"  : "exit_w.png",
+               "index" : 25
+               }
+        ]
+  },
+  {
+  "title": "menu_mysuprise",
+  "icon": "my_suprise_w.png",
+  "index": 3
+  },
+  {
+  "title": "menu_my_deal",
+  "icon": "proms.png",
+  "index": 8
+  },
+  {
+  "title": "menu_mystore",
+  "icon": "my_love_w.png",
+  "index": 4
+  },
+  {
+  "title": "menu_malls",
+  "icon": "mail_w.png",
+  "index": 5
+  },
+  {
+  "title": "menu_invite",
+  "icon": "invite_f_w.png",
+  "index": 6
+  },
+  {
+  "title": "SOTG",
+  "icon": "extra_w.png",
+  "index": 7,
+  "children": [
+               {
+               "title": "SOTG",
+               "icon": "mins_icon.png",
+               "index": 0
+               },
+               {
+               "title": "About us",
+               "icon": "about_us_icon.png",
+               "index": 71,
+               "issub" : true
+               },
+               {
+               "title": "menu_sub_ctus",
+               "icon": "contact_us.png",
+               "index": 72,
+               "issub" : true
+               },
+               {
+               "title": "menu_sub_fabk",
+               "icon": "facebook.png",
+               "index": 73,
+               "issub" : true
+               },
+               {
+               "title": "menu_sub_qa",
+               "icon": "qa.png",
+               "index": 74,
+               "issub" : true
+               }
+               ]
+  }
+  
+  ]

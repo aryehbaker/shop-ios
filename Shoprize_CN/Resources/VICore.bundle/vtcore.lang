@@ -1,0 +1,200 @@
+{
+    "00001": {
+        "zh-Hans": "正在加载..请稍后.",
+        "en": "Loading ...",
+        "vi": "Đang tải",
+        "he": ""
+    },
+    "00002": {
+        "zh-Hans": "正在提交数据..请等待",
+        "en": "Submitting ...",
+        "vi": "Nộp ...",
+        "he": ""
+    },
+    "00003": {
+        "zh-Hans": "获取数据失败，请重试(-1)",
+        "en": "Get data fail (-1)",
+        "vi": "Thu thập dữ liệu thất bại(-1)",
+        "he": "(קבל נתונים להיכשל(-1"
+    },
+    "00004": {
+        "zh-Hans": "数据异常 (-2)",
+        "en": "Data exception (-2)",
+        "vi": "Dữ liệu ngoại lệ (-2)",
+        "he": "נתונים חריגים(-2)"
+    },
+    "00005": {
+        "zh-Hans": "请选择",
+        "en": "Please select",
+        "vi" : "Vui lòng chọn",
+        "he": "אנא בחר"
+    },
+    "00006": {
+        "zh-Hans": "取消",
+        "en": "Cancel",
+        "vi": "Hủy",
+        "he": "בטל"
+    },
+    "00007": {
+        "zh-Hans": "相册选择",
+        "en": "Albums",
+        "vi": "Album ảnh",
+        "he": "אלבומים"
+    },
+    "00008": {
+        "zh-Hans": "相机拍摄",
+        "en": "Camera",
+        "vi": "Camera",
+        "he": "מצלמה"
+    },
+    "00009": {
+        "zh-Hans": "清除图片",
+        "en": "Clear",
+        "vi": "Làm lại",
+        "he": "לְסַלֵק"
+    },
+    "00010": {
+        "zh-Hans": "%d年",
+        "en": "%d",
+        "vi": "%d",
+        "he" : "%d"
+    },
+    "00011": {
+        "zh-Hans": "第%@周",
+        "en": "%@ W",
+        "vi": "%@ W",
+        "he" : "% W"
+    },
+    "00012": {
+        "zh-Hans": "%@月",
+        "en": "%@ M",
+        "vi": "%@ M",
+        "he" : "% M"
+    },
+    "00013": {
+        "zh-Hans": "确定",
+        "en": "OK",
+        "vi": "OK",
+        "he": "אשר"
+    },
+    "00014": {
+        "zh-Hans": "是",
+        "en": "YES",
+        "vi": "YES",
+        "he": "אָכֵן"
+    },
+    "00015": {
+        "zh-Hans": "否",
+        "en": "NO",
+        "vi": "NO",
+        "he": "לֹא"
+    },
+    "00016": {
+        "zh-Hans": "消息",
+        "en": "Info",
+        "vi": "Thông tin",
+        "he": "מידע"
+    },
+    "00017": {
+        "zh-Hans": "加载中...",
+        "en": "Loading...",
+        "vi": "Đang tải",
+        "he": "טוען...."
+    },
+    "00018": {
+        "zh-Hans": "加载更多...",
+        "en": "More ...",
+        "vi": "Tải thêm",
+        "he": "טען עוד"
+    },
+    "00019": {
+        "zh-Hans": "下拉刷新",
+        "en": "Pull Down Refresh",
+        "vi": "Kéo xuống làm mới",
+        "he": "לחץ לרענון"
+    },
+    "00020": {
+        "zh-Hans": "最后更新: %@",
+        "en": "Last Update: %@",
+        "vi": "Cập nhật gần nhất: %@",
+        "he": "העדכון אחרון:%@"
+    },
+    "00021": {
+        "zh-Hans": "释放刷新",
+        "en": "Release Refresh",
+        "vi": "Phát hành Làm mới",
+        "he": "לחץ לרענון"
+    },
+    "00022": {
+        "zh-Hans": "软件更新提示",
+        "en": "Update Info",
+        "vi": "Cập nhật thông tin",
+        "he": "עדכון פרטים"
+    },
+    "00023": {
+        "zh-Hans": "下次提示",
+        "en": "Prompt Next",
+        "vi": "Thực hiện Tiếp theo",
+        "he": "תנחה הבא"
+    },
+    "00024": {
+        "zh-Hans": "立即更新",
+        "en": "Update now",
+        "vi": "Cập nhật bây giờ",
+        "he": "עדכון עכשיו"
+    },
+    "00025": {
+        "zh-Hans": "忽略本次升级",
+        "en": "Ignore",
+        "vi": "Bỏ qua",
+        "he": "להתעלם"
+    },
+    "00026": {
+        "zh-Hans": "网络异常",
+        "en": "Network Exception",
+        "vi": "Lỗi kết nối hệ thống",
+        "he": "חריגה רשת"
+    },
+    "00027": {
+        "zh-Hans": "无法获取线路信息",
+        "en": "Can't get route",
+        "vi": "Can't get route",
+        "he": "Can't get route"
+    },
+    "00028": {
+        "zh-Hans": "网络异常，请检查你的网络",
+        "en": "Network Exception,Please check",
+        "vi": "Lỗi kết nối hệ thống",
+        "he" : "Network Exception"
+    },
+    "00029": {
+        "zh-Hans": "分享完成",
+        "en": "Share Successful",
+        "vi": "Share Successful",
+        "he" : "Share Successful"
+    },
+    "00030": {
+        "zh-Hans": "暂时没有数据",
+        "en": "No data shown",
+        "vi": "No data shown",
+        "he": "No data shown"
+    },
+    "00031": {
+        "zh-Hans": "提示消息",
+        "en": "",
+        "vi": "",
+        "he" : ""
+    },
+    "00032": {
+        "zh-Hans": "错误消息",
+        "en": "",
+        "vi": "",
+        "he" : ""
+    },
+    "00033": {
+        "zh-Hans": "警告消息",
+        "en": "",
+        "vi": "",
+        "he" : ""
+    }
+}
