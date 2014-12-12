@@ -1,142 +1,142 @@
 {
     "Http_0": {
         "en": "Sorry, an error occurred and it’s not your fault…",
-        "he": "סליחה, קרתה תקלה, ולא בגללך…"
+        "zh-Hans": "对不起，发生了一个未知错误…"
     },
     "Http_404": {
         "en": "Not Found",
-        "he": "משאב לא נמצא"
+        "zh-Hans": "未找到任何内容"
     },
     "Http_1001": {
         "en": "The deal cannot be found",
-        "he": "המבצע לא נמצא"
+        "zh-Hans": "优惠券未找到"
     },
     "Http_1002": {
         "en": "The surprise cannot be found",
-        "he": "ההפתעה לא נמצאת"
+        "zh-Hans": "未找到对应的惊喜"
     },
     "Http_1003": {
         "en": "Cannot find category",
-        "he": "קטגוריה לא נמצאת"
+        "zh-Hans": "没找到分类"
     },
     "Http_1004": {
         "en": "User not found",
-        "he": "המשתמש לא נמצא"
+        "zh-Hans": "用户不存在"
     },
     "Http_1005": {
         "en": "Mall not found",
-        "he": "הקניון לא נמצא"
+        "zh-Hans": "未找到对应商场"
     },
     "Http_1006": {
         "en": "App not found",
-        "he": "היישום לא נמצא"
+        "zh-Hans": "היישום לא נמצא"
     },
     "Http_1007": {
         "en": "Token not found",
-        "he": "קרתה תקלה והיא לא באשמתך…"
+        "zh-Hans": "用户信息未找到…"
     },
     "Http_1008": {
         "en": "Store not found",
-        "he": "החנות לא נמצאה"
+        "zh-Hans": "商家未找到"
     },
     "Http_1009": {
         "en": "Address not found",
-        "he": "הכתובת לא נמצאה"
+        "zh-Hans": "地址未找到"
     },
     "Http_1010": {
         "en": "Article not found",
-        "he": "המאמר לא נמצא"
+        "zh-Hans": "המאמר לא נמצא"
     },
     "Http_1011": {
         "en": "Beacon not found",
-        "he": "\u200fלא נמצא ביקון"
+        "zh-Hans": "未找到对应的Beacon"
     },
     "Http_1012": {
         "en": "Credit card not found",
-        "he": "כרטיס האשראי לא נמצא"
+        "zh-Hans": "信用卡不存在"
     },
     "Http_1013": {
         "en": "Package not found",
-        "he": "החבילה לא נמצאה"
+        "zh-Hans": "包未找到"
     },
     "Http_2001": {
         "en": "Category exists",
-        "he": "הקטגוריה קיימת"
+        "zh-Hans": "类别已经存在"
     },
     "Http_2002": {
         "en": "Mall exists",
-        "he": "הקניון קיים"
+        "zh-Hans": "商场已存在"
     },
     "Http_2003": {
         "en": "User Name Exists",
-        "he": "שם משתמש קיים"
+        "zh-Hans": "用户名已存在"
     },
     "Http_2004": {
         "en": "Beacon Exists",
-        "he": "Beacon Exists"
+        "zh-Hans": "Beacon Exists"
     },
     "Http_3001": {
         "en": "Redemption limit reached",
-        "he": "מימשתם את המקסימום האפשרי ליום זה"
+        "zh-Hans": "激活已经达到设定的最大次数"
     },
     "Http_3002": {
         "en": "Coupons are already in use",
-        "he": "קופונים כבר בשימוש"
+        "zh-Hans": "优惠券已使用"
     },
     "Http_3003": {
         "en": "No action provided",
-        "he": "לא הוגדרה פעולה לביצוע"
+        "zh-Hans": "לא הוגדרה פעולה לביצוע"
     },
     "Http_3004": {
         "en": "EmptyImageFile",
-        "he": "EmptyImageFile"
+        "zh-Hans": "EmptyImageFile"
     },
     "Http_3005": {
         "en": "InvalidFileType",
-        "he": "InvalidFileType"
+        "zh-Hans": "InvalidFileType"
     },
     "Http_3006": {
         "en": "Duplicated",
-        "he": "לחזור על"
+        "zh-Hans": "内容重复"
     },
     "Http_3007": {
         "en": "Invalid Account",
-        "he": "חשבון לא חוקי"
+        "zh-Hans": "帐户不可用"
     },
     "Http_3008": {
         "en": "ModelIsNotValid",
-        "he": "שגיאת שרת"
+        "zh-Hans": "模型不可用"
     },
     "Http_3009": {
         "en": "Unauthorized",
-        "he": "לא מורשה"
+        "zh-Hans": "未授权"
     },
     "Http_3010": {
         "en": "Unauthorized payment",
-        "he": "תשלום בלתי מורשה"
+        "zh-Hans": "תשלום בלתי מורשה"
     },
     "Http_3011": {
         "en": "Payment failed",
-        "he": "תשלום נכשל"
+        "zh-Hans": "תשלום נכשל"
     },
     "Http_3013": {
         "en": "MobiPromo Expired",
-        "he": "פג תוקף"
+        "zh-Hans": "优惠信息已失效"
     },
     "Http_3014": {
         "en": "Surprise Got And Used",
-        "he": "הפתעה הייתה בשימוש"
+        "zh-Hans": "惊喜获得并已使用"
     },
     "Http_3015" : {
         "en" : "UserName Or Password Not Correct",
-        "he": "שם משתמש או סיסמא אינה נכונה"
+        "zh-Hans": "用户名密码不匹配"
     },
     "Http_4000": {
         "en": "Server Error",
-        "he": "שגיאת שרת"
+        "zh-Hans": "服务器错误"
     },
     "Http_4001": {
         "en": "Bad Request",
-        "he": "בקשה שגויה"
+        "zh-Hans": "错误请求"
     }
 }

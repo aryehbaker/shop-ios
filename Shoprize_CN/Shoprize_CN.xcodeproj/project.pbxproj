@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		1705D77419F9F554005F322F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D77319F9F554005F322F /* main.m */; };
 		1705D77F19F9F554005F322F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1705D77E19F9F554005F322F /* Images.xcassets */; };
-		1705D78E19F9F554005F322F /* Shoprize_ENTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D78D19F9F554005F322F /* Shoprize_ENTests.m */; };
+		1705D78E19F9F554005F322F /* Shoprize_CNTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1705D78D19F9F554005F322F /* Shoprize_CNTests.m */; };
 		1745EF1119FE3D3800E701F2 /* aroundme.png in Resources */ = {isa = PBXBuildFile; fileRef = 1745EF1019FE3D3800E701F2 /* aroundme.png */; };
 		1745EF1519FE452800E701F2 /* VIAroundMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1745EF1419FE452800E701F2 /* VIAroundMeViewController.m */; };
 		175F0C0D19FA545700BCAD55 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175F0C0C19FA545700BCAD55 /* AudioToolbox.framework */; };
@@ -157,6 +157,11 @@
 		7A6A1C671A0363D0000305F1 /* sigeup_he.html in Resources */ = {isa = PBXBuildFile; fileRef = 7A6A1C5B1A0363D0000305F1 /* sigeup_he.html */; };
 		7A6A1C821A075DC8000305F1 /* CategoryFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A6A1C811A075DC8000305F1 /* CategoryFilterViewController.m */; };
 		7A99E44B1A007EB500175E24 /* mapit.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A99E44A1A007EB500175E24 /* mapit.png */; };
+		7A9A46461A3AEEF300B93176 /* about_cn.html in Resources */ = {isa = PBXBuildFile; fileRef = 7A9A46411A3AEEF300B93176 /* about_cn.html */; };
+		7A9A46471A3AEEF300B93176 /* contactus_cn.html in Resources */ = {isa = PBXBuildFile; fileRef = 7A9A46421A3AEEF300B93176 /* contactus_cn.html */; };
+		7A9A46481A3AEEF300B93176 /* pliaylice_cn.html in Resources */ = {isa = PBXBuildFile; fileRef = 7A9A46431A3AEEF300B93176 /* pliaylice_cn.html */; };
+		7A9A46491A3AEEF300B93176 /* question_cn.html in Resources */ = {isa = PBXBuildFile; fileRef = 7A9A46441A3AEEF300B93176 /* question_cn.html */; };
+		7A9A464A1A3AEEF300B93176 /* sigeup_cn.html in Resources */ = {isa = PBXBuildFile; fileRef = 7A9A46451A3AEEF300B93176 /* sigeup_cn.html */; };
 		7A9F33D41A11B5F500443343 /* tor1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A9F33CE1A11B5F500443343 /* tor1.png */; };
 		7A9F33D61A11B5F500443343 /* suplogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A9F33D01A11B5F500443343 /* suplogo.png */; };
 		7A9F33D71A11B5F500443343 /* tor2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A9F33D11A11B5F500443343 /* tor2.png */; };
@@ -173,7 +178,7 @@
 			containerPortal = 1705D76619F9F554005F322F /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 1705D76D19F9F554005F322F;
-			remoteInfo = Shoprize_EN;
+			remoteInfo = Shoprize_CN;
 		};
 		175F0C0819FA3F4F00BCAD55 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -199,13 +204,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1705D76E19F9F554005F322F /* Shoprize_EN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shoprize_EN.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1705D76E19F9F554005F322F /* Shoprize_CN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shoprize_CN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1705D77219F9F554005F322F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1705D77319F9F554005F322F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1705D77E19F9F554005F322F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		1705D78719F9F554005F322F /* Shoprize_ENTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Shoprize_ENTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1705D78719F9F554005F322F /* Shoprize_CNTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Shoprize_CNTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1705D78C19F9F554005F322F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1705D78D19F9F554005F322F /* Shoprize_ENTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Shoprize_ENTests.m; sourceTree = "<group>"; };
+		1705D78D19F9F554005F322F /* Shoprize_CNTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Shoprize_CNTests.m; sourceTree = "<group>"; };
 		1745EF1019FE3D3800E701F2 /* aroundme.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aroundme.png; sourceTree = "<group>"; };
 		1745EF1319FE452800E701F2 /* VIAroundMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIAroundMeViewController.h; sourceTree = "<group>"; };
 		1745EF1419FE452800E701F2 /* VIAroundMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIAroundMeViewController.m; sourceTree = "<group>"; };
@@ -244,7 +249,7 @@
 		175F0C4519FA586A00BCAD55 /* VIUncaughtExceptionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIUncaughtExceptionHandler.m; sourceTree = "<group>"; };
 		175F0C4619FA586A00BCAD55 /* VIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIViewController.h; sourceTree = "<group>"; };
 		175F0C4719FA586A00BCAD55 /* VIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIViewController.m; sourceTree = "<group>"; };
-		175F0C5219FDC33200BCAD55 /* Shoprize_EN-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Shoprize_EN-Prefix.pch"; sourceTree = "<group>"; };
+		175F0C5219FDC33200BCAD55 /* Shoprize_CN-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Shoprize_CN-Prefix.pch"; sourceTree = "<group>"; };
 		175F0C5319FDC43F00BCAD55 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		176EEF0819FF2C16007AEB83 /* locfff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locfff.png; sourceTree = "<group>"; };
 		177FE0D919FDC5FF00D42AAA /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -368,6 +373,11 @@
 		7A6A1C801A075DC8000305F1 /* CategoryFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryFilterViewController.h; sourceTree = "<group>"; };
 		7A6A1C811A075DC8000305F1 /* CategoryFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryFilterViewController.m; sourceTree = "<group>"; };
 		7A99E44A1A007EB500175E24 /* mapit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapit.png; sourceTree = "<group>"; };
+		7A9A46411A3AEEF300B93176 /* about_cn.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about_cn.html; sourceTree = "<group>"; };
+		7A9A46421A3AEEF300B93176 /* contactus_cn.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = contactus_cn.html; sourceTree = "<group>"; };
+		7A9A46431A3AEEF300B93176 /* pliaylice_cn.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = pliaylice_cn.html; sourceTree = "<group>"; };
+		7A9A46441A3AEEF300B93176 /* question_cn.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = question_cn.html; sourceTree = "<group>"; };
+		7A9A46451A3AEEF300B93176 /* sigeup_cn.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = sigeup_cn.html; sourceTree = "<group>"; };
 		7A9F33CE1A11B5F500443343 /* tor1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tor1.png; sourceTree = "<group>"; };
 		7A9F33D01A11B5F500443343 /* suplogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = suplogo.png; sourceTree = "<group>"; };
 		7A9F33D11A11B5F500443343 /* tor2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tor2.png; sourceTree = "<group>"; };
@@ -423,8 +433,8 @@
 				177FE0D919FDC5FF00D42AAA /* Default-568h@2x.png */,
 				175F0C0319FA3F4F00BCAD55 /* Shoprize.xcodeproj */,
 				175F0C2619FA551500BCAD55 /* fwks */,
-				1705D77019F9F554005F322F /* Shoprize_EN */,
-				1705D78A19F9F554005F322F /* Shoprize_ENTests */,
+				1705D77019F9F554005F322F /* Shoprize_CN */,
+				1705D78A19F9F554005F322F /* Shoprize_CNTests */,
 				1705D76F19F9F554005F322F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -432,13 +442,13 @@
 		1705D76F19F9F554005F322F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1705D76E19F9F554005F322F /* Shoprize_EN.app */,
-				1705D78719F9F554005F322F /* Shoprize_ENTests.xctest */,
+				1705D76E19F9F554005F322F /* Shoprize_CN.app */,
+				1705D78719F9F554005F322F /* Shoprize_CNTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1705D77019F9F554005F322F /* Shoprize_EN */ = {
+		1705D77019F9F554005F322F /* Shoprize_CN */ = {
 			isa = PBXGroup;
 			children = (
 				7A68106F1A15E25700A9F143 /* ASValueTrackingSlider */,
@@ -448,7 +458,7 @@
 				175F0C3719FA586A00BCAD55 /* VIBigSuprise.m */,
 				175F0C3819FA586A00BCAD55 /* VIHtmlViewController.h */,
 				175F0C3919FA586A00BCAD55 /* VIHtmlViewController.m */,
-				175F0C5219FDC33200BCAD55 /* Shoprize_EN-Prefix.pch */,
+				175F0C5219FDC33200BCAD55 /* Shoprize_CN-Prefix.pch */,
 				175F0C3A19FA586A00BCAD55 /* VILocalNotify.h */,
 				175F0C3B19FA586A00BCAD55 /* VILocalNotify.m */,
 				175F0C3C19FA586A00BCAD55 /* VIMenusViewController.h */,
@@ -474,7 +484,7 @@
 				7A5844CC1A13415900D784BF /* OpenMobiView.h */,
 				7A5844CD1A13415900D784BF /* OpenMobiView.m */,
 			);
-			path = Shoprize_EN;
+			path = Shoprize_CN;
 			sourceTree = "<group>";
 		};
 		1705D77119F9F554005F322F /* Supporting Files */ = {
@@ -486,13 +496,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		1705D78A19F9F554005F322F /* Shoprize_ENTests */ = {
+		1705D78A19F9F554005F322F /* Shoprize_CNTests */ = {
 			isa = PBXGroup;
 			children = (
-				1705D78D19F9F554005F322F /* Shoprize_ENTests.m */,
+				1705D78D19F9F554005F322F /* Shoprize_CNTests.m */,
 				1705D78B19F9F554005F322F /* Supporting Files */,
 			);
-			path = Shoprize_ENTests;
+			path = Shoprize_CNTests;
 			sourceTree = "<group>";
 		};
 		1705D78B19F9F554005F322F /* Supporting Files */ = {
@@ -546,6 +556,11 @@
 				177FE0E119FDC8C100D42AAA /* back_w_small.png */,
 				7ABC2B971A30091F00266B84 /* ic_surprises_large_gray.png */,
 				7A36739A1A197C02003296C4 /* my_suprise_r.png */,
+				7A9A46411A3AEEF300B93176 /* about_cn.html */,
+				7A9A46421A3AEEF300B93176 /* contactus_cn.html */,
+				7A9A46431A3AEEF300B93176 /* pliaylice_cn.html */,
+				7A9A46441A3AEEF300B93176 /* question_cn.html */,
+				7A9A46451A3AEEF300B93176 /* sigeup_cn.html */,
 				177FE0E019FDC8C100D42AAA /* back_w.png */,
 				7AC510131A28D80A00B9D6D4 /* sms_text */,
 				177FE0DF19FDC8C100D42AAA /* back.png */,
@@ -701,9 +716,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1705D76D19F9F554005F322F /* Shoprize_EN */ = {
+		1705D76D19F9F554005F322F /* Shoprize_CN */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1705D79119F9F554005F322F /* Build configuration list for PBXNativeTarget "Shoprize_EN" */;
+			buildConfigurationList = 1705D79119F9F554005F322F /* Build configuration list for PBXNativeTarget "Shoprize_CN" */;
 			buildPhases = (
 				1705D76A19F9F554005F322F /* Sources */,
 				1705D76B19F9F554005F322F /* Frameworks */,
@@ -714,14 +729,14 @@
 			dependencies = (
 				175F0C3319FA583900BCAD55 /* PBXTargetDependency */,
 			);
-			name = Shoprize_EN;
-			productName = Shoprize_EN;
-			productReference = 1705D76E19F9F554005F322F /* Shoprize_EN.app */;
+			name = Shoprize_CN;
+			productName = Shoprize_CN;
+			productReference = 1705D76E19F9F554005F322F /* Shoprize_CN.app */;
 			productType = "com.apple.product-type.application";
 		};
-		1705D78619F9F554005F322F /* Shoprize_ENTests */ = {
+		1705D78619F9F554005F322F /* Shoprize_CNTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1705D79419F9F554005F322F /* Build configuration list for PBXNativeTarget "Shoprize_ENTests" */;
+			buildConfigurationList = 1705D79419F9F554005F322F /* Build configuration list for PBXNativeTarget "Shoprize_CNTests" */;
 			buildPhases = (
 				1705D78319F9F554005F322F /* Sources */,
 				1705D78419F9F554005F322F /* Frameworks */,
@@ -732,9 +747,9 @@
 			dependencies = (
 				1705D78919F9F554005F322F /* PBXTargetDependency */,
 			);
-			name = Shoprize_ENTests;
-			productName = Shoprize_ENTests;
-			productReference = 1705D78719F9F554005F322F /* Shoprize_ENTests.xctest */;
+			name = Shoprize_CNTests;
+			productName = Shoprize_CNTests;
+			productReference = 1705D78719F9F554005F322F /* Shoprize_CNTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -756,7 +771,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 1705D76919F9F554005F322F /* Build configuration list for PBXProject "Shoprize_EN" */;
+			buildConfigurationList = 1705D76919F9F554005F322F /* Build configuration list for PBXProject "Shoprize_CN" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -775,8 +790,8 @@
 			);
 			projectRoot = "";
 			targets = (
-				1705D76D19F9F554005F322F /* Shoprize_EN */,
-				1705D78619F9F554005F322F /* Shoprize_ENTests */,
+				1705D76D19F9F554005F322F /* Shoprize_CN */,
+				1705D78619F9F554005F322F /* Shoprize_CNTests */,
 			);
 		};
 /* End PBXProject section */
@@ -814,6 +829,7 @@
 				177FE18C19FDC8C200D42AAA /* red_heart.png in Resources */,
 				177FE15919FDC8C200D42AAA /* carmer_icon.png in Resources */,
 				177FE17019FDC8C200D42AAA /* ic_action_timer_white.png in Resources */,
+				7A9A464A1A3AEEF300B93176 /* sigeup_cn.html in Resources */,
 				7A6A1C671A0363D0000305F1 /* sigeup_he.html in Resources */,
 				177FE17A19FDC8C200D42AAA /* local_msg.caf in Resources */,
 				7A36739B1A197C02003296C4 /* my_suprise_r.png in Resources */,
@@ -824,6 +840,7 @@
 				177FE1A219FDC8C200D42AAA /* my_suprise_w.png in Resources */,
 				7A6A1C5C1A0363D0000305F1 /* about_en.html in Resources */,
 				177FE1B519FDC8C200D42AAA /* tbcfg.json in Resources */,
+				7A9A46481A3AEEF300B93176 /* pliaylice_cn.html in Resources */,
 				177FE15319FDC8C200D42AAA /* add_store_btn.png in Resources */,
 				177FE1A419FDC8C200D42AAA /* profile_w.png in Resources */,
 				177FE16019FDC8C200D42AAA /* deal_w.png in Resources */,
@@ -853,6 +870,7 @@
 				177FE18D19FDC8C200D42AAA /* red_share.png in Resources */,
 				177FE16C19FDC8C200D42AAA /* hightlight.png in Resources */,
 				177FE17719FDC8C200D42AAA /* inv_all.png in Resources */,
+				7A9A46461A3AEEF300B93176 /* about_cn.html in Resources */,
 				177FE16819FDC8C200D42AAA /* gray_heart.png in Resources */,
 				177FE19C19FDC8C200D42AAA /* mail_r.png in Resources */,
 				177FE0DA19FDC5FF00D42AAA /* Default-568h@2x.png in Resources */,
@@ -878,6 +896,7 @@
 				177FE1BB19FDC8C200D42AAA /* suprise_logo.png in Resources */,
 				177FE19219FDC8C200D42AAA /* about_us.png in Resources */,
 				7A6A1C5E1A0363D0000305F1 /* contactus_en.html in Resources */,
+				7A9A46471A3AEEF300B93176 /* contactus_cn.html in Resources */,
 				177FE19419FDC8C200D42AAA /* contact_us.png in Resources */,
 				7A6A1C5F1A0363D0000305F1 /* contactus_he.html in Resources */,
 				177FE19E19FDC8C200D42AAA /* mins_icon.png in Resources */,
@@ -919,6 +938,7 @@
 				177FE15819FDC8C200D42AAA /* boom_bg.png in Resources */,
 				177FE1AE19FDC8C200D42AAA /* store_w.png in Resources */,
 				7A99E44B1A007EB500175E24 /* mapit.png in Resources */,
+				7A9A46491A3AEEF300B93176 /* question_cn.html in Resources */,
 				177FE1B119FDC8C200D42AAA /* suprise_check_chekc.png in Resources */,
 				177FE17B19FDC8C200D42AAA /* mail_logon_btn.png in Resources */,
 				7A6A1C631A0363D0000305F1 /* pliaylice_he.html in Resources */,
@@ -966,7 +986,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1705D78E19F9F554005F322F /* Shoprize_ENTests.m in Sources */,
+				1705D78E19F9F554005F322F /* Shoprize_CNTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -975,7 +995,7 @@
 /* Begin PBXTargetDependency section */
 		1705D78919F9F554005F322F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1705D76D19F9F554005F322F /* Shoprize_EN */;
+			target = 1705D76D19F9F554005F322F /* Shoprize_CN */;
 			targetProxy = 1705D78819F9F554005F322F /* PBXContainerItemProxy */;
 		};
 		175F0C3319FA583900BCAD55 /* PBXTargetDependency */ = {
@@ -1071,16 +1091,16 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/fwks",
 				);
-				GCC_PREFIX_HEADER = "${PROJECT}/Shoprize_EN-Prefix.pch";
-				INFOPLIST_FILE = Shoprize_EN/Info.plist;
+				GCC_PREFIX_HEADER = "${PROJECT}/Shoprize_CN-Prefix.pch";
+				INFOPLIST_FILE = Shoprize_CN/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ca2d313d-54dd-46eb-aa03-e7e8a8251d46";
+				PRODUCT_NAME = Shoprize_CN;
+				PROVISIONING_PROFILE = "cf54ead1-0674-4262-95f1-85cfbcbab99a";
 			};
 			name = Debug;
 		};
@@ -1093,16 +1113,16 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/fwks",
 				);
-				GCC_PREFIX_HEADER = "${PROJECT}/Shoprize_EN-Prefix.pch";
-				INFOPLIST_FILE = Shoprize_EN/Info.plist;
+				GCC_PREFIX_HEADER = "${PROJECT}/Shoprize_CN-Prefix.pch";
+				INFOPLIST_FILE = Shoprize_CN/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ca2d313d-54dd-46eb-aa03-e7e8a8251d46";
+				PRODUCT_NAME = Shoprize_CN;
+				PROVISIONING_PROFILE = "cf54ead1-0674-4262-95f1-85cfbcbab99a";
 			};
 			name = Release;
 		};
@@ -1118,15 +1138,15 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = Shoprize_ENTests/Info.plist;
+				INFOPLIST_FILE = Shoprize_CNTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shoprize_EN.app/Shoprize_EN";
+				PRODUCT_NAME = Shoprize_CNTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shoprize_CN.app/Shoprize_CN";
 			};
 			name = Debug;
 		};
@@ -1138,22 +1158,22 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = Shoprize_ENTests/Info.plist;
+				INFOPLIST_FILE = Shoprize_CNTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shoprize_EN.app/Shoprize_EN";
+				PRODUCT_NAME = Shoprize_CNTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shoprize_CN.app/Shoprize_CN";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1705D76919F9F554005F322F /* Build configuration list for PBXProject "Shoprize_EN" */ = {
+		1705D76919F9F554005F322F /* Build configuration list for PBXProject "Shoprize_CN" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1705D78F19F9F554005F322F /* Debug */,
@@ -1162,7 +1182,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1705D79119F9F554005F322F /* Build configuration list for PBXNativeTarget "Shoprize_EN" */ = {
+		1705D79119F9F554005F322F /* Build configuration list for PBXNativeTarget "Shoprize_CN" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1705D79219F9F554005F322F /* Debug */,
@@ -1171,7 +1191,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1705D79419F9F554005F322F /* Build configuration list for PBXNativeTarget "Shoprize_ENTests" */ = {
+		1705D79419F9F554005F322F /* Build configuration list for PBXNativeTarget "Shoprize_CNTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1705D79519F9F554005F322F /* Debug */,

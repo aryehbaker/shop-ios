@@ -341,6 +341,8 @@ static NSMutableDictionary *stores;
                     } else {
                         [reu setValue:[lange lang] forKey:@"Message"];
                     }
+                } else if ([jsonv stringValueForKey:@"Message"] != nil ) {
+                    [reu setValue:[jsonv stringValueForKey:@"Message"] forKey:@"Message"];
                 }
 //                if (jsonv==nil) {
 //                     [reu setValue:requestResult forKey:@"Message"];

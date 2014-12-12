@@ -1,222 +1,222 @@
 {
     "lang" : {
-        "he" : "he",
+        "zh-Hans" : "en",
         "en" : "en"
     },
      "index_welcome_01" : 
      {
           "en" : "WELCOME",
-           "he":"להרוויח וליהנות יותר מהביקורים בקניון ! \nמבצעים והפתעות בכניסה לחנויות"
+           "zh-Hans":"欢迎您使用本App"
      },
      "index_welcome_02" : 
      {
          "en" : "find hot deals while you're shopping" ,
-         "he" : "גלו את כל המבצעים החמים בקלות בזמן שאתם עושים שופינג"
+         "zh-Hans" : "在您购物的时候随时查找最热门的优惠信息"
      },
      "index_welcome_03" : {
          "en" : "Look for the stores that giveaway surprises. walk-in and collect!",
-         "he" : "חפשו את החנויות שמפנקות בהפתעות שוות, כנסו לחנות והרוויחו !\u200f"
+         "zh-Hans" : "寻找给予特别惊喜的商家,进店获得最优惠的打折信息"
      },
      "index_welcome_04" : {
          "en" : "Save your favorite stores and stay tuned with the latest deals!",
-         "he" : "הוסיפו את החנויות האהובות עליכם למועדפים והישארו מעודכנים במבצעים, הטבות חברי מועדון והפתעות ייחודיות למשתמשי שופרייז !\u200f"
+         "zh-Hans" : "标记你最喜爱的商店,随时随地传递给你最新最优惠的打折促销内容"
      },
      "logon_logo_desc"      : {
                             "en" : "logon text belwo logo", 
-                            "he" : "להרוויח וליהנות יותר מהביקורים בקניון ! \nמבצעים והפתעות בכניסה לחנויות"},
-     "index_signup"         :{ "en" : "Sign Up", "he" : "הרשמה" },
-     "logon"                :{ "en" : "Logon",  "he" : "התחברו" },
-    "forgetPwd"             :{ "en" : "Forget password?","he" : "שכחת סיסמא?"},
-    "e-mail"                :{ "en" : "Email","he" : "דוא\"ל" },
-    "password"              :{ "en" : "Password", "he" : "סיסמא"},
-    "navi_title"            :{ "en" : "ניווט",  "he" : "ניווט" },
-    "ready_member_to_logon" :{ "en" : "already a member ? sign in.", "he": "התחברות משתמשים קיימים"},
-     "index_signup_signin"  :{ "en" : "Sign up or sign in","he": "הירשמו או התחברו"},
-     "index_skip"           :{ "en" : "Skip" , "he" : "דלגו" },
-     "facebook_logon"       :{ "en" : "FACEBOOK SIGN IN","he": "התחברו עם פייסבוק"},
-     "mail_logon"           :{ "en" : "EMAIL SIGN IN","he":"התחבר עם דוא\"ל"},
-     "index_finish"         :{ "en" : "Finish" , "he" : "סיום" },
-     "main_suprises"        :{ "en": "Surprises ","he": " הפתעות"},
-     "main_deals"           :{ "en": "Deals ","he": " מבצעים"},
-     "main_stores"          :{ "en": "Stores ","he": " חנויות"},
-     "menu_home"            :{ "en" : "Around Me", "he" : "בית" },
-     "menu_profile"         :{ "en" : "Profile", "he" : "איזור אישי" },
-     "menu_mysuprise"       :{ "en" : "My Suprise" ,"he": "ההפתעות שלי"},
-     "menu_mystore"         :{ "en" : "My Store" ,"he" : "החנויות שלי"},
-     "menu_malls"           :{ "en" : "Malls" ,"he" : "רשימת קניונים"},
-     "menu_invite"          :{ "en" : "Invite a friend" ,"he": "הזמנת חבר"},
-     "menu_sub_ctus"        :{ "en" : "Contact Us","he": "צור קשר"},
-     "menu_sub_fabk"        :{ "en" : "Facebook","he": "פייסבוק"},
-     "menu_sub_qa"          :{ "en" : "Q & A","he": "שאלות נפוצות"},
-     "about_us"             :{ "en" : "About us","he": "אודות"},
-     "about_us_file"        :{ "en" : "about_en.html", "he" : "about_he.html"},
-     "qa_title"             :{ "en" : "questions & answers","he": "שאלות נפוצות"},
-     "qa_file"              :{ "en" : "question_en.html","he": "question_he.html"},
-     "ctct_us_title"        :{ "en" : "Contact us","he": "צור קשר"},
-     "ctct_us_file"         :{ "en" : "contactus_en.html","he": "contactus_he.html"},
-     "list_of_malls"        :{ "en" : "Malls","he": "רשימת קניונים"},
-     "menu_setting"         :{ "en" : "Preferences", "he": "הגדרות"},
-     "menu_interests"       :{ "en" : "Interests", "he": "תחומי עניין"},
-     "menu_notify"          :{ "en" : "Notifications", "he" : "התראות"},
-     "menu_team"            :{ "en" : "Privacy policy", "he": "תנאי שימוש ומדיניות פרטיות"},
-     "menu_back"            :{ "en" : "Back","he": "בחזרה"},
-     "nav_my_store"         :{ "en" : "My store", "he": "חנויות שלי"},
-     "shoose_all"           :{ "en" : "Choose All" ,"he": "סמנו הכל"},
-     "invite_now"           :{ "en" : "Invite","he": "הזמנת חבר"},
-     "deveice_not_suppor"   :{ "en" : "Device can not send messages","he": "מכשיר זה אינו יכול לשלוח הודעות"},
-     "should_check_one"     :{ "en" : "You should choose least one person" ,"he": "יש לבחור אדם אחד לפחות"},
-     "invint_sms_txt"       :{ "en" : "Hi, I use SOTG app now, and loving it!","he": "היי, מה המצב ? רציתי להגיד לך שאנחנו משתמשים באפליקצית SOTG. אפליקציה שחוסכת לנו כסף בשופינג, חושפת אותנו לכל המבצעים ומפנקת בהטבות בלעדיות בכניסה לחנויות ! ממש כדאי לך להוריד ולנסות http://shoprize.co.il/"},
-     "send_sms_fail"        :{ "en": "sending SMS failed, please try again","he": "שליחת ההודעה נכשלה, אנא נסו שנית"},
-     "send_sms_complete"    :{ "en": "Message was sent successfully","he": "ההודעה נשלחה בהצלחה!"},
-     "why_should_i_add"     :{ "en": "why should i add stores ?","he": "מדוע כדאי לי להוסיף חנות?"},
-     "add_store"            :{ "en": "Add store","he": "הוסיפו חנות"},
-     "why_should_add_title" :{ "en" : "Why should i add store","he": "הוספת חנות למועדפים"},
+                            "zh-Hans" : "להרוויח וליהנות יותר מהביקורים בקניון ! \nמבצעים והפתעות בכניסה לחנויות"},
+     "index_signup"         :{ "en" : "Sign Up", "zh-Hans" : "立刻注册" },
+     "logon"                :{ "en" : "Logon",  "zh-Hans" : "登录" },
+    "forgetPwd"             :{ "en" : "Forget password?","zh-Hans" : "忘记密码?"},
+    "e-mail"                :{ "en" : "Email","zh-Hans" : "电子邮件" },
+    "password"              :{ "en" : "Password", "zh-Hans" : "密码"},
+    "navi_title"            :{ "en" : "Navigation",  "zh-Hans" : "导航" },
+    "ready_member_to_logon" :{ "en" : "already a member ? sign in.", "zh-Hans": "已拥有帐户? 立刻登录"},
+     "index_signup_signin"  :{ "en" : "Sign up or sign in","zh-Hans": "注册 | 登录"},
+     "index_skip"           :{ "en" : "Skip" , "zh-Hans" : "跳过" },
+     "facebook_logon"       :{ "en" : "FACEBOOK SIGN IN","zh-Hans": "脸书账号登录"},
+     "mail_logon"           :{ "en" : "EMAIL SIGN IN","zh-Hans":"邮件账号登录"},
+     "index_finish"         :{ "en" : "Finish" , "zh-Hans" : "完成" },
+     "main_suprises"        :{ "en": "Surprises ","zh-Hans": " 惊喜"},
+     "main_deals"           :{ "en": "Deals ","zh-Hans": " 优惠"},
+     "main_stores"          :{ "en": "Stores ","zh-Hans": "店铺"},
+     "menu_home"            :{ "en" : "Around Me", "zh-Hans" : "周边" },
+     "menu_profile"         :{ "en" : "Profile", "zh-Hans" : "个人信息" },
+     "menu_mysuprise"       :{ "en" : "My Suprise" ,"zh-Hans": "我的惊喜"},
+     "menu_mystore"         :{ "en" : "My Store" ,"zh-Hans" : "我的店铺"},
+     "menu_malls"           :{ "en" : "Malls" ,"zh-Hans" : "所有商场"},
+     "menu_invite"          :{ "en" : "Invite a friend" ,"zh-Hans": "邀请好友"},
+     "menu_sub_ctus"        :{ "en" : "Contact Us","zh-Hans": "联系我们"},
+     "menu_sub_fabk"        :{ "en" : "Facebook","zh-Hans": "脸书"},
+     "menu_sub_qa"          :{ "en" : "Q & A","zh-Hans": "常见问题问答"},
+     "about_us"             :{ "en" : "About us","zh-Hans": "关于我们"},
+     "about_us_file"        :{ "en" : "about_en.html", "zh-Hans" : "about_cn.html"},
+     "qa_title"             :{ "en" : "questions & answers","zh-Hans": "问答"},
+     "qa_file"              :{ "en" : "question_en.html","zh-Hans": "question_cn.html"},
+     "ctct_us_title"        :{ "en" : "Contact us","zh-Hans": "联系我们"},
+     "ctct_us_file"         :{ "en" : "contactus_en.html","zh-Hans": "contactus_cn.html"},
+     "list_of_malls"        :{ "en" : "Malls","zh-Hans": "所有商场"},
+     "menu_setting"         :{ "en" : "Preferences", "zh-Hans": "设置"},
+     "menu_interests"       :{ "en" : "Interests", "zh-Hans": "喜爱类别"},
+     "menu_notify"          :{ "en" : "Notifications", "zh-Hans" : "通知开关"},
+     "menu_team"            :{ "en" : "Privacy policy", "zh-Hans": "隐私说明"},
+     "menu_back"            :{ "en" : "Back","zh-Hans": "回退"},
+     "nav_my_store"         :{ "en" : "My store", "zh-Hans": "我喜欢的店铺"},
+     "shoose_all"           :{ "en" : "Choose All" ,"zh-Hans": "全选"},
+     "invite_now"           :{ "en" : "Invite","zh-Hans": "立刻邀请"},
+     "deveice_not_suppor"   :{ "en" : "Device can not send messages","zh-Hans": "该设备不能发送信息"},
+     "should_check_one"     :{ "en" : "You should choose least one person" ,"zh-Hans": "请至少选择一位好友"},
+     "invint_sms_txt"       :{ "en" : "Hi, I use SOTG app now, and loving it!","zh-Hans": "告诉你一个超级棒的App,它可以帮我们节约购物的花费,最快最新的获得商家的优惠."},
+     "send_sms_fail"        :{ "en": "sending SMS failed, please try again","zh-Hans": "短消息发送失败"},
+     "send_sms_complete"    :{ "en": "Message was sent successfully","zh-Hans": "消息发送成功!"},
+     "why_should_i_add"     :{ "en": "why should i add stores ?","zh-Hans": "为什么我需要添加?"},
+     "add_store"            :{ "en": "Add store","zh-Hans": "添加店铺"},
+     "why_should_add_title" :{ "en" : "Why should i add store","zh-Hans": "为什么我需要添加店铺"},
      "why_should_add_ctnt"  :{ 
                 "en" : "SOTG committed to enhance your shopping experience. If you mark your favorite Store. We will update for you every day corresponding discount and coupon information.",
-                "he" : "\u200fשופרייז חושפת בפניכם עשרות מבצעים והנחות בחנויות האהובות עלייכם ומעדכנת את המידע על בסיס יומי. \n מעקב שוטף אחרי החנות מעניק לכם את היכולת לדעת מתי עולה הטבה או מבצע אטרקטיבי בתחומים שמעניינים אתכם, גם בבית וגם בזמן שאתם בקניון.  \nללא מיילים, הודעות ומבלי לשלם או להתחייב למועדון לקוחות! \n \nמשתלם להיות שופרייזר :)"
+                "zh-Hans" : "让SOTG知道你喜爱的品牌,SOTG会在第一时间为你更新该店铺最新的优惠信息，第一时间拿到第一手的优惠内容。"
         },
      "empty_store_list"     :{ 
                 "en": "You haven't liked any stores yet. Add you favorite stores and get updated with the latest deals and surprises!",
-                "he": "לא הוספתם חנויות עדיין.  עקבו אחר החנויות האהובות עליכם, כך תוכלו ליהנות מהטבות בלעדיות, ותדעו לפני כולם על המבצעים החדשים!"
+                "zh-Hans": "你尚未添加任何店铺。添加你喜爱的店铺获得最新的优惠信息及特殊惊喜"
       },
-     "save_user_info"       :{ "en" : "Save", "he": "שמירת שינויים"},
-     "chg_user_passwd"      :{ "en" : "Change Password", "he": "החלפת סיסמא"},
-     "user_logout"          :{ "en" : "Logout", "he" : "יציאה"},
-     "del_user_accoutn"     :{ "en" : "Delete Account", "he": "מחיקת חשבון"},
-     "user_now_passwd"      :{ "en" : "Current Password", "he": "סיסמא נוכחית"},
-     "user_new_passwd"      :{ "en" : "New Password", "he": "סיסמא חדשה"},
-     "user_re_newpasswd"    :{ "en" : "New Password Confirmation", "he": "אימות סיסמא חדשה"},
-     "contact_us"           :{ "en" : "Contact us", "he": "צרו קשר"},
-     "add_store_done"       :{ "en" : "Confirm","he": "אישור"},
+     "save_user_info"       :{ "en" : "Save", "zh-Hans": "更新"},
+     "chg_user_passwd"      :{ "en" : "Change Password", "zh-Hans": "修改密码"},
+     "user_logout"          :{ "en" : "Logout", "zh-Hans" : "退出"},
+     "del_user_accoutn"     :{ "en" : "Delete Account", "zh-Hans": "删除帐户"},
+     "user_now_passwd"      :{ "en" : "Current Password", "zh-Hans": "当前密码"},
+     "user_new_passwd"      :{ "en" : "New Password", "zh-Hans": "新密码"},
+     "user_re_newpasswd"    :{ "en" : "New Password Confirmation", "zh-Hans": "确认密码"},
+     "contact_us"           :{ "en" : "Contact us", "zh-Hans": "联系我们"},
+     "add_store_done"       :{ "en" : "Confirm","zh-Hans": "确定"},
      "empty_mysurpise_list" :{ 
                   "en" : "Your suprise is Empty",
-                  "he": "\nעוד לא זכית בהפתעות. \nשופרייז מתגמלת אותך בכניסה לחנויות.\nזה הזמן להיכנס לחנויות המפנקות ולזכות בהטבות בלעדיות למשתמשי שופרייז!"
+                  "zh-Hans": "您尚未获得任何惊喜，请进入含有惊喜的店铺，获得独家的店铺惊喜内容。"
        },
-     "form_passwd"          :{ "en" : "Old Password","he" : "סיסמה נוכחית"},
-     "form_newPasswd"       :{ "en" : "New Password","he" : "סיסמא חדשה"},
-     "form_configmpwd"      :{ "en" : "Confirm Password","he": "אימות סיסמא חדשה"},
-     "form_modify_comit"    :{ "en" : "Save", "he": "אישור"},
-     "form_passwd_not_same" :{ "en" : "Password and confirm password not same","he": "סיסמא ואישור סיסמא אינ זהות"},
-     "form_update_complete" :{ "en" : "your password had been updated","he": "הסיסמה שלך מעודכנת"},
-     "logout_confirm"       :{ "en" : "Are you sure?","he": "האם אתם בטוחים?"},
-     "my_suprise"           :{ "en" : "My suprise","he": "ההפתעות שלי"},
-     "reedem_code"          :{ "en" : "Code"      ,"he": "קוד אימות:"},
-     "more_desc"            :{ "en" : "More ","he":"קרא עוד >>"},
-     "more_by_store"        :{ "en" : "More"     ,"he" : "מבצעים נוספים של החנות..."},
-     "menu_exp_exp"         :{ "en" : "Redeemed/Expired" , "he" : "מומשו/הסתיימו"},
-     "menu_sprise_active"   :{ "en" : "Active" ,"he": "פעילות"},
-     "menu_sprise_used"     :{ "en" : "Redeemed","he": "הסתיימו"},
-     "search_by_key"        :{ "en" : "Search by Keyword","he": "חיפוש"},
-     "store_info"           :{ "en" : "Info" , "he" : "פרטי עסק"},
-     "no_promos"            :{ "en" : "No promotional activities" ,"he": "אין כרגע פעילויות קידום מכירות"},
-     "store_has_sup"        :{ "en" : "The Store is giving away a surprise . walk in and collect","he": "חנות הזו מחלקת הטבה בלעדית בכניסה. היכנסו עכשיו וזכו!"},
-     "head_change"          :{ "en" : "Change", "he": "החלפת תמונה"},
-     "head_delete"          :{ "en" : "Delete", "he": "מחיקת תמונה"},
-     "fm_email"             :{ "en" : "Email","he": "דוא\"ל'"},
-     "fm_FirstName"         :{ "en" : "FirstName","he": "שם פרטי"},
-     "fm_LastName"          :{ "en" : "LastName","he": "שם משפחה"},
-     "fm_Phone"             :{ "en" : "Phone","he": "מספר טלפון"},
-     "fm_Brith"             :{ "en" : "Birthday","he": "תאריך לידה"},
-     "fm_gender"            :{ "en" : "Sex","he": "מין"},
-     "fm_boy"               :{ "en" : "Male","he" : "זכר"},
-     "fm_girl"              :{ "en" : "Female","he" :"נקבה"},
-     "update_complte"       :{ "en" : "update completed","he": "עדכון הושלם"},
-     "no_mall_founded"      :{ "en" : "No Mall Founded","he" : "לא נמצאו קניונים!"},
-     "thx_feed_back"        :{ "en" : "Thank your feed back","he":"תודה לך להאכיל בחזרה"},
-     "share2facebook_ok"     :{ "en" : "Sharing success", "he": "הצלחת שיתוף"},
-     "share2facebook_no"     :{ "en" : "Sharing failed","he": "השיתוף נכשל"},
-     "i_see_close_it"       :{ "en" : "I See !" ,"he": "סבבה, תודה!"},
-     "open_hour"            :{ "en" : "OpenHour:","he": "זמני פעילות:"},
-     "addr_txt"             :{ "en" : "Address:","he": "כתובת:"},
-     "tel_txt"              :{ "en" : "Tel:","he": "טלפון:"},
-     "activity_end"         :{ "en" : "ended", "he" : "הסתיים"},
-     "activity_notstart"    :{ "en" : "Not Started", "he" : "לא התחיל"},
-     "logout"               :{ "en" : "Logout","he" : "התנתקו"},
-     "del_btn"              :{ "en" : "Delete","he" : "למחוק"},
-     "share_cancel"         :{ "en" : "Cancel","he" : "ביטול" },
-     "share_ok"             :{ "en" : "OK" ,"he": "אישור"},
-     "ck_all"               :{ "en" : "All","he": "סמנו הכל"},
-     "ck_none"              :{ "en" : "Remove","he": "הסירו הכל"},
+     "form_passwd"          :{ "en" : "Old Password","zh-Hans" : "旧密码"},
+     "form_newPasswd"       :{ "en" : "New Password","zh-Hans" : "新密码"},
+     "form_configmpwd"      :{ "en" : "Confirm Password","zh-Hans": "确认密码"},
+     "form_modify_comit"    :{ "en" : "Save", "zh-Hans": "אישור"},
+     "form_passwd_not_same" :{ "en" : "Password and confirm password not same","zh-Hans": "两次输入的密码不相同"},
+     "form_update_complete" :{ "en" : "your password had been updated","zh-Hans": "你的密码已更改完成"},
+     "logout_confirm"       :{ "en" : "Are you sure?","zh-Hans": "你确定要继续吗?"},
+     "my_suprise"           :{ "en" : "My suprise","zh-Hans": "我的惊喜"},
+     "reedem_code"          :{ "en" : "Code"      ,"zh-Hans": "优惠码:"},
+     "more_desc"            :{ "en" : "More ","zh-Hans":"更多 >>"},
+     "more_by_store"        :{ "en" : "More"     ,"zh-Hans" : "更多..."},
+     "menu_exp_exp"         :{ "en" : "Redeemed/Expired" , "zh-Hans" : "已使用/过期"},
+     "menu_sprise_active"   :{ "en" : "Active" ,"zh-Hans": "有效"},
+     "menu_sprise_used"     :{ "en" : "Redeemed","zh-Hans": ""},
+     "search_by_key"        :{ "en" : "Search by Keyword","zh-Hans": "请输入关键字"},
+     "store_info"           :{ "en" : "Info" , "zh-Hans" : "信息"},
+     "no_promos"            :{ "en" : "No promotional activities" ,"zh-Hans": "没有任何优惠信息"},
+     "store_has_sup"        :{ "en" : "The Store is giving away a surprise . walk in and collect","zh-Hans": "该店铺提供惊喜，请进店收集"},
+     "head_change"          :{ "en" : "Change", "zh-Hans": "更改"},
+     "head_delete"          :{ "en" : "Delete", "zh-Hans": "删除"},
+     "fm_email"             :{ "en" : "Email","zh-Hans": "电子邮件"},
+     "fm_FirstName"         :{ "en" : "FirstName","zh-Hans": "姓"},
+     "fm_LastName"          :{ "en" : "LastName","zh-Hans": "名"},
+     "fm_Phone"             :{ "en" : "Phone","zh-Hans": "电话"},
+     "fm_Brith"             :{ "en" : "Birthday","zh-Hans": "出生日期"},
+     "fm_gender"            :{ "en" : "Sex","zh-Hans": "性别"},
+     "fm_boy"               :{ "en" : "Male","zh-Hans" : "男"},
+     "fm_girl"              :{ "en" : "Female","zh-Hans" :"女"},
+     "update_complte"       :{ "en" : "update completed","zh-Hans": "更新成功"},
+     "no_mall_founded"      :{ "en" : "No Mall Founded","zh-Hans" : "没有发现任何商场信息"},
+     "thx_feed_back"        :{ "en" : "Thank your feed back","zh-Hans":"我们非常感谢你提供的反馈"},
+     "share2facebook_ok"     :{ "en" : "Sharing success", "zh-Hans": "分享成功"},
+     "share2facebook_no"     :{ "en" : "Sharing failed","zh-Hans": "分享失败"},
+     "i_see_close_it"       :{ "en" : "I See !" ,"zh-Hans": "我知道了！"},
+     "open_hour"            :{ "en" : "OpenHour:","zh-Hans": "营业时间:"},
+     "addr_txt"             :{ "en" : "Address:","zh-Hans": "地址:"},
+     "tel_txt"              :{ "en" : "Tel:","zh-Hans": "电话:"},
+     "activity_end"         :{ "en" : "ended", "zh-Hans" : "已结"},
+     "activity_notstart"    :{ "en" : "Not Started", "zh-Hans" : "尚未开始"},
+     "logout"               :{ "en" : "Logout","zh-Hans" : "退出"},
+     "del_btn"              :{ "en" : "Delete","zh-Hans" : "删除"},
+     "share_cancel"         :{ "en" : "Cancel","zh-Hans" : "取消"},
+     "share_ok"             :{ "en" : "OK" ,"zh-Hans": "确定"},
+     "ck_all"               :{ "en" : "All","zh-Hans": "全选"},
+     "ck_none"              :{ "en" : "Remove","zh-Hans": "取消"},
      "welcome_mall"         :{ "en" : "Hi %@, welcome to %@. open SOTG and see all awesome deals and surprises waiting for you now, save money and have fun !",
-        "he": "הי %@, ברוכים הבאים ל %@. היכנסו לאפליקציית שופרייז וקבלו מבצעים והפתעות המחכים לכם עכשיו!"},
-     "weekend_come"         :{ "en" : "weekend coming up's","he": "סוף השבוע מגיע!"},
+        "zh-Hans": "您好,%@,欢迎来到%@,请打开SOTG获得非常棒的优惠信息和惊喜"},
+     "weekend_come"         :{ "en" : "weekend coming up's","zh-Hans": "又是一个周末来了!"},
      "welcome_store"        :{ 
             "en" : "Hi %@, welcome to %@. open SOTG and see all deals zara have to offer you now ! Enjoy...",
-            "he": "הי %@, ברוכים הבאים %@ל. היכנסו לאפליקציית שופרייז וקבלו את כל ההנחות בזארה כעת" },
+            "zh-Hans": "您好%@,欢迎来到%@,请打开SOTG查看和使用本店带给你的所有的优惠信息" },
      "welcome_in"           :{
             "en" : "It's your lucky day %@, you just recieved a walk-in surprise from %@. opened the app and collect your prize",
-            "he" : "זה %@ יום המזל שלך, אתה פשוט קיבלת הפתעה הליכה, %@. פתחתי את האפליקציה ולאסוף את הפרס שלך"
+            "zh-Hans" : "%@ 今天你真幸运,你刚从%@获得了一个惊喜，打开App查看和获得你的奖励"
      },
      "make_a_call"           :{
             "en" : "Did you want to call %@",
-            "he" : "האם ברצונך להתקשר למספר %@"
+            "zh-Hans" : "是否立刻拨打 %@ ？"
      },
     "call_cancel" : {
-            "he" : "בטל",
-            "en" : "No Thanks"
+            "zh-Hans" : "בטל",
+            "en" : "不用,谢谢!"
     },
     "call_now" : {
-         "he" : "התקשר",
+         "zh-Hans" : "立刻呼叫",
          "en" : "Call"
     },
     "check_mail": {
         "en": "Please check your e-mail",
-        "he" : "אנא בדוק את הדואר האלקטרוני"
+        "zh-Hans" : "请检查你的邮件"
      },
     "reedem_cfm" : {
         "en" : "Are you sure you want to use it?",
-        "he" : "האם אתה בטוח שאתה רוצה להשתמש בו?"
+        "zh-Hans" : "你是否想立刻激活使用?"
     },
     "delete_accout_title" : {
-        "he" : "נשמח לדעת למה. אנחנו יכולים לעזור !",
+        "zh-Hans" : "我们非常想知道为什么要这么做？我们可以给你提供帮助 !",
         "en" : "We will be glad to know why. We can help!"
     },
     "delete_accout_ctnt" : {
         "en" : "SOTG aims to make your shopping experience more enjoyable and rewarding. If you encounter any problem or malfunction while using the app or while visiting the store, you have comments and things improve app or website will be happy to listen and help in any way possible. Easily contact us now!",
-        "he" : "שופרייז שואפת להפוך עבורך את חווית הקניות למהנה ומתגמלת יותר. במידה ונתקלת בבעיה או תקלה כלשהיא בזמן השימוש באפליקציה או בעת הביקור בחנות, יש לך הערות ודברים לשיפור באפליקציה או באתר נשמח לשמוע ולעזור בכל דרך אפשרית. פנה אלינו עכשיו בקלות !"
+        "zh-Hans" : "SOTG的目标是增强你的购物体验，如果你在使用App或访问商家的过程中遇到任何问题，我们很高兴倾听你通过任何渠道反馈回来的建议或意见。联系我们也非常方便"
     },
     "sigeup_html" : {
         "en" : "sigeup_en.html",
-        "he" : "sigeup_he.html"
+        "zh-Hans" : "sigeup_cn.html"
     },
     "pliaylice_html" : {
         "en" : "pliaylice_en.html",
-        "he" : "pliaylice_he.html",
+        "zh-Hans" : "pliaylice_cn.html"
     },
     "pliaylice_title" : {
         "en" : "Privacy Plicy",
-        "he" : "מדיניות פרטיות",
+        "zh-Hans" : "隐私说明"
     },
     "reedem_button_text" : {
         "en" : "Reedem",
-        "he" : "מימוש הפתעה"
+        "zh-Hans" : "激活使用"
     },
     "delete_account_button_text" : {
         "en" : "Delete Account",
-        "he" : "מחק חשבון"
+        "zh-Hans" : "删除帐户"
     },
     "menu_my_deal" : {
         "en" : "My Deals",
-        "he" : "My Deals"
+        "zh-Hans" : "我的优惠券"
     },
     "deal_wanted" : {
         "en" : "Wanted",
-        "he" : "Wanted"
+        "zh-Hans" : "我的收藏"
     },
     "deal_redeem" : {
         "en" : "Redeem",
-        "he" : "Redeem"
+        "zh-Hans" : "已使用"
     },
     "mail_required" :{
         "en" : "email required",
-        "he" : "דואר אלקטרוני הנדרש"
+        "zh-Hans" : "请填写邮件地址"
     },
     "empty_suprise_redeem" : {
-        "he": "כאן תוכלו לראות את ההפתעות שכבר מימשתם ואת אלו שהסתיימו",
-        "en" :"Here you can see the surprises already used"
+        "zh-Hans": "כאן תוכלו לראות את ההפתעות שכבר מימשתם ואת אלו שהסתיימו",
+        "en" :"这里你可以看到任何你已经使用过的精细"
     },
     "empty_suprise_active" : {
-        "he": "אין לכם הפתעות כרגע שופרייז מתגמלת אתכם בכניסה לחנויות. זה הזמן להיכנס לחנויות המפנקות ולזכות בהטבות בלעדיות למשתמשי שופרייז!",
-        "en" :"Here you can see the surprises already getted"
+        "zh-Hans": "אין לכם הפתעות כרגע שופרייז מתגמלת אתכם בכניסה לחנויות. זה הזמן להיכנס לחנויות המפנקות ולזכות בהטבות בלעדיות למשתמשי שופרייז!",
+        "en" :"您尚未获得任何商家给予的惊喜"
     }
 }
