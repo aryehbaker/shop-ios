@@ -75,7 +75,7 @@
         [self imageView4Tag:14005].hidden = YES;
         [self label4Tag:14006].hidden = YES;
         [self label4Tag:14007].hidden = YES;
-        [self label4Tag:14004].text = @"זמין";
+        [self label4Tag:14004].text = Lang(@"surprise_available");
     }
 
     if (rightinfo!=nil) {
@@ -106,7 +106,7 @@
         [self imageView4Tag:14105].hidden = YES;
         [self label4Tag:14106].hidden = YES;
         [self label4Tag:14107].hidden = YES;
-        [self label4Tag:14104].text = @"זמין";
+        [self label4Tag:14104].text = Lang(@"surprise_available");
      }
     
     [[self viewWithTag:-2000] setHidden:rightinfo==nil];

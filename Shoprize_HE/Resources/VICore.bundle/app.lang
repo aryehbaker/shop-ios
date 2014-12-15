@@ -231,5 +231,10 @@
         "en" : " mile",
         "zh-Hans" : " 公里",
         "he" : "_Mile"
+    },
+    "surprise_available" : {
+        "en" : "available",
+        "he": "זמין",
+        "zh-Hans" : "已开始"
     }
 }

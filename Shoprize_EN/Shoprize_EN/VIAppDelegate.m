@@ -619,21 +619,24 @@ static NSDate *latestLoc;
     NSString *text = [shareInfo objectForKey:@"description"];
     id pic = [shareInfo objectForKey:@"picture"];
     UIImage *shareImg = [@"Icon-60@2x.png" image];
+    if ([pic isKindOfClass:[UIImage class]]) {
+        shareImg = pic;
+    }
     if ([pic isKindOfClass:[NSString class]]) {
         EGOImageView *ego = [[EGOImageView alloc] init];
         ego.imageURL = [NSURL URLWithString:pic];
         shareImg = ego.image;
     }
-
-    NSString *stringUrl = [shareInfo objectForKey:@"link"];
+    NSString *prefix = @"I just got a great coupon and now I share with you ";
+    NSString *stringUrl = @"https://itunes.apple.com/us/app/shopper-on-the-go/id539363195?mt=8";
     NSString *name      = [shareInfo stringValueForKey:@"name"];
-
-    NSArray *activityItems = [NSArray arrayWithObjects:Fmt(@"%@ %@",name,text),
-                                                       [NSURL URLWithString:stringUrl],shareImg,nil];
-
+    
+    NSArray *activityItems = [NSArray arrayWithObjects:Fmt(@"%@\n %@ %@",prefix,name,text),
+                              [NSURL URLWithString:stringUrl],shareImg,nil];
+    
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
     activityController.excludedActivityTypes = @[UIActivityTypePrint,UIActivityTypeCopyToPasteboard,
-            UIActivityTypeAssignToContact,UIActivityTypeAddToReadingList,UIActivityTypeSaveToCameraRoll];
+                                                 UIActivityTypeAssignToContact,UIActivityTypeAddToReadingList,UIActivityTypeSaveToCameraRoll];
     if ([UIDevice isGe:8]) {
         [activityController setCompletionWithItemsHandler:^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError){
             if (completed) {
@@ -651,7 +654,7 @@ static NSDate *latestLoc;
             }
         }];
     }
-
+    
     [[self pushStack] presentViewController:activityController animated:YES completion:nil];
 
     /* only for facebook

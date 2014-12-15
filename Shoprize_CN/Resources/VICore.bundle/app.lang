@@ -41,7 +41,7 @@
      "main_stores"          :{ "en": "Stores ","zh-Hans": "店铺"},
      "menu_home"            :{ "en" : "Around Me", "zh-Hans" : "周边" },
      "menu_profile"         :{ "en" : "Profile", "zh-Hans" : "个人信息" },
-     "menu_mysuprise"       :{ "en" : "My Suprise" ,"zh-Hans": "我的惊喜"},
+     "menu_mysuprise"       :{ "en" : "My Surprises" ,"zh-Hans": "我的惊喜"},
      "menu_mystore"         :{ "en" : "My Store" ,"zh-Hans" : "我的店铺"},
      "menu_malls"           :{ "en" : "Malls" ,"zh-Hans" : "所有商场"},
      "menu_invite"          :{ "en" : "Invite a friend" ,"zh-Hans": "邀请好友"},
@@ -89,7 +89,7 @@
      "contact_us"           :{ "en" : "Contact us", "zh-Hans": "联系我们"},
      "add_store_done"       :{ "en" : "Confirm","zh-Hans": "确定"},
      "empty_mysurpise_list" :{ 
-                  "en" : "Your suprise is Empty",
+                  "en" : "Your Surprise is Empty",
                   "zh-Hans": "您尚未获得任何惊喜，请进入含有惊喜的店铺，获得独家的店铺惊喜内容。"
        },
      "form_passwd"          :{ "en" : "Old Password","zh-Hans" : "旧密码"},
@@ -99,7 +99,7 @@
      "form_passwd_not_same" :{ "en" : "Password and confirm password not same","zh-Hans": "两次输入的密码不相同"},
      "form_update_complete" :{ "en" : "your password had been updated","zh-Hans": "你的密码已更改完成"},
      "logout_confirm"       :{ "en" : "Are you sure?","zh-Hans": "你确定要继续吗?"},
-     "my_suprise"           :{ "en" : "My suprise","zh-Hans": "我的惊喜"},
+     "my_suprise"           :{ "en" : "My Surprises","zh-Hans": "我的惊喜"},
      "reedem_code"          :{ "en" : "Code"      ,"zh-Hans": "优惠码:"},
      "more_desc"            :{ "en" : "More ","zh-Hans":"更多 >>"},
      "more_by_store"        :{ "en" : "More"     ,"zh-Hans" : "更多..."},
@@ -200,7 +200,7 @@
         "zh-Hans" : "我的优惠券"
     },
     "deal_wanted" : {
-        "en" : "Wanted",
+        "en" : "Favorites",
         "zh-Hans" : "我的收藏"
     },
     "deal_redeem" : {
@@ -218,7 +218,7 @@
     "empty_suprise_active" : {
         "zh-Hans": "אין לכם הפתעות כרגע שופרייז מתגמלת אתכם בכניסה לחנויות. זה הזמן להיכנס לחנויות המפנקות ולזכות בהטבות בלעדיות למשתמשי שופרייז!",
         "en" :"您尚未获得任何商家给予的惊喜"
-    }
+    },
     "weekDayList": {
         "en": "Mon|Tues|Wed|Thur|Fri|Sat|Sun",
         "zh-Hans": "周一|周二|周三|周四|周五|周六|周日"
@@ -242,5 +242,10 @@
         "en" : " mile",
         "zh-Hans" : " 公里",
         "he" : "_Mile"
+    },
+    "surprise_available" : {
+        "en" : "available",
+        "he": "זמין",
+        "zh-Hans" : "已开始"
     }
 }

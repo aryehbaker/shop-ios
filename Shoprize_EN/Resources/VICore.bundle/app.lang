@@ -41,7 +41,7 @@
      "main_stores"          :{ "en": "Stores ","he": " חנויות"},
      "menu_home"            :{ "en" : "Around Me", "he" : "בית" },
      "menu_profile"         :{ "en" : "Profile", "he" : "איזור אישי" },
-     "menu_mysuprise"       :{ "en" : "My Suprise" ,"he": "ההפתעות שלי"},
+     "menu_mysuprise"       :{ "en" : "My Surprises" ,"he": "ההפתעות שלי"},
      "menu_mystore"         :{ "en" : "My Store" ,"he" : "החנויות שלי"},
      "menu_malls"           :{ "en" : "Malls" ,"he" : "רשימת קניונים"},
      "menu_invite"          :{ "en" : "Invite a friend" ,"he": "הזמנת חבר"},
@@ -89,7 +89,7 @@
      "contact_us"           :{ "en" : "Contact us", "he": "צרו קשר"},
      "add_store_done"       :{ "en" : "Confirm","he": "אישור"},
      "empty_mysurpise_list" :{ 
-                  "en" : "Your suprise is Empty",
+                  "en" : "Your Surprise is Empty",
                   "he": "\nעוד לא זכית בהפתעות. \nשופרייז מתגמלת אותך בכניסה לחנויות.\nזה הזמן להיכנס לחנויות המפנקות ולזכות בהטבות בלעדיות למשתמשי שופרייז!"
        },
      "form_passwd"          :{ "en" : "Old Password","he" : "סיסמה נוכחית"},
@@ -99,7 +99,7 @@
      "form_passwd_not_same" :{ "en" : "Password and confirm password not same","he": "סיסמא ואישור סיסמא אינ זהות"},
      "form_update_complete" :{ "en" : "your password had been updated","he": "הסיסמה שלך מעודכנת"},
      "logout_confirm"       :{ "en" : "Are you sure?","he": "האם אתם בטוחים?"},
-     "my_suprise"           :{ "en" : "My suprise","he": "ההפתעות שלי"},
+     "my_suprise"           :{ "en" : "My Surprise","he": "ההפתעות שלי"},
      "reedem_code"          :{ "en" : "Code"      ,"he": "קוד אימות:"},
      "more_desc"            :{ "en" : "More ","he":"קרא עוד >>"},
      "more_by_store"        :{ "en" : "More"     ,"he" : "מבצעים נוספים של החנות..."},
@@ -196,12 +196,12 @@
         "he" : "מחק חשבון"
     },
     "menu_my_deal" : {
-        "en" : "My Deals",
-        "he" : "My Deals"
+        "en" : "My Favorites",
+        "he" : "My Favorites"
     },
     "deal_wanted" : {
-        "en" : "Wanted",
-        "he" : "Wanted"
+        "en" : "Favorites",
+        "he" : "Favorites"
     },
     "deal_redeem" : {
         "en" : "Redeem",
@@ -213,11 +213,11 @@
     },
     "empty_suprise_redeem" : {
         "he": "כאן תוכלו לראות את ההפתעות שכבר מימשתם ואת אלו שהסתיימו",
-        "en" :"Here you can see the surprises already used"
+        "en" :"See the surprises already redeemed"
     },
     "empty_suprise_active" : {
         "he": "אין לכם הפתעות כרגע שופרייז מתגמלת אתכם בכניסה לחנויות. זה הזמן להיכנס לחנויות המפנקות ולזכות בהטבות בלעדיות למשתמשי שופרייז!",
-        "en" :"Here you can see the surprises already getted"
+        "en" :"See the surprises already get"
     },
     "weekDayList": {
         "en": "Mon|Tues|Wed|Thur|Fri|Sat|Sun",
@@ -243,5 +243,10 @@
         "en" : " mile",
         "zh-Hans" : " 公里",
         "he" : " _Mile"
+    },
+    "surprise_available" : {
+        "en" : "available",
+        "he": "זמין",
+        "zh-Hans" : "已开始"
     }
 }
