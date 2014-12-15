@@ -50,7 +50,7 @@
      "menu_sub_qa"          :{ "en" : "Q & A","zh-Hans": "常见问题问答"},
      "about_us"             :{ "en" : "About us","zh-Hans": "关于我们"},
      "about_us_file"        :{ "en" : "about_en.html", "zh-Hans" : "about_cn.html"},
-     "qa_title"             :{ "en" : "questions & answers","zh-Hans": "问答"},
+     "qa_title"             :{ "en" : "Q & A","zh-Hans": "问答"},
      "qa_file"              :{ "en" : "question_en.html","zh-Hans": "question_cn.html"},
      "ctct_us_title"        :{ "en" : "Contact us","zh-Hans": "联系我们"},
      "ctct_us_file"         :{ "en" : "contactus_en.html","zh-Hans": "contactus_cn.html"},
@@ -192,7 +192,7 @@
         "zh-Hans" : "激活使用"
     },
     "delete_account_button_text" : {
-        "en" : "Delete Account",
+        "en" : "Delete",
         "zh-Hans" : "删除帐户"
     },
     "menu_my_deal" : {
@@ -218,5 +218,29 @@
     "empty_suprise_active" : {
         "zh-Hans": "אין לכם הפתעות כרגע שופרייז מתגמלת אתכם בכניסה לחנויות. זה הזמן להיכנס לחנויות המפנקות ולזכות בהטבות בלעדיות למשתמשי שופרייז!",
         "en" :"您尚未获得任何商家给予的惊喜"
+    }
+    "weekDayList": {
+        "en": "Mon|Tues|Wed|Thur|Fri|Sat|Sun",
+        "zh-Hans": "周一|周二|周三|周四|周五|周六|周日"
+    },
+    "closedTitleLabel": {
+        "en": "Closed",
+        "zh-Hans": "停止营业",
+        "he": "סגור"
+    },
+    "about_surprise" : {
+        "en": "The following special surprises in store waiting for you, go get right now",
+        "zh-Hans" : "特别惊喜就在下面这里店铺中，专属惊喜正在等待着你，现在就立即前往获得特别惊喜",
+        "he": "הפתעות בלעדיות ל שופרייז ממתינות לכם בכניסה לחנויות אלה. כנסו עכשיו והרוויחו"
+    },
+    "aroudn_me_title" : {
+        "en" : "Around Me",
+        "zh-Hans" : "周边",
+        "he" : "_Around Me"
+    },
+    "aroudn_me_distance_unit" : {
+        "en" : " mile",
+        "zh-Hans" : " 公里",
+        "he" : "_Mile"
     }
 }

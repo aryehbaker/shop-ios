@@ -27,9 +27,11 @@
     UIFont *reg = Regular(16);
     UIFont *blk = Bold(13);
     
+    NSString *hourS = [Fonts openHourValue:hour];
+    
     VIRTLabel *h = [[VIRTLabel alloc] initWithFrame:Frm(10, 20, 160, 0)];
     [h setTextColor:[@"#252525" hexColor]];
-    [h setText:hour];
+    [h setText:hourS];
     [h setFont:reg];
     [h setTextAlignment:isEn ? RTTextAlignmentLeft : RTTextAlignmentRight];
     [h setH:h.optimumSize.height];

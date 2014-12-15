@@ -364,7 +364,7 @@ static ListType currentType;
             _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
             _tableView.tableHeaderView = ({
                 UIView *headerView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, self.view.w, 70)];
-                NSString *t = @"הפתעות בלעדיות ל שופרייז ממתינות לכם בכניסה לחנויות אלה. כנסו עכשיו והרוויחו";
+                NSString *t = [@"about_surprise" lang];
                 UILabel *titleLabel = [VILabel createManyLines:Frm(10, 10, 300, 50) color:@"#464646" ft:Regular(19)  text:t];
                 titleLabel.text = [t rtlTxt];
                 titleLabel.textAlignment = NSTextAlignmentCenter;

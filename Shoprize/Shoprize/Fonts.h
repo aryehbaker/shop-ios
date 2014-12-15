@@ -32,4 +32,6 @@
 
 + (NSTextAlignment)align;
 
++(NSString *)openHourValue:(NSString *)value;
+
 @end

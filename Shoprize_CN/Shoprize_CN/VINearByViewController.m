@@ -356,7 +356,7 @@ static bool clear_by_hand;
             _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
             _tableView.tableHeaderView = ({
                 UIView *headerView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, self.view.w, 70)];
-                NSString *t = @"特别惊喜就在下面这里店铺中，专属惊喜正在等待着你，现在就立即前往获得特别惊喜";
+                NSString *t = [@"about_surprise" lang];
                 UILabel *titleLabel = [VILabel createManyLines:Frm(10, 10, 300, 0) color:@"#464646" ft:Regular(19)  text:t];
                 titleLabel.text = [t rtlTxt];
                 titleLabel.textAlignment = NSTextAlignmentCenter;

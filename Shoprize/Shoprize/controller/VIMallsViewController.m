@@ -35,13 +35,12 @@
     [self addNav:Lang(@"list_of_malls") left:SEARCH right:MENU];
     
     int endY = self.nav.endY;
-    if (isHe) {
-        mapview = [[VIMapView alloc] initWithFrame:Frm(0, endY, self.view.w, 180) showLocation:YES];
-        mapview.mapKitView.showsUserLocation = YES;
-        mapview.delegate = self;
-        [self.view addSubview:mapview];
-        endY += 180;
-    }
+
+    mapview = [[VIMapView alloc] initWithFrame:Frm(0, endY, self.view.w, 180) showLocation:YES];
+    mapview.mapKitView.showsUserLocation = YES;
+    mapview.delegate = self;
+    [self.view addSubview:mapview];
+    endY += 180;
     
     cfg = [[VICfgTableView alloc] initWithFrame:Frm(0, endY, self.view.w, Space(endY)) cfg:@"tbcfg.json#list_of_malls"];
     
@@ -71,17 +70,15 @@
     [cfg setData:curentCity];
     cfg.delegate = self;
     [self.view addSubview:cfg];
-    
-    if (isHe) {
-        int i = 0;
-        for (MallInfo *mall in allCity) {
-            VIPinAnnotationView *pin = [[VIPinAnnotationView alloc] initWithTitle:mall.Name sub:mall.Address lat:mall.Lat lon:mall.Lon];
+
+    int i = 0;
+    for (MallInfo *mall in allCity) {
+        VIPinAnnotationView *pin = [[VIPinAnnotationView alloc] initWithTitle:mall.Name sub:mall.Address lat:mall.Lat lon:mall.Lon];
             pin.tag = i;
             [mapview addAnnotation:pin];
             i++;
-        }
-        [self displayNear];
-    }
+     }
+     [self displayNear];
 }
 
 
@@ -167,8 +164,12 @@
     region.span.longitudeDelta = fabs(bottomRightCoord.longitude - topLeftCoord.longitude) * 1.1;
         
     region = [mapview.mapKitView regionThatFits:region];
-    [mapview.mapKitView setRegion:region];
-    
+    @try {
+        [mapview.mapKitView setRegion:region];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"%@",exception);
+    }
 }
 
 - (int)totalPage:(NSDictionary *)returnInfo {

@@ -27,7 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self addNav:@"Around Me" left:MapIt right:MENU];
+    [self addNav:[@"aroudn_me_title" lang] left:MapIt right:MENU];
 
     [self.leftOne addTarget:self action:@selector(mapMe:)];
 
@@ -93,7 +93,7 @@ bool isLoading;
 }
 
 - (NSString *)slider:(ASValueTrackingSlider *)slider stringForValue:(float)value {
-    return Fmt(@"%d mile", (int) ceil(value));
+    return Fmt(@"%d %@", (int) ceil(value),[@"aroudn_me_distance_unit" lang]);
 }
 
 static NSString *filterValue;
