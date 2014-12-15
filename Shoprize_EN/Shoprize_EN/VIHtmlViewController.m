@@ -61,11 +61,17 @@ static NSString *_args;
 }
 
 - (void)regOk:(id)value {
-    NSMutableDictionary *post = [NSMutableDictionary dictionary];
-    [post setValue:[htmlArgs stringValueForKey:@"UserName"] forKey:@"username"];
-    [post setValue:[htmlArgs stringValueForKey:@"Password"] forKey:@"password"];
-    [post setValue:@"password" forKey:@"grant_type"];
-    [VINet post:@"/Token" args:post target:self succ:@selector(logonSucc:) error:@selector(logonFail:) inv:self.view];
+
+    NSString *mail = [htmlArgs stringValueForKey:@"UserName"];
+    [self showAlertMsg:Fmt([@"reg_ok_msg" lang],mail) ];
+    [self pop:YES];
+    
+//
+//    NSMutableDictionary *post = [NSMutableDictionary dictionary];
+//    [post setValue:[htmlArgs stringValueForKey:@"UserName"] forKey:@"username"];
+//    [post setValue:[htmlArgs stringValueForKey:@"Password"] forKey:@"password"];
+//    [post setValue:@"password" forKey:@"grant_type"];
+//    [VINet post:@"/Token" args:post target:self succ:@selector(logonSucc:) error:@selector(logonFail:) inv:self.view];
 }
 
 - (void)logonFail:(id)value

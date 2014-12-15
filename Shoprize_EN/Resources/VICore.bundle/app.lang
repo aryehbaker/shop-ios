@@ -248,5 +248,9 @@
         "en" : "available",
         "he": "זמין",
         "zh-Hans" : "已开始"
+    },
+    "reg_ok_msg" : {
+        "zh-Hans" : "恭喜，我们已经发送了一封邮件到你的邮箱%@，请验证你的帐户信息",
+        "en" : "Congratulations, we have sent an e-mail to your %@, please verify your account info"
     }
 }
