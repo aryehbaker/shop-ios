@@ -89,7 +89,7 @@
      "contact_us"           :{ "en" : "Contact us", "he": "צרו קשר"},
      "add_store_done"       :{ "en" : "Confirm","he": "אישור"},
      "empty_mysurpise_list" :{ 
-                  "en" : "Your Surprise is Empty",
+                  "en" : "Your Surprise is empty",
                   "he": "\nעוד לא זכית בהפתעות. \nשופרייז מתגמלת אותך בכניסה לחנויות.\nזה הזמן להיכנס לחנויות המפנקות ולזכות בהטבות בלעדיות למשתמשי שופרייז!"
        },
      "form_passwd"          :{ "en" : "Old Password","he" : "סיסמה נוכחית"},
