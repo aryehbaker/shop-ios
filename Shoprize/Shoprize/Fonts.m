@@ -93,6 +93,9 @@
         NSString	*et		= [self toTime:vals[1]];
         
         NSString *wkt = [NSString stringWithFormat:@"%@-%@",et,bt];
+        if (isEn) {
+            wkt = [NSString stringWithFormat:@"%@-%@",bt,et];
+        }
         if ([wkt isEqualToString:@"00:00-00:00"]) {
             wkt = [@"closedTitleLabel" lang];
         }
@@ -107,8 +110,12 @@
     int min		= (int)[timemin intValue] % 60;
     
     if (min == 0) {
+        if (isEn)
+            return hour<=12 ? Fmt(@"%d:00AM",hour) : Fmt(@"%d:00PM",hour-12);
         return [NSString stringWithFormat:@"%02d:00",hour];
     } else {
+        if (isEn)
+            return hour<=12 ? Fmt(@"%dAM:%02d",hour,min) : Fmt(@"%dPM:%02d",hour-12,min);
         return [NSString stringWithFormat:@"%02d:%02d", hour,min];
     }
 }

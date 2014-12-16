@@ -37,6 +37,7 @@
     [h setH:h.optimumSize.height];
     [continer addSubview:h];
     
+    
     UILabel *ht = [[UILabel alloc] initWithFrame:Frm(h.endX+3, h.y, continer.w-20-h.w, 15)];
     ht.text = [@"open_hour" lang];
     ht.font = blk;
@@ -48,6 +49,8 @@
         [h setX:ht.endX+5];
     }
     
+    if (![addr isEqualToString:@"none"]) {
+        
     h = [[VIRTLabel alloc] initWithFrame:Frm(10, h.endY+5, h.w, 0)];
     [h setTextColor:[@"#252525" hexColor]];
     [h setFont:reg];
@@ -65,7 +68,10 @@
         [ht setX:10];
         [h setX:ht.endX+5];
     }
-
+ }
+    
+  if (![tel isEqualToString:@"none"]) {
+        
     h = [[VIRTLabel alloc] initWithFrame:Frm(10, h.endY+5, h.w, 0)];
     [h setTextColor:[@"#0066ff" hexColor]];
     [h setFont:reg];
@@ -81,11 +87,13 @@
     
     [h addTapTarget:self action:@selector(callMe:)];
     [continer addSubview:h];
+   
     ht = [[UILabel alloc] initWithFrame:Frm(ht.x, h.y, continer.w-20-h.w, 15)];
     ht.text = [@"tel_txt" lang];
     ht.font = blk;
     [continer addSubview:ht];
-    
+  }
+
     if(isEn){
         [ht setTextAlignment:NSTextAlignmentRight];
         [ht setX:10];
@@ -181,6 +189,20 @@ static KUtils *k;
     self.text = [[self text] rtlTxt];
     self.textAlignment = Align;
 }
+
+- (void)autoHeight {
+    [self setNumberOfLines:0];
+    CGSize size = CGSizeMake(self.frame.size.width,CGFLOAT_MAX);//LableWight标签宽度，固定的
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    NSDictionary *attributes = @{NSFontAttributeName:self.font, NSParagraphStyleAttributeName:paragraphStyle.copy};
+    CGSize labelsize = [self.text boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
+    labelsize.height = ceil(labelsize.height);
+    labelsize.width = ceil(labelsize.width);
+    [self setH:labelsize.height];
+    
+}
+
 @end
 
 @implementation UIView (Extra2)

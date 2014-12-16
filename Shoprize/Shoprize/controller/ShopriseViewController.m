@@ -9,6 +9,7 @@
 #import "ShopriseViewController.h"
 #import "VIDealsDetailViewController.h"
 #import "CMPopTipView.h"
+#import "KUtils.h"
 
 
 @interface ShopriseViewController ()<UITextFieldDelegate>
@@ -293,6 +294,7 @@
     UIView *inms = [[UIView alloc] initWithFrame:Frm(0, 0, 200, 130)];
     UILabel *lab = [ UILabel initWithFrame:Frm(15, 15, 170, 100) color:@"#000000" font:Bold(14) align:CENTER];
     lab.text = Lang(@"store_has_sup");    lab.numberOfLines = 0;
+    [lab autoHeight];
     [inms addSubview:lab];
     
     CMPopTipView *pop = [[CMPopTipView alloc] initWithCustomView:inms];
@@ -315,7 +317,7 @@
 
 - (void)redeemDeail:(NSString *)dealId complete:(SEL)complete
 {
-    [self showConfirmWithTitle:@"" msg:@"Are you sure redeem it ?" callbk:^(BOOL isOk) {
+    [self showConfirmWithTitle:@"" msg:[@"deal_redeem_confirm" lang] callbk:^(BOOL isOk) {
         if (isOk) {
             [VINet post:Fmt(@"/api/mobipromos/%@/redeem",dealId) args:nil target:self succ:complete error:@selector(showAlertError:) inv:self.view];
         }

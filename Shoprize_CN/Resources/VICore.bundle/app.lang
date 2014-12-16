@@ -29,8 +29,8 @@
     "forgetPwd"             :{ "en" : "Forget password?","zh-Hans" : "忘记密码?"},
     "e-mail"                :{ "en" : "Email","zh-Hans" : "电子邮件" },
     "password"              :{ "en" : "Password", "zh-Hans" : "密码"},
-    "navi_title"            :{ "en" : "Navigation",  "zh-Hans" : "导航" },
-    "ready_member_to_logon" :{ "en" : "already a member ? sign in.", "zh-Hans": "已拥有帐户? 立刻登录"},
+    "navi_title"            :{ "en" : "Navi",  "zh-Hans" : "导航" },
+    "ready_member_to_logon" :{ "en" : "Already a Member ? Sign In", "zh-Hans": "已拥有帐户? 立刻登录"},
      "index_signup_signin"  :{ "en" : "Sign up or sign in","zh-Hans": "注册 | 登录"},
      "index_skip"           :{ "en" : "Skip" , "zh-Hans" : "跳过" },
      "facebook_logon"       :{ "en" : "FACEBOOK SIGN IN","zh-Hans": "脸书账号登录"},
@@ -40,27 +40,27 @@
      "main_deals"           :{ "en": "Deals ","zh-Hans": " 优惠"},
      "main_stores"          :{ "en": "Stores ","zh-Hans": "店铺"},
      "menu_home"            :{ "en" : "Around Me", "zh-Hans" : "周边" },
-     "menu_profile"         :{ "en" : "Profile", "zh-Hans" : "个人信息" },
+     "menu_profile"         :{ "en" : "Preferences", "zh-Hans" : "个人信息" },
      "menu_mysuprise"       :{ "en" : "My Surprises" ,"zh-Hans": "我的惊喜"},
-     "menu_mystore"         :{ "en" : "My Store" ,"zh-Hans" : "我的店铺"},
+     "menu_mystore"         :{ "en" : "My Stores" ,"zh-Hans" : "我的店铺"},
      "menu_malls"           :{ "en" : "Malls" ,"zh-Hans" : "所有商场"},
      "menu_invite"          :{ "en" : "Invite a friend" ,"zh-Hans": "邀请好友"},
      "menu_sub_ctus"        :{ "en" : "Contact Us","zh-Hans": "联系我们"},
      "menu_sub_fabk"        :{ "en" : "Facebook","zh-Hans": "脸书"},
      "menu_sub_qa"          :{ "en" : "Q & A","zh-Hans": "常见问题问答"},
-     "about_us"             :{ "en" : "About us","zh-Hans": "关于我们"},
+     "about_us"             :{ "en" : "About Us","zh-Hans": "关于我们"},
      "about_us_file"        :{ "en" : "about_en.html", "zh-Hans" : "about_cn.html"},
      "qa_title"             :{ "en" : "Q & A","zh-Hans": "问答"},
      "qa_file"              :{ "en" : "question_en.html","zh-Hans": "question_cn.html"},
-     "ctct_us_title"        :{ "en" : "Contact us","zh-Hans": "联系我们"},
+     "ctct_us_title"        :{ "en" : "Contact Us","zh-Hans": "联系我们"},
      "ctct_us_file"         :{ "en" : "contactus_en.html","zh-Hans": "contactus_cn.html"},
      "list_of_malls"        :{ "en" : "Malls","zh-Hans": "所有商场"},
-     "menu_setting"         :{ "en" : "Preferences", "zh-Hans": "设置"},
-     "menu_interests"       :{ "en" : "Interests", "zh-Hans": "喜爱类别"},
+     "menu_setting"         :{ "en" : "Profile", "zh-Hans": "设置"},
+     "menu_interests"       :{ "en" : "Categories", "zh-Hans": "喜爱类别"},
      "menu_notify"          :{ "en" : "Notifications", "zh-Hans" : "通知开关"},
      "menu_team"            :{ "en" : "Privacy policy", "zh-Hans": "隐私说明"},
      "menu_back"            :{ "en" : "Back","zh-Hans": "回退"},
-     "nav_my_store"         :{ "en" : "My store", "zh-Hans": "我喜欢的店铺"},
+     "nav_my_store"         :{ "en" : "My Stores", "zh-Hans": "我喜欢的店铺"},
      "shoose_all"           :{ "en" : "Choose All" ,"zh-Hans": "全选"},
      "invite_now"           :{ "en" : "Invite","zh-Hans": "立刻邀请"},
      "deveice_not_suppor"   :{ "en" : "Device can not send messages","zh-Hans": "该设备不能发送信息"},
@@ -68,11 +68,11 @@
      "invint_sms_txt"       :{ "en" : "Hi, I use SOTG app now, and loving it!","zh-Hans": "告诉你一个超级棒的App,它可以帮我们节约购物的花费,最快最新的获得商家的优惠."},
      "send_sms_fail"        :{ "en": "sending SMS failed, please try again","zh-Hans": "短消息发送失败"},
      "send_sms_complete"    :{ "en": "Message was sent successfully","zh-Hans": "消息发送成功!"},
-     "why_should_i_add"     :{ "en": "why should i add stores ?","zh-Hans": "为什么我需要添加?"},
-     "add_store"            :{ "en": "Add store","zh-Hans": "添加店铺"},
-     "why_should_add_title" :{ "en" : "Why should i add store","zh-Hans": "为什么我需要添加店铺"},
+     "why_should_i_add"     :{ "en": "Why Should I Add a Store?","zh-Hans": "为什么我需要添加?"},
+     "add_store"            :{ "en": "Add Store","zh-Hans": "添加店铺"},
+     "why_should_add_title" :{ "en" : "Why Should I Add a Store?","zh-Hans": "为什么我需要添加店铺"},
      "why_should_add_ctnt"  :{ 
-                "en" : "SOTG committed to enhance your shopping experience. If you mark your favorite Store. We will update for you every day corresponding discount and coupon information.",
+                "en" : "Shopper on the Go is committed to enhancing your shopping experience.  Collect your “Favorite Stores” to receive updates on surprises, deals, loyalty promos, etc from these merchants.",
                 "zh-Hans" : "让SOTG知道你喜爱的品牌,SOTG会在第一时间为你更新该店铺最新的优惠信息，第一时间拿到第一手的优惠内容。"
         },
      "empty_store_list"     :{ 
@@ -86,7 +86,7 @@
      "user_now_passwd"      :{ "en" : "Current Password", "zh-Hans": "当前密码"},
      "user_new_passwd"      :{ "en" : "New Password", "zh-Hans": "新密码"},
      "user_re_newpasswd"    :{ "en" : "New Password Confirmation", "zh-Hans": "确认密码"},
-     "contact_us"           :{ "en" : "Contact us", "zh-Hans": "联系我们"},
+     "contact_us"           :{ "en" : "Contact Us", "zh-Hans": "联系我们"},
      "add_store_done"       :{ "en" : "Confirm","zh-Hans": "确定"},
      "empty_mysurpise_list" :{ 
                   "en" : "Your Surprise is Empty",
@@ -109,7 +109,7 @@
      "search_by_key"        :{ "en" : "Search by Keyword","zh-Hans": "请输入关键字"},
      "store_info"           :{ "en" : "Info" , "zh-Hans" : "信息"},
      "no_promos"            :{ "en" : "No promotional activities" ,"zh-Hans": "没有任何优惠信息"},
-     "store_has_sup"        :{ "en" : "The Store is giving away a surprise . walk in and collect","zh-Hans": "该店铺提供惊喜，请进店收集"},
+     "store_has_sup"        :{ "en" : "This store is giving away as Surprise! Collect it Now! Walk into the store to reveal & redeem!","zh-Hans": "该店铺提供惊喜，请进店收集"},
      "head_change"          :{ "en" : "Change", "zh-Hans": "更改"},
      "head_delete"          :{ "en" : "Delete", "zh-Hans": "删除"},
      "fm_email"             :{ "en" : "Email","zh-Hans": "电子邮件"},
@@ -184,7 +184,7 @@
         "zh-Hans" : "pliaylice_cn.html"
     },
     "pliaylice_title" : {
-        "en" : "Privacy Plicy",
+        "en" : "Privacy Policy",
         "zh-Hans" : "隐私说明"
     },
     "reedem_button_text" : {
@@ -204,7 +204,7 @@
         "zh-Hans" : "我的收藏"
     },
     "deal_redeem" : {
-        "en" : "Redeem",
+        "en" : "Redeemed",
         "zh-Hans" : "已使用"
     },
     "mail_required" :{
@@ -251,5 +251,26 @@
     "reg_ok_msg" : {
         "zh-Hans" : "恭喜，我们已经发送了一封邮件到你的邮箱%@，请验证你的帐户信息",
         "en" : "Congratulations, we have sent an e-mail to your %@, please verify your account info"
+    },
+    "flu_filed_required": {
+        "en": "FirstName and LastName and UserName field is required",
+        "zh_Hans": "姓名，用户名都不能为空"
+    },
+    "filed_password_gt6": {
+        "en": "Password at least 6 characters",
+        "zh_Hans": "密码不能为空，而且至少6个字符"
+    },
+    "email_required" : {
+        "en" : "Enter your  email address as your UserName",
+        "zh_Hans": "请使用你的邮件地址作为你的用户名"
+    },
+    "deal_expired" : {
+        "en" :"Expired",
+        "zh_Hans" : "已失效"
+    },
+    "deal_redeem_confirm" : {
+        "en" : "Are you sure you want to redeem?",
+        "he" : "Are you sure you want to redeem?",
+        "zh_Hans" : "你是否想立即激活使用？"
     }
 }

@@ -30,11 +30,6 @@
                "index": 23
                },
                {
-               "title": "menu_team",
-               "icon": "ico_pri.png",
-               "index": 24
-               },
-               {
                "title" : "logout",
                "icon"  : "exit_w.png",
                "index" : 25
@@ -98,6 +93,12 @@
                "title": "menu_sub_qa",
                "icon": "qa.png",
                "index": 74,
+               "issub" : true
+               },
+               {
+               "title": "menu_team",
+               "icon": "ico_pri.png",
+               "index": 24,
                "issub" : true
                }
                ]

@@ -51,6 +51,25 @@ static NSString *_args;
 - (void)callObjcInWebview:(VIHtmlLoadView*)webview func:(NSString *)funName args:(id)args {
 	if ([funName isEqualToString:@"regederUser"]) {
 		htmlArgs = [self.htmlview getFormValus];
+        if ([[htmlArgs stringValueForKey:@"FirstName"] length]==0
+            || [[htmlArgs stringValueForKey:@"LastName"] length]==0
+            || [[htmlArgs stringValueForKey:@"UserName"] length]==0
+            )
+        {
+            [self showAlertError:[@"flu_filed_required" lang]];
+            return;
+        }
+        NSString *userName = [htmlArgs stringValueForKey:@"UserName"];
+        if (![userName isMatchedByRegex:@"[_a-zA-Z\\d\\-\\./]+@[_a-zA-Z\\d\\-]+(\\.[_a-zA-Z\\d\\-]+)+"])
+        {
+            [self showAlertError:[@"email_required" lang]];
+            return;
+        }
+        if ([[htmlArgs stringValueForKey:@"Password"] length] < 6) {
+            [self showAlertError:[@"filed_password_gt6" lang]];
+            return;
+        }
+       
 		[VINet post:@"/api/Account/Register" args:htmlArgs target:self succ:@selector(regOk:) error:@selector(showErr:) inv:self.view];
 	}
 }

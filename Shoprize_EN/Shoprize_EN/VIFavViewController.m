@@ -150,9 +150,9 @@
     
     NSDictionary *left =   [deals objectAtIndex:2 * indexPath.row];
     NSString *image = [left stringValueForKey:@"MobiPromoPictures/0/PictureUrl" defaultValue:@""];
-    [cellview egoimageView4Tag:1001].imageURL = [NSURL URLWithString:[left stringValueForKey:@"StoreLogo"]];
+    [cellview egoimageView4Tag:1001].imageURL = [NSURL URLWithString:image];
     
-    [cellview egoimageView4Tag:1002].imageURL = [NSURL URLWithString:image];
+    [cellview egoimageView4Tag:1002].imageURL = [NSURL URLWithString:[left stringValueForKey:@"StoreLogo"]];
     [cellview label4Tag:1003].text = [[left stringValueForKey:@"Offer"] killQute];
     [[cellview label4Tag:1003] setRTL];
     [cellview label4Tag:1003].font = Bold(13);
@@ -273,6 +273,7 @@ static long last_selected_long;
     UILabel *lab = [UILabel initManyLineWithFrame:Frm(15, 15, 170, 60) color:@"#000000" font:Bold(14) text:Lang(@"store_has_sup")];
     lab.textAlignment = CENTER;
     lab.text = Lang(@"store_has_sup");
+    [lab autoHeight];
     lab.numberOfLines = 0;
     [inms addSubview:lab];
     

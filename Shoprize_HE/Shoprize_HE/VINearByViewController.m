@@ -400,6 +400,7 @@ static ListType currentType;
     UILabel *lab = [VILabel createLableWithFrame:Frm(15, 15, 170, 60) color:@"#000000" font:Bold(14) align:CENTER];
     lab.text = Lang(@"store_has_sup");
     lab.numberOfLines = 0;
+    [lab autoHeight];
     [inms addSubview:lab];
     
     CMPopTipView *pop = [[CMPopTipView alloc] initWithCustomView:inms];

@@ -144,6 +144,7 @@ static NSIndexPath *selected;
     UILabel  *ctx = [VILabel createManyLines:Frm(15, title.endY+6, 240, 0) color:@"#323232" ft:Regular(15) text:tx];
     ctx.textAlignment = Align;
     ctx.text = tx;
+    [ctx autoHeight];
     [contentView addSubview:ctx];
     
     [contentView setH:ctx.endY+15];

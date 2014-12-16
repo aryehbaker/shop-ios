@@ -30,11 +30,6 @@
                "index": 23
                },
                {
-               "title": "menu_team",
-               "icon": "ico_pri.png",
-               "index": 24
-               },
-               {
                "title" : "logout",
                "icon"  : "exit_w.png",
                "index" : 25
@@ -77,7 +72,7 @@
                "index": 0
                },
                {
-               "title": "About us",
+               "title": "About Us",
                "icon": "about_us_icon.png",
                "index": 71,
                "issub" : true
@@ -99,8 +94,13 @@
                "icon": "qa.png",
                "index": 74,
                "issub" : true
+               },               {
+               "title": "menu_team",
+               "icon": "ico_pri.png",
+               "index": 24,
+               "issub" : true
                }
-               ]
+          ]
   }
   
   ]

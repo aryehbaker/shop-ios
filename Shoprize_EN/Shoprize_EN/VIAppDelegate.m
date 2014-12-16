@@ -293,13 +293,13 @@ static NSDate *latestLoc;
         if (nearest.distance < _NEAREST_PLACE_KM_) {
             NSString *mid = [nearest MallAddressId];
             Timestamps *ts2 = [[iSQLiteHelper getDefaultHelper] searchSingle:[Timestamps class] where:Fmt(@" stampId = '%@'", mid) orderBy:@"time"];
-            if (ts2 == nil || abs(ts2.time - [[NSDate date] timeIntervalSince1970]) > 10 * 60) {
+            if (ts2 == nil || abs(ts2.time - [[NSDate date] timeIntervalSince1970]) > 1 * 60) {
                 [Timestamps setMallRefrshTime:mid];
                 [NSUserDefaults setValue:[nearest MallAddressId] forKey:@"_post_mall_id_"];
                 [NSUserDefaults setValue:[nearest MallAddressId] forKey:CURRENT_MALL_USER_IN];
                 [[NSNotificationCenter defaultCenter] postNotificationName:CURRENT_MALL_USER_IN object:[nearest toDictionary]];
             }
-                //如果启动的时候没有进行iBeacon的扫描则启动
+            //如果启动的时候没有进行iBeacon的扫描则启动
             else if (![self isScaning]) {
                 [[NSNotificationCenter defaultCenter]
                         postNotificationName:@"_ibeancon_reset_" object:mid];
@@ -627,7 +627,7 @@ static NSDate *latestLoc;
         ego.imageURL = [NSURL URLWithString:pic];
         shareImg = ego.image;
     }
-    NSString *prefix = @"I just got a great coupon and now I share with you ";
+    NSString *prefix = @"I just received this awesome promo with my Shopper On The Go Mobile App!";
     NSString *stringUrl = @"https://itunes.apple.com/us/app/shopper-on-the-go/id539363195?mt=8";
     NSString *name      = [shareInfo stringValueForKey:@"name"];
     

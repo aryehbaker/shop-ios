@@ -252,6 +252,7 @@ static NSString *filterValue;
     lab.textAlignment = CENTER;
     lab.text = Lang(@"store_has_sup");
     lab.numberOfLines = 0;
+    [lab autoHeight];
     [inms addSubview:lab];
 
     CMPopTipView *pop = [[CMPopTipView alloc] initWithCustomView:inms];

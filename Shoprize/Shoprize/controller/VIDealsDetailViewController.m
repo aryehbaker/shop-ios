@@ -181,10 +181,10 @@
     if (fullText != nil) {
         UILabel *moretext =  [VILabel createManyLines:Frm(15, offset+10, 290, 0) color:@"#414141" ft:Light(15) text:fullText];
         totalHeight = moretext.h;
-        [moretext setH:45];
         moretext.tag = 10000;
         moretext.text= fullText;
         moretext.textAlignment = Align;
+        [moretext autoHeight];
         [contentView addSubview:moretext];
         
         offset = moretext.endY;
@@ -218,7 +218,7 @@
         
         if ([mobi_promo stringValueForKey:@"ExpireDate"]!=nil && ![[[mobi_promo stringValueForKey:@"ExpireDate"] parse:@"yyyy-MM-dd HH:mm:ss"] laterThan:[NSDate date]])
         {
-            [redeem setTitle:@"Expire" forState:UIControlStateNormal];
+            [redeem setTitle:[@"deal_expired" lang] forState:UIControlStateNormal];
             [redeem setEnabled:NO];
         }
     }

@@ -293,7 +293,10 @@
     }
     else if (index == 73 )
     {
-        [VIAlertView showInfoMsg:@"Face Book"];
+        VIHtmlFileViewController *html = [[VIHtmlFileViewController alloc] init];
+        html.headTitle = @"Facebook";
+        html.htmlFile = @"https://www.facebook.com/ShopperOnTheGo";
+        [navigationController pushViewController:html animated:YES];
     }
     
     else if (index == 74 && ![self checkHtmlName:v htmlName:Lang(@"qa_file")])
@@ -303,14 +306,11 @@
         us.headTitle = Lang(@"qa_title");
         [navigationController pushViewController:us animated:YES];
     }
-    
     else if (index == 8){
         VIFavViewController *fav = [[VIFavViewController alloc] init];
         [navigationController pushViewController:fav animated:YES];
     }
-    
-     [self.frostedViewController hideMenuViewController];
-    
+    [self.frostedViewController hideMenuViewController];
 }
 
 -(BOOL)checkHtmlName:(UIViewController *)ctrl htmlName:(NSString *)html

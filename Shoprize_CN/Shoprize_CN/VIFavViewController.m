@@ -150,9 +150,9 @@
     
     NSDictionary *left =   [deals objectAtIndex:2 * indexPath.row];
     NSString *image = [left stringValueForKey:@"MobiPromoPictures/0/PictureUrl" defaultValue:@""];
-    [cellview egoimageView4Tag:1001].imageURL = [NSURL URLWithString:[left stringValueForKey:@"StoreLogo"]];
+    [cellview egoimageView4Tag:1001].imageURL = [NSURL URLWithString:image];
     
-    [cellview egoimageView4Tag:1002].imageURL = [NSURL URLWithString:image];
+    [cellview egoimageView4Tag:1002].imageURL = [NSURL URLWithString:[left stringValueForKey:@"StoreLogo"]];
     [cellview label4Tag:1003].text = [[left stringValueForKey:@"Offer"] killQute];
     [[cellview label4Tag:1003] setRTL];
     [cellview label4Tag:1003].font = Bold(13);
@@ -274,6 +274,7 @@ static long last_selected_long;
     lab.textAlignment = CENTER;
     lab.text = Lang(@"store_has_sup");
     lab.numberOfLines = 0;
+    [lab autoHeight];
     [inms addSubview:lab];
     
     CMPopTipView *pop = [[CMPopTipView alloc] initWithCustomView:inms];

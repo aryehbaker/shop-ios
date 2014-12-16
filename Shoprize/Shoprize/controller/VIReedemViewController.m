@@ -44,8 +44,10 @@
     
     NSString *ctx = [[extra stringValueForKey:@"Offer"] killQute];
     UILabel *title = [UILabel initManyLineWithFrame:Frm(10, 20, self.view.w-20, 20) color:@"#252525" font:Bold(18) text:ctx];
+    title.numberOfLines = 0;
     title.text = ctx;
     title.textAlignment = Align;
+    [title autoHeight];
     
     [ct addSubview:title];
     
@@ -96,11 +98,10 @@
     NSString *ctx2 = [extra stringValueForKey:@"Description" defaultValue:nil];
     if (ctx2!=nil) {
         UILabel *content = [UILabel initManyLineWithFrame:Frm(20, endY+10, 280, 20) color:@"#252525" font:Regular(16) text:ctx2];
-        
         content.text = ctx2;
         content.textAlignment = Align;
+        [content autoHeight];
         [ct addSubview:content];
-        
         endY = content.endY;
     }
     

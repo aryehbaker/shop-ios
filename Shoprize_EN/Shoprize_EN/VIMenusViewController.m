@@ -293,7 +293,10 @@
     }
     else if (index == 73 )
     {
-        [VIAlertView showInfoMsg:@"Face Book"];
+        VIHtmlFileViewController *html = [[VIHtmlFileViewController alloc] init];
+        html.headTitle = @"Facebook";
+        html.htmlFile = @"https://www.facebook.com/ShopperOnTheGo";
+        [navigationController pushViewController:html animated:YES];
     }
     
     else if (index == 74 && ![self checkHtmlName:v htmlName:Lang(@"qa_file")])

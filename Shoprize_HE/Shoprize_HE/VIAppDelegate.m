@@ -134,7 +134,7 @@ static NSString *logpath;
     //Location Manager start motion
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
-    self.locationManager.distanceFilter = 10; //精度10m
+    self.locationManager.distanceFilter = 5; //精度10m
     
     DEBUGS(@"DEBUG %d",[CLLocationManager locationServicesEnabled]);
     
@@ -283,12 +283,11 @@ static NSDate *latestLoc;
     if (locations!=nil && locations.count > 0) {
         //save user Info
         CLLocation *location = [locations lastObject];
-        if (latestLoc!=nil && abs([location.timestamp timeIntervalSinceDate:latestLoc])< 30) {
+        if (latestLoc!=nil && abs([location.timestamp timeIntervalSinceDate:latestLoc]) < 10) {
             //小于30s直接返回,不做任何操作
             return;
         }
         latestLoc = location.timestamp;
-        
         [[NSUserDefaults standardUserDefaults] setValue:Fmt(@"%.7f,%.7f",location.coordinate.latitude,location.coordinate.longitude) forKey:@"location"];
         DEBUGS(@"Location complete:%@",location);
         [self calcIfOpenNewMall];
@@ -301,13 +300,13 @@ static NSDate *latestLoc;
         if(nearest.distance < _NEAREST_PLACE_KM_){
            NSString *mid = [nearest MallAddressId];
            Timestamps *ts2 = [[iSQLiteHelper getDefaultHelper] searchSingle:[Timestamps class] where:Fmt(@" stampId = '%@'",mid) orderBy:@"time"];
-           if(ts2 == nil || abs(ts2.time - [[NSDate date] timeIntervalSince1970]) > 10 * 60){
+           if(ts2 == nil || abs(ts2.time - [[NSDate date] timeIntervalSince1970]) > 1 * 60){
                 [Timestamps setMallRefrshTime:mid];
                 [NSUserDefaults setValue:[nearest MallAddressId] forKey:@"_post_mall_id_"];
                 [NSUserDefaults setValue:[nearest MallAddressId] forKey:CURRENT_MALL_USER_IN];
                 [[NSNotificationCenter defaultCenter] postNotificationName:CURRENT_MALL_USER_IN object:[nearest toDictionary]];
            }
-            //如果启动的时候没有进行iBeacon的扫描则启动
+           //如果启动的时候没有进行iBeacon的扫描则启动
            else if (![self isScaning]) {
                 [[NSNotificationCenter defaultCenter]
                  postNotificationName:@"_ibeancon_reset_" object:mid];
