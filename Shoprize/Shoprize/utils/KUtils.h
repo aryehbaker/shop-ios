@@ -31,6 +31,7 @@
 @interface UILabel (RTL)
 - (void)setRTL;
 - (void)autoHeight;
+
 @end
 
 @interface UIView (Extra2)

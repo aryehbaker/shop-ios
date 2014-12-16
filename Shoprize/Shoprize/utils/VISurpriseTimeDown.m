@@ -50,7 +50,7 @@
     
     [self egoimageView4Tag:14001].imageURL = [NSURL URLWithString:[self.leftInfo stringValueForKey:@"defPicture"]];
     [self label4Tag:14002].hidden = YES;
-    [self label4Tag:14003].text = [self.leftInfo stringValueForKey:@"Offer" defaultValue:@""];
+    [self label4Tag:14003].text = [[self.leftInfo stringValueForKey:@"Offer" defaultValue:@""] killQute];
     
     NSString *leftMId = [self.leftInfo stringValueForKey:@"MobiPromoId"];
     UserSurprise *leftUsr = [[iSQLiteHelper getDefaultHelper] searchSingle:[UserSurprise class] where:@{@"MobiPromoId":leftMId} orderBy:@"MobiPromoId"];
@@ -92,7 +92,7 @@
     
         [self egoimageView4Tag:14101].imageURL = [NSURL URLWithString:[self.rightInfo stringValueForKey:@"defPicture"]];
         [self label4Tag:14102].hidden = YES;
-        [self label4Tag:14103].text = [self.rightInfo stringValueForKey:@"Offer" defaultValue:@""];
+        [self label4Tag:14103].text = [[self.rightInfo stringValueForKey:@"Offer" defaultValue:@""] killQute];
        
        NSString *rightMId = [self.rightInfo stringValueForKey:@"MobiPromoId"];
        UserSurprise *RightUsr = [[iSQLiteHelper getDefaultHelper] searchSingle:[UserSurprise class] where:@{@"MobiPromoId":rightMId} orderBy:@"MobiPromoId"];

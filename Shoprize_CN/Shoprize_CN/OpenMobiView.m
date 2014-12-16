@@ -145,7 +145,7 @@
     
     NSDictionary *info = [datalist objectAtIndex:indexPath.row];
     ego.imageURL = [NSURL URLWithString:[info stringValueForKey:@"Pictures/0/PictureUrl"]];
-    NSString *offer = [info stringValueForKey:@"Offer"];
+    NSString *offer = [[info stringValueForKey:@"Offer"] killQute];
     if (offer.length > 30) {
         offer = [[offer substringToIndex:30] contact:@"...", nil];
     }

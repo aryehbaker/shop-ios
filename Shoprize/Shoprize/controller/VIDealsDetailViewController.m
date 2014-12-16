@@ -171,9 +171,9 @@
     }
     
     UILabel *describe;
-    describe =  [VILabel createManyLines:Frm(15, bg.endY+10, 290, 0) color:@"#2C2C2C" ft:Bold(22) text:[info stringValueForKey:@"Offer"]];
+    describe =  [VILabel createManyLines:Frm(15, bg.endY+10, 290, 0) color:@"#2C2C2C" ft:Bold(22) text:[[info stringValueForKey:@"Offer"] killQute]];
     describe.textAlignment = Align;
-    describe.text = [info stringValueForKey:@"Offer"];
+    describe.text = [[info stringValueForKey:@"Offer"] killQute];
     [contentView addSubview:describe];
 
     fullText = [info stringValueForKey:@"Description" defaultValue:nil];
@@ -396,7 +396,7 @@
     
     NSMutableDictionary *pot = [NSMutableDictionary dictionary];
     [pot setValue:imageURL forKey:@"picture"];
-    [pot setValue:[mobi_promo stringValueForKey:@"Offer"] forKey:@"description"];
+    [pot setValue:[[mobi_promo stringValueForKey:@"Offer"] killQute] forKey:@"description"];
     [pot setValue:[mobi_promo stringValueForKey:@"StoreName"] forKey:@"name"];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"_share_to_facebook_" object:pot];
