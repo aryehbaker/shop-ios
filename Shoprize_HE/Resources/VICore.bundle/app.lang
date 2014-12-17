@@ -44,7 +44,7 @@
      "menu_mysuprise"       :{ "en" : "My Suprise" ,"he": "ההפתעות שלי"},
      "menu_mystore"         :{ "en" : "My Stores" ,"he" : "החנויות שלי"},
      "menu_malls"           :{ "en" : "Malls" ,"he" : "רשימת קניונים"},
-     "menu_invite"          :{ "en" : "Invite a friend" ,"he": "הזמנת חבר"},
+     "menu_invite"          :{ "en" : "Invite Friends" ,"he": "הזמנת חבר"},
      "menu_sub_ctus"        :{ "en" : "Contact Us","he": "צור קשר"},
      "menu_sub_fabk"        :{ "en" : "Facebook","he": "פייסבוק"},
      "menu_sub_qa"          :{ "en" : "Q & A","he": "שאלות נפוצות"},
@@ -257,5 +257,10 @@
         "en" : "Are you sure you want to redeem?",
         "he" : "Are you sure you want to redeem?",
         "zh_Hans" : "你是否想立即激活使用？"
+    },
+    "deal_redeem_code" : {
+        "en" : "Redeem Code",
+        "he" : "קוד מימוש הפתעה:",
+        "zh_Hans" : "兑换码"
     }
 }

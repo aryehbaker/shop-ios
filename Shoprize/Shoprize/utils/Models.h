@@ -138,6 +138,9 @@
     @property(nonatomic,assign) BOOL StoreHasSuprise;
     @property(nonatomic,copy) NSString *defPicture;
 
+    @property(nonatomic,copy) NSString *Code;
+    @property(nonatomic,assign) BOOL Redeemed;
+
     + (id)initWithDictionary:(id)dict;
     - (BOOL)isSuprise;
 
@@ -240,6 +243,9 @@
 @property(nonatomic,strong) NSString *Address;
 @property(nonatomic,strong) NSString *Logo;
 @property(nonatomic,strong) NSString *OpenHours;
+
+@property(nonatomic,copy) NSString *Code;
+@property(nonatomic,assign) BOOL Redeemed;
 
 @property(nonatomic,strong) NSArray<Picture,ConvertOnDemand> *Pictures;
 @property(nonatomic,strong) NSArray<Beacon,ConvertOnDemand> *Beacons;

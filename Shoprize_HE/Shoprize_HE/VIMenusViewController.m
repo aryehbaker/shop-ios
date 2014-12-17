@@ -81,7 +81,7 @@
         
 
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 180,200, 30)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 170,200, 40)];
         label.text = [VINet info:LName];
         label.textAlignment = NSTextAlignmentCenter;
         label.tag = -102;

@@ -206,9 +206,11 @@
     
     NSString *addid = [info stringValueForKey:@"AddressId" defaultValue:@"0"];
     
+    NSString *redeem_code = [mobi_promo stringValueForKey:@"Code"];
+    
     //默认没有redeem按钮
     int y = 5;
-    if (isEn) {
+    if (isEn && redeem_code==nil) {
         redeem = [[UIButton alloc] initWithFrame:Frm(.2 * subItme.w, 5, .6*subItme.w, 40) font:FontB(16) title:@"Redeem" color:@"#FA2D38"];
         [subItme addSubview:redeem];
         redeem.backgroundColor =[@"#ffffff" hexColor];
@@ -221,6 +223,22 @@
             [redeem setTitle:[@"deal_expired" lang] forState:UIControlStateNormal];
             [redeem setEnabled:NO];
         }
+        BOOL isReeded = [mobi_promo boolValueForKey:@"Redeemed" defaultValue:NO];
+        if (isReeded) {
+            [redeem setTitle:[@"deal_redeem" lang] selected:[@"deal_redeem" lang]];
+            [redeem setEnabled:NO];
+        }
+    }
+    
+    if (redeem_code != nil)  {
+        VIRTLabel *redeemCode = [[VIRTLabel alloc] initWithFrame:Frm(0, y+10, self.view.w, 0)];
+        [redeemCode setTextAlignment:RTTextAlignmentCenter];
+        [redeemCode setText:Fmt(@"%@\n\n <b>%@</b>",Lang(@"deal_redeem_code"),redeem_code)];
+        [redeemCode setH:redeemCode.optimumSize.height];
+        
+        y = redeemCode.endY+40;
+        
+        [subItme addSubview:redeemCode];
     }
 
     int x = (subItme.w - 140)/2;

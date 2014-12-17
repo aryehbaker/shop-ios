@@ -44,7 +44,7 @@
      "menu_mysuprise"       :{ "en" : "My Surprises" ,"zh-Hans": "我的惊喜"},
      "menu_mystore"         :{ "en" : "My Stores" ,"zh-Hans" : "我的店铺"},
      "menu_malls"           :{ "en" : "Malls" ,"zh-Hans" : "所有商场"},
-     "menu_invite"          :{ "en" : "Invite a friend" ,"zh-Hans": "邀请好友"},
+     "menu_invite"          :{ "en" : "Invite Friends" ,"zh-Hans": "邀请好友"},
      "menu_sub_ctus"        :{ "en" : "Contact Us","zh-Hans": "联系我们"},
      "menu_sub_fabk"        :{ "en" : "Facebook","zh-Hans": "脸书"},
      "menu_sub_qa"          :{ "en" : "Q & A","zh-Hans": "常见问题问答"},
@@ -272,5 +272,10 @@
         "en" : "Are you sure you want to redeem?",
         "he" : "Are you sure you want to redeem?",
         "zh_Hans" : "你是否想立即激活使用？"
+    },
+    "deal_redeem_code" : {
+        "en" : "Redeem Code",
+        "he" : "קוד מימוש הפתעה:",
+        "zh_Hans" : "兑换码"
     }
 }
