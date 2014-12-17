@@ -106,6 +106,8 @@ static SystemSoundID shake_sound_male_id = 0;
         VIAppDelegate *app = (VIAppDelegate *)[UIApplication sharedApplication].delegate;
         [[app pushStack] pushViewController:b animated:YES];
         [self cancel:nil];
+    }else{
+        [self cancel:btn];
     }
 }
 

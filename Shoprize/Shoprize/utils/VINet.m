@@ -46,7 +46,7 @@ static NSMutableDictionary *stores;
         case Sex:
             return [values stringValueForKey:@"gender" defaultValue:@""];
         case KFull :
-            return Fmt(@"%@%@", [VINet info:FName], [VINet info:LName]);
+            return Fmt(@"%@ %@", [VINet info:FName], [VINet info:LName]);
         default:
             break;
     }

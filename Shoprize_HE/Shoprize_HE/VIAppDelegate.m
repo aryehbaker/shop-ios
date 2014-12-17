@@ -38,7 +38,9 @@
     if(info != nil)
     {
         VIReedemViewController *dm = [[VIReedemViewController alloc] init];
-        [dm setValueToContent:info forKey:@"VIReedemViewController"] ;
+        NSMutableDictionary *extraInfo = [info mutableCopy];
+        [extraInfo setValue:@"YES" forKey:@"FromPop"];
+        [dm setValueToContent:extraInfo forKey:@"VIReedemViewController"];
         [[self pushStack] pushViewController:dm animated:YES];
     }
     
@@ -166,7 +168,9 @@ static NSString *logpath;
     }
 
 //  TOOD CMMT
-//  [self openPopSuprise:nil];
+
+// [self sendDemoNotifcation:@"this is over more than one [200%] you 22dd then so will save"];
+
 //  NSTimer *t = [NSTimer timerWithTimeInterval:2 target:self selector:@selector(repaint) userInfo:nil repeats:YES];
 // NSRunLoop *runloop=[NSRunLoop currentRunLoop];
 //  [runloop addTimer:t forMode:NSDefaultRunLoopMode];
@@ -194,6 +198,9 @@ static NSString *logpath;
     return YES;
 }
 
+- (void)sendDemoNotifcation:(NSString *)offer {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"_get_a_bigsuprise_" object:@{@"Offer":offer,@"MobiPromoId": @"b1596adc-975b-408b-b11f-cef427e6bd38"}];
+}
 
 #pragma mark 远程推送路径
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
@@ -520,7 +527,12 @@ static NSDate *latestLoc;
         MallInfo *nearest = [MallInfo getMallById:mallId];
         NSString *mallName = nearest.Name;
         NSString *uname = [VINet info:KFull];
-        NSString *msg = Fmt(Lang(@"welcome_mall"), uname, mallName);
+        NSString *msg;
+        if (isHe) {
+            msg = Fmt(Lang(@"welcome_mall"), mallName);
+        }else{
+            msg = Fmt(Lang(@"welcome_mall"), uname, mallName);
+        }
         
         NSMutableDictionary *mt = [NSMutableDictionary dictionary];
         [mt setValue:@"Mall" forKey:@"NotifyType"];

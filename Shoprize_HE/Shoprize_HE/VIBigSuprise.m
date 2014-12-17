@@ -94,12 +94,24 @@
         f1.lineBreakMode = NSLineBreakByWordWrapping;
         [contentView addSubview:f1];
         
+        NSString *bigText = [regValue substringWithRange:NSMakeRange(1, regValue.length-2)];
         UILabel *f3 = [VILabel createLableWithFrame:Frm(34, f1.endY, 170, (120-f1.endY)*2) color:@"#ffffff" font:Black(100) align:CENTER];
-        f3.text = [regValue substringWithRange:NSMakeRange(1, regValue.length-2)];
-        
-        f3.minimumScaleFactor = 0.7;
-        f3.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
+        f3.text = bigText;
+        f3.minimumScaleFactor = 0.5;
         f3.adjustsFontSizeToFitWidth = YES;
+        f3.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
+        int indexChar = [bigText indexOf:@"₪"];
+        if (indexChar !=-1) {
+            //http://blog.sina.com.cn/s/blog_7c336a8301014jyg.html
+            int nNumType = 0;
+            CFNumberRef cfNum = CFNumberCreate(NULL, kCFNumberIntType, &nNumType);
+            NSMutableAttributedString *mutaString = [[NSMutableAttributedString alloc] initWithString:bigText];
+            [mutaString addAttribute:(NSString *)kCTLigatureAttributeName value:(__bridge id)cfNum range:NSMakeRange(0, bigText.length)];
+            CTFontRef ctFont2 = CTFontCreateWithName((CFStringRef)Black(50).fontName,Black(50).pointSize, NULL);
+            [mutaString addAttribute:(NSString *)(kCTFontAttributeName)  value:(__bridge id)ctFont2 range:NSMakeRange(indexChar, 1)];
+            CFRelease(ctFont2);
+            f3.attributedText = mutaString;
+        }
         [contentView addSubview:f3];
         
         NSString *com2 = [comp objectAtIndex:1];

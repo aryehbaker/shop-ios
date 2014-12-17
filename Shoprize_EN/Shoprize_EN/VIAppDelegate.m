@@ -515,7 +515,12 @@ static NSDate *latestLoc;
         MallInfo *nearest = [MallInfo getMallById:mallId];
         NSString *mallName = nearest.Name;
         NSString *uname = [VINet info:KFull];
-        NSString *msg = Fmt(Lang(@"welcome_mall"), uname, mallName);
+        NSString *msg;
+        if (isHe) {
+            msg = Fmt(Lang(@"welcome_mall"), mallName);
+        }else{
+            msg = Fmt(Lang(@"welcome_mall"), uname, mallName);
+        }
         
         NSMutableDictionary *mt = [NSMutableDictionary dictionary];
         [mt setValue:@"Mall" forKey:@"NotifyType"];

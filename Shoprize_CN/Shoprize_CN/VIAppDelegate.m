@@ -114,7 +114,7 @@ static NSString *logpath;
     VINavigationController *nav = [[VINavigationController alloc] init];
     [nav setViewControllers:navp animated:YES];
     nav.navigationBar.hidden = YES;
-
+    
     VIMenusViewController *menu = [[VIMenusViewController alloc] init];
 
     frostedViewController = [[REFrostedViewController alloc] initWithContentViewController:nav menuViewController:menu];
@@ -515,7 +515,13 @@ static NSDate *latestLoc;
         MallInfo *nearest = [MallInfo getMallById:mallId];
         NSString *mallName = nearest.Name;
         NSString *uname = [VINet info:KFull];
-        NSString *msg = Fmt(Lang(@"welcome_mall"), uname, mallName);
+        NSString *msg ;
+        if (isHe) {
+            msg = Fmt(Lang(@"welcome_mall"), mallName);
+        }else{
+            msg = Fmt(Lang(@"welcome_mall"), uname, mallName);
+        }
+        
         
         NSMutableDictionary *mt = [NSMutableDictionary dictionary];
         [mt setValue:@"Mall" forKey:@"NotifyType"];

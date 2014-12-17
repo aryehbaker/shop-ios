@@ -106,6 +106,9 @@ static SystemSoundID shake_sound_male_id = 0;
         [[app pushStack] pushViewController:b animated:YES];
         [self cancel:nil];
     }
+    else{
+        [self cancel:nil];
+    }
 }
 
 -(void)cancel:(id)btn

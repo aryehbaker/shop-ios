@@ -37,7 +37,23 @@
     
     extra = [self getContentValueWithPath:@"VIReedemViewController"];
     
+    NSString *fromPop = [extra stringValueForKey:@"FromPop" defaultValue:@"NO"];
+  
+    
+    NSString *mobiId = [extra stringValueForKey:@"MobiPromoId"];
+    if (mobiId!=nil) {
+        MobiPromo *mobi = [[iSQLiteHelper getDefaultHelper] searchSingle:[MobiPromo class] where:@{@"MobiPromoId":mobiId} orderBy:@"MobiPromoId"];
+        if (mobi!=nil) {
+            extra = [mobi toDictionary];
+        }
+    }
+    
     [self addNav:[extra stringValueForKey:@"StoreName"] left:BACK right:NONE];
+    
+    if ([fromPop isEqualToString:@"YES"]) {
+        [[self leftOne] removeTarget:self action:@selector(pop:) forControlEvents:UIControlEventTouchUpInside];
+        [[self leftOne] addTarget:self action:@selector(popToStore:)];
+    }
     
     ct = [[UIScrollView alloc] initWithFrame:Frm(0, self.nav.endY, self.view.w, Space(self.nav.endY) - 40)];
     ct.backgroundColor = [UIColor clearColor];
@@ -159,6 +175,20 @@
         }
     }
 }
+
+-(void)popToStore:(UIButton *)back
+{
+    [[self leftOne] removeTarget:self action:@selector(popToStore:) forControlEvents:UIControlEventTouchUpInside];
+    [[self leftOne] addTarget:self action:@selector(pop:)];
+    
+    
+    NSString *addressId = [extra stringValueForKey:@"AddressId"];
+    Store *store = [[iSQLiteHelper getDefaultHelper] searchSingle:[Store class] where:@{@"AddressId":addressId} orderBy:@"MallId"];
+    
+    [self pushTo:@"VIStoreDetailViewController" data:[store toDictionary]];
+    
+}
+
 - (void)foucusImageFrame:(VIAutoPlayPageView *)imageFrame didSelectItem:(VIAutoPlayItem *)item
 {
     MHFacebookImageViewer *v = [[MHFacebookImageViewer alloc] init];

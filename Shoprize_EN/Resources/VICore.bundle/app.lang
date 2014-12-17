@@ -138,7 +138,7 @@
      "ck_all"               :{ "en" : "All","he": "סמנו הכל"},
      "ck_none"              :{ "en" : "Remove","he": "הסירו הכל"},
      "welcome_mall"         :{ "en" : "Hi %@, welcome to %@. open SOTG and see all awesome deals and surprises waiting for you now, save money and have fun !",
-        "he": "הי %@, ברוכים הבאים ל %@. היכנסו לאפליקציית שופרייז וקבלו מבצעים והפתעות המחכים לכם עכשיו!"},
+        "he": "Shoprize בדרך לקניון %@ ? כל המבצעים החמים וההפתעות מחכים לך עכשיו ב"},
      "weekend_come"         :{ "en" : "weekend coming up's","he": "סוף השבוע מגיע!"},
      "welcome_store"        :{ 
             "en" : "Hi %@, welcome to %@. open SOTG and see all deals zara have to offer you now ! Enjoy...",
