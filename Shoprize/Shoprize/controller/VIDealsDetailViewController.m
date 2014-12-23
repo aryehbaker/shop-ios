@@ -174,6 +174,7 @@
     describe =  [VILabel createManyLines:Frm(15, bg.endY+10, 290, 0) color:@"#2C2C2C" ft:Bold(22) text:[[info stringValueForKey:@"Offer"] killQute]];
     describe.textAlignment = Align;
     describe.text = [[info stringValueForKey:@"Offer"] killQute];
+    [describe autoHeight];
     [contentView addSubview:describe];
 
     fullText = [info stringValueForKey:@"Description" defaultValue:nil];
@@ -230,7 +231,7 @@
         }
     }
     
-    if (redeem_code != nil)  {
+    if (isEn && redeem_code != nil)  {
         VIRTLabel *redeemCode = [[VIRTLabel alloc] initWithFrame:Frm(0, y+10, self.view.w, 0)];
         [redeemCode setTextAlignment:RTTextAlignmentCenter];
         [redeemCode setText:Fmt(@"%@\n\n <b>%@</b>",Lang(@"deal_redeem_code"),redeem_code)];

@@ -1,51 +1,384 @@
-<!DOCTYPE>
+<!doctype html>
 <html>
     <head>
-        <meta http-equiv=Content-Type content="text/html;charset=utf-8" />
-        <meta name="viewport" content="width=device-width,target-densitydpi=high-dpi,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-        <link href="VICore.bundle/webres/VICore.css" rel="stylesheet">
-            <style type="text/css">
-                body,html,*{font-family:Pekan-Regular;margin: 0;padding: 0;-webkit-user-select: none;font-size: 14px;font-family: Arial,Helvetica;color:#fff;}
-                h1{font-size:20px;padding:20px 0px;}
-                </style>
-            </head>
-    <body>
-        <div class="container" style="width:300px;margin:10px auto;">
-            <img class="logo" style="width:300px;margin:2px auto;" src="http://shopperonthego.mobi/themes/sotg/images/logo2.png" alt="">
-                <div class="row">
-                    <h1>Overview</h1>
-                    
-                    <p>Thank you for visiting <a href="http://www.shopperonthego.mobi">www.shopperonthego.mobi</a> (the "Web Site") and reviewing our Privacy Policy. Your privacy is important to us, and our policy is simple: we will collect no personally identifiable information about you when you visit the Web Site unless you choose to provide that information. This Privacy Policy does not describe information collection practices on other sites, including those linked to or from the Web Site.</p>
-                    
-                    <h1>What Type of Information We Collect</h1>
-                    
-                    <p>The server on which the Web Site is located collects and saves only the default information customarily logged by web server software. Such information may include the date and time of your visit, the originating IP address, and the pages and images requested.</p>
-                    
-                    <h1>Copyright</h1>
-                    
-                    <p>The materials found on the Web Site are protected by United States and other copyright laws, except for works of the United States Government pursuant to 1 U.S.C. Section 105. The selection, arrangement and presentation of all materials (including information in the public domain), and the overall design of the Web Site are copyright (c) January 1, 2014, Shopper on the Go. Permission is granted to view and print materials from <a href="http://www.shopperonthego.mobi">www.shopperonthego.mobi</a> for the non-commercial purpose of viewing, reading and retaining for reference. Any other copying, distribution, retransmission or modification of information or materials on this site, whether in electronic or hard copy form, without the express prior written permission of Shopper on the Go, is strictly prohibited.</p>
-                    
-                    <h1>No Warranties</h1>
-                    
-                    <p><a href="http://www.shopperonthego.mobi">WWW.SHOPPERONTHEGO.MOBI</a> DOES NOT MAKE ANY EXPRESS OR IMPLIED WARRANTIES, REPRESENTATIONS OR ENDORSEMENTS WHATSOEVER (INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE) WITH REGARD TO THE WEB SITE, THE MATERIALS, ANY PRODUCTS, INFORMATION OR SERVICE PROVIDED THROUGH THE WEB SITE, OR ANY SITES LISTED THEREIN, AND THE WEB SITE WILL NOT BE LIABLE FOR ANY COST OR DAMAGE ARISING EITHER DIRECTLY OR INDIRECTLY FROM ANY SUCH TRANSACTION. THE WEB SITE DOES NOT WARRANT THAT IT WILL BE UNINTERRUPTED OR ERROR-FREE OR THAT DEFECTS IN IT WILL BE CORRECTED. THE WEB SITE IS PROVIDED ON AN "AS IS, AS AVAILABLE" BASIS. IN NO EVENT WILL THE WEB SITE OR ITS MEMBERS, MANAGERS, OFFICERS, EMPLOYEES, AGENTS AND THE ASSIGNS OF SAME BE LIABLE FOR (1) ANY INCIDENTAL, CONSEQUENTIAL OR INDIRECT DAMAGES (INCLUDING, BUT NOT LIMITED TO, DAMAGES FOR LOSS OF PROFITS, BUSINESS INTERRUPTION, LOSS OF PROGRAMS OR INFORMATION, AND THE LIKE) ARISING OUT OF THE USE OF OR INABILITY TO USE THE WEB SITE, THE MATERIALS OR ANY INFORMATION, OR TRANSACTIONS PROVIDED ON THE WEB SITE OR DOWNLOADED FROM THE WEB SITE, EVEN IF THE WEB SITE OR ITS AUTHORIZED REPRESENTATIVES HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES, OR (2) ANY CLAIM ATTRIBUTABLE TO ERRORS, OMISSIONS OR OTHER INACCURACIES IN THE WEB SITE, THE MATERIALS AND/OR LISTINGS OR INFORMATION DOWNLOADED THROUGH THE WEB SITE. BECAUSE SOME STATES DO NOT ALLOW THE EXCLUSION OR LIMITATION OF LIABILITY FOR CONSEQUENTIAL OR INCIDENTAL DAMAGES, THE ABOVE LIMITATION MAY NOT APPLY TO YOU. IN SUCH STATES, THE WEB SITE'S LIABILITY IS LIMITED TO THE GREATEST EXTENT PERMITTED BY LAW.</p>
-                    
-                    <h1>Indemnification</h1>
-                    
-                    <p>You agree to indemnify, defend and hold harmless the Web Site and its members, managers, officers, employees, agents and the assigns of same, from and against any and all loss, costs, expenses (including reasonable attorneys' fees and expenses), claims, damages and liabilities related to or associated with your use of the Web Site and any violation of this Privacy Policy by you.</p>
-                    
-                    <h1>Governing Law and Jurisdiction</h1>
-                    
-                    <p>This Privacy Policy constitutes a contract made under and shall be governed by and construed in accordance with the laws of the State of Connecticut.</p>
-                    
-                    <h1>Last Update</h1>
-                    
-                    <p>This Privacy Policy was last updated on January 1, 2014.</p>
-                    
-                    <h1>Contact Information</h1>
-                    
-                    <p>Questions or comments regarding the Web Site should be sent by e-mail to <a href="mailto:info@mobiconsumers.com">info@mobiconsumers.com</a></p>
-                </div>
+        <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+                <style>
+                    h1,
+                    h2,
+                    h3,
+                    h4,
+                    h5,
+                    h6,
+                    p,
+                    blockquote {
+                        margin: 0;
+                        padding: 0;
+                    }
+                body {
+                    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+                    font-size: 13px;
+                    line-height: 18px;
+                    color: #737373;
+                    background-color: white;
+                    margin: 10px 13px 10px 13px;
+                }
+                table {
+                    margin: 10px 0 15px 0;
+                    border-collapse: collapse;
+                }
+                td,th {
+                    border: 1px solid #ddd;
+                    padding: 3px 10px;
+                }
+                th {
+                    padding: 5px 10px;
+                }
                 
-                </div>
+                a {
+                    color: #0069d6;
+                }
+                a:hover {
+                    color: #0050a3;
+                    text-decoration: none;
+                }
+                a img {
+                    border: none;
+                }
+                p {
+                    margin-bottom: 9px;
+                }
+                h1,
+                h2,
+                h3,
+                h4,
+                h5,
+                h6 {
+                    color: #404040;
+                    line-height: 36px;
+                }
+                h1 {
+                    margin-bottom: 18px;
+                    font-size: 30px;
+                }
+                h2 {
+                    font-size: 24px;
+                }
+                h3 {
+                    font-size: 18px;
+                }
+                h4 {
+                    font-size: 16px;
+                }
+                h5 {
+                    font-size: 14px;
+                }
+                h6 {
+                    font-size: 13px;
+                }
+                hr {
+                    margin: 0 0 19px;
+                    border: 0;
+                    border-bottom: 1px solid #ccc;
+                }
+                blockquote {
+                    padding: 13px 13px 21px 15px;
+                    margin-bottom: 18px;
+                    font-family:georgia,serif;
+                    font-style: italic;
+                }
+                blockquote:before {
+                    content:"\201C";
+                    font-size:40px;
+                    margin-left:-10px;
+                    font-family:georgia,serif;
+                    color:#eee;
+                }
+                blockquote p {
+                    font-size: 14px;
+                    font-weight: 300;
+                    line-height: 18px;
+                    margin-bottom: 0;
+                    font-style: italic;
+                }
+                code, pre {
+                    font-family: Monaco, Andale Mono, Courier New, monospace;
+                }
+                code {
+                    background-color: #fee9cc;
+                    color: rgba(0, 0, 0, 0.75);
+                    padding: 1px 3px;
+                    font-size: 12px;
+                    -webkit-border-radius: 3px;
+                    -moz-border-radius: 3px;
+                    border-radius: 3px;
+                }
+                pre {
+                    display: block;
+                    padding: 14px;
+                    margin: 0 0 18px;
+                    line-height: 16px;
+                    font-size: 11px;
+                    border: 1px solid #d9d9d9;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                }
+                pre code {
+                    background-color: #fff;
+                    color:#737373;
+                    font-size: 11px;
+                    padding: 0;
+                }
+                sup {
+                    font-size: 0.83em;
+                    vertical-align: super;
+                    line-height: 0;
+                }
+                * {
+                    -webkit-print-color-adjust: exact;
+                }
+                @media screen and (min-width: 914px) {
+                    body {
+                        width: 854px;
+                        margin:10px auto;
+                    }
+                }
+                @media print {
+                    body,code,pre code,h1,h2,h3,h4,h5,h6 {
+                        color: black;
+                    }
+                    table, pre {
+                        page-break-inside: avoid;
+                    }
+                }
+                </style>
+                <title>Privacy Policy</title>
+                
+    </head>
+    <body>
+        <p><br/></p>
+        
+        <h1>Privacy Policy</h1>
+        
+        <p>Effective Date: December 15, 2014</p>
+        
+        <p>This is the Privacy Policy of Mobile Consumer LLC ("Mobile Consumer" or "us" or "we"). This Privacy Policy and our Terms and Conditions apply to all users of, and govern your use of, the mobiconsumers.com website and all other websites, features, applications (including mobile device applications), browser extensions, widgets or online services that are owned and provided by Mobile Consumer LLC and that post a link to or reference this Privacy Policy (collectively, the "Services"). This Privacy Policy describes our information collection practices, such as the types of information Mobile Consumer collects when you interact with the Services, and how we may use that information.</p>
+        
+        <p>Please review this Privacy Policy carefully. This Privacy Policy supersedes any version published prior to the Effective Date. Each time that you access or interact with the Services you signify that you agree to our practices as set forth in this Privacy Policy. If you do not agree to this Privacy Policy, please do not access, create an account, subscribe or otherwise use the Services. Please note that certain features or services referred to in this Privacy Policy may not be offered as part of the Services at all times.</p>
+        
+        <p>Click on one of the links below to jump directly to the listed section:</p>
+        
+        <ol>
+            <li>Types of Information Do We Collect?</li>
+            <li>How Do We Use the Information Collected?</li>
+            <li>Cookies and Other Technology</li>
+            <li>Third Party Analytics Providers and Ad Servers</li>
+            <li>Sharing Information with Third Parties</li>
+            <li>Changing Your Information and Preferences</li>
+            <li>Protection of your Personally Identifiable Information</li>
+            <li>Links to Other Websites</li>
+            <li>International Users</li>
+            <li>Changes to the Privacy Policy</li>
+            <li>Children’s Privacy</li>
+            <li>Contact Us</li>
+            <li>California Privacy Rights</li>
+        </ol>
+        
+        
+        <p><br/></p>
+        
+        <h2>1.   WHAT INFORMATION DO WE COLLECT?</h2>
+        
+        <p><br/>
+        You may provide Personal Information when you use the Services. “Personal Information” is information that identifies you as a specific individual, such as your name, email address, street address, and other contact information. You may provide Personal Information when you use the Services. You may also provide other information, such as demographic information (such as age and gender) and information about your interests and preferences. If we combine these other types of information about you with Personal Information, we will treat the combined information as Personal Information under this Privacy Policy.</p>
+        
+        <ul>
+            <li><p>Information You Choose to Provide.</p>
+                
+                <p>  You may provide Personal Information when you register, subscribe, create an account or otherwise use or interact with the Services.</p></li>
+            <li><p>Information Collected Through Technology.</p>
+                
+                <p>   When you use or interact with the Services, we collect certain information by automated means, using industry-standard technologies, about how the Services are used. Information gathered may include your Internet service provider, browser type, operating system, the date and time of visits, pages viewed and time spent on our sites. In addition, information collection may include Internet Protocol (IP) addresses or other device (computer, mobile device, tablet or other device) identifiers in connection with your interaction with the Services. This information is collected on an anonymous and/or aggregate basis without any association to any Personal Information. If this information were ever combined with Personal Information, the combined information shall be treated as Personal Information. For more information on the technologies used to collect information, please see Cookies and Other Technologies below.</p></li>
+            <li><p>Social Media Services.</p>
+                
+                <p>  When you choose to register an account with Mobile Consumer through a third party social media or social networking service or platform (including, but not limited to, Facebook and collectively, “Social Media Service”), we will use the information you have provided to the Social Media Service (such as your name, email address, gender and other information you make publicly available via the Social Media Service) to create your account. The information accessible to us through your Social Media Service is managed by you using the privacy settings of the Social Media Service. Other than what we may share with the Social Media Service as described below, the Personal Information a Social Media Service has about you is obtained by the Social Media Service independent of the Services, and Mobile Consumer has no responsibility for it. By registering an account with Mobile Consumer through a Social Media Service, you grant us permission to access all of the elements of your social media profile information that you have made available to be shared and to use it in accordance with the terms of use of the Social Media Service and this Privacy Policy.</p>
+                
+                <ol>
+                    <li><p> We may also permit additional interactions between the Services and a third party website, service or other content provider, such as enabling you to “like” or share content to a third party Social Media Service. If you choose to “like” or share content, or to otherwise share information from or via the Services with a third party website or service, that information may be publicly displayed, and the third party may have access to information about you and your use of the Services (and we may have access to information about you from that third party). If you post information on a Social Media Service that refers to the Services (such as by using a Twitter hashtag associated with the Services), we may publish your post in accordance with the privacy policy of the Social Media Service. In addition, we may receive information about you if other users of a third party website give us access to their profiles and you are one of their “connections” or information about you is otherwise accessible through your “connections” web page, profile page or similar page on a Social Media Service platform or other third party website or interactive service.</p></li>
+                    <li><p> Please note that your relationship with any Social Media Service is governed solely by your agreements with such Social Media Service. The information we collect in connection with Social Media Services is subject to this Privacy Policy. The information collected and stored by the third party remains subject to the third party’s privacy practices, including whether the third party continues to share information with us, the types of information shared and your choices with regard to what is visible to others on that third party website or service. If your Social Media Service account terminates, then functions enabled through the link between your Mobile Consumer account and your Social Networking Service account may also terminate.</p></li>
+                </ol>
+            </li>
+            <li><p>Third Party Information.</p>
+                
+                <p>  From time to time, we may receive information about you from third parties. For example, we may supplement the information we collect with outside records from third parties for various purposes, such as to provide you with information or services or to enhance our ability to serve you or tailor our content to you. We may combine the information we receive from those other sources with information we collect through the Services. In those cases, we will apply this Privacy Policy to the combined information. Third parties may also provide information about you in connection with <a href="Social Media Services, as described above">Social Media Services, as described above.</a></p></li>
+        </ul>
+        
+        
+        <p><br/></p>
+        
+        <h2>2.   HOW DO WE USE THE INFORMATION COLLECTED?</h2>
+        
+        <p><br/>
+        Mobile Consumer may use information collected through the Services, including your Personal Information, as follows.</p>
+        
+        <ul>
+            <li>To manage and improve the Services and for other internal business purposes;</li>
+            <li>To enable you to use the Services, to process your registration and to provide related user support;</li>
+            <li>To help determine the types of content or services that may be of most interest to users;</li>
+            <li>To provide you with coupon and offer content and services that you have requested or that we believe will interest you;</li>
+            <li>To help track use of the Services and perform other analytics;</li>
+            <li>To respond to your questions, complaints or comments;</li>
+            <li>To contact you with regard to your use of the Services and with administrative messages, including, in our discretion, changes to policies governing the Services;</li>
+            <li>To provide additional information that may be of interest to you regarding Mobile Consumer and our merchant partners, including special offers, coupons and marketing materials;</li>
+            <li>To tailor content, recommendations, and offers we display to you, based on factors such as your preferred merchants and location;</li>
+            <li>For purposes as disclosed at the time you provide your information, with your consent, and as further described in this Privacy Policy.</li>
+        </ul>
+        
+        
+        <p><br/></p>
+        
+        <h2>3.   COOKIES AND OTHER TECHNOLOGY</h2>
+        
+        <p><br/>
+        The technology used to collect information from Mobile Consumer visitors by automated means may include the following:</p>
+        
+        <ul>
+            <li><p>Cookies:</p>
+                
+                <p>  Like many websites, we use “cookies” to collect information. A cookie is a small data file placed on your computer or mobile device for record-keeping purposes. We may use both persistent cookies, which remain on your computer, and session ID cookies, which expire at the end of your browser session. Persistent cookies may be used to remember your device for future logins to the Services. Session cookies may be used to enable certain features of the Services, to better understand how users interact with the Services and to monitor web traffic routing from and aggregate usage of the Services. You can instruct your browser, by changing its options, to stop accepting cookies or to prompt you before accepting a cookie from the websites you visit. If you do not accept cookies, however, you may not be able to use all functionality of the Services.</p></li>
+            <li><p>Log Data:</p>
+                
+                <p>  When you interact with the Services our web servers automatically record information that your browser sends whenever you visit a website (“Log Data”). This Log Data may include information such as your device’s Internet Protocol (IP) address, browser type, browser software version, the web page you were visiting before you came to our Services, pages from our websites and Services that you visit, the time spent on those pages, clicks, information you search for when using our Services, access times and dates, redemption information and other statistics;</p></li>
+            <li><p>Web Beacons:</p>
+                
+                <p>  We also may employ software technology known as “web beacons” or “tracking tags” to help us keep track of what content from the Services is effective and to serve relevant advertising to you. Web beacons are small graphics with a unique identifier that may be invisible to you and that are used to track the online activity of Internet users. Web beacons may be embedded in the web pages you view or email messages you receive. Web beacons or similar technologies may be used for a number of purposes, including, without limitation, to count visitors or users of our Services, to monitor how users navigate or interact with the Services, to count how many emails were sent and opened, or to count how many specific items or links were viewed.</p></li>
+            <li><p>Geolocation:</p>
+                
+                <p>  The Mobile Consumer mobile application may access geo-location data generated by your mobile device, if the settings on your mobile device allow us to receive geo-location data. This information may be used to identify offers relevant to your immediate location. The Mobile Consumer mobile application does not transmit geo-location data from your mobile device to any web server or other external device. This geo-location data remains on your mobile device at all times.</p>
+                
+                <p>  In addition, we may use a variety of other technologies that collect similar information for security and fraud detection purposes.</p></li>
+        </ul>
+        
+        
+        <p><br/></p>
+        
+        <h2>4.   THIRD PARTY ANALYTICS PROVIDERS AND AD SERVERS</h2>
+        
+        <p><br/>
+        We work with vendors (including network advertisers, advertising companies and analytics companies) to provide us with information regarding traffic on the Services, to serve advertisements, including our advertisements elsewhere online, and to provide us with information regarding the use of the Services and the effectiveness of our advertisements.</p>
+        
+        <p> In connection with providing analytics and advertisement services, third parties may collect certain information about your interactions with the Services or other websites and online content. These third parties may set and access their own technologies (including cookies and web beacons) and may otherwise collect or have access to information about you. These technologies may be used to, among other things, target advertisements, prevent you from seeing the same advertisements too many times and to conduct research regarding the usefulness of certain advertisements to you.</p>
+        
+        <p> While we may use a variety of service providers to perform advertising and analytics services, most of these companies are members of the Network Advertising Initiative ("NAI") or the Digital Advertising Alliance ("DAA") Self-Regulatory Program for Online Behavioral Advertising. You may visit <a href="http://www.networkadvertising.org/managing/opt_out.asp">http://www.networkadvertising.org/managing/opt_out.asp </a> to learn more about targeted advertising and the “opt-out” procedures of third party advertising networks and companies that are NAI members. You may also visit <a href="http://www.aboutads.info/choices/">http://www.aboutads.info/choices/</a> for information regarding targeted advertising and an “opt-out” by participating advertising networks and companies in the DAA Self-Regulatory Program. Please note that these opt-out mechanisms are not opt-outs from all online advertising, just certain targeted advertising. Even if you opt out, you will continue to receive generic ads while visiting the Services and elsewhere online.</p>
+        
+        <p><br/></p>
+        
+        <h2>5.   SHARING INFORMATION WITH THIRD PARTIES</h2>
+        
+        <p><br/>
+        We may share non-Personal Information, such as aggregated user statistics, with third parties in our discretion. We do not share your Personal Information with any third parties for those third parties' marketing purposes unless we first provide you with the opportunity to opt-in to or opt-out of such sharing. We also may share the information (including Personal Information) we have collected about you with your consent and as disclosed at the time you provide your information, as described in this Privacy Policy, and in the following circumstances.</p>
+        
+        <ul>
+            <li><p>Service Providers.</p>
+                
+                <p>  We may employ third party companies and individuals to perform certain services on behalf of or relating to the business or administration of the Services, such as website hosting, providing website usage analytics, sending email or other communications, providing marketing assistance and data analysis, providing consumer affairs services or performing other business or administrative services. These third parties may have access to your Personal Information solely as necessary to carry out the services they are performing for you or for us.</p></li>
+            <li><p>Administrative and Legal Purposes.</p>
+                
+                <p>  Mobile Consumer cooperates with government and law enforcement officials and private parties to enforce and comply with the law. We will disclose any information about you to government or law enforcement officials or private parties as we, in our sole discretion, believe necessary or appropriate to respond to claims and legal process (including but not limited to subpoenas), at the request of governmental authorities conducting an investigation, to protect the property and rights of Mobile Consumer or a third party, to protect the safety of the public or any person, or to prevent or stop activity we may consider to be, or to pose a risk of being, illegal, unethical or legally actionable activity.</p></li>
+            <li><p>With Other Third Parties at Your Request.</p>
+                
+                <p>  You may be presented with opportunities to receive information or marketing offers from one or more third parties. If you agree at that time to have your Personal Information shared (either by opting-in or not choosing to opt-out), your Personal Information will be disclosed to that third party and will be subject to the privacy policy and practices of that third party. We are not responsible for the privacy policies and practices of third parties, and, if you later decide that you no longer want to receive communications from a third party, you will need to contact that third party directly. You also may request, such as through your use of a Social Media Service, that we share information about you with others, and we will typically do so under those circumstances.</p></li>
+            <li><p>Business Transfers.</p>
+                
+                <p>  Mobile Consumer may transfer or otherwise share some or all of its assets, including your Personal Information, in connection with a merger, acquisition, reorganization or sale of assets (including as part of the due-diligence process with any potential acquiring entity) or in the event of bankruptcy, subject to this Privacy Policy.</p></li>
+            <li><p>Sweepstakes, Contests and Promotions.</p>
+                
+                <p>   We may offer sweepstakes, contests and other promotions (each a "Promotion") that may require registration. By participating in a Promotion, you are agreeing to the official rules that govern that Promotion, which may contain specific requirements of you, including, except where prohibited by law, allowing the sponsor or sponsors of the Promotion to use your name, voice, likeness or other indicia of persona in advertising or marketing associated with the Promotion. If you choose to enter a Promotion, in accordance with the official rules that govern that Promotion, your Personal Information may be disclosed to third parties or the public in connection with the administration of the Promotion, including, without limitation, in connection with winner selection, prize fulfillment or as required by law or permitted by the Promotion's official rules, such as on a winner’s list.</p></li>
+        </ul>
+        
+        
+        <p><br/></p>
+        
+        <h2>6.   CHANGING YOUR INFORMATION AND PREFERENCES</h2>
+        
+        <p><br/>
+        If at any time you do not wish to receive marketing email messages from us please click the unsubscribe link provided within the email message or send us an email at support@mobiconsumers.com. Please note that certain communications relating to your account or use of the Services (for example, administrative and service announcements) may be unaffected if you opt-out of receiving marketing messages from the Services.</p>
+        
+        <p>You can access, update and delete your contact information by logging into your account. If you have other requests or questions, would like to access or request a correction to any other of your personal information, please Contact Us.</p>
+        
+        <p>Mobile Consumer will make good faith efforts to make requested changes in our active databases as soon as reasonably practicable. If you would like to close your account, please email us at support@mobiconsumers.com. Note, however, that residual data may remain on backup media or persist in our databases for other reasons, and we may need retain copies of your information for recordkeeping purposes or as necessary to comply with our legal obligations.</p>
+        
+        <p><br/></p>
+        
+        <h2>7.   PROTECTION OF YOUR PERSONALLY IDENTIFIABLE INFORMATION</h2>
+        
+        <p><br/>
+        Mobile Consumer uses commercially reasonable efforts and generally accepted industry standards to secure the information we collect from and about you. However, no method of information communication or storage is one hundred percent secure. Thus, Mobile Consumer cannot ensure and does not warrant the security of any information shared with us. You use the Services and provide us with your information at your own risk.</p>
+        
+        <p><br/></p>
+        
+        <h2>8.   LINKS TO OTHER WEBSITES</h2>
+        
+        <p><br/></p>
+        
+        <p>External or third party websites that are accessible through links from our Services are not controlled by us and may have different privacy practices from ours. We are not responsible for the content or privacy practices of those websites, and our Privacy Policy does not apply to information collected by those sites. We recommend that you check the privacy policies provided by these other sites or their proprietors prior to using their services or providing them with information.</p>
+        
+        <p><br/></p>
+        
+        <h2>9.   INTERNATIONAL USERS</h2>
+        
+        <p><br/></p>
+        
+        <p>The Services are hosted and operated in the United States of America. Those who access or use the Services from other jurisdictions do so at their own choice and risk and are solely responsible for compliance with local law. Please note that the Personal Information you submit when using or interacting with our Services will be transferred to and stored in the United States to be processed by us so we can provide the Services to you as set forth in this Privacy Policy and the Terms and Conditions.</p>
+        
+        <p>If you are not a resident of the United States, you acknowledge and agree that we may collect, process, and store your Personal Information outside your home jurisdiction and within the United States, a jurisdiction in which the privacy laws may not be as comprehensive as those in the country where you reside or are a citizen.</p>
+        
+        <p><br/></p>
+        
+        <h2>10.  CHANGES TO THE PRIVACY POLICY</h2>
+        
+        <p><br/>
+        We may update the Privacy Policy from time to time. We will notify you of any material changes by posting the new Privacy Policy and we may, in our discretion, contact you through the Services or via any contact information on file. You are advised to consult this policy regularly for any changes. However, we will not make material changes to how we use your previously collected Personal Information, unless you consent to the new or revised policy or generally to such uses.</p>
+        
+        <p><br/></p>
+        
+        <h2>11.CHILDREN’S PRIVACY</h2>
+        
+        <p><br/>
+        The Services are intended for users eighteen (18) years of age or older and is designed for use by adults. By using the Services, you acknowledge that you are at least 18 years old. Note that the Services are not directed at or intended for use by children and that Mobile Consumer does not knowingly collect information from children. If we discover that we have inadvertently collected information from anyone younger than the age of 18, we will delete that information.</p>
+        
+        <p><br/></p>
+        
+        <h2>12.  CONTACT US</h2>
+        
+        <p><br/>
+        If you have questions or concerns about our privacy practices or this Privacy Policy, please contact us at <a href="mailto:privacy@mobiconsumers.com">privacy@mobiconsumers.com</a> or by postal mail at the following address:</p>
+        
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Privacy California</p>
+        
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mobile Consumer LLC</p>
+        
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15 E Putnam Ave #204</p>
+        
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Greenwich, CT 06830</p>
+        
+        <p><br/></p>
+        
+        <h2>13.  CALIFORNIA RESIDENTS – YOUR PRIVACY RIGHTS</h2>
+        
+        <p><br/>
+        California law permits visitors who are California residents to request certain information regarding our disclosure of Personal Information to third parties for their direct marketing purposes. Alternatively, the law provides that a company may comply, as Mobile Consumer does, by disclosing in its privacy policy that it provides consumers choice (to opt-in or opt-out) regarding sharing Personal Information with third parties for those third parties’ direct marketing purposes, and information on how to exercise that choice. As stated above in this Privacy Policy, Mobile Consumer provides you choice prior to sharing your Personal Information with third parties for their direct marketing purposes. If you do not opt-in or if you do not choose to opt-out at the time Mobile Consumer offers that choice, Mobile Consumer does not share your Personal Information with that identified third party for its direct marketing purposes.</p>
+        
+        <p>If you are a California resident and you have questions about our practices with respect to sharing information with third parties for their direct marketing purposes and your ability to exercise choice, please send your request in writing by email to <a href="mailto:privacy@mobiconsumers.com">privacy@mobiconsumers.com</a> or by postal mail to:</p>
+        
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Privacy California</p>
+        
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mobile Consumer LLC</p>
+        
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15 E Putnam Ave #204</p>
+        
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Greenwich, CT 06830</p>
+        
+        <p>You must put the statement "Your California Privacy Rights" in the subject field of your email or include it in your writing if you choose to write to us at the designated mailing address. You must include your name, street address, city, state and ZIP code. We are not responsible for notices that are not labeled or sent properly or that do not contain complete information. Please allow 30 days for a response, and note that we are required to respond only to one request per person each year.</p>
     </body>
 </html>

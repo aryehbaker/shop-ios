@@ -12,7 +12,7 @@
 #import <iSQLite/iSQLite.h>
 #import "VINavMapViewController.h"
 
-@interface VIMallsViewController ()<VIMapViewDelegate>
+@interface VIMallsViewController ()<VIMapViewDelegate,CLLocationManagerDelegate>
 {
     NSMutableArray *allCity;
     NSMutableArray *curentCity;
@@ -20,6 +20,7 @@
     
     VIMapView *mapview;
 }
+@property(nonatomic,strong) CLLocationManager *_locmgr;
 
 @end
 
@@ -44,11 +45,17 @@
     
     cfg = [[VICfgTableView alloc] initWithFrame:Frm(0, endY, self.view.w, Space(endY)) cfg:@"tbcfg.json#list_of_malls"];
     
-    NSMutableArray *citys = [[iSQLiteHelper getDefaultHelper] searchAllModel:[MallInfo class]];
+    cfg.delegate = self;
+    [self.view addSubview:cfg];
     
+    [self startShowMalls:[VINet currentLat] lon:[VINet currentLon]];
+}
+
+- (void)startShowMalls:(double)_lat lon:(double)_lon
+{
+    NSMutableArray *citys = [[iSQLiteHelper getDefaultHelper] searchAllModel:[MallInfo class]];
     for (MallInfo *d in citys) {
-        double lat = [VINet currentLat],lon = [VINet currentLon];
-        double doub = [VINet distancOfTwolat1:lat lon1:lon lat2:d.Lat lon2:d.Lon];
+        double doub = [VINet distancOfTwolat1:_lat lon1:_lon lat2:d.Lat lon2:d.Lon];
         [d setDistance:doub];
         [allCity addObject:d];
     }
@@ -68,17 +75,15 @@
     
     [curentCity addObjectsFromArray:allCity];
     [cfg setData:curentCity];
-    cfg.delegate = self;
-    [self.view addSubview:cfg];
-
+    
     int i = 0;
     for (MallInfo *mall in allCity) {
         VIPinAnnotationView *pin = [[VIPinAnnotationView alloc] initWithTitle:mall.Name sub:mall.Address lat:mall.Lat lon:mall.Lon];
-            pin.tag = i;
-            [mapview addAnnotation:pin];
-            i++;
-     }
-     [self displayNear];
+        pin.tag = i;
+        [mapview addAnnotation:pin];
+        i++;
+    }
+    [self displayNear];
 }
 
 
@@ -223,6 +228,7 @@
     distance.font = Bold(18);
     if (isHe) {
        distance.text = [NSString stringWithFormat:@"\u200F %0.2f ק\"מ",mf.distance];
+        NSLog(@"%@",mf);
     }else{
        distance.text = [NSString stringWithFormat:@"%0.2f km",mf.distance];
     }

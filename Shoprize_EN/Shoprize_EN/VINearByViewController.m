@@ -284,9 +284,8 @@ static ListType currentType;
     
     UIButton *nav = [load button4Tag:4010];
     nav.layer.cornerRadius = nav.w /2 ;
-    [nav setTitle:Lang(@"navi_title") selected:Lang(@"navi_title")];
-    [nav setTitleColor:[@"#ffffff" hexColor] forState:UIControlStateNormal];
-    nav.titleLabel.font = Black(16);
+    [nav setImageEdgeInsets:UIEdgeInsetsMake(8, 8, 8, 8)];
+    [nav setImage:@"ic_action_directions_white.png" selectd:@"ic_action_directions_white.png"];
     [nav addTarget:self action:@selector(goToMap:)];
 }
 
@@ -359,7 +358,7 @@ static bool clear_by_hand;
                 NSString *t = [@"about_surprise" lang];
                 UILabel *titleLabel = [VILabel createManyLines:Frm(10, 10, 300, 0) color:@"#464646" ft:Regular(16)  text:t];
                 titleLabel.text = [t rtlTxt];
-                [titleLabel setH:50];
+                [titleLabel autoHeight];
                 titleLabel.textAlignment = NSTextAlignmentCenter;
                 [headerView setH:titleLabel.endY+10];
                 [headerView addSubview:titleLabel];

@@ -51,7 +51,7 @@ static ListType currentType;
     [section1 setBackgroundcolorByHex:@"#ff4747"];
     section1.tag = Suprises;
     [section1 setTitleColor:[@"#ffffff" hexColor] forState:UIControlStateNormal];
-    section1.titleLabel.font = Bold(18);
+    section1.titleLabel.font = Bold(17);
     [section1 addTarget:self action:@selector(changeType:)];
     [top1 addSubview:section1];
     UIImageView *icon = [@"supriset_w.png" imageViewForImgSizeAtX:section1.w-27 Y:6];
@@ -62,7 +62,8 @@ static ListType currentType;
     [section2 setTitle:Lang(@"main_deals") selected:Lang(@"main_deals")];
     [section2 setTitleColor:[@"#ffffff" hexColor] forState:UIControlStateNormal];
     [section2 setBackgroundcolorByHex:@"#ff4747"];
-    section2.titleLabel.font = Bold(18);
+    section2.titleLabel.font = Bold(17);
+    section2.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 15);
     section2.tag = Deals;
     [section2 addTarget:self action:@selector(changeType:)];
     [top1 addSubview:section2];
@@ -75,7 +76,7 @@ static ListType currentType;
     [section3 setTitleColor:[@"#ffffff" hexColor] forState:UIControlStateNormal];
     [section3 addTarget:self action:@selector(changeType:)];
     [section3 setBackgroundcolorByHex:@"#ff4747"];
-    section3.titleLabel.font = Bold(18);
+    section3.titleLabel.font = Bold(17);
     section3.tag = Stores;
     icon = [@"store_w.png" imageViewForImgSizeAtX:section1.w-27 Y:7];
     icon.tag = 100;
@@ -115,7 +116,13 @@ static ListType currentType;
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(reloadTheNearMallDetail:) name:_NOTIFY_MALL_CHANGED object:nil];
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(reloadSurpiseShow:) name:@"reloadSurpiseShow" object:nil];
     
-    NSString *mall_select = [NSUserDefaults getValue:CURRENT_MALL_USER_SELECTED];
+    
+    //NSString *mall_select = [NSUserDefaults getValue:CURRENT_MALL_USER_SELECTED];
+    
+    //只要到这里就从新加载最近的Mall
+    [VINet get:@"/api/malls/nearby?radius=0" args:nil target:self succ:@selector(getMalls:) error:@selector(getMallsFail:) inv: deals.count> 0 ? nil : self.view];
+    
+    /*
     if (mall_select == nil) {
         [VINet get:@"/api/malls/nearby?radius=0" args:nil target:self succ:@selector(getMalls:) error:@selector(getMallsFail:) inv: deals.count> 0 ? nil : self.view];
     }else{
@@ -124,12 +131,10 @@ static ListType currentType;
 
         ((VIAppDelegate *)[UIApplication sharedApplication].delegate).currentMall = selectedOne;
         [VINet get:@"/api/malls/nearby?radius=0" args:nil target:self succ:@selector(rebulidMall:) error:@selector(getMallsFail:) inv:nil];
-    
         self.nav_title.text = selectedOne.Name;
-        
         [self refreshToShowTheTable];
-        
     }
+    */
     
     [VINet regPushToken];
 }

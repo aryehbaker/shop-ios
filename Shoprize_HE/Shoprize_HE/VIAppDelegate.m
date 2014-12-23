@@ -25,6 +25,8 @@
 #import "VILocalNotify.h"
 #import "VIUncaughtExceptionHandler.h"
 
+#define RAIDO_R 200
+
 @interface VIAppDelegate() {
      REFrostedViewController *frostedViewController;
 }
@@ -290,12 +292,13 @@ static NSDate *latestLoc;
     if (locations!=nil && locations.count > 0) {
         //save user Info
         CLLocation *location = [locations lastObject];
+        [[NSUserDefaults standardUserDefaults] setValue:Fmt(@"%.7f,%.7f",location.coordinate.latitude,location.coordinate.longitude) forKey:@"location"];
+        
         if (latestLoc!=nil && abs([location.timestamp timeIntervalSinceDate:latestLoc]) < 10) {
             //小于30s直接返回,不做任何操作
             return;
         }
         latestLoc = location.timestamp;
-        [[NSUserDefaults standardUserDefaults] setValue:Fmt(@"%.7f,%.7f",location.coordinate.latitude,location.coordinate.longitude) forKey:@"location"];
         DEBUGS(@"Location complete:%@",location);
         [self calcIfOpenNewMall];
     }
@@ -422,22 +425,22 @@ static NSDate *latestLoc;
         int y = IS_RETINA_4 ? 220 : 180;
         UIImageView *t2 = [@"search.png" imageViewForImgSizeAtX:111.5 Y:y];
         [torle addView:t2 page:1];
-        txt = [VILabel createLableWithFrame:Frm(36, t2.endY,t1.w - 72  , 40) color:@"#ffffff" font:Regular(18) align:CENTER];
-        txt.numberOfLines = 2;
+        txt = [VILabel createLableWithFrame:Frm(36, t2.endY,t1.w - 60  , 60) color:@"#ffffff" font:Regular(18) align:CENTER];
+        txt.numberOfLines = 3;
         txt.text = Lang(@"index_welcome_02");
         [torle addView:txt page:1];
         
         t2 = [@"gift.png" imageViewForImgSizeAtX:111.5 Y:y];
         [torle addView:t2 page:2];
-        txt = [VILabel createLableWithFrame:Frm(36, t2.endY,t1.w - 72  , 40) color:@"#ffffff" font:Regular(18) align:CENTER];
-        txt.numberOfLines = 2;
+        txt = [VILabel createLableWithFrame:Frm(36, t2.endY,t1.w - 60  , 60) color:@"#ffffff" font:Regular(18) align:CENTER];
+        txt.numberOfLines = 3;
         txt.text = Lang(@"index_welcome_03");
         [torle addView:txt page:2];
         
         t2 = [@"heart.png" imageViewForImgSizeAtX:111.5 Y:y];
         [torle addView:t2 page:3];
-        txt = [VILabel createLableWithFrame:Frm(30, t2.endY,t1.w - 60  , 60) color:@"#ffffff" font:Regular(16) align:CENTER];
-        txt.numberOfLines = 3;
+        txt = [VILabel createLableWithFrame:Frm(30, t2.endY,t1.w - 60  , 80) color:@"#ffffff" font:Regular(18) align:CENTER];
+        txt.numberOfLines = 4;
         txt.text = Lang(@"index_welcome_04");
         [torle addView:txt page:3];
         
@@ -453,6 +456,10 @@ static NSDate *latestLoc;
     if ([CLLocationManager locationServicesEnabled] &&
         [CLLocationManager significantLocationChangeMonitoringAvailable])
     {
+        if ([self localNotifyisOff]) {
+            self.backTaskId = UIBackgroundTaskInvalid;
+            return;
+        }
         self.backTaskId = [application beginBackgroundTaskWithExpirationHandler:^{
             
             [self.locationManager stopUpdatingLocation];
@@ -477,7 +484,7 @@ static NSDate *latestLoc;
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     self.isActive = YES;
-    if ([CLLocationManager locationServicesEnabled]){
+    if ([CLLocationManager locationServicesEnabled] && ![self localNotifyisOff]){
         [self.locationManager startUpdatingLocation];
         [self.locationManager stopMonitoringSignificantLocationChanges];
     }
@@ -508,7 +515,7 @@ static NSDate *latestLoc;
     NSArray *malls  = [MallInfo allmall];
     for(MallInfo *mall in malls){
         CLLocationCoordinate2D center = CLLocationCoordinate2DMake(mall.Lat, mall.Lon);
-        CLRegion *region = [[CLCircularRegion alloc] initWithCenter:center radius:500 identifier:mall.MallAddressId];
+        CLRegion *region = [[CLCircularRegion alloc] initWithCenter:center radius:RAIDO_R identifier:mall.MallAddressId];
         NSLog(@"%@",region);
         [self.locationManager startMonitoringForRegion:region];
     }
@@ -652,7 +659,7 @@ static NSDate *latestLoc;
         shareImg = ego.image;
     }
     NSString *prefix = @"מצאתי מבצע שווה באפליקציית המבצעים שופרייז";
-    NSString *stringUrl = @"https://itunes.apple.com/us/app/shoprize/id916054683?mt=8";
+    NSString *stringUrl = @"http://ow.ly/Gk7u5";
     NSString *name      = [shareInfo stringValueForKey:@"name"];
     
     NSArray *activityItems = [NSArray arrayWithObjects:Fmt(@"%@\n %@ %@",prefix,name,text),

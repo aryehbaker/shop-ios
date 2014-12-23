@@ -59,7 +59,7 @@
 
 - (void)loadNetworkdata {
     [VINet get:@"/api/stores/nearby?radius=0" args:nil target:self succ:@selector(dataArrive:) error:@selector(dataArrive:) inv:
-     storeData.count==0 ? self.view : nil ];
+     self.view];
 }
 
 -(void)dataArrive:(id)resp

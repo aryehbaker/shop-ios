@@ -58,6 +58,11 @@
     [finish addTarget:self action:@selector(gotomain:)];
     finish.enabled = NO;
     [btn addSubview:finish];
+    
+    if (isEn) {
+        [finish setBackgroundColor:[@"#FC484D" hexColor]];
+        [finish setTitleColor:[@"#ffffff" hexColor] forState:UIControlStateNormal];
+    }
 
     [self.view addSubview:btn];
 }

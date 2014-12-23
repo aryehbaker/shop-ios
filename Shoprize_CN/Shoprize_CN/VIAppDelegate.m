@@ -17,6 +17,7 @@
 #import "VIAroundMeViewController.h"
 
 
+
 @interface VIAppDelegate () {
     REFrostedViewController *frostedViewController;
 }
@@ -495,7 +496,7 @@ static NSDate *latestLoc;
     NSArray *malls  = [MallInfo allmall];
     for(MallInfo *mall in malls){
         CLLocationCoordinate2D center = CLLocationCoordinate2DMake(mall.Lat, mall.Lon);
-        CLCircularRegion *region = [[CLCircularRegion alloc] initWithCenter:center radius:500 identifier:mall.MallAddressId];
+        CLCircularRegion *region = [[CLCircularRegion alloc] initWithCenter:center radius:200 identifier:mall.MallAddressId];
         NSLog(@"%@",region);
         [self.locationManager startMonitoringForRegion:region];
     }

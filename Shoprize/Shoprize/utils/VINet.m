@@ -157,18 +157,21 @@ static NSMutableDictionary *stores;
     if (req.waitInView != nil) {
         VIMBProgressHUD *hd = [VIMBProgressHUD showHUDAddedTo:req.waitInView animated:YES];
         if (isHe) {
-            hd.customView = [@"supriset_loading.png" imageView];
+            UIImageView *imgv = [@"shoprise_extra.png" imageView];
+            [imgv setW:imgv.w/2 andH:imgv.h/2];
+            hd.customView = imgv;
             hd.color = [UIColor clearColor];
+            hd.animationType = MBProgressHUDAnimationZoom;
             hd.mode = MBProgressHUDModeCustomView;
-
-            UIActivityIndicatorView *acti = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            hd.backgroundColor = [@"#000000" hexColorAlpha:.4];
+                
+            UIActivityIndicatorView *acti = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
             [acti setFrame:Frm((hd.w - 30) / 2, (hd.h - 30) / 2 + 35, 30, 30)];
             [acti startAnimating];
             [hd addSubview:acti];
 
         }
 
-        hd.animationType = MBProgressHUDAnimationZoom;
         hd.removeFromSuperViewOnHide = YES;
         hd.labelFont = [UIFont systemFontOfSize:12];
 
@@ -211,12 +214,11 @@ static NSMutableDictionary *stores;
 #define radius 6378.16;
 
 + (double)distancOfTwolat1:(double)lat1 lon1:(double)lon1 lat2:(double)lat2 lon2:(double)lon2 {
-    double dlon = [VINet radians:(lon2 - lon1)];
-    double dlat = [VINet radians:(lat2 - lat1)];
-    double a = (sin(dlat / 2) * sin(dlat / 2)) + cos([VINet radians:lat1]) * cos([VINet radians:lat2])
-            * (sin(dlon / 2) * sin(dlon / 2));
-    double angle = 2 * atan2(sqrt(a), sqrt(1 - a));
-    return angle * radius;;
+    
+    CLLocation *l1 = [[CLLocation alloc] initWithLatitude:lat1 longitude:lon1];
+    CLLocation *l2 = [[CLLocation alloc] initWithLatitude:lat2 longitude:lon2];
+    CLLocationDistance distance = [l1 distanceFromLocation:l2];
+    return distance / 1000;
 }
 
 + (double)currentLat {
@@ -410,7 +412,8 @@ static NSMutableDictionary *stores;
 }
 
 - (void)hideHUDView {
-    [VIMBProgressHUD hideHUDForView:self.waitInView animated:YES];
+    
+    [VIMBProgressHUD hideHUDForView:self.waitInView animated:NO];
 }
 
 - (void)submitFormSuccess:(NSDictionary *)backInfo {

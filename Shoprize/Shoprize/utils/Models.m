@@ -355,7 +355,7 @@
         welcome.MallId = mallid;
     }else{
         double miss = abs(welcome.visitTime - v);
-        if (miss > 30 * 60) {
+        if (miss > 24 * 60 * 60) {
             isNew = YES;
         }
     }

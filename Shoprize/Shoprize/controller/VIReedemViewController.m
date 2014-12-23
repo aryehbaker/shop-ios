@@ -167,12 +167,10 @@
     }
     
     //英文的Deal
-    if (is_en_deal) {
-        
-        NSString *code = [extra stringValueForKey:@"RedemptionCode"];
-        if (code!=nil && code.length>0) {
-            [self completeReedem:@{@"RedemptionCode": code}];
-        }
+   
+    NSString *deal_code = [extra stringValueForKey:@"Code"];
+    if (deal_code!=nil && deal_code.length>0) {
+         [self completeReedem:@{@"RedemptionCode": deal_code}];
     }
 }
 

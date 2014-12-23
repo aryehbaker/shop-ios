@@ -28,30 +28,35 @@
     UIFont *blk = Bold(13);
     
     NSString *hourS = [Fonts openHourValue:hour];
+    int startY = 20,initW = 160;
     
-    VIRTLabel *h = [[VIRTLabel alloc] initWithFrame:Frm(10, 20, 160, 0)];
+    VIRTLabel *h = [[VIRTLabel alloc] initWithFrame:Frm(10, startY, initW, 0)];
     [h setTextColor:[@"#252525" hexColor]];
     [h setText:hourS];
     [h setFont:reg];
     [h setTextAlignment:isEn ? RTTextAlignmentLeft : RTTextAlignmentRight];
     [h setH:h.optimumSize.height];
-    [continer addSubview:h];
-    
     
     UILabel *ht = [[UILabel alloc] initWithFrame:Frm(h.endX+3, h.y, continer.w-20-h.w, 15)];
     ht.text = [@"open_hour" lang];
     ht.font = blk;
-    [continer addSubview:ht];
     
-    if(isEn){
-        [ht setTextAlignment:NSTextAlignmentRight];
-        [ht setX:10];
-        [h setX:ht.endX+5];
+    if (![hourS isNone])
+    {
+        [continer addSubview:h];
+        [continer addSubview:ht];
+        
+        if(isEn){
+            [ht setTextAlignment:NSTextAlignmentRight];
+            [ht setX:10];
+            [h setX:ht.endX+5];
+        }
+        startY = h.endY;
     }
     
     if (![addr isEqualToString:@"none"]) {
         
-    h = [[VIRTLabel alloc] initWithFrame:Frm(10, h.endY+5, h.w, 0)];
+    h = [[VIRTLabel alloc] initWithFrame:Frm(10, startY+5, initW, 0)];
     [h setTextColor:[@"#252525" hexColor]];
     [h setFont:reg];
     [h setTextAlignment:isEn ? RTTextAlignmentLeft : RTTextAlignmentRight];
@@ -131,7 +136,7 @@ static KUtils *k;
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:Fmt(@"tel:%@",telnum)]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:Fmt(@"tel://%@",telnum)]];
     }
 }
 

@@ -215,9 +215,15 @@
   
     UIButton *nav = [load button4Tag:4010];
     nav.layer.cornerRadius = nav.w /2 ;
-    [nav setTitle:Lang(@"navi_title") selected:Lang(@"navi_title")];
-    [nav setTitleColor:[@"#ffffff" hexColor] forState:UIControlStateNormal];
-    nav.titleLabel.font = Bold(18);
+   
+    if (isEn) {
+        [nav setImageEdgeInsets:UIEdgeInsetsMake(8, 8, 8, 8)];
+        [nav setImage:@"ic_action_directions_white.png" selectd:@"ic_action_directions_white.png"];
+    }else{
+        [nav setTitle:Lang(@"navi_title") selected:Lang(@"navi_title")];
+        [nav setTitleColor:[@"#ffffff" hexColor] forState:UIControlStateNormal];
+        nav.titleLabel.font = Bold(18);
+    }
     
 }
 

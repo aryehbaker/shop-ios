@@ -80,7 +80,7 @@
         "zh-Hans": "激活已经达到设定的最大次数"
     },
     "Http_3002": {
-        "en": "Coupons are already in use",
+        "en": "coupon is already in use",
         "zh-Hans": "优惠券已使用"
     },
     "Http_3003": {

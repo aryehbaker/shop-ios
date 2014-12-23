@@ -29,6 +29,7 @@
 #ifdef __IPHONE_7_0
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
 #endif
+    
 }
 
 - (id)AppDelegate {

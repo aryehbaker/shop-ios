@@ -5,6 +5,21 @@
   "index": 1
   },
   {
+  "title": "menu_mystore",
+  "icon": "my_love_w.png",
+  "index": 4
+  },
+  {
+  "title": "menu_mysuprise",
+  "icon": "my_suprise_w.png",
+  "index": 3
+  },
+  {
+  "title": "menu_malls",
+  "icon": "mail_w.png",
+  "index": 5
+  },
+  {
   "title": "menu_profile",
   "icon": "profile_w.png",
   "index": 2,
@@ -40,21 +55,6 @@
                "index" : 25
                }
         ]
-  },
-  {
-  "title": "menu_mysuprise",
-  "icon": "my_suprise_w.png",
-  "index": 3
-  },
-  {
-  "title": "menu_mystore",
-  "icon": "my_love_w.png",
-  "index": 4
-  },
-  {
-  "title": "menu_malls",
-  "icon": "mail_w.png",
-  "index": 5
   },
   {
   "title": "menu_invite",

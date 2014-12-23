@@ -80,7 +80,6 @@
         [imageView addTapTarget:self action:@selector(changeHeadImage:)];
         
 
-        
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 170,200, 40)];
         label.text = [VINet info:LName];
         label.textAlignment = NSTextAlignmentCenter;
@@ -179,7 +178,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   
     NSDictionary *info = [self.curentData objectAtIndex:indexPath.row];
     
     if ([info arrayValueForKey:@"children"] != nil) {
@@ -225,7 +223,6 @@
         checbtn = (UIButton*)[tcell viewWithTag:400];
         VIAppDelegate *app = ((VIAppDelegate *)[UIApplication sharedApplication].delegate);
         if (!checbtn.selected){ //选中为关
-            
             UIView *tip = [self loadXib:@"UIExt_HE.xib" withTag:100];
             tip.backgroundColor = [UIColor clearColor];
             poptip = [[CMPopTipView alloc] initWithCustomView:tip];

@@ -16,6 +16,8 @@
 #import "VIUncaughtExceptionHandler.h"
 #import "VIAroundMeViewController.h"
 
+#define RAIDO_R 200
+
 
 @interface VIAppDelegate () {
     REFrostedViewController *frostedViewController;
@@ -495,7 +497,7 @@ static NSDate *latestLoc;
     NSArray *malls  = [MallInfo allmall];
     for(MallInfo *mall in malls){
         CLLocationCoordinate2D center = CLLocationCoordinate2DMake(mall.Lat, mall.Lon);
-        CLCircularRegion *region = [[CLCircularRegion alloc] initWithCenter:center radius:500 identifier:mall.MallAddressId];
+        CLCircularRegion *region = [[CLCircularRegion alloc] initWithCenter:center radius:RAIDO_R identifier:mall.MallAddressId];
         NSLog(@"%@",region);
         [self.locationManager startMonitoringForRegion:region];
     }

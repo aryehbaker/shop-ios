@@ -10,6 +10,7 @@
 #import "CMPopTipView.h"
 #import "VIHtmlFileViewController.h"
 #import <SystemConfiguration/SystemConfiguration.h>
+#import "KUtils.h"
 
 @interface VIUserProfilesViewController ()
 {
@@ -273,13 +274,16 @@
     [self textFieldShouldReturn:nil];
     UIView *cts = [[UIView alloc] initWithFrame:Frm(0, 0, 270, 0)];
     UILabel *title = [VILabel createLableWithFrame:Frm(15, 15, 240, 25) color:@"#1C1C1C" font:Black(18) align:RIGHT];
+    title.textAlignment = Align;
     title.text = Lang(@"delete_accout_title");
+    [title autoHeight];
     [cts addSubview:title];
     
     NSString *tx = Lang(@"delete_accout_ctnt");
     UILabel *ctx = [VILabel createManyLines:Frm(15, title.endY, 240, 0) color:@"#323232" ft:Regular(15) text:tx];
     ctx.textAlignment = Align;
     ctx.text = tx;
+    [ctx autoHeight];
     [cts addSubview:ctx];
     
     UIButton *dele = [UIButton buttonWithType:UIButtonTypeCustom];

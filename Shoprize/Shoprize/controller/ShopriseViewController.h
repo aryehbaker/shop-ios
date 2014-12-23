@@ -39,7 +39,8 @@ typedef NS_ENUM(NSInteger, BarItem) {
 
 #define RED  (isHe ? @"#FF4745" : @"#FF1500")
 
-@interface ShopriseViewController : VIBaseViewController<CLLocationManagerDelegate>
+@interface ShopriseViewController : VIBaseViewController
+
 @property(nonatomic,strong) UIView *nav;
 @property(nonatomic,strong) UILabel *nav_title;
 @property(nonatomic,strong) UIButton *leftOne;
