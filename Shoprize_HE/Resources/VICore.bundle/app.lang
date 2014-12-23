@@ -65,7 +65,7 @@
      "invite_now"           :{ "en" : "Invite","he": "הזמנת חבר"},
      "deveice_not_suppor"   :{ "en" : "Device can not send messages","he": "מכשיר זה אינו יכול לשלוח הודעות"},
      "should_check_one"     :{ "en" : "You should choose least one person" ,"he": "יש לבחור אדם אחד לפחות"},
-     "invint_sms_txt"       :{ "en" : "Hi, I use Shoprise app now, and loving it!","he": "היי, מה המצב ? רציתי להגיד לך שאנחנו משתמשים באפליקצית SHOPRIZE. אפליקציה שחוסכת לנו כסף בשופינג, חושפת אותנו לכל המבצעים ומפנקת בהטבות בלעדיות בכניסה לחנויות ! ממש כדאי לך להוריד ולנסות http://shoprize.co.il/"},
+     "invint_sms_txt"       :{ "en" : "Hi, I use Shoprise app now, and loving it!","he": "היי, מה המצב ? רציתי להגיד לך שאנחנו משתמשים באפליקצית SHOPRIZE. אפליקציה שחוסכת לנו כסף בשופינג, חושפת אותנו לכל המבצעים ומפנקת בהטבות בלעדיות בכניסה לחנויות ! ממש כדאי לך להוריד ולנסות http://ow.ly/Gk7B2"},
      "send_sms_fail"        :{ "en": "sending SMS failed, please try again","he": "שליחת ההודעה נכשלה, אנא נסו שנית"},
      "send_sms_complete"    :{ "en": "Message was sent successfully","he": "ההודעה נשלחה בהצלחה!"},
      "why_should_i_add"     :{ "en": "Why Should I Add a Store?","he": "מדוע כדאי לי להוסיף חנות?"},
@@ -138,7 +138,7 @@
      "ck_all"               :{ "en" : "All","he": "סמנו הכל"},
      "ck_none"              :{ "en" : "Remove All","he": "הסירו הכל"},
      "welcome_mall"         :{ "en" : "Hi %@, welcome to %@. open shoprize and see all awesome deals and surprises waiting for you now, save money and have fun !",
-        "he": "Shoprize בדרך לקניון %@ ? כל המבצעים החמים וההפתעות מחכים לך עכשיו ב"},
+        "he": "\u200f בדרך לקניון %@ ? כל המבצעים החמים וההפתעות מחכים לך עכשיו ב Shoprize"},
      "weekend_come"         :{ "en" : "weekend coming up's","he": "סוף השבוע מגיע!"},
      "welcome_store"        :{ 
             "en" : "Hi %@, welcome to %@. open shoprize and see all deals zara have to offer you now ! Enjoy...",
