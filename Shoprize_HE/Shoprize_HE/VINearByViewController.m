@@ -165,9 +165,8 @@ static ListType currentType;
     
     sql = Fmt(@"select * from Store where MallId='%@' ",mallid);
     stores   =  [helper searchWithSQL:sql toClass:[Store class]];
-    
     allStore  = [stores copy];
-    
+        
     [self changeType:section2];
 }
 
@@ -357,6 +356,9 @@ static ListType currentType;
     
     currentType = (int) btn.tag;
     
+    [[_tableView imageView4Tag:-5000] removeFromSuperview];
+
+    
     switch (btn.tag) {
         case Deals:  {
             for (UIView *v in [_tableView subviews]) { if (v.h == 65) { [v setHidden:NO]; break;}}
@@ -378,6 +380,15 @@ static ListType currentType;
                 headerView;
             });
              [_tableView reloadAndHideLoadMore:YES];
+            
+            if (suprises == nil || suprises.count == 0) {
+                UIImageView *image =  [@"my_suprise_icon.png" imageView];
+                [image setW:image.w/2 andH:image.h/2];
+                [image setX:(self.view.w - image.w)/2 andY:100];
+                image.tag = - 5000;
+                [_tableView addSubview:image];
+            }
+            
         } break;
         case Stores:  {
             for (UIView *v in [_tableView subviews]) { if (v.h == 65) { [v setHidden:YES]; break;}}

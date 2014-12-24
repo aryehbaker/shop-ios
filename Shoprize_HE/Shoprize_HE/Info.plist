@@ -40,11 +40,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>.GPS לחץ &apos;אישור&apos; כדי לאפשר לשופרייז לקבל מידע
-אחרת לא ניתן ליהנות מהטבות בלעדיות (הפתעות) מהחנויות.</string>
+	<string>לחץ אישור כדי לאפשר לשופרייז לקבל מידע על ג׳י פי אס אחרת לא ניתן ליהנות מהטבות בלעדיות (הפתעות) מהחנויות</string>
 	<key>NSLocationWhenInUseDescription</key>
-	<string>.GPS לחץ &apos;אישור&apos; כדי לאפשר לשופרייז לקבל מידע
-אחרת לא ניתן ליהנות מהטבות בלעדיות (הפתעות) מהחנויות.</string>
+	<string>לחץ אישור כדי לאפשר לשופרייז לקבל מידע על ג׳י פי אס אחרת לא ניתן ליהנות מהטבות בלעדיות (הפתעות) מהחנויות</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>PekanLight.ttf</string>

@@ -344,6 +344,7 @@ static bool clear_by_hand;
     
     currentType = (int) btn.tag;
     
+
     switch (btn.tag) {
         case Deals:  {
             for (UIView *v in [_tableView subviews]) { if (v.h == 65) { [v setHidden:NO]; break;}}
@@ -364,7 +365,9 @@ static bool clear_by_hand;
                 [headerView addSubview:titleLabel];
                 headerView;
             });
-             [_tableView reloadAndHideLoadMore:YES];
+            [_tableView reloadAndHideLoadMore:YES];
+       
+            
         } break;
         case Stores:  {
             for (UIView *v in [_tableView subviews]) { if (v.h == 65) { [v setHidden:YES]; break;}}
