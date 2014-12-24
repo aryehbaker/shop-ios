@@ -374,6 +374,7 @@ static ListType currentType;
                 NSString *t = [@"about_surprise" lang];
                 UILabel *titleLabel = [VILabel createManyLines:Frm(10, 10, 300, 50) color:@"#464646" ft:Regular(19)  text:t];
                 titleLabel.text = [t rtlTxt];
+                titleLabel.tag = -1999;
                 titleLabel.textAlignment = NSTextAlignmentCenter;
                 [headerView setH:titleLabel.endY+10];
                 [headerView addSubview:titleLabel];
@@ -387,6 +388,7 @@ static ListType currentType;
                 [image setX:(self.view.w - image.w)/2 andY:100];
                 image.tag = - 5000;
                 [_tableView addSubview:image];
+                [[_tableView.tableHeaderView label4Tag:-1999] setText:Lang(@"about_empty_surprise")];
             }
             
         } break;

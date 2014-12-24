@@ -222,6 +222,11 @@
         "zh-Hans" : "特别惊喜就在下面这里店铺中，专属惊喜正在等待着你，现在就立即前往获得特别惊喜",
         "he": "הפתעות בלעדיות ל שופרייז ממתינות לכם בכניסה לחנויות אלה. כנסו עכשיו והרוויחו"
     },
+    "about_empty_surprise" : {
+        "en": "These Surprises are in the Store Waiting For YOU!  Walk Into Store to Reveal & Redeem!",
+        "zh-Hans" : "特别惊喜就在下面这里店铺中，专属惊喜正在等待着你，现在就立即前往获得特别惊喜",
+        "he": "אין מבצעים בחנות זו כרגע"
+    },
     "aroudn_me_title" : {
         "en" : "Around Me",
         "zh-Hans" : "周边",
