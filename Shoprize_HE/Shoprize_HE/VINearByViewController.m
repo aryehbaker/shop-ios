@@ -357,6 +357,7 @@ static ListType currentType;
     currentType = (int) btn.tag;
     
     [[_tableView imageView4Tag:-5000] removeFromSuperview];
+    [[_tableView label4Tag:-4999] removeFromSuperview];
 
     
     switch (btn.tag) {
@@ -388,7 +389,10 @@ static ListType currentType;
                 [image setX:(self.view.w - image.w)/2 andY:100];
                 image.tag = - 5000;
                 [_tableView addSubview:image];
-                [[_tableView.tableHeaderView label4Tag:-1999] setText:Lang(@"about_empty_surprise")];
+                UILabel *frm = [VILabel createLableWithFrame:Frm(0, image.endY+10, self.view.w, 18) color:@"#464646" font:Regular(16) align:CENTER];
+                frm.text = Lang(@"about_empty_surprise");
+                frm.tag = -4999;
+                [_tableView addSubview:frm];
             }
             
         } break;

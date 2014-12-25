@@ -659,11 +659,12 @@ static NSDate *latestLoc;
         shareImg = ego.image;
     }
     NSString *prefix = @"מצאתי מבצע שווה באפליקציית המבצעים שופרייז";
-    NSString *stringUrl = @"http://ow.ly/Gk7u5";
-    NSString *name      = [shareInfo stringValueForKey:@"name"];
     
-    NSArray *activityItems = [NSArray arrayWithObjects:Fmt(@"%@\n %@ %@",prefix,name,text),
-        [NSURL URLWithString:stringUrl],shareImg,nil];
+    NSString *name      = [shareInfo stringValueForKey:@"name"];
+    NSString *sharelink = @"לאייפון http://ow.ly/Gk7u5 \n לאנדרואיד http://goo.gl/BoZmoS";
+    
+    NSArray *activityItems = [NSArray arrayWithObjects:Fmt(@"%@\n %@ %@ \n %@",prefix,name,text,sharelink),
+        [NSURL URLWithString:nil],shareImg,nil];
     
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
     activityController.excludedActivityTypes = @[UIActivityTypePrint,UIActivityTypeCopyToPasteboard,

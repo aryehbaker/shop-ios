@@ -95,7 +95,7 @@
     
     AllStore *value = [storeData objectAtIndex:indexPath.row];
     BOOL check = value.IsMarked;
-    [cell viewWithTag:12001].backgroundColor = check ? [@"#ebebeb" hexColor] : [@"#ffffff" hexColor];
+    //[cell viewWithTag:12001].backgroundColor = check ? [@"#ebebeb" hexColor] : [@"#ffffff" hexColor];
     [cell imageView4Tag:12003].image = check ? [@"heart_red.png" image] : [@"heart_gray.png" image];
     [cell egoimageView4Tag:12002].imageURL = [NSURL URLWithString:value.Logo];
     [cell label4Tag:12004].text = value.StoreName;
