@@ -41,6 +41,13 @@
     NSLog(@"%@",error);
 }
 
+- (void)loadHtml:(BOOL)complete htmlView:(VIHtmlLoadView*)htmlView error:(NSError *)error
+{
+    htmlView.content.dataDetectorTypes = UIDataDetectorTypeLink;
+    NSDictionary *maininfo = [[NSBundle mainBundle] infoDictionary] ;
+    [htmlView invokeJS:Fmt(@"$('#versionCode').text('גרסה %@ - %@')",[maininfo stringValueForKey:@"CFBundleShortVersionString"],[maininfo stringValueForKey:@"CFBundleVersion"])];
+}
+
 - (void)callObjcInWebview:(VIHtmlLoadView*)webview func:(NSString *)funName args:(id)args
 {
     if ([funName isEqualToString:@"addNew"]) {

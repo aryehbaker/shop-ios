@@ -65,8 +65,13 @@
 -(void)dataArrive:(id)resp
 {
     if ([resp isKindOfClass:[NSArray class]]) {
+        NSMutableDictionary *data = [NSMutableDictionary dictionary];
+        for (NSDictionary *d in resp) {
+            [data setValue:d forKey:[d stringValueForKey:@"StoreId"]];
+        }
+        
         [[iSQLiteHelper getDefaultHelper] executeSQL:@"delete from AllStore" arguments:nil];
-        [[iSQLiteHelper getDefaultHelper] insertOrUpdateDB:[AllStore class] values:resp];
+        [[iSQLiteHelper getDefaultHelper] insertOrUpdateDB:[AllStore class] values:[data allValues]];
         storeData = [self getStore];
         [tabview reloadData];
     }

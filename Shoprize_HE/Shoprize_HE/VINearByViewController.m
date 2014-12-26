@@ -137,6 +137,7 @@ static ListType currentType;
     */
     
     [VINet regPushToken];
+    
 }
 
 //获得所有的deal
@@ -324,7 +325,18 @@ static ListType currentType;
 -(void)pullDownRefrshStart:(VITableView *)t
 {
     if (currentType == Deals) {
-        [self notifyChange:self.view];
+        MallInfo *currentMall = ((VIAppDelegate *)[UIApplication sharedApplication].delegate).currentMall;
+        if (currentMall == nil) {
+            MallInfo *mall = [MallInfo nearestMall];
+            if (mall==nil) {
+                [VINet get:@"/api/malls/nearby?radius=0" args:nil target:self succ:@selector(getMalls:) error:@selector(getMallsFail:) inv: deals.count> 0 ? nil : self.view];
+            }else{
+                ((VIAppDelegate *)[UIApplication sharedApplication].delegate).currentMall = mall;
+                [self notifyChange:self.view];
+            }
+        }else{
+            [self notifyChange:self.view];
+        }
     }else{
         [_tableView reloadAndHideLoadMore:YES];
     }

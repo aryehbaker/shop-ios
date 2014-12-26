@@ -138,7 +138,7 @@ static NSString *logpath;
     //Location Manager start motion
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
-    self.locationManager.distanceFilter = 5; //精度10m
+    self.locationManager.distanceFilter = 10; //精度10m
     
     DEBUGS(@"DEBUG %d",[CLLocationManager locationServicesEnabled]);
     
@@ -197,7 +197,20 @@ static NSString *logpath;
         [self checkWhereToGoFromPushMessage:userInfo];
     }
     
+    [self pushStack].interactivePopGestureRecognizer.delegate = self;
+    
     return YES;
+}
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    if ([self pushStack].viewControllers.count == 2  && 
+        [NSStringFromClass([[[self pushStack].viewControllers lastObject] class]) isEqualToString:@"VINearByViewController"]
+        ){
+        return NO;
+    }else{
+        return YES;
+    }
 }
 
 - (void)sendDemoNotifcation:(NSString *)offer {
@@ -511,7 +524,6 @@ static NSDate *latestLoc;
     for (CLRegion *regin in regins) {
         [self.locationManager stopMonitoringForRegion:regin];
     }
-    
     NSArray *malls  = [MallInfo allmall];
     for(MallInfo *mall in malls){
         CLLocationCoordinate2D center = CLLocationCoordinate2DMake(mall.Lat, mall.Lon);
@@ -549,12 +561,16 @@ static NSDate *latestLoc;
     }
     
     NSLog(@"Enter: %@",region.identifier);
+    
+    [NSUserDefaults setValue:mallId forKey:@"_post_mall_id_"];
+    
     [self calcIfOpenNewMall];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
 {
     NSString *mallId = region.identifier;
+    [NSUserDefaults setValue:@"" forKey:@"_post_mall_id_"];
     [MallWelcome isNewMall:mallId];
     NSLog(@"Exit Regin:%@",region);
 }
@@ -661,10 +677,9 @@ static NSDate *latestLoc;
     NSString *prefix = @"מצאתי מבצע שווה באפליקציית המבצעים שופרייז";
     
     NSString *name      = [shareInfo stringValueForKey:@"name"];
-    NSString *sharelink = @"לאייפון http://ow.ly/Gk7u5 \n לאנדרואיד http://goo.gl/BoZmoS";
     
-    NSArray *activityItems = [NSArray arrayWithObjects:Fmt(@"%@\n %@ %@ \n %@",prefix,name,text,sharelink),
-        [NSURL URLWithString:nil],shareImg,nil];
+    NSArray *activityItems = [NSArray arrayWithObjects:Fmt(@"%@\n %@ %@ ",prefix,name,text),
+        [NSURL URLWithString:@"http://shoprize.co.il/#download"],shareImg,nil];
     
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
     activityController.excludedActivityTypes = @[UIActivityTypePrint,UIActivityTypeCopyToPasteboard,
@@ -904,14 +919,15 @@ BOOL reading = NO;
     if (!scaning) {
             return;
         }
-        [NSUserDefaults setValue:infos.AddressId forKey:@"_post_store_id_"];
+    
         have_stroe_around_me = YES;
         
         LKDBHelper *help = [iSQLiteHelper getDefaultHelper];
         
         //VisitStep *visted  = [VisitStep insertStep:@"viewstore" value:infos.AddressId];
         NSLog(@"You are round At:%@ ",infos.AddressId);
-        
+        [NSUserDefaults setValue:infos.AddressId forKey:@"_post_store_id_"];
+    
         NSString *sql = Fmt(@"select * from MobiPromo t where t.Type='Surprise' and t.AddressId ='%@' and t.Prerequisite like '%%InStore%%' and not EXISTS(select * from UserSurprise u where t.MobiPromoId = u.MobiPromoId )",infos.AddressId);
         NSMutableArray *proms = [help searchWithSQL:sql toClass:[MobiPromo class]];
         

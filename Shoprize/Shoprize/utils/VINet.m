@@ -400,7 +400,7 @@ static NSMutableDictionary *stores;
         [head setValue:[NSUserDefaults getValue:@"_post_store_id_"] forKey:@"StoreAddressId"];
     }
 
-    //DEBUGS(@"--------------------------------------HEADER------------------------------------------\n%@",head);
+    DEBUGS(@"--------------------------------------HEADER------------------------------------------\n%@",head);
 
     return head;
 }

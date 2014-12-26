@@ -194,7 +194,7 @@ static NSIndexPath *selected;
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        VIEGOImageView *imageview = [[VIEGOImageView alloc] initWithFrame:Frm(0, 5, self.view.w, 80) placeImg:[@"no_pic.png" image] url:left.Logo];
+        VIEGOImageView *imageview = [[VIEGOImageView alloc] initWithFrame:Frm(20, 5, self.view.w-40, 80) placeImg:[@"no_pic.png" image] url:left.Logo];
         imageview.contentMode = UIViewContentModeScaleAspectFit;
         imageview.tag = 200;
         [cell.contentView addSubview:imageview];

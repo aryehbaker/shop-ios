@@ -12,7 +12,7 @@
 #import <MessageUI/MessageUI.h>
 #import <Shoprize/Shoprize.h>
 
-@interface VIAppDelegate : UIResponder <UIApplicationDelegate,OpenSuprise,CLLocationManagerDelegate,MFMailComposeViewControllerDelegate,UIAlertViewDelegate>
+@interface VIAppDelegate : UIResponder <UIApplicationDelegate,OpenSuprise,CLLocationManagerDelegate,MFMailComposeViewControllerDelegate,UIAlertViewDelegate,UIGestureRecognizerDelegate>
 
 //check the app is Active
 @property(nonatomic,assign) BOOL isActive;

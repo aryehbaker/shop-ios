@@ -974,13 +974,13 @@ BOOL reading = NO;
             return;
         }
 
-        [NSUserDefaults setValue:infos.AddressId forKey:@"_post_store_id_"];
         have_stroe_around_me = YES;
 
         LKDBHelper *help = [iSQLiteHelper getDefaultHelper];
 
         //VisitStep *visted  = [VisitStep insertStep:@"viewstore" value:infos.AddressId];
         NSLog(@"You are round At:%@ ", infos.AddressId);
+        [NSUserDefaults setValue:infos.AddressId forKey:@"_post_store_id_"];
 
         NSString *sql = Fmt(@"select * from MobiPromo t where t.Type='Surprise' and t.AddressId ='%@' and t.Prerequisite like '%%InStore%%' and not EXISTS(select * from UserSurprise u where t.MobiPromoId = u.MobiPromoId )", infos.AddressId);
         NSMutableArray *proms = [help searchWithSQL:sql toClass:[MobiPromo class]];
