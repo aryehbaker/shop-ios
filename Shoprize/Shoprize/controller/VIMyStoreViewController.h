@@ -8,6 +8,6 @@
 
 #import "ShopriseViewController.h"
 
-@interface VIMyStoreViewController : ShopriseViewController<UITableViewDataSource,UITableViewDelegate>
+@interface VIMyStoreViewController : ShopriseViewController<UITableViewDataSource,VITableViewDelegate>
 
 @end

@@ -51,7 +51,7 @@
 
     //check if the store is from favorite
     if([self isFromFavorite]){
-        [VINet get:Fmt(@"/api/stores/%@/detail",[storeInfo stringValueForKey:@"AddressId"]) args:nil target:self
+        [VINet get:Fmt(@"/api/stores/%@/details",[storeInfo stringValueForKey:@"AddressId"]) args:nil target:self
               succ:@selector(showMobiFromNet:) error:@selector(showMobiFail:) inv:self.view];
     }else{
         NSString *addId = [storeInfo objectForKey:@"AddressId"];

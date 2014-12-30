@@ -11,8 +11,11 @@
 
 @interface VIAddStroeViewController ()
 {
-    UITableView *tabview;
+    VITableView *tabview;
     NSMutableArray *storeData;
+    
+    NSInteger currentPage;
+    NSString *searchKey;
 }
 
 @end
@@ -24,11 +27,10 @@
     [super viewDidLoad];
     [self addNav:Lang(@"nav_my_store") left:SEARCH right:MENU];
     
-    tabview = [[UITableView alloc] initWithFrame:Frm(0, self.nav.endY,self.view.w,self.view.h -self.nav.endY-70)];
-    tabview.delegate = self;
+    tabview = [[VITableView alloc] initWithFrame:Frm(0, self.nav.endY,self.view.w,self.view.h -self.nav.endY-70)];
+    tabview.delegate = tabview;
+    tabview.viewDelegate = self;
     tabview.dataSource = self;
-    
-    storeData = [self getStore];
     
     tabview.backgroundColor = [UIColor whiteColor];
     if ([tabview respondsToSelector:@selector(setSeparatorInset:)]) {
@@ -52,39 +54,68 @@
     
     [self.view addSubview: v];
     
+    currentPage = 0;
+    storeData = [NSMutableArray array];
+    [self loadData];
+}
+
+-(void)loadData
+{
+    NSString *query = Fmt(@"pageindex=%d&pagesize=10&saved=false&searchkey=%@",currentPage,searchKey==nil?@"":[searchKey uriEncode]);
+    [VINet get:Fmt(@"/api/stores/all?%@",query) args:nil target:self succ:@selector(loadComplet:) error:@selector(loadComplet2:) inv: (storeData.count == 0 && searchKey ==nil) ? self.view : nil];
+}
+
+-(void)loadComplet:(NSDictionary *)value
+{
+    if (currentPage == 0) {
+        [storeData removeAllObjects];
+    }
+    [storeData addObjectsFromArray:[value arrayValueForKey:@"Stores"]];
+    [tabview reloadAndHideLoadMore:[value intValueForKey:@"Count"]-1<=currentPage];
+}
+
+-(void)loadComplet2:(NSDictionary *)resp2{
+    
+}
+
+- (void)loadMoreStarted:(VITableView *)t
+{
+    currentPage++;
+    [self loadData];
+}
+
+- (void)pullDownRefrshStart:(VITableView *)t
+{
+    currentPage = 0;
+    [self loadData];
+    
+}
+
+- (CGFloat)heightAtRow:(NSIndexPath *)indexPath
+{
+    return 115;
+}
+
+- (void)rowSelectedAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSMutableDictionary *mt = [[storeData objectAtIndex:indexPath.row] mutableCopy];
+    [mt setValue:[NSNumber numberWithBool:![mt boolValueForKey:@"Saved"]] forKey:@"Saved"];
+    [storeData replaceObjectAtIndex:indexPath.row withObject:mt];
     [tabview reloadData];
     
-    [self loadNetworkdata];
-}
-
-- (void)loadNetworkdata {
-    [VINet get:@"/api/stores/nearby?radius=0" args:nil target:self succ:@selector(dataArrive:) error:@selector(dataArrive:) inv:
-     self.view];
-}
-
--(void)dataArrive:(id)resp
-{
-    if ([resp isKindOfClass:[NSArray class]]) {
-        NSMutableDictionary *data = [NSMutableDictionary dictionary];
-        for (NSDictionary *d in resp) {
-            [data setValue:d forKey:[d stringValueForKey:@"StoreId"]];
-        }
-        
-        [[iSQLiteHelper getDefaultHelper] executeSQL:@"delete from AllStore" arguments:nil];
-        [[iSQLiteHelper getDefaultHelper] insertOrUpdateDB:[AllStore class] values:[data allValues]];
-        storeData = [self getStore];
-        [tabview reloadData];
+    // do update
+    [[iSQLiteHelper getDefaultHelper] insertOrUpdateUsingObj:mt];
+    
+    NSString *api = Fmt(@"/api/stores/%@/mark",[mt stringValueForKey:@"StoreId"]);
+    if (![mt boolValueForKey:@"Saved"]) {
+        api = Fmt(@"/api/stores/%@/unmark",[mt stringValueForKey:@"StoreId"]);
     }
+    [VINet post:api args:nil target:self succ:@selector(doNothing:) error:@selector(doNothing:) inv:self.view];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return storeData.count;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 115;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -98,64 +129,28 @@
         [cell egoimageView4Tag:12002].placeholderImage = [@"no_pic.png" image];
     }
     
-    AllStore *value = [storeData objectAtIndex:indexPath.row];
-    BOOL check = value.IsMarked;
-    //[cell viewWithTag:12001].backgroundColor = check ? [@"#ebebeb" hexColor] : [@"#ffffff" hexColor];
+    NSDictionary *value = [storeData objectAtIndex:indexPath.row];
+    BOOL check = [value boolValueForKey:@"Saved"];
     [cell imageView4Tag:12003].image = check ? [@"heart_red.png" image] : [@"heart_gray.png" image];
-    [cell egoimageView4Tag:12002].imageURL = [NSURL URLWithString:value.Logo];
-    [cell label4Tag:12004].text = value.StoreName;
+    [cell egoimageView4Tag:12002].imageURL = [NSURL URLWithString:[value stringValueForKey:@"Logo"]];
+    [cell label4Tag:12004].text = [value stringValueForKey:@"Name"];
     [cell label4Tag:12004].font = FontS(15);
     [cell label4Tag:12004].textColor = check ? [@"#FF2B32" hexColor] : [@"#767676" hexColor];
     
     return cell;
 }
 
--(NSMutableArray *)getStore{
-     return   [[iSQLiteHelper getDefaultHelper] searchWithSQL:@"select * from AllStore where IsMarked=0" toClass:[AllStore class]];
-}
-
 -(void)whenSearchKey:(NSString *)search
 {
-    NSMutableArray *displayData = [self getStore];
-    [storeData removeAllObjects];
-    if (search != nil) {
-        for (Store *d in displayData) {
-            if ([d.StoreName like:search]) {
-                [storeData addObject:d];
-            }
-        }
-        [tabview reloadData];
-    }else{
-        storeData = displayData;
-        [tabview reloadData];
-    }
+    searchKey = search;
+    currentPage = 0;
+    [self loadData];
 }
 
 - (void)completeSelect:(id)sender {
     [self pop:YES];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)index
-{
-    AllStore *mt = [storeData objectAtIndex:index.row];
-    [mt setIsMarked:!mt.IsMarked];
-    [storeData replaceObjectAtIndex:index.row withObject:mt];
-    [tabview reloadData];
-    
-    // do update
-    [[iSQLiteHelper getDefaultHelper] insertOrUpdateUsingObj:mt];
-    
-    NSString *api = Fmt(@"/api/stores/%@/mark",mt.StoreId);
-    if (!mt.IsMarked) {
-        api = Fmt(@"/api/stores/%@/unmark",mt.StoreId);
-    }
-    [VINet post:api args:nil target:self succ:@selector(doNothing:) error:@selector(doNothing:) inv:self.view];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
 
 
 @end

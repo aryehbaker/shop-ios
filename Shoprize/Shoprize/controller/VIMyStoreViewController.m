@@ -13,9 +13,13 @@
 
 @interface VIMyStoreViewController ()
 {
-    UITableView *tabview;
-    NSMutableArray *displayData;
+    VITableView *tabview;
+    NSMutableArray *storeData;
+
     UIView *disp;
+    
+    NSInteger currentPage;
+    NSString *searchKey;
 }
 
 @end
@@ -26,28 +30,14 @@
 {
     [super viewWillAppear:animated];
     
-    displayData = [self alltea];
-   
-    if (tabview) {
-        if (displayData.count>0) {
-            [disp removeFromSuperview];
-            [self.view addSubview:tabview];
-        }else{
-            [tabview removeFromSuperview];
-            [self.view addSubview:disp];
-        }
-        [tabview reloadData];
-    }
+    currentPage = 0;
+    [self loadData];
 }
 
-- (NSMutableArray *)alltea {
-    return [[iSQLiteHelper getDefaultHelper] searchWithSQL:@"select * from AllStore where IsMarked=1" toClass:[AllStore class]];
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    displayData = [NSMutableArray array];
     
     [self addNav:Lang(@"nav_my_store") left:SEARCH right:MENU];
 
@@ -61,21 +51,18 @@
  
     [self.view addSubview:disp];
 
-    tabview = [[UITableView alloc] initWithFrame:Frm(0, self.nav.endY, self.view.w,self.view.h -self.nav.endY-105) style:UITableViewStylePlain];
-    tabview.delegate = self;
+    tabview = [[VITableView alloc] initWithFrame:Frm(0, self.nav.endY, self.view.w,self.view.h -self.nav.endY-105) style:UITableViewStylePlain];
+    tabview.delegate = tabview;
+    tabview.viewDelegate = self;
     tabview.backgroundColor = [UIColor clearColor];
     tabview.dataSource = self;
     [self.view addSubview:tabview];
-    
+    [tabview setHidden:YES];
+
     if ([tabview respondsToSelector:@selector(setSeparatorInset:)]) {
         [tabview setSeparatorInset:UIEdgeInsetsZero];
     }
 
-    //TODO need Delete
-    for (UIView *v in [tabview subviews]) {
-        if (v.h == 65) { [v setHidden:YES];}
-    }
-    
     UILabel *tipText = [VILabel createLableWithFrame:Frm(0, tabview.endY+10, self.view.w, 20) color:@"#FC494D" font:Bold(16) align:CENTER];
     tipText.text = Lang(@"why_should_i_add");
     tipText.userInteractionEnabled = YES;
@@ -91,20 +78,74 @@
     btn.titleLabel.font = Bold(22);
     [self.view addSubview:btn];
     
-    if (displayData.count>0) {
-        [disp removeFromSuperview];
-        [self.view addSubview:tabview];
-    }else{
-        [tabview removeFromSuperview];
-        [self.view addSubview:disp];
-    }
+    
+    currentPage = 0;
+    storeData = [NSMutableArray array];
+    [self loadData];
+
 }
+
+-(void)loadData
+{
+    NSString *query = Fmt(@"pageindex=%ld&pagesize=10&saved=ture&searchkey=%@",(long)currentPage,searchKey==nil?@"":[searchKey uriEncode]);
+    [VINet get:Fmt(@"/api/stores/all?%@",query) args:nil target:self succ:@selector(loadComplet:) error:@selector(loadComplet2:) inv: (storeData.count == 0 && searchKey ==nil) ? self.view : nil];
+}
+
+
+-(void)loadComplet:(NSDictionary *)value
+{
+    NSArray *respAry = [value arrayValueForKey:@"Stores"];
+    if (respAry.count != 0) {
+        [disp removeFromSuperview];
+        [tabview setHidden:NO];
+    }
+    if (currentPage == 0) {
+        [storeData removeAllObjects];
+    }
+    [storeData addObjectsFromArray:[value arrayValueForKey:@"Stores"]];
+    [tabview reloadAndHideLoadMore:[value intValueForKey:@"Count"]-1<=currentPage];
+}
+
+-(void)loadComplet2:(NSDictionary *)resp2{
+    
+}
+
+- (void)loadMoreStarted:(VITableView *)t
+{
+    currentPage++;
+    [self loadData];
+}
+
+- (void)pullDownRefrshStart:(VITableView *)t
+{
+    currentPage = 0;
+    [self loadData];
+    
+}
+
+- (CGFloat)heightAtRow:(NSIndexPath *)indexPath
+{
+    return 115;
+}
+
+- (NSString *)titleForDeleteBtn:(NSIndexPath *)indexPath
+{
+    return Lang(@"del_btn");
+}
+/**
+ * 编辑列表的样式
+ */
+- (UITableViewCellEditingStyle)editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+
 static NSIndexPath *selected;
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         selected = indexPath;
-        AllStore *mt = [displayData objectAtIndex:indexPath.row];
-        NSString *api = Fmt(@"/api/stores/%@/unmark",[mt StoreId]);
+        NSDictionary *mt = [storeData objectAtIndex:indexPath.row];
+        NSString *api = Fmt(@"/api/stores/%@/unmark",[mt stringValueForKey:@"StoreId"]);
         [VINet post:api args:nil target:self succ:@selector(deleteComlt:) error:@selector(showAlertError:) inv:self.view];
     }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
@@ -114,12 +155,7 @@ static NSIndexPath *selected;
 
 - (void)deleteComlt:(id)value
 {
-    AllStore *mt = [displayData objectAtIndex:selected.row];
-    [mt setIsMarked:NO];
-    //更新数据
-    [[iSQLiteHelper getDefaultHelper] insertOrUpdateUsingObj:mt];
-    
-    [displayData removeObjectAtIndex:selected.row];
+    [storeData removeObjectAtIndex:selected.row];
     [tabview deleteRowsAtIndexPaths:[NSArray arrayWithObject:selected] withRowAnimation:UITableViewRowAnimationFade];
 }
 
@@ -153,65 +189,48 @@ static NSIndexPath *selected;
     [tip presentPointingAtView:gen.view inView:self.view animated:YES];
 }
 
--(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return Lang(@"del_btn");
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 115;
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return displayData.count;
+    return storeData.count;
 }
 
 -(void)whenSearchKey:(NSString *)search
 {
-    NSMutableArray *alldata = [self alltea];
-    [displayData removeAllObjects];
-    if (search!=nil && ![search isEqualToString:@""]) {
-        for (AllStore *d in alldata) {
-            if ([d.StoreName like:search]) {
-                [displayData addObject:d];
-            }
-        }
-        [tabview reloadData];
-        return;
-    }
-    
-    [displayData addObjectsFromArray:alldata];
-    [tabview reloadData];
+    searchKey = search;
+    currentPage = 0;
+    [self loadData];
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellID = @"mycell_id_id";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    AllStore *left = [displayData objectAtIndex:indexPath.row];
+    NSDictionary *value = [storeData objectAtIndex:indexPath.row];
     
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        VIEGOImageView *imageview = [[VIEGOImageView alloc] initWithFrame:Frm(20, 5, self.view.w-40, 80) placeImg:[@"no_pic.png" image] url:left.Logo];
+        VIEGOImageView *imageview = [[VIEGOImageView alloc] initWithFrame:Frm(20, 5, self.view.w-40, 80) placeImg:[@"no_pic.png" image] url:[value stringValueForKey:@"Logo"]];
         imageview.contentMode = UIViewContentModeScaleAspectFit;
         imageview.tag = 200;
         [cell.contentView addSubview:imageview];
         UILabel *sname = [VILabel createLableWithFrame:Frm(0, imageview.endY+8,self.view.w, 20) color:@"#FF4F4F" font:FontS(15) align:CENTER];
         sname.tag = 201;
-        sname.text = left.StoreName;
         [cell.contentView addSubview:sname];
     }
-    [cell.contentView label4Tag:201].text = left.StoreName;
-    [cell.contentView egoimageView4Tag:200].imageURL = [NSURL URLWithString:left.Logo];
+    [cell.contentView label4Tag:201].text = [value stringValueForKey:@"Name"];
+    [cell.contentView egoimageView4Tag:200].imageURL = [NSURL URLWithString:[value stringValueForKey:@"Logo"]];
   
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    AllStore *pdata = [displayData objectAtIndex:indexPath.row];
-    [self pushTo:@"VIStoreDetailViewController" data:[pdata toDictionary]];
+- (void)rowSelectedAtIndexPath:(NSIndexPath *)indexPath {
+    NSMutableDictionary *pdata = [[storeData objectAtIndex:indexPath.row] mutableCopy];
+    [pdata setValue:@"demo" forKey:@"MallAddress"];
+    [pdata setValue:[pdata stringValueForKey:@"StoreId"] forKey:@"AddressId"];
+    
+    [self pushTo:@"VIStoreDetailViewController" data:pdata];
 }
 
 - (void)didReceiveMemoryWarning

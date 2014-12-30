@@ -138,7 +138,7 @@ static NSString *logpath;
     //Location Manager start motion
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
-    self.locationManager.distanceFilter = 10; //精度10m
+    self.locationManager.distanceFilter = 1; //精度10m
     
     DEBUGS(@"DEBUG %d",[CLLocationManager locationServicesEnabled]);
     
