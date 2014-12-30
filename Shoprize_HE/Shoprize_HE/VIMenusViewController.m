@@ -200,13 +200,18 @@
     
     //Home页面
     if (index == 1) {
-        NSArray *extra = [navigationController viewControllers];
-        for (long i=extra.count; i>0; i--) {
-            UIViewController *uv = [extra objectAtIndex:i-1];
-            if ([uv isKindOfClass:[VINearByViewController class]]) {
-                break;
-            }else{
-                [navigationController popViewControllerAnimated:NO];
+        MallInfo *nearest = [MallInfo nearestMall];
+        if (nearest!=nil && nearest.distance < 0.2) {
+            [ShopriseViewController gotoMallWithId:nearest.MallAddressId inNav:navigationController];
+        }else{
+            NSArray *extra = [navigationController viewControllers];
+            for (long i=extra.count; i>0; i--) {
+                UIViewController *uv = [extra objectAtIndex:i-1];
+                if ([uv isKindOfClass:[VINearByViewController class]]) {
+                    break;
+                }else{
+                    [navigationController popViewControllerAnimated:NO];
+                }
             }
         }
     }

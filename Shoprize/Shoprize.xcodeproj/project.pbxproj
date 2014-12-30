@@ -88,6 +88,7 @@
 		1745EF0F19FDF51300E701F2 /* Fonts.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 1745EF0C19FDF33900E701F2 /* Fonts.h */; };
 		7A6A1C861A0797FD000305F1 /* VIHttpBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A6A1C851A0797FD000305F1 /* VIHttpBase.m */; };
 		7A6A1C871A079808000305F1 /* VIHttpBase.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 7A6A1C841A0797FD000305F1 /* VIHttpBase.h */; };
+		7A7C028A1A529E2F00477381 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A7C02891A529E2F00477381 /* CoreBluetooth.framework */; };
 		7A868AD71A24637C0006A875 /* Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A868AD61A24637C0006A875 /* Ext.m */; };
 		7A868AD91A2463A00006A875 /* Ext.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 7A868AD51A24637C0006A875 /* Ext.h */; };
 		7ABC2BA41A31809100266B84 /* Sm广场.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 7ABC2B9F1A31809100266B84 /* Sm广场.gpx */; };
@@ -239,6 +240,7 @@
 		1745EF0D19FDF33900E701F2 /* Fonts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fonts.m; sourceTree = "<group>"; };
 		7A6A1C841A0797FD000305F1 /* VIHttpBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIHttpBase.h; sourceTree = "<group>"; };
 		7A6A1C851A0797FD000305F1 /* VIHttpBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIHttpBase.m; sourceTree = "<group>"; };
+		7A7C02891A529E2F00477381 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		7A868AD51A24637C0006A875 /* Ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ext.h; sourceTree = "<group>"; };
 		7A868AD61A24637C0006A875 /* Ext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ext.m; sourceTree = "<group>"; };
 		7ABC2B9F1A31809100266B84 /* Sm广场.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Sm广场.gpx"; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A7C028A1A529E2F00477381 /* CoreBluetooth.framework in Frameworks */,
 				1705D96C19FA214F005F322F /* AudioToolbox.framework in Frameworks */,
 				1705D96A19FA2144005F322F /* SystemConfiguration.framework in Frameworks */,
 				1705D96819FA213E005F322F /* CFNetwork.framework in Frameworks */,
@@ -287,6 +290,7 @@
 		1705D71019F9F4F4005F322F = {
 			isa = PBXGroup;
 			children = (
+				7A7C02891A529E2F00477381 /* CoreBluetooth.framework */,
 				1705D79819F9F5A4005F322F /* fwks */,
 				1705D71B19F9F4F4005F322F /* Shoprize */,
 				1705D72819F9F4F5005F322F /* ShoprizeTests */,

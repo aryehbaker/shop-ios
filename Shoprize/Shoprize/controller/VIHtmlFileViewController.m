@@ -38,7 +38,7 @@
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    NSLog(@"%@",error);
+    //NSLog(@"%@",error);
 }
 
 - (void)loadHtml:(BOOL)complete htmlView:(VIHtmlLoadView*)htmlView error:(NSError *)error

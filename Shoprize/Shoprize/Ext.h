@@ -11,7 +11,6 @@
 #define structs
 
 @interface Ext : NSObject
-
 /**
 *   Each in the array if return nil
 *   the return array not contain the value
@@ -22,5 +21,6 @@
 *  Get All fonts name in the system
 */
 + (NSArray *)fontNames;
+
 
 @end

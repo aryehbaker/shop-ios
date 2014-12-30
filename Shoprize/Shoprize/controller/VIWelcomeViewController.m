@@ -45,7 +45,15 @@
         [faceBk addTarget:self action:@selector(facebookLogon:)];
         [self.view addSubview:faceBk];
     
-        UIButton *email = [[UIButton alloc] initWithFrame:Frm(35, faceBk.endY+5, 250, 50)];
+        int end = faceBk.endY;
+        if (isHe) {
+            UILabel *tip = [VILabel createLableWithFrame:Frm(0, faceBk.endY+5, self.view.w, 12) color:@"#ffffff" font:FontS(10) align:CENTER];
+            [tip setText:Lang(@"face_book_login_tip")];
+            [self.view addSubview:tip];
+            end = tip.endY;
+        }
+    
+        UIButton *email = [[UIButton alloc] initWithFrame:Frm(35, end+5, 250, 50)];
         [email addTarget:self action:@selector(pushToLogin:)];
         email.titleLabel.font = Bold(18);
         [email setBackgroundImage:[@"mail_logon_btn.png" image] forState:UIControlStateNormal];

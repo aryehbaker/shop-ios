@@ -218,7 +218,7 @@ static id lastselectd;
 
 -(void)loadAroundMeDataFail:(NSDictionary *)data{
     isLoading = NO;
-     self.leftOne.enabled = YES;
+    self.leftOne.enabled = YES;
     NSLog(@"%@",data);
 }
 

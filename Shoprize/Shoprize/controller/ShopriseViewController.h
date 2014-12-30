@@ -71,6 +71,8 @@ typedef NS_ENUM(NSInteger, BarItem) {
 
 - (void)redeemDeail:(NSString *)dealId complete:(SEL)complete;
 
++ (void)gotoMallWithId:(NSString *)mallid inNav:(UINavigationController *)inNav;
+
 @end
 
 @interface VILabel : UILabel

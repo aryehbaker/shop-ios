@@ -92,11 +92,11 @@ static NSString *logpath;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.beancons     = [NSMutableDictionary dictionary];
     
-//#if TARGET_IPHONE_SIMULATOR
-//    [[VILogger getLogger] setLogLevelSetting:SLLS_ALL];
-//#elif TARGET_OS_IPHONE
-//    [[VILogger getLogger] setLogLevelSetting:SLLS_NONE];
-//#endif
+#if TARGET_IPHONE_SIMULATOR
+    [[VILogger getLogger] setLogLevelSetting:SLLS_ALL];
+#elif TARGET_OS_IPHONE
+    [[VILogger getLogger] setLogLevelSetting:SLLS_NONE];
+#endif
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(faceBookLogon:) name:@"_facebook_logon_" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showNavBarMenu:) name:_NS_NOTIFY_SHOW_MENU object:nil];
@@ -140,8 +140,6 @@ static NSString *logpath;
     self.locationManager.delegate = self;
     self.locationManager.distanceFilter = 1; //精度10m
     
-    DEBUGS(@"DEBUG %d",[CLLocationManager locationServicesEnabled]);
-    
     // ios 8的情况
 #ifdef __IPHONE_8_0
     if([[self locationManager] respondsToSelector:@selector(requestAlwaysAuthorization)]) {
@@ -171,10 +169,9 @@ static NSString *logpath;
 
 //  TOOD CMMT
 
-// [self sendDemoNotifcation:@"this is over more than one [200%] you 22dd then so will save"];
-
+//  [self sendDemoNotifcation:@"this is over more than one [200%] you 22dd then so will save"];
 //  NSTimer *t = [NSTimer timerWithTimeInterval:2 target:self selector:@selector(repaint) userInfo:nil repeats:YES];
-// NSRunLoop *runloop=[NSRunLoop currentRunLoop];
+//  NSRunLoop *runloop=[NSRunLoop currentRunLoop];
 //  [runloop addTimer:t forMode:NSDefaultRunLoopMode];
     
   if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
@@ -199,7 +196,25 @@ static NSString *logpath;
     
     [self pushStack].interactivePopGestureRecognizer.delegate = self;
     
+    
+    self.centralManager = [[CBCentralManager alloc]
+                             initWithDelegate:self
+                             queue:dispatch_get_main_queue()
+                             options:@{CBCentralManagerOptionShowPowerAlertKey: @(NO)}];
+    
+    if (![CLLocationManager locationServicesEnabled])
+    {
+        [VIAlertView showErrorMsg:Lang(@"open_gps_on")];
+    }
+    
     return YES;
+}
+
+- (void)centralManagerDidUpdateState:(CBCentralManager *)central
+{
+    if (central.state == CBCentralManagerStatePoweredOff) {
+        [VIAlertView showErrorMsg:Lang(@"open_bluetooth_on")];
+    }
 }
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
@@ -224,7 +239,8 @@ static NSString *logpath;
     [NSUserDefaults setValue:token forKey:@"pushToken"];
 }
 
-- (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+- (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
     NSLog(@"%@", error);
 }
 
@@ -247,6 +263,7 @@ static NSString *logpath;
 //        [[self pushStack] pushViewController:deal animated:YES];
     }
 }
+
 
 #pragma  mark 推送结束
 
@@ -704,7 +721,6 @@ static NSDate *latestLoc;
     
     [[self pushStack] presentViewController:activityController animated:YES completion:nil];
     
-
 //    NSDictionary *shareInfo = notify.object;
 //    if([FBSession activeSession].isOpen){
 //        [self doPostMessage2FaceBook:shareInfo];
@@ -796,6 +812,13 @@ static NSDate *latestLoc;
             if (allinfo!=nil) {
                 [self performSelector:@selector(sendOpenSupriseNotify:) withObject:allinfo afterDelay:1.5];
                 //[self sendOpenSupriseNotify:allinfo];
+            }
+        }
+        
+        if ([[notification.userInfo stringValueForKey:@"NotifyType"] isEqualToString:@"Mall"]) {
+            NSString *allinfo = [notification.userInfo stringValueForKey:@"Udid"];
+            if (allinfo!=nil) {
+                [ShopriseViewController gotoMallWithId:allinfo inNav:[self pushStack]];
             }
         }
     }
@@ -957,23 +980,6 @@ BOOL reading = NO;
             
             if([[jsonValue stringValueForKey:@"Type" defaultValue:@""] isEqualToString:@"InStore"])
             {
-                // when user enter the store the ibeacon will work imedity
-                // ignore the old Start Time property
-
-//                NSString *starT = [jsonValue stringValueForKey:@"StartTime"];
-//                int mins = 0;
-//                if ([starT hasString:@":"]) {
-//                    NSArray *time = [[jsonValue stringValueForKey:@"StartTime"] componentsSeparatedByString:@":"];
-//                    mins = [[time objectAtIndex:0] intValue] * 60 + [[time objectAtIndex:1] intValue];
-//                }else{
-//                    mins = [starT intValue];
-//                }
-//
-//                NSDate *now = [NSDate now];
-//                int nowval = [[now format:@"HH"] intValue] * 60 + [[now format:@"mm"] intValue];
-//
-//                if (nowval>=mins && [self isScaning]) {
-//                }
 
                 [self stopScan];
                 [VINet post:Fmt(@"/api/mobipromos/%@/at/%@/reward",curtMobi.MobiPromoId,curtMobi.AddressId) args:nil target:self succ:@selector(rewardComplete:) error:@selector(rewardFail:) inv:nil];

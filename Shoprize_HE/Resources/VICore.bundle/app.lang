@@ -267,5 +267,17 @@
         "en" : "Redeem Code",
         "he" : "קוד מימוש הפתעה:",
         "zh_Hans" : "兑换码"
+    },
+    "face_book_login_tip" : {
+        "en" : "we never post with you facebook",
+        "he" : "*לעולם לא נשתמש בפייסבוק לרעה או נפרסם בשמך"
+    },
+    "open_bluetooth_on" : {
+        "en" : "please open the bluetooth ",
+        "he" : "עליך להפעיל את ה Bluetooth על מנת לזכות בהטבות בלעדיות (הפתעות) מהחנויות בקניון."
+    },
+    "open_gps_on" : {
+        "en" : "please open the location service ",
+        "he" : "יש להפעיל את ה GPS על מנת ליהנות ממבצעים והטבות בלעדיות (הפתעות) משופרייז."
     }
 }

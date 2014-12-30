@@ -168,7 +168,7 @@
 }
 
 - (void)emptyAction:(id)val {
-    NSLog(@"%@", val);
+    //NSLog(@"%@", val);
 }
 
 - (void)gotomain:(id)val {

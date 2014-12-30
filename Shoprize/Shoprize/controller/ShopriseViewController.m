@@ -325,6 +325,29 @@
     }];
 }
 
++ (void)gotoMallWithId:(NSString *)mallid inNav:(UINavigationController *)inNav
+{
+    BOOL hasInited = NO;
+    for (UIViewController *ctl in [inNav viewControllers]) {
+        if ([NSStringFromClass([ctl class]) isEqualToString:@"VINearByViewController"]) {
+            hasInited = YES;
+            break;
+        }
+    }
+    
+    if (hasInited) {
+        [(VIBaseViewController *)[inNav topViewController] popTo:@"VINearByViewController"];
+    }else{
+        Class clzz = NSClassFromString(@"VINearByViewController");
+        UIViewController *ctrl = [[clzz alloc] init];
+        [(VIBaseViewController *)[inNav topViewController] push:ctrl];
+    }
+    
+    MallInfo *mall = [[iSQLiteHelper getDefaultHelper] searchSingle:[MallInfo class] where:@{@"MallAddressId" : mallid} orderBy:@"MallAddressId"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:_NOTIFY_MALL_CHANGED object:[mall toDictionary]];
+    
+}
+
 @end
 
 @implementation  VILabel
