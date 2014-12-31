@@ -73,6 +73,8 @@ typedef NS_ENUM(NSInteger, BarItem) {
 
 + (void)gotoMallWithId:(NSString *)mallid inNav:(UINavigationController *)inNav;
 
++ (void)jumpToNearestMall;
+
 @end
 
 @interface VILabel : UILabel

@@ -348,6 +348,14 @@
     
 }
 
++ (void)jumpToNearestMall {
+    MallInfo *nearest = [MallInfo nearestMall];
+    NSString *mallid    = [NSUserDefaults getValue:CURRENT_MALL_USER_SELECTED];
+    if (nearest!=nil && nearest.distance <= 0.2 && ![nearest.MallAddressId isEqualToString:mallid]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:_NOTIFY_MALL_CHANGED object:[nearest toDictionary]];
+    }
+}
+
 @end
 
 @implementation  VILabel

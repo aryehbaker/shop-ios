@@ -138,7 +138,7 @@ static NSString *logpath;
     //Location Manager start motion
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
-    self.locationManager.distanceFilter = 1; //精度10m
+    self.locationManager.distanceFilter = 10; //精度10m
     
     // ios 8的情况
 #ifdef __IPHONE_8_0
@@ -518,6 +518,8 @@ static NSDate *latestLoc;
         [self.locationManager startUpdatingLocation];
         [self.locationManager stopMonitoringSignificantLocationChanges];
     }
+    [ShopriseViewController jumpToNearestMall];
+        
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

@@ -46,13 +46,13 @@
     NSString *_MallAddressId = mallid;
     [helper executeDB:^(FMDatabase *db) {
         
-        NSString *sql = Fmt(@"delete from Picture where MobiPromoId in (select t.MobiPromoId from MobiPromo t where exists(select * from Store s where s.StoreId=t.StoreId and s.MallId='%@'))",_MallAddressId);
+        NSString *sql = Fmt(@"delete from Picture where MobiPromoId in (select t.MobiPromoId from MobiPromo t where exists(select * from Store s where s.AddressId=t.AddressId and s.MallId='%@'))",_MallAddressId);
     
         BOOL ok =  [db executeUpdate:sql];
         
         NSLog(@"Delete Mall[%@] Picture :%d",_MallAddressId,ok);
         
-        sql = Fmt(@"delete from UserSurprise where MobiPromoId in (select t.MobiPromoId from MobiPromo t where exists(select * from Store s where s.StoreId=t.StoreId and s.MallId='%@'))" ,_MallAddressId);
+        sql = Fmt(@"delete from UserSurprise where MobiPromoId in (select t.MobiPromoId from MobiPromo t where exists(select * from Store s where s.AddressId=t.AddressId and s.MallId='%@'))" ,_MallAddressId);
         
         ok = [db executeUpdate:sql];
         NSLog(@"Delete Mall[%@] UserSurprise:%d",_MallAddressId,ok);
@@ -62,7 +62,7 @@
         
         NSLog(@"Delete Mall[%@] Beacon:%d",_MallAddressId,ok);
         
-        sql = Fmt(@"delete from MobiPromo where StoreId in (select s.StoreId from Store s where s.MallId='%@')",_MallAddressId);
+        sql = Fmt(@"delete from MobiPromo where AddressId in (select s.AddressId from Store s where s.MallId='%@')",_MallAddressId);
         ok = [db executeUpdate:sql];
         
         NSLog(@"Delete Mall[%@] MobiPromo:%d",_MallAddressId,ok);

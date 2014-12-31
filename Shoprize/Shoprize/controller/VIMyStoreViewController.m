@@ -230,7 +230,7 @@ static NSIndexPath *selected;
     [pdata setValue:@"demo" forKey:@"MallAddress"];
     [pdata setValue:[pdata stringValueForKey:@"StoreId"] forKey:@"AddressId"];
     
-    [self pushTo:@"VIStoreDetailViewController" data:pdata];
+    //[self pushTo:@"VIStoreDetailViewController" data:pdata];
 }
 
 - (void)didReceiveMemoryWarning

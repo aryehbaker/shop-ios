@@ -117,24 +117,31 @@ static ListType currentType;
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(reloadSurpiseShow:) name:@"reloadSurpiseShow" object:nil];
     
     
-    //NSString *mall_select = [NSUserDefaults getValue:CURRENT_MALL_USER_SELECTED];
+    
     
     //只要到这里就从新加载最近的Mall
-    [VINet get:@"/api/malls/nearby?radius=0" args:nil target:self succ:@selector(getMalls:) error:@selector(getMallsFail:) inv: deals.count> 0 ? nil : self.view];
+    //[VINet get:@"/api/malls/nearby?radius=0" args:nil target:self succ:@selector(getMalls:) error:@selector(getMallsFail:) inv: deals.count> 0 ? nil : self.view];
     
-    /*
+    NSString *mall_select = [NSUserDefaults getValue:CURRENT_MALL_USER_SELECTED];
     if (mall_select == nil) {
         [VINet get:@"/api/malls/nearby?radius=0" args:nil target:self succ:@selector(getMalls:) error:@selector(getMallsFail:) inv: deals.count> 0 ? nil : self.view];
     }else{
         //恢复回原来的值
-       MallInfo *selectedOne = [[iSQLiteHelper getDefaultHelper] searchSingle:[MallInfo class] where:@{@"MallAddressId" : mall_select} orderBy:@"Name"];
-
-        ((VIAppDelegate *)[UIApplication sharedApplication].delegate).currentMall = selectedOne;
+        MallInfo *nearest = [MallInfo nearestMall];
+        if ([nearest.MallAddressId isEqualToString:mall_select]) {
+            ((VIAppDelegate *)[UIApplication sharedApplication].delegate).currentMall = nearest;
+            self.nav_title.text = nearest.Name;
+            [self refreshToShowTheTable];
+            [self notifyChange:nil];
+        }else{
+            ((VIAppDelegate *)[UIApplication sharedApplication].delegate).currentMall = nearest;
+            [NSUserDefaults setValue:nearest.MallAddressId forKey:CURRENT_MALL_USER_SELECTED];
+            [self notifyChange:self.view];
+        }
+        
         [VINet get:@"/api/malls/nearby?radius=0" args:nil target:self succ:@selector(rebulidMall:) error:@selector(getMallsFail:) inv:nil];
-        self.nav_title.text = selectedOne.Name;
-        [self refreshToShowTheTable];
+        
     }
-    */
     
     [VINet regPushToken];
     
@@ -149,7 +156,7 @@ static ListType currentType;
     if (key!=nil)
         like = Fmt(@" and (Offer like '%%%@%%' or StoreName like '%%%@%%')",key,key);
     
-    NSString *sql = Fmt(@"select * from MobiPromo where Type = 'Deal' and StoreId in (select s.StoreId from Store s where s.MallId='%@') %@ order by CreateDate desc",mallid, like);
+    NSString *sql = Fmt(@"select * from MobiPromo where Type = 'Deal' and AddressId in (select s.AddressId from Store s where s.MallId='%@') %@ order by CreateDate desc",mallid, like);
     
     return [helper searchWithSQL:sql toClass:[MobiPromo class]];
 }
@@ -215,19 +222,18 @@ static ListType currentType;
 - (void)notifyChange:(UIView *)loadView{
     
     MallInfo *currentMall = ((VIAppDelegate *)[UIApplication sharedApplication].delegate).currentMall;
-    
-    //用户选择的MallId
-    [NSUserDefaults setValue:currentMall.MallAddressId forKey:CURRENT_MALL_USER_SELECTED];
-    
-    [deals removeAllObjects],[suprises removeAllObjects],[stores removeAllObjects];
-    [_tableView reloadData];
-    
     self.nav_title.text =  currentMall.Name;
     [VINet get:Fmt(@"/api/malls/%@/detail",currentMall.MallAddressId) args:nil target:self succ:@selector(getMallProms:) error:@selector(getMallsFail:) inv:loadView];
 }
 
 - (void)getMallProms:(id)value
 {
+    MallInfo *currentMall = ((VIAppDelegate *)[UIApplication sharedApplication].delegate).currentMall;
+    //用户选择的MallId
+    [NSUserDefaults setValue:currentMall.MallAddressId forKey:CURRENT_MALL_USER_SELECTED];
+    [deals removeAllObjects],[suprises removeAllObjects],[stores removeAllObjects];
+    [_tableView reloadData];
+    
     
     JSONModelError *jsonerr;
     Mall *mall = [[Mall alloc] initWithDictionary:value error:&jsonerr];
