@@ -641,16 +641,20 @@ static NSDate *latestLoc;
                      NSString *email        =   [user objectForKey:@"email"];
                      NSString *imageUrl     =   [[NSString alloc] initWithFormat:@"https://graph.facebook.com/%@/picture?type=large",facebookId];
                      NSString *token = [FBSession activeSession].accessTokenData.accessToken;
-                   
-                     NSMutableDictionary *fb = [NSMutableDictionary dictionary];
-                     [fb setValue:email forKey:@"UserName"];
-                     [fb setValue:firstName forKey:@"FirstName"];
-                     [fb setValue:lastName forKey:@"LastName"];
-                     [fb setValue:imageUrl forKey:@"PictureUrl"];
-                     [fb setValue:facebookId forKey:@"UserId"];
-                     [fb setValue:token forKey:@"Token"];
-                    
-                     [VINet post:@"/api/Account/FacebookLogin" args:fb target:self succ:@selector(doSuccessReq:) error:@selector(doFailReq:) inv:self.window];
+                     
+                     if(email != nil && email.length > 2){
+                         NSMutableDictionary *fb = [NSMutableDictionary dictionary];
+                         [fb setValue:email forKey:@"UserName"];
+                         [fb setValue:firstName forKey:@"FirstName"];
+                         [fb setValue:lastName forKey:@"LastName"];
+                         [fb setValue:imageUrl forKey:@"PictureUrl"];
+                         [fb setValue:facebookId forKey:@"UserId"];
+                         [fb setValue:token forKey:@"Token"];
+                         [VINet post:@"/api/Account/FacebookLogin" args:fb target:self succ:@selector(doSuccessReq:) error:@selector(doFailReq:) inv:self.window];
+                     }else{
+                         [VIAlertView showErrorMsg:@"Login failed. Your Facebook account is not verified, or you haven't set an Email to your Facebook account."];
+                         return;
+                     }
                  }else{
                      [VIAlertView showErrorMsg:error.description];
                  }

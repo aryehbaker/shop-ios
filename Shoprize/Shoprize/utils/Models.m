@@ -354,8 +354,11 @@
         welcome = [[MallWelcome alloc] init];
         welcome.MallId = mallid;
     }else{
-        double miss = abs(welcome.visitTime - v);
-        if (miss > 24 * 60 * 60) {
+        NSDate *old = [NSDate dateWithTimeIntervalSince1970:welcome.visitTime];
+        int oldInt  = [[old format:@"yyyyMMdd"] integerValue];
+        int newInt  = [[[NSDate now] format:@"yyyyMMdd"] integerValue];
+
+        if (newInt > oldInt) {
             isNew = YES;
         }
     }
