@@ -363,6 +363,12 @@
     NSString *code = [resp stringValueForKey:@"RedemptionCode"];
     [redeem setTitle:code selected:code];
     [redeem setEnabled:NO];
+    NSMutableDictionary *vale = [mobi_promo mutableCopy];
+    [vale setValue:code forKey:@"Code"];
+    [vale setValue:@(true) forKey:@"Redeemed"];
+    
+    [[iSQLiteHelper getDefaultHelper] insertOrUpdateDB:[MobiPromoAR class] value:vale];
+    
 }
 
 - (void)markIt:(id)sender {

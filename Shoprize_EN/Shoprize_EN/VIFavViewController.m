@@ -299,15 +299,20 @@ static long last_selected_long;
      NSMutableDictionary *respval = [pdata mutableCopy];
      [respval setValue:@"RESPDEAL" forKey:@"resptype"];
 
-    if(currentTag == 100){
-        VIDealsDetailViewController *deal = [[VIDealsDetailViewController alloc] init];
-        deal.dealid = [pdata stringValueForKey:@"MobiPromoId"];
-        deal.showRedeem = YES;
-        [self push:deal];
-    }else{
-        [self pushTo:@"VIReedemViewController" data:respval];
-    }
-
+    VIDealsDetailViewController *deal = [[VIDealsDetailViewController alloc] init];
+    deal.dealid = [pdata stringValueForKey:@"MobiPromoId"];
+    deal.hideMore = YES;
+    deal.showRedeem = YES;
+    [self push:deal];
+    
+//    if(currentTag == 100){
+//        VIDealsDetailViewController *deal = [[VIDealsDetailViewController alloc] init];
+//        deal.dealid = [pdata stringValueForKey:@"MobiPromoId"];
+//        deal.showRedeem = YES;
+//        [self push:deal];
+//    }else{
+//        [self pushTo:@"VIReedemViewController" data:respval];
+//    }
 
 }
 

@@ -11,8 +11,10 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import <MessageUI/MessageUI.h>
 #import <Shoprize/Shoprize.h>
+#import <CoreBluetooth/CoreBluetooth.h>
 
-@interface VIAppDelegate : UIResponder <UIApplicationDelegate,OpenSuprise,CLLocationManagerDelegate,MFMailComposeViewControllerDelegate,UIAlertViewDelegate>
+@interface VIAppDelegate : UIResponder <UIApplicationDelegate,OpenSuprise,CLLocationManagerDelegate,MFMailComposeViewControllerDelegate,
+                                       UIGestureRecognizerDelegate,UIAlertViewDelegate,CBCentralManagerDelegate>
 
 //check the app is Active
 @property(nonatomic,assign) BOOL isActive;
@@ -26,6 +28,8 @@
 @property (strong, nonatomic) NSMutableDictionary *beancons;
 @property (strong, nonatomic) MallInfo *currentMall;
 @property (nonatomic,assign) NSInteger backTaskId;
+
+@property (nonatomic,strong) CBCentralManager *centralManager;
 
 /* get navigation view controllsers */
 - (UINavigationController *)pushStack;

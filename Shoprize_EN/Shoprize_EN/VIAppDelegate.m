@@ -76,19 +76,6 @@ static NSString *logpath;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-    [VIUncaughtExceptionHandler setDefaultHandler];
-    [[VIUncaughtExceptionHandler instace] checkAndSendMail:^(NSString *path) {
-        logpath = path;
-        if ([MFMailComposeViewController canSendMail]) {
-            [[[UIAlertView alloc] initWithTitle:@"Report" message:@"a crash file found, can you send it to me for fix it ? Thx" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil] show];
-        } else {
-            UIAlertView *alt = [[UIAlertView alloc] initWithTitle:@"Report" message:@"a crash log found, but your device can't send mail please set it first" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alt show];
-            [VIFile deleteFile:logpath];
-        }
-
-    }];
-
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.beancons = [NSMutableDictionary dictionary];
 
@@ -103,7 +90,13 @@ static NSString *logpath;
     //用户获得Mall的通知内容
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadNearestMallInBackGround:) name:CURRENT_MALL_USER_IN object:nil];
     
+    /*
+#if TARGET_IPHONE_SIMULATOR
     [[VILogger getLogger] setLogLevelSetting:SLLS_ALL];
+#elif TARGET_OS_IPHONE
+    [[VILogger getLogger] setLogLevelSetting:SLLS_NONE];
+#endif
+     */
 
     VIWelcomeViewController *welcome = [[VIWelcomeViewController alloc] init];
     [self checkToShowGuide:welcome]; //check first page loading
@@ -131,8 +124,6 @@ static NSString *logpath;
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     self.locationManager.distanceFilter = 5; //精度1m
-
-    DEBUGS(@"DEBUG %d", [CLLocationManager locationServicesEnabled]);
 
     // ios 8的情况
 #ifdef __IPHONE_8_0
@@ -165,13 +156,6 @@ static NSString *logpath;
 //  [self openPopSuprise:nil];
 #pragma mark 测试代码
 
-    /*
-    NSTimer *t = [NSTimer timerWithTimeInterval:2 target:self selector:@selector(repaint) userInfo:nil repeats:YES];
-    NSRunLoop *runloop = [NSRunLoop currentRunLoop];
-    [runloop addTimer:t forMode:NSDefaultRunLoopMode];
-    */
-
-    //load mall infos
     [VINet get:@"/api/malls/nearby?radius=0" args:nil target:self succ:@selector(rebulidMall:) error:@selector(rebulidMallFail:) inv:nil];
 
     //添加推送通知
@@ -194,7 +178,38 @@ static NSString *logpath;
     if (userInfo!=nil) {
         [self checkWhereToGoFromPushMessage:userInfo];
     }
+    
+    
+    [self pushStack].interactivePopGestureRecognizer.delegate = self;
+    self.centralManager = [[CBCentralManager alloc]
+                           initWithDelegate:self
+                           queue:dispatch_get_main_queue()
+                           options:@{CBCentralManagerOptionShowPowerAlertKey: @(NO)}];
+    
+    if (![CLLocationManager locationServicesEnabled])
+    {
+        [VIAlertView showErrorMsg:Lang(@"open_gps_on")];
+    }
+    
     return YES;
+}
+
+- (void)centralManagerDidUpdateState:(CBCentralManager *)central
+{
+    if (central.state == CBCentralManagerStatePoweredOff) {
+        [VIAlertView showErrorMsg:Lang(@"open_bluetooth_on")];
+    }
+}
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    if ([self pushStack].viewControllers.count == 2  &&
+            [NSStringFromClass([[[self pushStack].viewControllers lastObject] class]) isEqualToString:@"VIAroundMeViewController"]
+        ){
+        return NO;
+    }else{
+        return YES;
+    }
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
@@ -277,15 +292,15 @@ static NSDate *latestLoc;
     if (locations!=nil && locations.count > 0) {
         //save user Info
         CLLocation *location = [locations lastObject];
-        if (latestLoc!=nil && abs([location.timestamp timeIntervalSinceDate:latestLoc])< 30) {
+        [[NSUserDefaults standardUserDefaults] setValue:Fmt(@"%.7f,%.7f",location.coordinate.latitude,location.coordinate.longitude) forKey:@"location"];
+        
+        if (latestLoc!=nil && abs([location.timestamp timeIntervalSinceDate:latestLoc]) < 10) {
             //小于30s直接返回,不做任何操作
             return;
         }
         latestLoc = location.timestamp;
-        
-        [[NSUserDefaults standardUserDefaults] setValue:Fmt(@"%.7f,%.7f",location.coordinate.latitude,location.coordinate.longitude) forKey:@"location"];
         DEBUGS(@"Location complete:%@",location);
-        //[self calcIfOpenNewMall];
+        [self calcIfOpenNewMall];
     }
 }
 
@@ -446,6 +461,10 @@ static NSDate *latestLoc;
     if ([CLLocationManager locationServicesEnabled] &&
         [CLLocationManager significantLocationChangeMonitoringAvailable])
     {
+        if ([self localNotifyisOff]) {
+            self.backTaskId = UIBackgroundTaskInvalid;
+            return;
+        }
         self.backTaskId = [application beginBackgroundTaskWithExpirationHandler:^{
             
             [self.locationManager stopUpdatingLocation];
@@ -461,10 +480,10 @@ static NSDate *latestLoc;
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    self.isActive = YES;
-     if (self.backTaskId != UIBackgroundTaskInvalid){
+    if (self.backTaskId != UIBackgroundTaskInvalid){
         [application endBackgroundTask:self.backTaskId];
     }
+    self.isActive = NO;
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -473,6 +492,7 @@ static NSDate *latestLoc;
         [self.locationManager startUpdatingLocation];
         [self.locationManager stopMonitoringSignificantLocationChanges];
     }
+    //[ShopriseViewController jumpToNearestMall];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -585,7 +605,12 @@ static NSDate *latestLoc;
                             NSString *email = [user objectForKey:@"email"];
                             NSString *imageUrl = [[NSString alloc] initWithFormat:@"https://graph.facebook.com/%@/picture?type=large", facebookId];
                             NSString *token = [FBSession activeSession].accessTokenData.accessToken;
-
+                            
+                            if (email==nil || email.length<2) {
+                                [VIAlertView showErrorMsg:@"Login failed. Your Facebook account is not verified, or you haven't set an Email to your Facebook account."];
+                                return;
+                            }
+                            
                             NSMutableDictionary *fb = [NSMutableDictionary dictionary];
                             [fb setValue:email forKey:@"UserName"];
                             [fb setValue:firstName forKey:@"FirstName"];
@@ -664,21 +689,6 @@ static NSDate *latestLoc;
     
     [[self pushStack] presentViewController:activityController animated:YES completion:nil];
 
-    /* only for facebook
-    NSDictionary *shareInfo = notify.object;
-    if ([FBSession activeSession].isOpen) {
-        [self doPostMessage2FaceBook:shareInfo];
-    } else {
-        NSArray *ps = [NSArray arrayWithObjects:@"publish_actions", nil];
-        [FBSession openActiveSessionWithPublishPermissions:ps defaultAudience:FBSessionDefaultAudienceEveryone allowLoginUI:YES completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
-            if (error) {
-                [VIAlertView showMessageWithTitle:@"" msg:error.localizedDescription];
-            } else if (FB_ISSESSIONOPENWITHSTATE(status)) {
-                [self doPostMessage2FaceBook:shareInfo];
-            }
-        }];
-    }
-   */
 }
 
 - (void)pushWeekNotifycation {
@@ -754,6 +764,13 @@ static NSDate *latestLoc;
                 //[self sendOpenSupriseNotify:allinfo];
             }
         }
+        
+        if ([[notification.userInfo stringValueForKey:@"NotifyType"] isEqualToString:@"Mall"]) {
+            NSString *allinfo = [notification.userInfo stringValueForKey:@"Udid"];
+            if (allinfo!=nil) {
+                [ShopriseViewController gotoMallWithId:allinfo inNav:[self pushStack]];
+            }
+        }
     }
         // When The App is Running ， when you click this you will goto the app
     else {
@@ -787,89 +804,6 @@ static NSDate *latestLoc;
 
 static NSMutableDictionary *shareInfo;
 
-- (void)doPostMessage2FaceBook:(NSDictionary *)msgs {
-
-    shareInfo = [msgs mutableCopy];
-
-    UIView *bd = [[UIView alloc] initWithFrame:self.window.bounds];
-    bd.tag = -2000;
-    bd.backgroundColor = [@"#000000" hexColorAlpha:.6];
-
-    [bd addTapTarget:self action:@selector(cancelShare:)];
-    UIView *v = [VIBaseViewController loadXibView:@"UI.xib" withTag:18000];
-    [v setX:(self.window.w - v.w) / 2];
-    [v setY:-v.h];
-
-    v.layer.borderWidth = 1.2;
-    v.layer.shadowOffset = CGSizeMake(-1, 1);
-    v.layer.shadowColor = [@"#FFFFFF" hexColor].CGColor;
-    v.layer.borderColor = [@"#D1D1D1" hexColor].CGColor;
-    v.layer.cornerRadius = 8;
-
-    UITextView *t = ((UITextView *) [v viewWithTag:18003]);
-    t.font = Regular(14);
-    t.text = [msgs objectForKey:@"description"];
-    t.textAlignment = Align;
-    [t becomeFirstResponder];
-
-    [(UIButton *) [v viewWithTag:18001] setTitle:Lang(@"share_cancel") selected:Lang(@"share_cancel")];
-    ((UIButton *) [v viewWithTag:18001]).titleLabel.font = Bold(16);
-    [((UIButton *) [v viewWithTag:18001]) addTapTarget:self action:@selector(cancelShareAct:)];
-    [((UIButton *) [v viewWithTag:18002]) addTapTarget:self action:@selector(shareNow:)];
-    [((UIButton *) [v viewWithTag:18002]) setTitle:Lang(@"share_ok") selected:Lang(@"share_ok")];
-    ((UIButton *) [v viewWithTag:18002]).titleLabel.font = Bold(16);
-    id pic = [msgs objectForKey:@"picture"];
-    if ([pic isKindOfClass:[NSString class]]) {
-        pic = [NSURL URLWithString:pic];
-    }
-
-    [v egoimageView4Tag:18004].imageURL = pic;
-
-    [bd addSubview:v];
-
-    [self.window addSubview:bd];
-
-    [UIView animateWithDuration:.3 animations:^{
-        [v setY:20];
-    }];
-
-
-}
-
-- (void)shareNow:(UIButton *)share {
-    NSString *viewt = ((UITextView *) [self.window viewWithTag:18003]).text;
-
-    [shareInfo setValue:viewt forKey:@"description"];
-
-    NSMutableDictionary *postInfo = [NSMutableDictionary dictionary];
-    id pic = [shareInfo objectForKey:@"picture"];
-    if ([pic isKindOfClass:[NSURL class]]) {
-        pic = [pic absoluteString];
-    }
-    [postInfo setValue:pic forKey:@"picture"];
-    [postInfo setValue:[shareInfo objectForKey:@"description"] forKey:@"description"];
-    [postInfo setValue:[shareInfo objectForKey:@"name"] forKey:@"name"];
-
-    NSString *stringUrl = [shareInfo objectForKey:@"link"];
-    if (![[stringUrl stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""]) {
-        [postInfo setValue:stringUrl forKey:@"link"];
-    }
-
-    [FBRequestConnection
-            startWithGraphPath:@"me/feed" parameters:postInfo HTTPMethod:@"POST"
-             completionHandler:^(FBRequestConnection *connection,
-                     id result, NSError *error) {
-                 NSString *alertText;
-                 if (error) {
-                     ERROR(@"Facebook Share:%@", error.description);
-                     alertText = [@"share2facebook_no" lang];
-                 } else {
-                     alertText = [@"share2facebook_ok" lang];
-                     [self cancelShareAct:nil];
-                 }
-                 [VIAlertView showMessageWithTitle:@"" msg:alertText];
-             }];
-}
 
 @end
 
