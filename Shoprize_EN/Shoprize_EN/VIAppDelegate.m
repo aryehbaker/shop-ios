@@ -16,7 +16,7 @@
 #import "VIUncaughtExceptionHandler.h"
 #import "VIAroundMeViewController.h"
 
-#define RAIDO_R 200
+#define RAIDO_R 500
 
 
 @interface VIAppDelegate () {
@@ -90,13 +90,13 @@ static NSString *logpath;
     //用户获得Mall的通知内容
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadNearestMallInBackGround:) name:CURRENT_MALL_USER_IN object:nil];
     
-    /*
-#if TARGET_IPHONE_SIMULATOR
-    [[VILogger getLogger] setLogLevelSetting:SLLS_ALL];
-#elif TARGET_OS_IPHONE
-    [[VILogger getLogger] setLogLevelSetting:SLLS_NONE];
-#endif
-     */
+
+    #if TARGET_IPHONE_SIMULATOR
+        [[VILogger getLogger] setLogLevelSetting:SLLS_ALL];
+    #elif TARGET_OS_IPHONE
+        [[VILogger getLogger] setLogLevelSetting:SLLS_NONE];
+    #endif
+
 
     VIWelcomeViewController *welcome = [[VIWelcomeViewController alloc] init];
     [self checkToShowGuide:welcome]; //check first page loading
@@ -526,7 +526,8 @@ static NSDate *latestLoc;
 - (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region
               withError:(NSError *)error
 {
-    NSLog(@"监控地理围墙信息失败:%@",error);
+    
+    NSLog(@"监控地理围墙信息失败:%@ \nErr:%@",region,error);
 }
 
 -(void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region{

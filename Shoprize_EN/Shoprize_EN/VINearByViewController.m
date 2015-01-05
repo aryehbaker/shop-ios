@@ -143,10 +143,10 @@ static ListType currentType;
         LKDBHelper *helper  = [iSQLiteHelper getDefaultHelper];
         NSString *mallid    = [NSUserDefaults getValue:CURRENT_MALL_USER_SELECTED];
         
-        NSString *sql = Fmt(@"select * from MobiPromo where Type = 'Deal' and StoreId in (select s.StoreId from Store s where s.MallId='%@') order by CreateDate desc",mallid);
+        NSString *sql = Fmt(@"select * from MobiPromo where Type = 'Deal' and AddressId in (select s.AddressId from Store s where s.MallId='%@') order by CreateDate desc",mallid);
         deals = [helper searchWithSQL:sql toClass:[MobiPromo class]];
         
-        sql = Fmt(@"select * from MobiPromo where Type = 'Surprise' and  StoreId in(select StoreId from Store s where s.MallId='%@') order by CreateDate desc",mallid);
+        sql = Fmt(@"select * from MobiPromo where Type = 'Surprise' and  AddressId in(select AddressId from Store s where s.MallId='%@') order by CreateDate desc",mallid);
         suprises = [helper searchWithSQL:sql toClass:[MobiPromo class]];
         
         sql = Fmt(@"select * from Store where MallId='%@' ",mallid);
