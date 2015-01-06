@@ -286,5 +286,9 @@
     "open_gps_on" : {
         "en" : "Please enable the location service ",
         "he" : "יש להפעיל את ה GPS על מנת ליהנות ממבצעים והטבות בלעדיות (הפתעות) משופרייז."
+    },
+    "count_down_start" : {
+        "en" : "Start",
+        "he" : "התחלה"
     }
 }

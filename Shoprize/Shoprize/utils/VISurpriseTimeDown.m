@@ -56,6 +56,7 @@
     UserSurprise *leftUsr = [[iSQLiteHelper getDefaultHelper] searchSingle:[UserSurprise class] where:@{@"MobiPromoId":leftMId} orderBy:@"MobiPromoId"];
     
     NSDate *lExp   = leftUsr.ExpireTime;
+    [self label4Tag:14007].text = Lang(@"count_down_start");
     if(leftUsr.Redeemed) {
         [self label4Tag:14004].text = Lang(@"menu_sprise_used");
         [leftTimer invalidate];

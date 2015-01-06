@@ -277,5 +277,9 @@
         "en" : "Redeem Code",
         "he" : "קוד מימוש הפתעה:",
         "zh_Hans" : "兑换码"
+    },
+    "count_down_start" : {
+        "en" : "Start",
+        "he" : "התחלה"
     }
 }

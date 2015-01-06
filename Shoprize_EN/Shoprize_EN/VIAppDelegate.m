@@ -16,7 +16,7 @@
 #import "VIUncaughtExceptionHandler.h"
 #import "VIAroundMeViewController.h"
 
-#define RAIDO_R 500
+#define RAIDO_R 200
 
 
 @interface VIAppDelegate () {
