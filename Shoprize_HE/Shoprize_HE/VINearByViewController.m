@@ -220,7 +220,6 @@ static ListType currentType;
 }
 
 - (void)notifyChange:(UIView *)loadView{
-    
     MallInfo *currentMall = ((VIAppDelegate *)[UIApplication sharedApplication].delegate).currentMall;
     self.nav_title.text =  currentMall.Name;
     [VINet get:Fmt(@"/api/malls/%@/detail",currentMall.MallAddressId) args:nil target:self succ:@selector(getMallProms:) error:@selector(getMallsFail:) inv:loadView];
@@ -350,6 +349,9 @@ static ListType currentType;
 
 - (void)changeType:(UIButton *)btn
 {
+    currentType = (int) btn.tag;
+    [self  hideSearchFiled:self.leftOne];
+    
     [section1 setBackgroundcolorByHex:@"#ff4747"];
     [section1 imageView4Tag:100].image = [@"supriset_w.png" image];
     [section1 setTitleColor:[@"#ffffff" hexColor] forState:UIControlStateNormal];
@@ -372,11 +374,8 @@ static ListType currentType;
         [self hideSearchFiled:self.leftOne];
     }
     
-    currentType = (int) btn.tag;
-    
     [[_tableView imageView4Tag:-5000] removeFromSuperview];
     [[_tableView label4Tag:-4999] removeFromSuperview];
-
     
     switch (btn.tag) {
         case Deals:  {

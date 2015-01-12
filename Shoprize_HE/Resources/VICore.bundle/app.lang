@@ -37,7 +37,7 @@
      "mail_logon"           :{ "en" : "Email Login in","he":"התחבר עם דוא\"ל"},
      "index_finish"         :{ "en" : "Finish" , "he" : "סיום" },
      "main_suprises"        :{ "en": "Surprise ","he": " הפתעות"},
-     "main_deals"           :{ "en": "Deals ","he": "  כל המבצעים"},
+     "main_deals"           :{ "en": "Deals ","he": "  מבצעים"},
      "main_stores"          :{ "en": "Stores ","he": "  לפי חנות"},
      "menu_home"            :{ "en" : "Home", "he" : "בית" },
      "menu_profile"         :{ "en" : "Preferences", "he" : "איזור אישי" },
@@ -181,11 +181,11 @@
     },
     "pliaylice_html" : {
         "en" : "pliaylice_en.html",
-        "he" : "pliaylice_he.html",
+        "he" : "pliaylice_he.html"
     },
     "pliaylice_title" : {
         "en" : "Privacy Policy",
-        "he" : "מדיניות פרטיות",
+        "he" : "מדיניות פרטיות"
     },
     "reedem_button_text" : {
         "en" : "Reedem",
@@ -274,7 +274,7 @@
     },
     "open_bluetooth_on" : {
         "en" : "please open the bluetooth ",
-        "he" : "עליך להפעיל את ה Bluetooth על מנת לזכות בהטבות בלעדיות (הפתעות) מהחנויות בקניון."
+        "he" : "אם הינך בקניון, עליך להפעיל את ה bluetooth על מנת לזכות בהטבות בלעדיות (הפתעות) מהחנויות בקניון."
     },
     "open_gps_on" : {
         "en" : "please open the location service ",
@@ -283,5 +283,17 @@
     "count_down_start" : {
         "en" : "Start",
         "he" : "התחלה"
+    },
+    "facebook_need_mail" :{
+        "he" : "החיבור נכשל. חשבון הפייסבוק שלך לא מאומת, או שלא הגדרת דוא\"ל לחשבון הפייסבוק שלךץ",
+        "en" : "Login failed. Your Facebook account is not verified, or you haven't set an Email to your Facebook account."
+    },
+    "loading_text" : {
+        "he" : "טעינה ...",
+        "en" : "Loading"
+    },
+    "version_text" : {
+        "en" : "Version",
+        "he" :"גרסה"
     }
 }

@@ -252,6 +252,15 @@ static NSMutableDictionary *stores;
     return [VINet distancOfTwolat1:[VINet currentLat] lon1:[VINet currentLon] lat2:lat lon2:lon];
 }
 
++ (BOOL)isDebug
+{
+    NSString *apiURL = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"baseURL"];
+    if ([apiURL indexOf:@"-dev."]!=-1) {
+        return YES;
+    }
+    return NO;
+}
+
 //提交表单
 - (void)submitForm:(NSMutableDictionary *)baseArg {
     @autoreleasepool {
@@ -346,30 +355,13 @@ static NSMutableDictionary *stores;
                 } else if ([jsonv stringValueForKey:@"Message"] != nil ) {
                     [reu setValue:[jsonv stringValueForKey:@"Message"] forKey:@"Message"];
                 }
-//                if (jsonv==nil) {
-//                     [reu setValue:requestResult forKey:@"Message"];
-//                }else{
-//                    NSDictionary *o = [jsonv objectForKey:@"ModelState"];
-//                    if( o!=nil){
-//                        @try {
-//                            NSArray *value = [[o allValues] objectAtIndex:0];
-//                            [reu setValue:[value objectAtIndex:0] forKey:@"Message"];
-//                        }
-//                        @catch (NSException *exception) {
-//                             [reu setValue:@"An Error Occur" forKey:@"Message"];
-//                        }
-//                    }else{
-//                        NSString *js = [jsonv stringValueForKey:@"error_description"];
-//                        if(js!=nil){
-//                            [reu setValue:js forKey:@"Message"];
-//                        }else{
-//                            [reu setValue:[jsonv stringValueForKey:@"Message" defaultValue:requestResult] forKey:@"Message"];
-//                        }
-//                    }
-//                }
             }
         } else {
             [reu setValue:[@"00026" lang:@"数据异常"] forKey:@"Message"];
+        }
+        if ([VINet isDebug]) {
+            NSString *fmt = Fmt(@"%@\n----Debug----\n%@",[reu stringValueForKey:@"Message"],requestResult);
+            [reu setValue:fmt forKey:@"Message"];
         }
         [self submitFormFail:nil cusmInfo:reu];
     }

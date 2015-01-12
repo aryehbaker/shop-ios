@@ -25,7 +25,7 @@
 #import "VILocalNotify.h"
 #import "VIUncaughtExceptionHandler.h"
 
-#define RAIDO_R 200
+static int GPS_SCAN_RAIDO_R = 200;
 
 @interface VIAppDelegate() {
      REFrostedViewController *frostedViewController;
@@ -67,36 +67,19 @@
     }];
 }
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex==0) {
-         [VIFile deleteFile:logpath];
-    }else{
-        MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
-        picker.mailComposeDelegate = self;
-        [picker setSubject:Fmt(@"[Shoprize][App Crash] %@ ",[NSDate now])];
-        [picker setToRecipients:@[@"xianhong@techwuli.com"]];
-        NSData *data = [NSData dataWithContentsOfFile:logpath];
-        [picker addAttachmentData:data mimeType:@"application/octet-stream" fileName:@"crashfile.crash"];
-        
-        UINavigationController *v = (UINavigationController*) ((REFrostedViewController *)[self.window rootViewController]).contentViewController;
-        [[v topViewController] presentViewController:picker animated:NO completion:^{
-            
-        }];
-    }
-}
-
 static NSString *logpath;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.beancons     = [NSMutableDictionary dictionary];
     
-#if TARGET_IPHONE_SIMULATOR
-    [[VILogger getLogger] setLogLevelSetting:SLLS_ALL];
-#elif TARGET_OS_IPHONE
-    [[VILogger getLogger] setLogLevelSetting:SLLS_NONE];
-#endif
+    if ([VINet isDebug]) {
+        [[VILogger getLogger] setLogLevelSetting:SLLS_ALL];
+        GPS_SCAN_RAIDO_R = 500;
+    }else{
+        [[VILogger getLogger] setLogLevelSetting:SLLS_NONE];
+    }
+
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(faceBookLogon:) name:@"_facebook_logon_" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showNavBarMenu:) name:_NS_NOTIFY_SHOW_MENU object:nil];
@@ -546,7 +529,7 @@ static NSDate *latestLoc;
     NSArray *malls  = [MallInfo allmall];
     for(MallInfo *mall in malls){
         CLLocationCoordinate2D center = CLLocationCoordinate2DMake(mall.Lat, mall.Lon);
-        CLRegion *region = [[CLCircularRegion alloc] initWithCenter:center radius:RAIDO_R identifier:mall.MallAddressId];
+        CLRegion *region = [[CLCircularRegion alloc] initWithCenter:center radius:GPS_SCAN_RAIDO_R identifier:mall.MallAddressId];
         NSLog(@"%@",region);
         [self.locationManager startMonitoringForRegion:region];
     }
@@ -559,31 +542,37 @@ static NSDate *latestLoc;
 
 -(void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region{
     
-    NSString *mallId = region.identifier;
-    BOOL isNew = [MallWelcome isNewMall:mallId];
-    if (isNew) {
-        MallInfo *nearest = [MallInfo getMallById:mallId];
-        NSString *mallName = nearest.Name;
-        NSString *uname = [VINet info:KFull];
-        NSString *msg;
-        if (isHe) {
-            msg = Fmt(Lang(@"welcome_mall"), mallName);
-        }else{
-            msg = Fmt(Lang(@"welcome_mall"), uname, mallName);
+    if ([region isKindOfClass:[CLBeaconRegion class]]) {
+        [NSUserDefaults setValue:region.identifier forKey:@"_post_store_id_"];
+        return;
+    }
+    if ([region isKindOfClass:[CLCircularRegion class]]) {
+        NSString *mallId = region.identifier;
+        BOOL isNew = [MallWelcome isNewMall:mallId];
+        if (isNew) {
+            MallInfo *nearest = [MallInfo getMallById:mallId];
+            NSString *mallName = nearest.Name;
+            NSString *uname = [VINet info:KFull];
+            NSString *msg;
+            if (isHe) {
+                msg = Fmt(Lang(@"welcome_mall"), mallName);
+            }else{
+                msg = Fmt(Lang(@"welcome_mall"), uname, mallName);
+            }
+            
+            NSMutableDictionary *mt = [NSMutableDictionary dictionary];
+            [mt setValue:@"Mall" forKey:@"NotifyType"];
+            [mt setValue:nearest.MallAddressId forKey:@"Udid"];
+            // 禁止掉通知信息
+            [self pushNotification:msg withObj:mt];
         }
         
-        NSMutableDictionary *mt = [NSMutableDictionary dictionary];
-        [mt setValue:@"Mall" forKey:@"NotifyType"];
-        [mt setValue:nearest.MallAddressId forKey:@"Udid"];
-        // 禁止掉通知信息
-        [self pushNotification:msg withObj:mt];
+        [NSUserDefaults setValue:mallId forKey:@"_post_mall_id_"];
+        
+        [self calcIfOpenNewMall];
     }
     
     NSLog(@"Enter: %@",region.identifier);
-    
-    [NSUserDefaults setValue:mallId forKey:@"_post_mall_id_"];
-    
-    [self calcIfOpenNewMall];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
@@ -652,7 +641,7 @@ static NSDate *latestLoc;
                          [fb setValue:token forKey:@"Token"];
                          [VINet post:@"/api/Account/FacebookLogin" args:fb target:self succ:@selector(doSuccessReq:) error:@selector(doFailReq:) inv:self.window];
                      }else{
-                         [VIAlertView showErrorMsg:@"Login failed. Your Facebook account is not verified, or you haven't set an Email to your Facebook account."];
+                         [VIAlertView showErrorMsg:Lang(@"facebook_need_mail")];
                          return;
                      }
                  }else{

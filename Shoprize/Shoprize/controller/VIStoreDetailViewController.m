@@ -51,7 +51,8 @@
 
     //check if the store is from favorite
     if([self isFromFavorite]){
-        [VINet get:Fmt(@"/api/stores/%@/details",[storeInfo stringValueForKey:@"AddressId"]) args:nil target:self
+        
+        [VINet get:Fmt(@"/api/stores/%@/promos",[storeInfo stringValueForKey:@"StoreId"]) args:nil target:self
               succ:@selector(showMobiFromNet:) error:@selector(showMobiFail:) inv:self.view];
     }else{
         NSString *addId = [storeInfo objectForKey:@"AddressId"];
@@ -77,9 +78,10 @@
     return [storeInfo stringValueForKey:@"MallAddress"] != nil;
 }
 
--(void)showMobiFromNet:(id)resp
+-(void)showMobiFromNet:(NSArray *)Promos
 {
-    NSArray *Promos = [resp arrayValueForKey:@"MobiPromos"];
+    [btn_showTime setHidden:YES];
+    
     NSMutableArray *filter = [Ext doEach:Promos with:^id(id itm) {
         MobiPromo *mob = [MobiPromo initWithDictionary:itm];
         if(![mob isSuprise])

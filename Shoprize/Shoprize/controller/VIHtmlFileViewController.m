@@ -45,7 +45,7 @@
 {
     htmlView.content.dataDetectorTypes = UIDataDetectorTypeLink;
     NSDictionary *maininfo = [[NSBundle mainBundle] infoDictionary] ;
-    [htmlView invokeJS:Fmt(@"$('#versionCode').text('גרסה %@ - %@')",[maininfo stringValueForKey:@"CFBundleShortVersionString"],[maininfo stringValueForKey:@"CFBundleVersion"])];
+    [htmlView invokeJS:Fmt(@"$('#versionCode').text('%@ %@ - %@')",Lang(@"version_text"),[maininfo stringValueForKey:@"CFBundleShortVersionString"],[maininfo stringValueForKey:@"CFBundleVersion"])];
 }
 
 - (void)callObjcInWebview:(VIHtmlLoadView*)webview func:(NSString *)funName args:(id)args

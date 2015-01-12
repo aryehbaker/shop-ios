@@ -1084,7 +1084,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7b59d073-a656-4acb-b582-430cb6e28360";
+				PROVISIONING_PROFILE = "d10239f8-71aa-4bf7-8432-d5c4c02fe01e";
 			};
 			name = Debug;
 		};
@@ -1106,7 +1106,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7b59d073-a656-4acb-b582-430cb6e28360";
+				PROVISIONING_PROFILE = "d10239f8-71aa-4bf7-8432-d5c4c02fe01e";
 			};
 			name = Release;
 		};

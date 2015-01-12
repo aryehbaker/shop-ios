@@ -92,6 +92,8 @@ typedef NS_ENUM(NSInteger, KInfo){ Sex,Mail,FName,LName,Phone,userId,Token,Expir
 
 + (double)distanceTo:(double)lat lon:(double)lon;
 
++ (BOOL)isDebug;
+
 @end
 
 @interface NSDate (gtlt)

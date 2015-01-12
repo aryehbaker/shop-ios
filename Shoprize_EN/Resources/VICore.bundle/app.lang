@@ -290,5 +290,13 @@
     "count_down_start" : {
         "en" : "Start",
         "he" : "התחלה"
+    },
+    "loading_text" : {
+        "he" : "טעינה ...",
+        "en" : "Loading"
+    },
+    "version_text" : {
+        "en" : "Version",
+        "he" :"גרסה"
     }
 }

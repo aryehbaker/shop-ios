@@ -87,10 +87,9 @@
 
 -(void)loadData
 {
-    NSString *query = Fmt(@"pageindex=%ld&pagesize=10&saved=ture&searchkey=%@",(long)currentPage,searchKey==nil?@"":[searchKey uriEncode]);
+    NSString *query = Fmt(@"pageindex=%ld&pagesize=10&saved=true&searchkey=%@",(long)currentPage,searchKey==nil?@"":searchKey);
     [VINet get:Fmt(@"/api/stores/all?%@",query) args:nil target:self succ:@selector(loadComplet:) error:@selector(loadComplet2:) inv: (storeData.count == 0 && searchKey ==nil) ? self.view : nil];
 }
-
 
 -(void)loadComplet:(NSDictionary *)value
 {
@@ -103,7 +102,7 @@
         [storeData removeAllObjects];
     }
     [storeData addObjectsFromArray:[value arrayValueForKey:@"Stores"]];
-    [tabview reloadAndHideLoadMore:[value intValueForKey:@"Count"]-1<=currentPage];
+    [tabview reloadAndHideLoadMore:[value intValueForKey:@"Count"]==storeData.count];
 }
 
 -(void)loadComplet2:(NSDictionary *)resp2{
@@ -228,9 +227,10 @@ static NSIndexPath *selected;
 - (void)rowSelectedAtIndexPath:(NSIndexPath *)indexPath {
     NSMutableDictionary *pdata = [[storeData objectAtIndex:indexPath.row] mutableCopy];
     [pdata setValue:@"demo" forKey:@"MallAddress"];
-    [pdata setValue:[pdata stringValueForKey:@"StoreId"] forKey:@"AddressId"];
+    [pdata setValue:[pdata stringValueForKey:@"StoreId"] forKey:@"StoreId"];
+    [pdata setValue:[pdata stringValueForKey:@"Name"] forKey:@"StoreName"];
     
-    //[self pushTo:@"VIStoreDetailViewController" data:pdata];
+    [self pushTo:@"VIStoreDetailViewController" data:pdata];
 }
 
 - (void)didReceiveMemoryWarning

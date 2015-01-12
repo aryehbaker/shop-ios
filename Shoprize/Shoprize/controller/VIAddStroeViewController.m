@@ -61,7 +61,7 @@
 
 -(void)loadData
 {
-    NSString *query = Fmt(@"pageindex=%d&pagesize=10&saved=false&searchkey=%@",currentPage,searchKey==nil?@"":[searchKey uriEncode]);
+    NSString *query = Fmt(@"pageindex=%d&pagesize=10&saved=false&searchkey=%@",currentPage,searchKey==nil?@"":searchKey);
     [VINet get:Fmt(@"/api/stores/all?%@",query) args:nil target:self succ:@selector(loadComplet:) error:@selector(loadComplet2:) inv: (storeData.count == 0 && searchKey ==nil) ? self.view : nil];
 }
 
@@ -71,7 +71,7 @@
         [storeData removeAllObjects];
     }
     [storeData addObjectsFromArray:[value arrayValueForKey:@"Stores"]];
-    [tabview reloadAndHideLoadMore:[value intValueForKey:@"Count"]-1<=currentPage];
+    [tabview reloadAndHideLoadMore:[value intValueForKey:@"Count"]==storeData.count];
 }
 
 -(void)loadComplet2:(NSDictionary *)resp2{

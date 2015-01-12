@@ -41,7 +41,7 @@
     
     //from push
     if (self.dealid!=nil) {
-        [self addNav:@"Detail" left:BACK right:NONE];
+        [self addNav:Lang(@"loading_text") left:BACK right:NONE];
         [VINet get:Fmt(@"/api/mobipromos/%@/detail",_dealid)  args:nil target:self succ:@selector(loadOK:) error:@selector(loadFail:) inv:self.view];
     }
     else{
