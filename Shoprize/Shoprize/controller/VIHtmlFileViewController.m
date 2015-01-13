@@ -58,6 +58,9 @@
         [p setValue:[VINet info:Mail] forKey:@"email"];
         [p setValue:args forKey:@"comments"];
         [VINet post:@"/api/Feedbacks" args:p target:self succ:@selector(postComplete:) error:@selector(showAlertError:) inv:self.view];
+        
+        [self addTracksForKey:_TK_Contact_Us values:@[[VINet info:FName]]];
+    
     }
     if ([funName isEqualToString:@"contactUs"]) {
         VIHtmlFileViewController *us = [[VIHtmlFileViewController alloc] init];

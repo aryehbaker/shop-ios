@@ -106,10 +106,19 @@
     // do update
     [[iSQLiteHelper getDefaultHelper] insertOrUpdateUsingObj:mt];
     
-    NSString *api = Fmt(@"/api/stores/%@/mark",[mt stringValueForKey:@"StoreId"]);
-    if (![mt boolValueForKey:@"Saved"]) {
-        api = Fmt(@"/api/stores/%@/unmark",[mt stringValueForKey:@"StoreId"]);
+    NSString *StoreId = [mt stringValueForKey:@"StoreId"];
+    NSString *StoreName = [mt stringValueForKey:@"Name"];
+    
+    BOOL mark = [mt boolValueForKey:@"Saved"];
+    NSString *api = Fmt(@"/api/stores/%@/mark",StoreId);
+    if (!mark) {
+        api = Fmt(@"/api/stores/%@/unmark",StoreId);
     }
+    
+    if (mark) {
+        [self addTracksForKey:_TK_Add_Fav_Store values:@[StoreId,StoreName]];
+    }
+    
     [VINet post:api args:nil target:self succ:@selector(doNothing:) error:@selector(doNothing:) inv:self.view];
 }
 

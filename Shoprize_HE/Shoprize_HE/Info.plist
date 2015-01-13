@@ -67,7 +67,7 @@
 	<key>apptoken</key>
 	<string>7d535daae10548af80fdf9488e4691ec</string>
 	<key>baseURL</key>
-	<string>http://spapine-dev.azurewebsites.net</string>
+	<string>http://spapine.azurewebsites.net</string>
 	<key>lang</key>
 	<string>he</string>
 </dict>

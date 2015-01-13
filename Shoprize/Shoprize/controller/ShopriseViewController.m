@@ -356,6 +356,14 @@
     }
 }
 
+- (void)addTracksForKey:(NSString *)key values:(NSArray *)objects
+{
+    NSMutableArray *arrays = [NSMutableArray array];
+    [arrays addObject:key];
+    [arrays addObjectsFromArray:objects];
+    [[NSNotificationCenter defaultCenter] postNotificationName:_Track object:arrays];
+    
+}
 @end
 
 @implementation  VILabel

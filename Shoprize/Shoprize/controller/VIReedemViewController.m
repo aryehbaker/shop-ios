@@ -48,7 +48,11 @@
         }
     }
     
-    [self addNav:[extra stringValueForKey:@"StoreName"] left:BACK right:NONE];
+    NSString *StoreName = [extra stringValueForKey:@"StoreName"];
+    
+    [self addTracksForKey:_TK_View_Suprise values:@[mobiId,StoreName]];
+    
+    [self addNav:StoreName left:BACK right:NONE];
     
     if ([fromPop isEqualToString:@"YES"]) {
         [[self leftOne] removeTarget:self action:@selector(pop:) forControlEvents:UIControlEventTouchUpInside];
@@ -64,6 +68,8 @@
     title.text = ctx;
     title.textAlignment = Align;
     [title autoHeight];
+    
+    
     
     [ct addSubview:title];
     
@@ -234,6 +240,8 @@
             if (reemId == nil)
                 reemId = [extra stringValueForKey:@"MobiPromoId"];
             [VINet post:Fmt(@"/api/mobipromos/%@/redeem",reemId) args:nil target:self succ:@selector(completeReedem:) error:@selector(showAlertError:) inv:self.view];
+            
+            [self addTracksForKey:_TK_Redeeem_Suprise values:@[reemId]];
         }
     }];
 }

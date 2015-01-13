@@ -87,6 +87,7 @@ static NSString *logpath;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(add_current_track:) name:@"_add_current_track_" object:nil];
 	  // 设置地理位置墙
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(buildGenWall) name:@"_rebuild_geo_wall" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addTrack:) name:_Track object:nil];
     //用户获得Mall的通知内容
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadNearestMallInBackGround:) name:CURRENT_MALL_USER_IN object:nil];
     
@@ -230,6 +231,9 @@ static NSString *logpath;
 //        deal.dealid = [userInfo stringValueForKey:@"value"];
 //        [[self pushStack] pushViewController:deal animated:YES];
     }
+    
+    NSString *value = [userInfo stringValueForKey:@"value" defaultValue:@""];
+    [[NSNotificationCenter defaultCenter] postNotificationName:_TK_Click_Market_Noti object:@[type,value]];
 }
 
 - (void)rebulidMall:(id)values {
@@ -369,6 +373,10 @@ static NSDate *latestLoc;
         [self startScan];
     }
     [self pushNotification:msg withObj:mt];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:_Track object:@[_TK_Collecte_Suprise,
+                                                                               mobi.MobiPromoId,mobi.StoreName ]];
+
 }
 
 
@@ -770,6 +778,7 @@ static NSDate *latestLoc;
             NSString *allinfo = [notification.userInfo stringValueForKey:@"Udid"];
             if (allinfo!=nil) {
                 [ShopriseViewController gotoMallWithId:allinfo inNav:[self pushStack]];
+                [[NSNotificationCenter defaultCenter] postNotificationName:_TK_Click_Mall_Noti object:@[allinfo]];
             }
         }
     }
@@ -802,6 +811,23 @@ static NSDate *latestLoc;
         [tap removeFromSuperview];
     }];
 }
+
+//统计操作
+- (void)addTrack:(NSNotification *)notifi{
+    NSArray *object = notifi.object;
+    if (object.count > 0) {
+        NSString *extraValue = @"";
+        if (object.count >= 2) {
+            NSMutableString *string = [NSMutableString string];
+            for (int i=1 ; i<object.count; i++) {
+                [string appendFormat:@",%@",[object objectAtIndex:i]];
+            }
+            extraValue = [string substringFromIndex:1];
+        }
+        //[[AppsFlyerTracker sharedTracker] trackEvent:[object objectAtIndex:0] withValue:extraValue];
+    }
+}
+
 
 static NSMutableDictionary *shareInfo;
 

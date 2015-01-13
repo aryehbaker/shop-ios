@@ -158,6 +158,9 @@
 		7A80D6C91A26B312008FD687 /* UIExt_HE.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A80D6C81A26B312008FD687 /* UIExt_HE.xib */; };
 		7ABC2B961A30091800266B84 /* ic_surprises_large_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ABC2B951A30091800266B84 /* ic_surprises_large_gray.png */; };
 		7AC510121A28D5D500B9D6D4 /* sms_text in Resources */ = {isa = PBXBuildFile; fileRef = 7AC510111A28D5D500B9D6D4 /* sms_text */; };
+		7AD04F4D1A64D42E006B0E08 /* libAppsFlyerLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AD04F4B1A64D42E006B0E08 /* libAppsFlyerLib.a */; };
+		7AD04F501A64D4C3006B0E08 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AD04F4F1A64D4C3006B0E08 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		7AD04F521A64D4E6006B0E08 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AD04F511A64D4E6006B0E08 /* iAd.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -357,6 +360,10 @@
 		7A80D6C81A26B312008FD687 /* UIExt_HE.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UIExt_HE.xib; sourceTree = "<group>"; };
 		7ABC2B951A30091800266B84 /* ic_surprises_large_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_surprises_large_gray.png; sourceTree = "<group>"; };
 		7AC510111A28D5D500B9D6D4 /* sms_text */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sms_text; sourceTree = "<group>"; };
+		7AD04F491A64D42E006B0E08 /* AppsFlyerTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppsFlyerTracker.h; sourceTree = "<group>"; };
+		7AD04F4B1A64D42E006B0E08 /* libAppsFlyerLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAppsFlyerLib.a; sourceTree = "<group>"; };
+		7AD04F4F1A64D4C3006B0E08 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		7AD04F511A64D4E6006B0E08 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -364,9 +371,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AD04F521A64D4E6006B0E08 /* iAd.framework in Frameworks */,
+				7AD04F501A64D4C3006B0E08 /* AdSupport.framework in Frameworks */,
 				1705D96D19FA27B8005F322F /* libShoprize.a in Frameworks */,
 				1705D95219FA1F8D005F322F /* UIKit.framework in Frameworks */,
 				1705D95019FA1F78005F322F /* Foundation.framework in Frameworks */,
+				7AD04F4D1A64D42E006B0E08 /* libAppsFlyerLib.a in Frameworks */,
 				1705D94E19FA1F63005F322F /* CoreGraphics.framework in Frameworks */,
 				1705D94C19FA1F55005F322F /* CoreLocation.framework in Frameworks */,
 				1705D94A19FA1F50005F322F /* MapKit.framework in Frameworks */,
@@ -625,6 +635,9 @@
 		1705D90419F9FD76005F322F /* fwk */ = {
 			isa = PBXGroup;
 			children = (
+				7AD04F511A64D4E6006B0E08 /* iAd.framework */,
+				7AD04F4F1A64D4C3006B0E08 /* AdSupport.framework */,
+				7AD04F481A64D42E006B0E08 /* AF-iOS-SDK-v2.5.3.11 */,
 				1705D95119FA1F8D005F322F /* UIKit.framework */,
 				1705D94F19FA1F78005F322F /* Foundation.framework */,
 				1705D94D19FA1F63005F322F /* CoreGraphics.framework */,
@@ -653,6 +666,15 @@
 				1705D92D19F9FDEC005F322F /* ShoprizeTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		7AD04F481A64D42E006B0E08 /* AF-iOS-SDK-v2.5.3.11 */ = {
+			isa = PBXGroup;
+			children = (
+				7AD04F491A64D42E006B0E08 /* AppsFlyerTracker.h */,
+				7AD04F4B1A64D42E006B0E08 /* libAppsFlyerLib.a */,
+			);
+			path = "AF-iOS-SDK-v2.5.3.11";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1030,6 +1052,10 @@
 				INFOPLIST_FILE = Shoprize_HE/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/fwk/AF-iOS-SDK-v2.5.3.11",
+				);
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
@@ -1053,6 +1079,10 @@
 				INFOPLIST_FILE = Shoprize_HE/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/fwk/AF-iOS-SDK-v2.5.3.11",
+				);
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",

@@ -39,6 +39,7 @@ typedef NS_ENUM(NSInteger, BarItem) {
 
 #define RED  (isHe ? @"#FF4745" : @"#FF1500")
 
+
 @interface ShopriseViewController : VIBaseViewController
 
 @property(nonatomic,strong) UIView *nav;
@@ -74,6 +75,8 @@ typedef NS_ENUM(NSInteger, BarItem) {
 + (void)gotoMallWithId:(NSString *)mallid inNav:(UINavigationController *)inNav;
 
 + (void)jumpToNearestMall;
+
+- (void)addTracksForKey:(NSString *)key values:(NSArray *)objects;
 
 @end
 

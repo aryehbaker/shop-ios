@@ -12,6 +12,7 @@
 #import <MessageUI/MessageUI.h>
 #import <Shoprize/Shoprize.h>
 #import <Shoprize/Ext.h>
+#import "AppsFlyerTracker.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 
 @interface VIAppDelegate : UIResponder <UIApplicationDelegate,OpenSuprise,CLLocationManagerDelegate,MFMailComposeViewControllerDelegate,UIAlertViewDelegate,UIGestureRecognizerDelegate,CBCentralManagerDelegate>

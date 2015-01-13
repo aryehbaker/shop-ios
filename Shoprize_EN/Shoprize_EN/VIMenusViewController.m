@@ -233,6 +233,7 @@
             }
             [app.locationManager stopUpdatingLocation];
             [app stopScan];
+            [[NSNotificationCenter defaultCenter] postNotificationName:_TK_Turen_Off_Noti object:@[[VINet info:Mail]]];
         }else{
             [app startScan];
             [app.locationManager startUpdatingLocation];

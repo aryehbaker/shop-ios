@@ -52,6 +52,10 @@ static NSString *_args;
 	if ([funName isEqualToString:@"regederUser"]) {
 		htmlArgs = [self.htmlview getFormValus];
 		[VINet post:@"/api/Account/Register" args:htmlArgs target:self succ:@selector(regOk:) error:@selector(showErr:) inv:self.view];
+        
+        [self addTracksForKey:_TK_Sign_Up values:@[
+                [htmlArgs stringValueForKey:@"UserName"],
+                [htmlArgs stringValueForKey:@"Gender"]]];
 	}
 }
 
@@ -66,6 +70,11 @@ static NSString *_args;
     [post setValue:[htmlArgs stringValueForKey:@"Password"] forKey:@"password"];
     [post setValue:@"password" forKey:@"grant_type"];
     [VINet post:@"/Token" args:post target:self succ:@selector(logonSucc:) error:@selector(logonFail:) inv:self.view];
+    
+    [self addTracksForKey:_TK_Sign_Up values:@[
+                                               [htmlArgs stringValueForKey:@"UserName"],
+                                               [htmlArgs stringValueForKey:@"Gender"]]];
+
 }
 
 - (void)logonFail:(id)value

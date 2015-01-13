@@ -240,6 +240,8 @@
             [tip button4Tag:102].layer.cornerRadius = 6;
             [tip button4Tag:101].layer.cornerRadius = 6;
             
+            [[NSNotificationCenter defaultCenter] postNotificationName:_TK_Turen_Off_Noti object:@[[VINet info:Mail]]];
+            
         }else{
             checbtn.selected = !checbtn.selected;
             [[NSUserDefaults standardUserDefaults] setBool:checbtn.selected  forKey:@"_close_notification_"];

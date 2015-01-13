@@ -18,6 +18,24 @@
 #define isHe  ([Fonts isHebrew])
 #define Align ([Fonts align])
 
+#define _Track @"_Track_Event"
+
+#define _TK_Sign_Up             @"SignUp"
+#define _TK_Click_Deal          @"ClickDeal"
+#define _TK_View_Store          @"ViewStore"
+#define _TK_Add_Fav_Store       @"AddFavStore"
+#define _TK_View_Suprise        @"ViewSurprise"
+#define _TK_Like_Deal           @"LikeDeal"
+#define _TK_Share_Deal          @"ShareDeal"
+#define _TK_Collecte_Suprise    @"CollectedSurprise"
+#define _TK_Redeeem_Suprise     @"RedeeemSuprise"
+#define _TK_View_Malls          @"ViewMallList"
+#define _TK_Invite              @"InviteFriends"
+#define _TK_Contact_Us          @"ContactUs"
+#define _TK_Turen_Off_Noti      @"TurnOffNotify"
+#define _TK_Click_Mall_Noti     @"ClickMallNotify"
+#define _TK_Click_Market_Noti   @"ClickMarketNotify"
+
 #define Eng
 
 @interface Fonts : NSObject

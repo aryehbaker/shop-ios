@@ -121,6 +121,8 @@
         return;
     }
     
+    [self addTracksForKey:_TK_Invite values:@[Fmt(@"%d",cts.count)]];
+    
     NSString *cotent = [@"sms_text" contentOfBunlde];
     
     MFMessageComposeViewController *picker = [[MFMessageComposeViewController alloc] init];

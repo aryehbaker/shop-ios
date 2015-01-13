@@ -114,15 +114,20 @@
 
 - (void)loadComplete:(NSDictionary *)info
 {
-    self.nav_title.text = [info stringValueForKey:@"StoreName"];
+    
+    NSString *storeName = [info stringValueForKey:@"StoreName"];
+    NSString *mobiid = [info stringValueForKey:@"MobiPromoId"];
+    
+    self.nav_title.text = storeName;
+    
+    [self addTracksForKey:_TK_Click_Deal values:@[mobiid,storeName]];
     
     self.imagelist = [NSMutableArray array];
     
     contentView = [[UIScrollView alloc] initWithFrame:Frm(0, self.nav.endY, self.view.w, Space(self.nav.endY))];
     contentView.showsHorizontalScrollIndicator = NO;
     contentView.showsVerticalScrollIndicator = NO;
-    
-    NSString *mobiid = [info stringValueForKey:@"MobiPromoId"];
+
     
     LKDBHelper *helper = [iSQLiteHelper getDefaultHelper];
     
@@ -374,6 +379,8 @@
 - (void)markIt:(id)sender {
     NSString *dealid = [mobi_promo stringValueForKey:@"MobiPromoId"];
     [VINet post:Fmt(@"/api/mobipromos/%@/mark",dealid) args:nil target:self succ:@selector(markedComplte:) error:@selector(showAlertError:) inv:self.view];
+    
+    [self addTracksForKey:_TK_Like_Deal values:@[dealid]];
 }
 
 - (void)markedComplte:(id)info
@@ -419,12 +426,17 @@
         imageURL = item.imageURL;
     }
     
+    NSString *storeName = [mobi_promo stringValueForKey:@"StoreName"];
+    NSString *mobiId  = [mobi_promo stringValueForKey:@"MobiPromoId"];
+    
     NSMutableDictionary *pot = [NSMutableDictionary dictionary];
     [pot setValue:imageURL forKey:@"picture"];
     [pot setValue:[[mobi_promo stringValueForKey:@"Offer"] killQute] forKey:@"description"];
-    [pot setValue:[mobi_promo stringValueForKey:@"StoreName"] forKey:@"name"];
+    [pot setValue:storeName forKey:@"name"];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"_share_to_facebook_" object:pot];
+    
+    [self addTracksForKey:_TK_Share_Deal values:@[mobiId,storeName]];
     
     double delayInSeconds = 3.0;
     dispatch_time_t delayInNanoSeconds = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);

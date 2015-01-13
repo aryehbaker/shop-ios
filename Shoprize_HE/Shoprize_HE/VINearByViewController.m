@@ -227,6 +227,7 @@ static ListType currentType;
 
 - (void)getMallProms:(id)value
 {
+    
     MallInfo *currentMall = ((VIAppDelegate *)[UIApplication sharedApplication].delegate).currentMall;
     //用户选择的MallId
     [NSUserDefaults setValue:currentMall.MallAddressId forKey:CURRENT_MALL_USER_SELECTED];
@@ -639,11 +640,10 @@ static ListType currentType;
     if(index == deals.count)
         return;
     MobiPromo *pdata = [deals objectAtIndex:index];
-    
+        
     VIDealsDetailViewController *deal = [[VIDealsDetailViewController alloc] init];
     deal.mobipromo = pdata;
     [self push:deal];
-    
 }
 
 - (void)doShowStore:(VICfgCellBtn *)clickBtn

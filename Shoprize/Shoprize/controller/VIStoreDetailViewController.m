@@ -38,8 +38,16 @@
         Store *st= [[iSQLiteHelper getDefaultHelper] searchSingle:[Store class] where:@{@"AddressId": storeID} orderBy:@"StoreId"];
         storeInfo = [st toDictionary];
     }
-
-    [self addNav:[storeInfo stringValueForKey:@"StoreName"] left:BACK right:NONE];
+    
+    NSString *storeId = [storeInfo stringValueForKey:@"StoreId"];
+    NSString *StoreName = [storeInfo stringValueForKey:@"StoreName"];
+    NSString *AddressId = [storeInfo stringValueForKey:@"AddressId" defaultValue:@""];
+    
+    
+    [self addTracksForKey:_TK_View_Store values:@[storeId,AddressId,StoreName]];
+    
+    
+    [self addNav:StoreName left:BACK right:NONE];
     
     btn_showTime = [[UIButton alloc] initWithFrame:Frm(130, self.nav.endY-8, 60, 20)];
     btn_showTime.layer.cornerRadius = 10;
@@ -52,7 +60,7 @@
     //check if the store is from favorite
     if([self isFromFavorite]){
         
-        [VINet get:Fmt(@"/api/stores/%@/promos",[storeInfo stringValueForKey:@"StoreId"]) args:nil target:self
+        [VINet get:Fmt(@"/api/stores/%@/promos",storeId) args:nil target:self
               succ:@selector(showMobiFromNet:) error:@selector(showMobiFail:) inv:self.view];
     }else{
         NSString *addId = [storeInfo objectForKey:@"AddressId"];
