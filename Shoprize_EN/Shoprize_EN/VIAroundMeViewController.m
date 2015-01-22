@@ -19,6 +19,8 @@
     NSMutableArray *deals;
 
     ASValueTrackingSlider *slider;
+    
+    BOOL isFirstLoad;
 }
 
 @end
@@ -28,7 +30,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self addNav:[@"aroudn_me_title" lang] left:MapIt right:MENU];
-
+    isFirstLoad = true;
+    
     [self.leftOne addTarget:self action:@selector(mapMe:)];
 
     deals = [NSMutableArray array];
@@ -209,8 +212,9 @@ static NSString *filterValue;
     }
 }
 
-- (void)loadComplete:(id)values {
 
+- (void)loadComplete:(id)values {
+    
     LKDBHelper *helper = [iSQLiteHelper getDefaultHelper];
     [helper deleteWithClass:[MobiPromoAR class] where:@"1 = 1"];
 
@@ -239,10 +243,22 @@ static NSString *filterValue;
     deals = [helper search:[MobiPromoAR class] where:@"" orderBy:@"CreateDate desc" offset:0 count:100000];
     [_tableView reloadAndHideLoadMore:YES];
     isLoading = NO;
+    
+    //跳转到最近的Mall
+    if (isFirstLoad && [values isKindOfClass:[NSArray class]] && [values count] ==0 ) {
+        [self showConfirmWithTitle:@"" msg:Lang(@"no_promos_around") callbk:^(BOOL isOk) {
+            if (isOk) {
+               MallInfo *nearestMall = [MallInfo nearestMall];
+               [ShopriseViewController gotoMallWithId:nearestMall.MallAddressId inNav:self.navigationController];
+            }
+        }];
+    }
+    isFirstLoad = false;
 }
 
 - (void)loadCompleteFail:(id)values {
     isLoading = NO;
+    isFirstLoad = false;
     [VIAlertView showErrorMsg:@"Load Error"];
 }
 

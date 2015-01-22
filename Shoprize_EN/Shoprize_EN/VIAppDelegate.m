@@ -192,6 +192,8 @@ static NSString *logpath;
         [VIAlertView showErrorMsg:Lang(@"open_gps_on")];
     }
     
+    [MallVisit clearAll];
+    
     return YES;
 }
 
@@ -316,7 +318,6 @@ static NSDate *latestLoc;
             Timestamps *ts2 = [[iSQLiteHelper getDefaultHelper] searchSingle:[Timestamps class] where:Fmt(@" stampId = '%@'", mid) orderBy:@"time"];
             if (ts2 == nil || abs(ts2.time - [[NSDate date] timeIntervalSince1970]) > 1 * 60) {
                 [Timestamps setMallRefrshTime:mid];
-                [NSUserDefaults setValue:[nearest MallAddressId] forKey:@"_post_mall_id_"];
                 [NSUserDefaults setValue:[nearest MallAddressId] forKey:CURRENT_MALL_USER_IN];
                 [[NSNotificationCenter defaultCenter] postNotificationName:CURRENT_MALL_USER_IN object:[nearest toDictionary]];
             }
@@ -325,10 +326,9 @@ static NSDate *latestLoc;
                 [[NSNotificationCenter defaultCenter]
                         postNotificationName:@"_ibeancon_reset_" object:mid];
             }
+        }else{
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"_post_store_id_"];
         }
-    } else {
-        [NSUserDefaults setValue:@"" forKey:@"_post_mall_id_"];
-        [NSUserDefaults setValue:@"" forKey:@"_post_store_id_"];
     }
 }
 
@@ -540,34 +540,44 @@ static NSDate *latestLoc;
 
 -(void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region{
     
-    NSString *mallId = region.identifier;
-    BOOL isNew = [MallWelcome isNewMall:mallId];
-    if (isNew) {
+    if ([region isKindOfClass:[CLBeaconRegion class]]) {
+        [NSUserDefaults setValue:region.identifier forKey:@"_post_store_id_"];
+        return;
+    }
+    
+    if ([region isKindOfClass:[CLCircularRegion class]]) {
+        NSString *mallId = region.identifier;
+        BOOL isNew = [MallWelcome isNewMall:mallId];
         MallInfo *nearest = [MallInfo getMallById:mallId];
-        NSString *mallName = nearest.Name;
-        NSString *uname = [VINet info:KFull];
-        NSString *msg;
-        if (isHe) {
-            msg = Fmt(Lang(@"welcome_mall"), mallName);
-        }else{
-            msg = Fmt(Lang(@"welcome_mall"), uname, mallName);
+        if (isNew) {
+            NSString *mallName = nearest.Name;
+            NSString *uname = [VINet info:KFull];
+            NSString *msg;
+            if (isHe) {
+                msg = Fmt(Lang(@"welcome_mall"), mallName);
+            }else{
+                msg = Fmt(Lang(@"welcome_mall"), uname, mallName);
+            }
+            
+            NSMutableDictionary *mt = [NSMutableDictionary dictionary];
+            [mt setValue:@"Mall" forKey:@"NotifyType"];
+            [mt setValue:nearest.MallAddressId forKey:@"Udid"];
+            // 禁止掉通知信息
+            [self pushNotification:msg withObj:mt];
         }
         
-        NSMutableDictionary *mt = [NSMutableDictionary dictionary];
-        [mt setValue:@"Mall" forKey:@"NotifyType"];
-        [mt setValue:nearest.MallAddressId forKey:@"Udid"];
-        // 禁止掉通知信息
-        [self pushNotification:msg withObj:mt];
+        [MallVisit addVisit:mallId lat:nearest.Lat lon:nearest.Lon];
+        [self calcIfOpenNewMall];
     }
     
     NSLog(@"Enter: %@",region.identifier);
-    [self calcIfOpenNewMall];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
 {
     NSString *mallId = region.identifier;
     [MallWelcome isNewMall:mallId];
+    [MallVisit removeVisit:mallId];
     NSLog(@"Exit Regin:%@",region);
 }
 

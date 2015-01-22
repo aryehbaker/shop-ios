@@ -78,6 +78,9 @@
     btn.titleLabel.font = Bold(22);
     [self.view addSubview:btn];
     
+    if (isEn) {
+        [btn setTitleColor:[@"#ffffff" hexColor] forState:UIControlStateNormal];
+    }
     
     currentPage = 0;
     storeData = [NSMutableArray array];

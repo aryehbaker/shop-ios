@@ -65,7 +65,7 @@
         if ([m hasString:@"-"]) {
             m  = [[m parse:@"yyyy-MM-dd"] format:@"dd/MM/yyyy"];
         }else{
-            m  = [[m parse:@"MM/dd/yyyy"] format:@"dd/MM/yyyy"];
+            m  = [[m parse:@"MM/dd/yyyy"] format:isEn ? @"MM/dd/yyyy" : @"dd/MM/yyyy"];
         }
     }
     
@@ -367,8 +367,8 @@
 {
     if(textField.tag == 10005)
     {
-    
-        NSDate *cd = [textField.text parse:@"dd/MM/yyyy"];
+        NSDate *cd = [textField.text parse: isHe ? @"dd/MM/yyyy" : @"MM/dd/yyyy"];
+       
         full = [[UIView alloc] initWithFrame:self.view.frame];
         
         pick = [[UIDatePicker alloc] init];
@@ -440,7 +440,10 @@
 }
 -(void)doDone:(id)btn
 {
-    [[self.view textfiled4Tag:10005] setText:[[pick date] format:@"dd/MM/yyyy"]];
+    if(isHe)
+        [[self.view textfiled4Tag:10005] setText:[[pick date] format:@"dd/MM/yyyy"]];
+    else
+        [[self.view textfiled4Tag:10005] setText:[[pick date] format:@"MM/dd/yyyy"]];
     [self doCancel:btn];
 }
 

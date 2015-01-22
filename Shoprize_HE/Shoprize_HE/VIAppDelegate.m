@@ -70,6 +70,8 @@ static int GPS_SCAN_RAIDO_R = 200;
 static NSString *logpath;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.beancons     = [NSMutableDictionary dictionary];
     
@@ -92,6 +94,7 @@ static NSString *logpath;
     
     // 设置地理位置墙
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(buildGenWall) name:@"_rebuild_geo_wall" object:nil];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addTrack:) name:_Track object:nil];
     
     //用户获得Mall的通知内容
@@ -194,7 +197,8 @@ static NSString *logpath;
     ///================================ AppsFlyer ========================================
     [AppsFlyerTracker sharedTracker].appsFlyerDevKey = @"rjgwhvjXgm2qTzdnSwgCwg";
     [AppsFlyerTracker sharedTracker].appleAppID = @"916054683";
-
+    
+    [MallVisit clearAll];
     
     return YES;
 }
@@ -291,21 +295,30 @@ static NSString *logpath;
     [VINet get:Fmt(@"/api/malls/%@/detail",mallId) args:nil target:self succ:@selector(getMallProms:) error:@selector(getMallsFail:) inv:nil];
 
 }
-
 -(void)getMallProms:(NSDictionary *)mallresp{
     //保存对应Mall的信息
     JSONModelError *jsonerr;
     Mall *mall = [[Mall alloc] initWithDictionary:mallresp error:&jsonerr];
     [mall saveMallToDatabase];
-
+    
     //刷新Ibeacon的内容
     [[NSNotificationCenter defaultCenter]
-                                postNotificationName:@"_ibeancon_reset_" object:mall.MallAddressId];
+     postNotificationName:@"_ibeancon_reset_" object:mall.MallAddressId];
 }
 
 -(void)getMallsFail:(NSDictionary *)mallresp{
     DEBUGS(@"%@",mallresp);
 }
+
+-(void)loadNearMalls{
+    [VINet get:@"/api/malls/nearby?radius=0" args:nil target:self succ:@selector(getMalls:) error:@selector(getMallsFail:) inv:nil];
+}
+
+-(void)getMalls:(NSArray *)values{
+    [[iSQLiteHelper getDefaultHelper] deleteWithClass:[MallInfo class] where:@"1=1"];
+    [[iSQLiteHelper getDefaultHelper] insertOrUpdateDB:[MallInfo class] values:values];
+}
+
 
 static NSDate *latestLoc;
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
@@ -333,7 +346,6 @@ static NSDate *latestLoc;
            Timestamps *ts2 = [[iSQLiteHelper getDefaultHelper] searchSingle:[Timestamps class] where:Fmt(@" stampId = '%@'",mid) orderBy:@"time"];
            if(ts2 == nil || abs(ts2.time - [[NSDate date] timeIntervalSince1970]) > 1 * 60){
                 [Timestamps setMallRefrshTime:mid];
-                [NSUserDefaults setValue:[nearest MallAddressId] forKey:@"_post_mall_id_"];
                 [NSUserDefaults setValue:[nearest MallAddressId] forKey:CURRENT_MALL_USER_IN];
                 [[NSNotificationCenter defaultCenter] postNotificationName:CURRENT_MALL_USER_IN object:[nearest toDictionary]];
            }
@@ -342,10 +354,9 @@ static NSDate *latestLoc;
                 [[NSNotificationCenter defaultCenter]
                  postNotificationName:@"_ibeancon_reset_" object:mid];
             }
+        }else{
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"_post_store_id_"];
         }
-    }else{
-        [NSUserDefaults setValue:@"" forKey:@"_post_mall_id_"];
-        [NSUserDefaults setValue:@"" forKey:@"_post_store_id_"];
     }
 }
 
@@ -562,15 +573,15 @@ static NSDate *latestLoc;
     if ([region isKindOfClass:[CLCircularRegion class]]) {
         NSString *mallId = region.identifier;
         BOOL isNew = [MallWelcome isNewMall:mallId];
+        MallInfo *nearest = [MallInfo getMallById:mallId];
         if (isNew) {
-            MallInfo *nearest = [MallInfo getMallById:mallId];
             NSString *mallName = nearest.Name;
             NSString *uname = [VINet info:KFull];
             NSString *msg;
             if (isHe) {
                 msg = Fmt(Lang(@"welcome_mall"), mallName);
             }else{
-                msg = Fmt(Lang(@"welcome_mall"), uname, mallName);
+                msg = Fmt(Lang(@"welcome_mall"), Fmt(@"Hi %@,",uname), mallName);
             }
             
             NSMutableDictionary *mt = [NSMutableDictionary dictionary];
@@ -580,7 +591,7 @@ static NSDate *latestLoc;
             [self pushNotification:msg withObj:mt];
         }
         
-        [NSUserDefaults setValue:mallId forKey:@"_post_mall_id_"];
+        [MallVisit addVisit:mallId lat:nearest.Lat lon:nearest.Lon];
         
         [self calcIfOpenNewMall];
     }
@@ -590,10 +601,20 @@ static NSDate *latestLoc;
 
 -(void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
 {
-    NSString *mallId = region.identifier;
-    [NSUserDefaults setValue:@"" forKey:@"_post_mall_id_"];
-    [MallWelcome isNewMall:mallId];
-    NSLog(@"Exit Regin:%@",region);
+    if ([region isKindOfClass:[CLCircularRegion class]])
+    {
+        NSString *mallId = region.identifier;
+        [MallWelcome isNewMall:mallId];
+        NSLog(@"Exit Regin:%@",region);
+        [MallVisit removeVisit:mallId];
+        [self loadNearMalls];
+    }
+    
+    if ([region isKindOfClass:[CLBeaconRegion class]]) {
+        [NSUserDefaults removeObjectForKey:@"_post_store_id_"];
+        return;
+    }
+
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
@@ -856,7 +877,7 @@ static NSDate *latestLoc;
         if (object.count >= 2) {
             NSMutableString *string = [NSMutableString string];
             for (int i=1 ; i<object.count; i++) {
-                [string appendFormat:@",%@",[object objectAtIndex:i]];
+                [string appendFormat:@"|%@",[object objectAtIndex:i]];
             }
             extraValue = [string substringFromIndex:1];
         }

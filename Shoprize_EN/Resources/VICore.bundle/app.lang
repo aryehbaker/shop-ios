@@ -10,11 +10,11 @@
      },
      "index_welcome_02" : 
      {
-         "en" : "find hot deals while you're shopping" ,
+         "en" : "Find Hot Deals while you’re shopping!" ,
          "he" : "גלו את כל המבצעים החמים בקלות בזמן שאתם עושים שופינג"
      },
      "index_welcome_03" : {
-         "en" : "Look for the stores that giveaway surprises. walk-in and collect!",
+         "en" : "Look for stores giving away SURPRISES.  Walk in & collect.",
          "he" : "חפשו את החנויות שמפנקות בהפתעות שוות, כנסו לחנות והרוויחו !\u200f"
      },
      "index_welcome_04" : {
@@ -76,7 +76,7 @@
                 "he" : "\u200fשופרייז חושפת בפניכם עשרות מבצעים והנחות בחנויות האהובות עלייכם ומעדכנת את המידע על בסיס יומי. \n מעקב שוטף אחרי החנות מעניק לכם את היכולת לדעת מתי עולה הטבה או מבצע אטרקטיבי בתחומים שמעניינים אתכם, גם בבית וגם בזמן שאתם בקניון.  \nללא מיילים, הודעות ומבלי לשלם או להתחייב למועדון לקוחות! \n \nמשתלם להיות שופרייזר :)"
         },
      "empty_store_list"     :{ 
-                "en": "You haven't liked any stores yet. Add you favorite stores and get updated with the latest deals and surprises!",
+                "en": "You haven’t selected any stores.  Select  stores to add to your favorites to receive customized deals & surprises.",
                 "he": "לא הוספתם חנויות עדיין.  עקבו אחר החנויות האהובות עליכם, כך תוכלו ליהנות מהטבות בלעדיות, ותדעו לפני כולם על המבצעים החדשים!"
       },
      "save_user_info"       :{ "en" : "Save", "he": "שמירת שינויים"},
@@ -122,7 +122,7 @@
      "fm_girl"              :{ "en" : "Female","he" :"נקבה"},
      "update_complte"       :{ "en" : "update completed","he": "עדכון הושלם"},
      "no_mall_founded"      :{ "en" : "No Mall Founded","he" : "לא נמצאו קניונים!"},
-     "thx_feed_back"        :{ "en" : "Thank your feed back","he":"תודה לך על פנייתך. ניצור עימך קשר בהקדם!"},
+     "thx_feed_back"        :{ "en" : "Thank You For Your Feedback","he":"תודה לך על פנייתך. ניצור עימך קשר בהקדם!"},
      "share2facebook_ok"     :{ "en" : "Sharing success", "he": "הצלחת שיתוף"},
      "share2facebook_no"     :{ "en" : "Sharing failed","he": "השיתוף נכשל"},
      "i_see_close_it"       :{ "en" : "I See !" ,"he": "סבבה, תודה!"},
@@ -137,7 +137,7 @@
      "share_ok"             :{ "en" : "OK" ,"he": "אישור"},
      "ck_all"               :{ "en" : "All","he": "סמנו הכל"},
      "ck_none"              :{ "en" : "Remove","he": "הסירו הכל"},
-     "welcome_mall"         :{ "en" : "Hi %@, welcome to %@. open SOTG and see all awesome deals and surprises waiting for you now, save money and have fun !",
+     "welcome_mall"         :{ "en" : "%@ welcome to %@. open SOTG and see all awesome deals and surprises waiting for you now, save money and have fun !",
         "he": "Shoprize בדרך לקניון %@ ? כל המבצעים החמים וההפתעות מחכים לך עכשיו ב"},
      "weekend_come"         :{ "en" : "weekend coming up's","he": "סוף השבוע מגיע!"},
      "welcome_store"        :{ 
@@ -297,6 +297,10 @@
     },
     "version_text" : {
         "en" : "Version",
+        "he" :"גרסה"
+    },
+    "no_promos_around" :{
+        "en" :"No promos around you, do you want to go to the nearest Mall?",
         "he" :"גרסה"
     }
 }

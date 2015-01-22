@@ -252,6 +252,18 @@
 
 @end
 
+@interface MallVisit : JSONModel
+@property(nonatomic,strong) NSString *mallid;
+@property(nonatomic,assign) double lat;
+@property(nonatomic,assign) double lon;
+
++(void)addVisit:(NSString *)mallId lat:(double)lat lon:(double)lon;
++(void)removeVisit:(NSString *)mallId;
++(void)clearAll;
++(NSString *)nearestMall;
+
+@end
+
 @interface MallWelcome : JSONModel
 
 @property(nonatomic,strong) NSString *MallId;

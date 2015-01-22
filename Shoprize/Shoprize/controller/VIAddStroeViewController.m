@@ -52,6 +52,12 @@
     [tbn addTarget:self action:@selector(completeSelect:)];
     [v addSubview:tbn];
     
+    if(isEn){
+        [tbn setBackgroundcolorByHex:@"#ff4747"];
+        [tbn setTitleColor:[@"#ffffff" hexColor] forState:UIControlStateNormal];
+        tbn.layer.borderWidth = 0;
+    }
+    
     [self.view addSubview: v];
     
     currentPage = 0;

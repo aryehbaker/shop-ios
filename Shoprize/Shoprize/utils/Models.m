@@ -339,7 +339,51 @@
 }
 
 @end
+@implementation MallVisit
++(NSString*)getPrimaryKey{
+    return @"mallid";
+}
 
++(void)addVisit:(NSString *)mallId lat:(double)lat lon:(double)lon
+{
+   LKDBHelper *helper = [iSQLiteHelper getDefaultHelper];
+    NSMutableArray *value = [[iSQLiteHelper getDefaultHelper] searchModels:[MallVisit class] where:@{@"mallid":mallId}];
+    MallVisit *mallviist;
+    if (value.count == 0) {
+        mallviist = [[MallVisit alloc] init];
+    }else{
+        mallviist = [value objectAtIndex:0];
+    }
+    mallviist.mallid = mallId;
+    mallviist.lat = lat;
+    mallviist.lon = lon;
+    [helper insertOrUpdateUsingObj:mallviist];
+}
+
++(void)removeVisit:(NSString *)mallId{
+    [[iSQLiteHelper getDefaultHelper] deleteWithClass:[MallVisit class] where:@{@"mallid":mallId}];
+}
++(void)clearAll{
+   // [[iSQLiteHelper getDefaultHelper] clearTableData:[MallVisit class]];
+}
++(NSString *)nearestMall {
+    NSMutableArray *list = [[iSQLiteHelper getDefaultHelper] searchAllModel:[MallVisit class]];
+    if (list.count == 0) {
+        return nil;
+    }
+    double min_distance = MAXFLOAT;
+    MallVisit *nearest = nil;
+    for (MallVisit *m in list) {
+        double distance = [VINet distanceTo:m.lat lon:m.lon];
+        if (distance < min_distance) {
+            min_distance = distance;
+            nearest = m;
+        }
+    }
+    return nearest.mallid;
+}
+
+@end
 @implementation MallWelcome
 +(NSString*)getPrimaryKey{
     return @"MallId";

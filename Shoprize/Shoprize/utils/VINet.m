@@ -9,6 +9,7 @@
 #import "VINet.h"
 #import <VICore/VICore.h>
 #import "Fonts.h"
+#import "Models.h"
 
 @implementation VINet
 
@@ -385,8 +386,11 @@ static NSMutableDictionary *stores;
     if (location != nil && ![location hasPrefix:@"0.0000"]) {
         [head setValue:location forKey:@"location"];
     }
-    if ([NSUserDefaults getValue:@"_post_mall_id_"] != nil && ![[NSUserDefaults getValue:@"_post_mall_id_"] isEqualToString:@""]) {
-        [head setValue:[NSUserDefaults getValue:@"_post_mall_id_"] forKey:@"MallAddressId"];
+    
+    NSString *mallId =  [MallVisit nearestMall];
+    
+    if (mallId!=nil) {
+        [head setValue:mallId forKey:@"MallAddressId"];
     }
     if ([NSUserDefaults getValue:@"_post_store_id_"] != nil && ![[NSUserDefaults getValue:@"_post_store_id_"] isEqualToString:@""]) {
         [head setValue:[NSUserDefaults getValue:@"_post_store_id_"] forKey:@"StoreAddressId"];

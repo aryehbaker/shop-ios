@@ -357,7 +357,7 @@ static bool clear_by_hand;
                 UIView *headerView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, self.view.w, 70)];
                 NSString *t = [@"about_surprise" lang];
                 UILabel *titleLabel = [VILabel createManyLines:Frm(10, 10, 300, 0) color:@"#464646" ft:Regular(16)  text:t];
-                titleLabel.text = [t rtlTxt];
+                titleLabel.text = t;
                 [titleLabel autoHeight];
                 titleLabel.textAlignment = NSTextAlignmentCenter;
                 [headerView setH:titleLabel.endY+10];

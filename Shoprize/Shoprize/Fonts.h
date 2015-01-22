@@ -28,7 +28,7 @@
 #define _TK_Like_Deal           @"LikeDeal"
 #define _TK_Share_Deal          @"ShareDeal"
 #define _TK_Collecte_Suprise    @"CollectedSurprise"
-#define _TK_Redeeem_Suprise     @"RedeeemSuprise"
+#define _TK_Redeem_Surprise     @"RedeemSurprise"
 #define _TK_View_Malls          @"ViewMallList"
 #define _TK_Invite              @"InviteFriends"
 #define _TK_Contact_Us          @"ContactUs"

@@ -241,7 +241,7 @@
                 reemId = [extra stringValueForKey:@"MobiPromoId"];
             [VINet post:Fmt(@"/api/mobipromos/%@/redeem",reemId) args:nil target:self succ:@selector(completeReedem:) error:@selector(showAlertError:) inv:self.view];
             
-            [self addTracksForKey:_TK_Redeeem_Suprise values:@[reemId]];
+            [self addTracksForKey:_TK_Redeem_Surprise values:@[reemId]];
         }
     }];
 }
